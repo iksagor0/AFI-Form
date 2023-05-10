@@ -274,6 +274,15 @@ textarea.field__input:focus {
   display: flex;
   max-width: 100%;
 }
+.field__label-wrapper.gap_30 {
+  margin-right: 30px;
+}
+
+.field-group.flex_gap_10 {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
 
 .fields-row .field.field--small {
   max-width: 5rem;
@@ -504,7 +513,85 @@ textarea.field__input:focus {
   animation: circle 0.5s linear infinite;
 }
 
+/* ********************************
+      COLLECTOR VEHICLES PAGE
+************************************/
 /* COLLECTOR VEHICLES */
+.quote_request_heading.extra_mb {
+  margin-bottom: 30px !important;
+}
+
+.quote-request__section-columns {
+  display: flex;
+  margin-bottom: 2rem;
+}
+
+.quote-request__fields {
+  background-color: #f6f6f6;
+  background-color: var(--color-gray-10);
+  flex-grow: 1;
+  padding: 1.5rem 1rem;
+}
+
+.quote-request__fields--separated {
+  background: transparent;
+  left: 0;
+  padding: 0;
+}
+
+.quote-request__fields--separated .field {
+  display: flex;
+  justify-content: space-between;
+  max-width: none;
+}
+
+.quote-request__fields--separated .field__label {
+  font-weight: 700;
+}
+
+.quote-request__fields--separated .field__sublabel {
+  display: block;
+  font-weight: 400;
+  /* margin-top: 0.25rem; */
+}
+
+.quote-request__fields--separated .field__label-wrapper {
+  padding-right: 2rem;
+}
+
+.quote-request__fields--separated .field__input-wrapper {
+  flex-basis: 12rem;
+}
+
+.fields-row .qrf-accordion {
+  max-width: 40rem;
+}
+
+.fields-row .qrf-accordion .button-bare.qrf-accordion__trigger {
+  margin-top: 0.2rem;
+  /* margin-top: 0.5rem; */
+  /* padding-left: 0.75rem; */
+  position: relative;
+}
+.fields-row .qrf-accordion .button-bare.qrf-accordion__trigger:hover {
+  text-decoration: underline;
+}
+
+.fields-row .qrf-accordion .qrf-accordion__heading {
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  margin-bottom: 10px !important;
+}
+
+@media screen and (min-width: 48em) {
+  .quote-request__fields {
+    padding: 2.625rem 2.25rem;
+  }
+  .quote-request__fields--separated {
+    padding: 0;
+  }
+}
+
 .quote_request__summary {
   margin-bottom: 4rem;
 }
@@ -540,6 +627,8 @@ textarea.field__input:focus {
   gap: 2.5rem;
 }
 
-.hidden_area {
+/* Hidden */
+.hidden_area,
+.__hide {
   display: none;
 }
