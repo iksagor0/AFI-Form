@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Step 1</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;300;400;500;600;700&family=Roboto:wght@100;300;400;500;700;900&family=Zilla+Slab:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      as="font"
+      rel="stylesheet preload prefetch"
+      href="https://fonts.gstatic.com/s/zillaslab/v11/dFa6ZfeM_74wlPZtksIFajo6_Q.woff2"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      as="font"
+      rel="stylesheet preload prefetch"
+      href="https://fonts.gstatic.com/s/roboto/v30/KFOmCnqEu92Fr1Mu4mxK.woff2"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    />
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+      crossorigin="anonymous"
+    />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/common.css" />
+    <link rel="stylesheet" href="./css/form.css" />
+  </head>
+
+  <body class="body">
+    <div class="container">
+      <!-- <h1 class="quote_request_heading">Military Information</h1> -->
+
+      <!-- ******** STEP ******** -->
+      <div class="step__container">
+        <ul class="steps__list">
+          <li class="step active_step" data-text="Policy Holder Info">1</li>
+          <li class="line"></li>
+          <li class="step" data-text="Business Info">2</li>
+          <li class="line"></li>
+          <li class="step" data-text="Coverages">3</li>
+          <li class="line"></li>
+          <li class="step" data-text="Quote">4</li>
+        </ul>
+      </div>
+
+      <div class="quote_request__section_wrapper">
+        <!-- ******* FORM  *******-->
+        <div class="form_container">
+          <h2 class="quote_request_heading">Business Owner Information</h2>
+
+          <div class="fields-row">
+            <!-- First Name -->
+            <div class="field">
+              <div class="field__label-wrapper">
+                <label class="field__label" for="eligibilityFirstName"
+                  >First Name</label
+                >
+              </div>
+              <div class="field__input-wrapper">
+                <input
+                  class="field__input"
+                  id="eligibilityFirstName"
+                  name="eligibilityFirstName"
+                  type="text"
+                  required=""
+                  pattern="^[a-zA-Z]+$"
+                  maxlength="50"
+                  placeholder=""
+                  value=""
+                />
+              </div>
+            </div>
+
+            <!-- Last Name -->
+            <div class="field">
+              <div class="field__label-wrapper">
+                <label class="field__label" for="eligibilityLastName"
+                  >Last Name</label
+                >
+              </div>
+              <div class="field__input-wrapper">
+                <input
+                  class="field__input"
+                  id="eligibilityLastName"
+                  name="eligibilityLastName"
+                  type="text"
+                  required=""
+                  pattern="^[a-zA-Z]+$"
+                  maxlength="50"
+                  placeholder=""
+                  value=""
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="fields-row">
+            <!-- Email -->
+            <div class="field field--xlarge">
+              <div class="field__label-wrapper">
+                <label class="field__label" for="policyHolderEmail"
+                  >Email Address</label
+                >
+              </div>
+              <div class="field__input-wrapper">
+                <input
+                  class="field__input"
+                  id="policyHolderEmail"
+                  name="policyHolderEmail"
+                  type="email"
+                  required=""
+                  maxlength="100"
+                  placeholder=""
+                  value=""
+                />
+              </div>
+            </div>
+
+            <!-- Phone Type -->
+            <div class="field field--medium">
+              <div class="field__label-wrapper">
+                <label class="field__label" for="policyHolderPhoneType"
+                  >Phone Type</label
+                >
+              </div>
+              <div class="field__input-wrapper">
+                <select
+                  class="field__input"
+                  id="policyHolderPhoneType"
+                  name="policyHolderPhoneType"
+                  type="select"
+                  required=""
+                >
+                  <option value="">--</option>
+                  <option value="Home">Home</option>
+                  <option value="Business">Business</option>
+                  <option value="Cell">Cell</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Phone Number -->
+            <div class="field">
+              <div class="field__label-wrapper">
+                <label class="field__label" for="policyHolderPhoneNumber"
+                  >Phone Number</label
+                >
+              </div>
+              <div class="field__input-wrapper">
+                <input
+                  class="field__input"
+                  id="policyHolderPhoneNumber"
+                  name="policyHolderPhoneNumber"
+                  type="text"
+                  required=""
+                  pattern="\(\d\d\d\) \d\d\d-?\d\d\d\d"
+                  placeholder=""
+                  value=""
+                />
+              </div>
+            </div>
+          </div>
+
+          <p class="note">
+            To offer you an accurate quote and/or policy, we (AFI and AFI
+            affiliates) may collect information from consumer reporting
+            agencies, such as credit history. Future reports may be used to
+            update or renew your insurance. By continuing with this quote
+            request, you agree to receive marketing materials&nbsp;and SMS
+            notifications&nbsp;from Armed Forces Insurance. You can request
+            removal&nbsp;or opt-out&nbsp;at any time.&nbsp;Please review our
+            <a href="#" target="_blank" alt="AFI Privacy Policy"
+              >Privacy Policy - Information Gathering.</a
+            >
+          </p>
+        </div>
+
+        <!-- ******* ASIDE  *******-->
+        <aside class="quote_request_aside" style="max-width: 200px">
+          <h2 class="quote_request_sidebar__heading">Helpful Tips</h2>
+          <div class="quote_request_sidebar__content">
+            <div class="quote_request_sidebar__item">
+              <h3 class="quote_request_sidebar__item_heading">
+                Tell Us About Yourself
+              </h3>
+              <p class="quote_request_sidebar__item_description">
+                Providing this information will help our agents get you the most
+                accurate rate for your quote.
+              </p>
+            </div>
+            <div class="quote_request_sidebar__item">
+              <h3 class="quote_request_sidebar__item_heading">
+                Need Help Now?
+              </h3>
+              <p class="quote_request_sidebar__item_description">
+                Call us at 800-295-9649 from 7:30am-6:30pm CST M-F. Our
+                dedicated agents are standing by to help.
+              </p>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <!--------------------- Action Button --------------------->
+    <div class="quote_request__action_buttons">
+      <div class="container d-flex">
+        <button class="button button__back button__left" type="button">
+          Back
+        </button>
+        <button class="button button__next button__right" type="submit">
+          Next
+        </button>
+      </div>
+    </div>
+  </body>
+</html>
