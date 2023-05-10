@@ -503,3 +503,43 @@ textarea.field__input:focus {
   transform: translate(-50%, -50%);
   animation: circle 0.5s linear infinite;
 }
+
+/* COLLECTOR VEHICLES */
+.quote_request__summary {
+  margin-bottom: 4rem;
+}
+
+.quote_request__summary_item {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.quote_request__summary_item_info {
+  color: #4a4a4a !important;
+  font-weight: bold !important;
+}
+
+.button-bare {
+  background-color: transparent;
+  border: 0;
+  border-radius: 0;
+  color: #004976;
+  color: var(--color-blue-30);
+  cursor: pointer;
+  display: inline;
+  font-size: 1rem;
+  margin: 0;
+  outline: none;
+  padding: 0;
+}
+
+.quote_request__summary_item_actions {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.hidden_area {
+  display: none;
+}
