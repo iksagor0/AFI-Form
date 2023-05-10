@@ -240,7 +240,8 @@
   display: block;
 }
 
-input.field__input:focus {
+input.field__input:focus,
+textarea.field__input:focus {
   border: 2px solid #000;
 }
 
@@ -283,6 +284,15 @@ input.field__input:focus {
   display: flex;
   flex-direction: column;
   max-width: none;
+}
+
+.fields-row .field textarea.field__input {
+  height: 10rem;
+}
+
+.fields-row .field.field--extended-label .field__label {
+  position: relative;
+  width: 150%;
 }
 
 /* .fields-row .cover_options_wrapper .field__label {
