@@ -308,8 +308,8 @@ input.field__input:focus {
   font-size: 0.875rem !important;
   font-style: italic !important;
   line-height: 1.4 !important;
-  margin-bottom: 0 !important;
-  /* margin-bottom: -1.1875rem; */
+  /* margin-bottom: 0 !important; */
+  margin-bottom: -1.1875rem !important;
 }
 
 .note {
