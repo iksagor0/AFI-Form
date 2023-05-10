@@ -53,14 +53,14 @@
     <!-- ************************************************ -->
     <section class="title_hero">
       <div class="container">
-        <h1>Request a Business Insurance Quote</h1>
+        <h1>Request a Collector Vehicle Insurance Quote</h1>
       </div>
     </section>
 
     <!-- ************************************************ -->
     <!------------------- Radio Section -------------------->
     <!-- ************************************************ -->
-    <section class="form_section radio_select form_container active_section">
+    <section class="form_section radio_select form_container">
       <div class="container">
         <section class="heading_text_section">
           <h1 class="quote_request_heading">Eligibility For Insurance</h1>
@@ -632,14 +632,14 @@
     <!-- ************************************************ -->
     <!---------------------- MULTI-STEP 1 ------------------>
     <!-- ************************************************ -->
-    <section class="form_section multi__step_1">
+    <section class="form_section multi__step_1 active_section">
       <div class="container">
         <!-- ******** STEP ******** -->
         <div class="step__container">
           <ul class="steps__list">
-            <li class="step active_step" data-text="Policy Holder Info">1</li>
+            <li class="step active_step" data-text="Driver Information">1</li>
             <li class="line"></li>
-            <li class="step" data-text="Business Info">2</li>
+            <li class="step" data-text="Vehicle">2</li>
             <li class="line"></li>
             <li class="step" data-text="Coverages">3</li>
             <li class="line"></li>
@@ -653,7 +653,6 @@
             <h2 class="quote_request_heading">Business Owner Information</h2>
 
             <div class="fields-row">
-              <!-- First Name -->
               <div class="field">
                 <div class="field__label-wrapper">
                   <label class="field__label" for="policyHolderFirstName"
@@ -665,8 +664,8 @@
                     class="field__input"
                     id="policyHolderFirstName"
                     name="policyHolderFirstName"
-                    data-name="policyHolderFirstName"
                     type="text"
+                    required=""
                     pattern="^[a-zA-Z]+$"
                     maxlength="50"
                     placeholder=""
@@ -674,8 +673,6 @@
                   />
                 </div>
               </div>
-
-              <!-- Last Name -->
               <div class="field">
                 <div class="field__label-wrapper">
                   <label class="field__label" for="policyHolderLastName"
@@ -687,8 +684,8 @@
                     class="field__input"
                     id="policyHolderLastName"
                     name="policyHolderLastName"
-                    data-name="policyHolderLastName"
                     type="text"
+                    required=""
                     pattern="^[a-zA-Z]+$"
                     maxlength="50"
                     placeholder=""
@@ -696,84 +693,40 @@
                   />
                 </div>
               </div>
-            </div>
-
-            <div class="fields-row">
-              <!-- Email -->
-              <div class="field field--xlarge">
+              <div class="field field--small">
                 <div class="field__label-wrapper">
-                  <label class="field__label" for="policyHolderEmail"
-                    >Email Address</label
-                  >
-                </div>
-                <div class="field__input-wrapper">
-                  <input
-                    class="field__input"
-                    id="policyHolderEmail"
-                    name="policyHolderEmail"
-                    data-name="policyHolderEmail"
-                    type="email"
-                    maxlength="100"
-                    placeholder=""
-                    value=""
-                  />
-                </div>
-              </div>
-
-              <!-- Phone Type -->
-              <div class="field field--medium">
-                <div class="field__label-wrapper">
-                  <label class="field__label" for="policyHolderPhoneType"
-                    >Phone Type</label
+                  <label class="field__label" for="policyHolderSuffix"
+                    >Suffix</label
                   >
                 </div>
                 <div class="field__input-wrapper">
                   <select
                     class="field__input"
-                    id="policyHolderPhoneType"
-                    name="policyHolderPhoneType"
-                    data-name="policyHolderPhoneType"
+                    id="policyHolderSuffix"
+                    name="policyHolderSuffix"
                     type="select"
                   >
+                    &gt;
                     <option value="">--</option>
-                    <option value="Home">Home</option>
-                    <option value="Business">Business</option>
-                    <option value="Cell">Cell</option>
+                    <option value="Jr.">Jr.</option>
+                    <option value="Sr.">Sr.</option>
+                    <option value="III">III</option>
+                    <option value="IV">IV</option>
                   </select>
-                </div>
-              </div>
-
-              <!-- Phone Number -->
-              <div class="field">
-                <div class="field__label-wrapper">
-                  <label class="field__label" for="policyHolderPhoneNumber"
-                    >Phone Number</label
-                  >
-                </div>
-                <div class="field__input-wrapper">
-                  <input
-                    class="field__input"
-                    id="policyHolderPhoneNumber"
-                    name="policyHolderPhoneNumber"
-                    data-name="policyHolderPhoneNumber"
-                    type="text"
-                    pattern="\(\d\d\d\) \d\d\d-?\d\d\d\d"
-                    maxlength="14"
-                    placeholder=""
-                    value=""
-                  />
+                  <p class="field__note">Optional</p>
                 </div>
               </div>
             </div>
 
+            <!-- Note -->
             <p class="note">
               To offer you an accurate quote and/or policy, we (AFI and AFI
               affiliates) may collect information from consumer reporting
               agencies, such as credit history. Future reports may be used to
               update or renew your insurance. By continuing with this quote
-              request, you agree to receive marketing materials&nbsp;and SMS
-              notifications&nbsp;from Armed Forces Insurance. You can request
-              removal&nbsp;or opt-out&nbsp;at any time.&nbsp;Please review our
+              request, you agree to receive marketing materials and SMS
+              notifications from Armed Forces Insurance. You can request removal
+              or opt-out at any time. Please review our
               <a href="#" target="_blank" alt="AFI Privacy Policy"
                 >Privacy Policy - Information Gathering.</a
               >
@@ -818,10 +771,10 @@
         <!-- ******** STEP ******** -->
         <div class="step__container">
           <ul class="steps__list">
-            <li class="step active_step" data-text="Policy Holder Info">1</li>
+            <li class="step active_step" data-text="Driver Information">1</li>
             <li class="line"></li>
 
-            <li class="step active_step" data-text="Business Info">2</li>
+            <li class="step active_step" data-text="Vehicle">2</li>
             <li class="line"></li>
 
             <li class="step" data-text="Coverages">3</li>
@@ -834,7 +787,7 @@
         <div class="quote_request__section_wrapper">
           <!-- ******* FORM  *******-->
           <div class="form_container">
-            <h2 class="quote_request_heading">Business Information</h2>
+            <h2 class="quote_request_heading">Vehiclermation</h2>
 
             <!-- Business Name & Website -->
             <div class="fields-row">
@@ -1100,10 +1053,10 @@
         <!-- ******** STEP ******** -->
         <div class="step__container">
           <ul class="steps__list">
-            <li class="step active_step" data-text="Policy Holder Info">1</li>
+            <li class="step active_step" data-text="Driver Information">1</li>
             <li class="line"></li>
 
-            <li class="step active_step" data-text="Business Info">2</li>
+            <li class="step active_step" data-text="Vehicle">2</li>
             <li class="line"></li>
 
             <li class="step active_step" data-text="Coverages">3</li>
@@ -1265,10 +1218,10 @@
         <!-- ******** STEP ******** -->
         <div class="step__container">
           <ul class="steps__list">
-            <li class="step active_step" data-text="Policy Holder Info">1</li>
+            <li class="step active_step" data-text="Driver Information">1</li>
             <li class="line"></li>
 
-            <li class="step active_step" data-text="Business Info">2</li>
+            <li class="step active_step" data-text="Vehicle">2</li>
             <li class="line"></li>
 
             <li class="step active_step" data-text="Coverages">3</li>

@@ -139,14 +139,13 @@
 .steps__list .step::after {
   content: attr(data-text);
   position: absolute;
-  bottom: -35px;
+  bottom: -40px;
   color: #003864;
-  width: auto;
   font-size: 12px;
   font-family: "Roboto", sans-serif;
   font-family: var(--font-family-primary);
-  transform: translateX(-22%);
-  width: 95px;
+  transform: translateX(-16%);
+  width: 60px;
   text-align: center;
 }
 
@@ -162,7 +161,8 @@
   }
   .steps__list .step::after {
     font-size: 16px;
-    width: 126px;
+    width: 130px;
+    bottom: -35px;
     transform: translateX(-32%);
   }
 }
@@ -240,6 +240,10 @@
   display: block;
 }
 
+input.field__input:focus {
+  border: 2px solid #000;
+}
+
 .field__label {
   color: #363636;
   color: var(--color-gray-30);
@@ -268,6 +272,10 @@
   align-items: center;
   display: flex;
   max-width: 100%;
+}
+
+.fields-row .field.field--small {
+  max-width: 5rem;
 }
 
 .fields-row .field.field--stacked {
