@@ -102,6 +102,11 @@ backBtn.addEventListener("click", () => {
   // Step Decrement
   stepCount <= 0 ? stepCount : stepCount--;
 
+  // 2 side back for add_more_vehicle_form
+  if (stepCount + 1 === formList.indexOf("add_more_vehicle_form")) {
+    formList = formList.filter((item) => item != "add_more_vehicle_form");
+    stepCount = formList.indexOf("summary__form");
+  }
   showActiveForm(stepCount);
 });
 
@@ -135,6 +140,9 @@ function handleMultiStepForm(step) {
   if (step === formList.indexOf("summary__form")) {
     // When add_more_vehicle_form submit
     formList = formList.filter((item) => item != "add_more_vehicle_form");
+  }
+  if (step === formList.indexOf("add_more_vehicle_form")) {
+    if (!addMoreVehicleValidation()) return false;
   }
   if (step === formList.indexOf("violations__form")) {
     if (!spouseValidation()) return false;
@@ -660,12 +668,22 @@ addVehicle.addEventListener("click", () => {
   if (!formList.includes("add_more_vehicle_form")) {
     formList.splice(placeIndex, 0, "add_more_vehicle_form");
   }
-  console.log(formList);
-  console.log(stepCount);
-  // stepCount = placeIndex;
+
   showActiveForm(stepCount);
-  console.log(stepCount);
+
+  console.log(formList.indexOf("add_more_vehicle_form"));
 });
+
+function addMoreVehicleValidation() {
+  const isFormSummited = true;
+
+  if (isFormSummited) {
+    formList = formList.filter((item) => item != "add_more_vehicle_form");
+    stepCount = stepCount - 1;
+  }
+  // return isValidate;
+  return true;
+}
 
 // ********** MULTI-STEP 3 Validation ***********
 function multiStep3Validation() {
