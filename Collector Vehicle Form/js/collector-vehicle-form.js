@@ -49,6 +49,7 @@ const multStepForm = [
   // "add_vehicle__form",
   "summary__form",
   "violations__form",
+  "coverage_limits_form",
   "coverage__history_form",
 ];
 
