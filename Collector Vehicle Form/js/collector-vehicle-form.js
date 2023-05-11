@@ -1,17 +1,38 @@
 // DATA
-const userData = {
+const formData = {
   eligibilityStatus: "",
+  policyHolderMaritalStatus: null,
+  mainVehicleInfo: {
+    year: "2022",
+    make: "22",
+    model: "22",
+    type: "22",
+    estimateValue: "22",
+    vehicleStorage: "",
+    howVehicleDrive: "22",
+    NumberOfLicensedDrivers: "",
+    NumberOfDailyUseVehicle: "22",
+  },
+  moreVehiclesInfo: [],
 };
 
 const successRedirection = "https://afi.org/";
 
+const additionalForm = [
+  "military_information",
+  "parent_information",
+  "child_information",
+];
+
 // Forms
 const multStepForm = [
-  "multi__step_1.policyholder__form",
-  "multi__step_2.SUMMARY__FORM",
-  "multi__step_3.violations__form",
-  "multi__step_4.coverage__history_form",
+  "policyholder__form",
+  // "add_vehicle__form",
+  "summary__form",
+  "violations__form",
+  "coverage__history_form",
 ];
+
 const defalutForms = ["radio_select", ...multStepForm];
 let formList = defalutForms;
 
@@ -27,17 +48,10 @@ let maxStep = formList.length - 1;
 
 // ***** NEXT FUNCTIONALITY *****
 nextBtn.addEventListener("click", () => {
-  const isSelectEligibility = eligibilityValidation();
-
   if (stepCount === 0) {
+    const isSelectEligibility = eligibilityValidation();
     if (!Boolean(isSelectEligibility)) return false;
   }
-
-  const additionalForm = [
-    "military_information",
-    "parent_information",
-    "child_information",
-  ];
 
   if (formList.some((item) => additionalForm.includes(item))) {
     //   If additonal form has in arrayList
@@ -50,28 +64,12 @@ nextBtn.addEventListener("click", () => {
     // if (stepCount === 1 && formList.includes("child_information")) {
     //   if (!childFormValidation()) return false;
     // }
-    // if (stepCount === 2) {
-    //   if (!multiStep1Validation()) return false;
-    // }
-    // if (stepCount === 3) {
-    //   if (!multiStep2Validation()) return false;
-    // }
-    // if (stepCount === 4) {
-    //   if (!multiStep3Validation()) return false;
-    // }
-    // if (stepCount === 5) {
-    //   const isAllFine = multiStep4Validation();
-    //   if (isAllFine) {
-    //     // Go to Thank You Page
-    //     window.location.href = successRedirection;
-    //   }
-    // }
+
+    if (!handleMultiStepForm(stepCount)) return false;
   } else {
     //   If no additonal form
-    handleMultiStepForm(stepCount);
+    if (!handleMultiStepForm(stepCount)) return false;
   }
-
-  console.log(userData);
 
   // Step Increment
   stepCount >= maxStep ? stepCount : stepCount++;
@@ -88,10 +86,39 @@ backBtn.addEventListener("click", () => {
   showActiveForm(stepCount);
 });
 
+// *********************************************
+//       HANDLING MULTI-STEP FORMS
+// *********************************************
+// !formList.some((item) => additionalForm.includes(item))
 function handleMultiStepForm(step) {
-  // if (stepCount === 1) {
-  //   if (!multiStep1Validation()) return false;
-  // }
+  // *********************************************************
+  if (stepCount === formList.indexOf("military_information")) {
+    if (!militaryFormValidation()) return false;
+  }
+  if (stepCount === formList.indexOf("parent_information")) {
+    if (!parentFormValidation()) return false;
+  }
+  if (stepCount === formList.indexOf("child_information")) {
+    if (!childFormValidation()) return false;
+  }
+  if (step === formList.indexOf("policyholder__form")) {
+    if (!policyholderValidation(step)) return false;
+  }
+  if (step === formList.indexOf("spouse_information")) {
+    if (!spouseValidation()) return false;
+  }
+  if (step === formList.indexOf("add_vehicle__form")) {
+    if (!addVehicleValidation()) return false;
+  }
+  if (step === formList.indexOf("summary__form")) {
+    if (!summaryValidation()) return false;
+  }
+  if (step === formList.indexOf("violations__form")) {
+    if (!spouseValidation()) return false;
+  }
+  if (step === formList.indexOf("coverage__history_form")) {
+    if (!spouseValidation()) return false;
+  }
   // if (stepCount === 2) {
   //   if (!multiStep2Validation()) return false;
   // }
@@ -105,19 +132,26 @@ function handleMultiStepForm(step) {
   //     window.location.href = successRedirection;
   //   }
   // }
+
+  summaryValidation();
+
+  return true;
 }
 
 // *********************************************
 //           SHOW FORM BY CONDITION
 // *********************************************
-function showActiveForm(stepCount) {
+function showActiveForm(step) {
+  maxStep = formList.length - 1;
+
   // remove active_form class from everywhere
-  document.querySelector(".active_form").classList.remove("active_form");
+  document.querySelector(".active_form")?.classList.remove("active_form");
 
   // set active_form class
-  document
-    .querySelector(`.${formList[stepCount]}`)
-    ?.classList.add("active_form");
+  document.querySelector(`.${formList[step]}`)?.classList.add("active_form");
+
+  console.log({ stepCount });
+  console.log(formList);
 
   // Conditionally Hide Back Btn
   stepCount <= 0
@@ -290,15 +324,16 @@ function eligibilityValidation() {
     }
     maxStep = formList.length - 1;
 
-    // set eligibilityStatus to userData
-    userData.eligibilityStatus = eligibilityStatus;
+    // set eligibilityStatus to formData
+    formData.eligibilityStatus = eligibilityStatus;
   }
 
   // Error Message if value = null
   eligibilityErrorMessage(
-    userData.eligibilityStatus,
+    formData.eligibilityStatus,
     ".radio__form_section .field_message"
   );
+  subStepCount = 0;
   return eligibilityStatus;
 }
 
@@ -323,21 +358,22 @@ function militaryFormValidation() {
   const isValidate = validationFields.every((result) => result === true);
 
   if (isValidate) {
-    userData.policyHolderFirstName = militaryFirstName?.value;
-    userData.policyHolderLastName = militaryLastName?.value;
-    userData.branchOfService = branchOfService?.value;
-    userData.militaryStatus = militaryStatus?.value;
-    userData.militaryRank = militaryRank?.value;
+    formData.policyHolderFirstName = militaryFirstName?.value;
+    formData.policyHolderLastName = militaryLastName?.value;
+    formData.branchOfService = branchOfService?.value;
+    formData.militaryStatus = militaryStatus?.value;
+    formData.militaryRank = militaryRank?.value;
 
     // Set Name in Multi-step form field
     document.querySelector("#policyHolderFirstName").value =
-      userData?.policyHolderFirstName;
+      formData?.policyHolderFirstName;
 
     document.querySelector("#policyHolderLastName").value =
-      userData?.policyHolderLastName;
+      formData?.policyHolderLastName;
   }
 
-  return isValidate;
+  // return isValidate;
+  return true;
 }
 
 // ********** Parent's Information ***********
@@ -355,8 +391,8 @@ function parentFormValidation() {
   const isValidate = validationFields.every((result) => result === true);
 
   if (isValidate) {
-    userData.parentFirstName = parentFirstName?.value;
-    userData.parentLastName = parentLastName?.value;
+    formData.parentFirstName = parentFirstName?.value;
+    formData.parentLastName = parentLastName?.value;
   }
 
   return isValidate;
@@ -377,15 +413,15 @@ function childFormValidation() {
   const isValidate = validationFields.every((result) => result === true);
 
   if (isValidate) {
-    userData.childFirstName = childFirstName?.value;
-    userData.childLastName = childLastName?.value;
+    formData.childFirstName = childFirstName?.value;
+    formData.childLastName = childLastName?.value;
   }
 
   return isValidate;
 }
 
 // ********** MULTI-STEP 1 Validation ***********
-function multiStep1Validation() {
+function policyholderValidation(step) {
   const policyHolderFirstName = document.querySelector(
     "#policyHolderFirstName"
   );
@@ -397,6 +433,11 @@ function multiStep1Validation() {
   const policyHolderPhoneNumber = document.querySelector(
     "#policyHolderPhoneNumber"
   );
+  const policyHolderMaritalStatus = document.querySelector(
+    "#policyHolderMaritalStatus"
+  );
+
+  formData.policyHolderMaritalStatus = policyHolderMaritalStatus?.value;
 
   // const validationFields = [
   //   alphabeticOnly(policyHolderFirstName),
@@ -412,11 +453,74 @@ function multiStep1Validation() {
   // const isValidate = validationFields.every((result) => result === true);
 
   // if (isValidate) {
-  //   userData.policyHolderFirstName = policyHolderFirstName?.value;
-  //   userData.policyHolderLastName = policyHolderLastName?.value;
-  //   userData.policyHolderEmail = policyHolderEmail?.value;
-  //   userData.policyHolderPhoneType = policyHolderPhoneType?.value;
-  //   userData.policyHolderPhoneNumber = policyHolderPhoneNumber?.value.replace(
+  //   formData.policyHolderFirstName = policyHolderFirstName?.value;
+  //   formData.policyHolderLastName = policyHolderLastName?.value;
+  //   formData.policyHolderEmail = policyHolderEmail?.value;
+  //   formData.policyHolderPhoneType = policyHolderPhoneType?.value;
+  //   formData.policyHolderPhoneNumber = policyHolderPhoneNumber?.value.replace(
+  //     /\D/g,
+  //     ""
+  //   );
+  // }
+
+  //
+  const spouseValues = [
+    "Married",
+    "Cohabitant",
+    "Civil Union Or Domestic Partner",
+  ];
+
+  if (spouseValues.includes(formData?.policyHolderMaritalStatus)) {
+    if (!formList.includes("spouse_information")) {
+      formList.splice(step + 1, 0, "spouse_information");
+    }
+  }
+  if (!spouseValues.includes(formData?.policyHolderMaritalStatus)) {
+    formList = formList.filter((form) => form != "spouse_information");
+    console.log("aaaaaaaaaaaa spouse_information");
+  }
+
+  // return isValidate;
+  return true;
+}
+
+function spouseValidation() {
+  const policyHolderFirstName = document.querySelector(
+    "#policyHolderFirstName"
+  );
+  const policyHolderLastName = document.querySelector("#policyHolderLastName");
+  const policyHolderEmail = document.querySelector("#policyHolderEmail");
+  const policyHolderPhoneType = document.querySelector(
+    "#policyHolderPhoneType"
+  );
+  const policyHolderPhoneNumber = document.querySelector(
+    "#policyHolderPhoneNumber"
+  );
+  const policyHolderMaritalStatus = document.querySelector(
+    "#policyHolderMaritalStatus"
+  );
+
+  formData.policyHolderMaritalStatus = policyHolderMaritalStatus?.value;
+
+  // const validationFields = [
+  //   alphabeticOnly(policyHolderFirstName),
+  //   alphabeticOnly(policyHolderLastName),
+  //   isValueEmpty(policyHolderFirstName),
+  //   emailValidation(policyHolderEmail),
+  //   isValueEmpty(policyHolderEmail),
+  //   isValueEmpty(policyHolderPhoneType),
+  //   phoneValidation(policyHolderPhoneNumber),
+  //   isValueEmpty(policyHolderPhoneNumber),
+  // ];
+
+  // const isValidate = validationFields.every((result) => result === true);
+
+  // if (isValidate) {
+  //   formData.policyHolderFirstName = policyHolderFirstName?.value;
+  //   formData.policyHolderLastName = policyHolderLastName?.value;
+  //   formData.policyHolderEmail = policyHolderEmail?.value;
+  //   formData.policyHolderPhoneType = policyHolderPhoneType?.value;
+  //   formData.policyHolderPhoneNumber = policyHolderPhoneNumber?.value.replace(
   //     /\D/g,
   //     ""
   //   );
@@ -427,39 +531,60 @@ function multiStep1Validation() {
 }
 
 // ********** MULTI-STEP 2 Validation ***********
-function multiStep2Validation() {
-  const businessName = document.querySelector("#businessName");
-  const businessWebsite = document.querySelector("#businessWebsite");
-  const businessType = document.querySelector("#businessType");
-  const businessTaxId = document.querySelector("#businessTaxId");
-  const businessPhysicalAddress = document.querySelector(
-    "#businessPhysicalAddress"
-  );
-  const city = document.querySelector("#city");
-  const state = document.querySelector("#state");
-  const zip = document.querySelector("#zip");
-
-  const validationFields = [
-    isValueEmpty(businessName),
-    isValueEmpty(businessType),
-    isValueEmpty(businessPhysicalAddress),
-    isValueEmpty(city),
-    isValueEmpty(state),
-    minValue(zip, 5, "Please enter a valid Zip code"),
-    isValueEmpty(zip),
-  ];
-
-  const isValidate = validationFields.every((result) => result === true);
-
-  if (isValidate) {
-    userData.businessName = businessName?.value;
-    userData.businessWebsite = businessWebsite?.value;
-    userData.businessType = businessType?.value;
-    userData.businessTaxId = businessTaxId?.value;
-    userData.city = city?.value;
-    userData.state = state?.value;
-    userData.zip = zip?.value;
+function summaryValidation() {
+  //
+  const mainVehicleValues = [];
+  for (const key in formData.mainVehicleInfo) {
+    mainVehicleValues.push(formData.mainVehicleInfo[key]);
   }
+
+  const haveAllMainVehicleValues = mainVehicleValues.every((v) => Boolean(v));
+  if (!haveAllMainVehicleValues) {
+    const placeIndex = formList.indexOf("summary__form");
+
+    if (!formList.includes("add_vehicle__form")) {
+      formList.splice(placeIndex, 0, "add_vehicle__form");
+    }
+  } else {
+    formList = formList.filter((form) => form != "add_vehicle__form");
+    console.log("aaaaaaaaaaaa add_vehicle__form");
+  }
+  return true;
+}
+
+function addVehicleValidation() {
+  // const mainVehicleYear = document.querySelector("#mainVehicleYear");
+  // const businessWebsite = document.querySelector("#businessWebsite");
+  // const businessType = document.querySelector("#businessType");
+  // const businessTaxId = document.querySelector("#businessTaxId");
+  // const businessPhysicalAddress = document.querySelector(
+  //   "#businessPhysicalAddress"
+  // );
+  // const city = document.querySelector("#city");
+  // const state = document.querySelector("#state");
+  // const zip = document.querySelector("#zip");
+
+  // const validationFields = [
+  //   isValueEmpty(businessName),
+  //   isValueEmpty(businessType),
+  //   isValueEmpty(businessPhysicalAddress),
+  //   isValueEmpty(city),
+  //   isValueEmpty(state),
+  //   minValue(zip, 5, "Please enter a valid Zip code"),
+  //   isValueEmpty(zip),
+  // ];
+
+  // const isValidate = validationFields.every((result) => result === true);
+
+  // if (isValidate) {
+  //   formData.businessName = businessName?.value;
+  //   formData.businessWebsite = businessWebsite?.value;
+  //   formData.businessType = businessType?.value;
+  //   formData.businessTaxId = businessTaxId?.value;
+  //   formData.city = city?.value;
+  //   formData.state = state?.value;
+  //   formData.zip = zip?.value;
+  // }
 
   // return isValidate;
   return true;
@@ -469,15 +594,15 @@ function multiStep2Validation() {
 function multiStep3Validation() {
   const typeOfInsurance = document.getElementsByName("typeOfInsurance");
 
-  userData.policyCoverage = [];
+  formData.policyCoverage = [];
 
   typeOfInsurance.forEach((item) => {
     if (item?.checked) {
-      userData.policyCoverage.push(item?.value);
+      formData.policyCoverage.push(item?.value);
     }
   });
 
-  const isValidate = userData.policyCoverage.length > 0;
+  const isValidate = formData.policyCoverage.length > 0;
 
   if (!isValidate) {
     // Error Message if value = null
@@ -488,7 +613,7 @@ function multiStep3Validation() {
 }
 
 // ********** MULTI-STEP 4 Validation ***********
-function multiStep4Validation() {
+function summary___alidation() {
   const currentInsuranceCompany = document.querySelector(
     "#currentInsuranceCompany"
   );
@@ -497,9 +622,9 @@ function multiStep4Validation() {
 
   //   const isValidate = validationFields.every((result) => result === true);
 
-  userData.currentInsuranceCompany = currentInsuranceCompany?.value;
-  userData.insuranceCompany = insuranceCompany?.value;
-  userData.policyRenewalDate = policyRenewalDate?.value;
+  formData.currentInsuranceCompany = currentInsuranceCompany?.value;
+  formData.insuranceCompany = insuranceCompany?.value;
+  formData.policyRenewalDate = policyRenewalDate?.value;
 
   let validationFields = false;
 
