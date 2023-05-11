@@ -454,7 +454,7 @@ textarea.field__input:focus {
 .form_section {
   display: none;
 }
-.form_section.active_section {
+.form_section.active_form {
   display: block;
 }
 

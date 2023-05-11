@@ -7,10 +7,10 @@ const successRedirection = "https://afi.org/";
 
 // Forms
 const multStepForm = [
-  "multi__step_1",
-  "multi__step_2",
-  "multi__step_3",
-  "multi__step_4",
+  "multi__step_1.policyholder__form",
+  "multi__step_2.SUMMARY__FORM",
+  "multi__step_3.violations__form",
+  "multi__step_4.coverage__history_form",
 ];
 const defalutForms = ["radio_select", ...multStepForm];
 let formList = defalutForms;
@@ -22,6 +22,7 @@ const nextBtn = document.querySelector("#next_btn");
 const backBtn = document.querySelector("#back_btn");
 
 let stepCount = 0;
+let subStepCount = 0;
 let maxStep = formList.length - 1;
 
 // ***** NEXT FUNCTIONALITY *****
@@ -40,60 +41,43 @@ nextBtn.addEventListener("click", () => {
 
   if (formList.some((item) => additionalForm.includes(item))) {
     //   If additonal form has in arrayList
-    if (stepCount === 1 && formList.includes("military_information")) {
-      if (!militaryFormValidation()) return false;
-    }
-
-    if (stepCount === 1 && formList.includes("parent_information")) {
-      if (!parentFormValidation()) return false;
-    }
-
-    if (stepCount === 1 && formList.includes("child_information")) {
-      if (!childFormValidation()) return false;
-    }
-
-    if (stepCount === 2) {
-      if (!multiStep1Validation()) return false;
-    }
-    if (stepCount === 3) {
-      if (!multiStep2Validation()) return false;
-    }
-    if (stepCount === 4) {
-      if (!multiStep3Validation()) return false;
-    }
-
-    if (stepCount === 5) {
-      const isAllFine = multiStep4Validation();
-
-      if (isAllFine) {
-        // Go to Thank You Page
-        window.location.href = successRedirection;
-      }
-    }
+    // if (stepCount === 1 && formList.includes("military_information")) {
+    //   if (!militaryFormValidation()) return false;
+    // }
+    // if (stepCount === 1 && formList.includes("parent_information")) {
+    //   if (!parentFormValidation()) return false;
+    // }
+    // if (stepCount === 1 && formList.includes("child_information")) {
+    //   if (!childFormValidation()) return false;
+    // }
+    // if (stepCount === 2) {
+    //   if (!multiStep1Validation()) return false;
+    // }
+    // if (stepCount === 3) {
+    //   if (!multiStep2Validation()) return false;
+    // }
+    // if (stepCount === 4) {
+    //   if (!multiStep3Validation()) return false;
+    // }
+    // if (stepCount === 5) {
+    //   const isAllFine = multiStep4Validation();
+    //   if (isAllFine) {
+    //     // Go to Thank You Page
+    //     window.location.href = successRedirection;
+    //   }
+    // }
   } else {
     //   If no additonal form
-    if (stepCount === 1) {
-      if (!multiStep1Validation()) return false;
-    }
-    if (stepCount === 2) {
-      if (!multiStep2Validation()) return false;
-    }
-    if (stepCount === 3) {
-      if (!multiStep3Validation()) return false;
-    }
-    if (stepCount === 4) {
-      const finalFormError = multiStep4Validation();
-
-      if (!finalFormError) {
-        // Go to Thank You Page
-        window.location.href = successRedirection;
-      }
-    }
+    handleMultiStepForm(stepCount);
   }
 
   console.log(userData);
 
-  stepCount >= maxStep ? stepCount : stepCount++;
+  if (subStepCount === 0) {
+    stepCount >= maxStep ? stepCount : stepCount++;
+  } else {
+    subStepCount++;
+  }
 
   // Show Form
   showActiveForm(stepCount);
@@ -101,22 +85,45 @@ nextBtn.addEventListener("click", () => {
 
 // Back
 backBtn.addEventListener("click", () => {
-  stepCount <= 0 ? stepCount : stepCount--;
+  if (subStepCount === 0) {
+    stepCount <= 0 ? stepCount : stepCount--;
+  } else {
+    subStepCount--;
+  }
 
   showActiveForm(stepCount);
 });
+
+function handleMultiStepForm(step) {
+  // if (stepCount === 1) {
+  //   if (!multiStep1Validation()) return false;
+  // }
+  // if (stepCount === 2) {
+  //   if (!multiStep2Validation()) return false;
+  // }
+  // if (stepCount === 3) {
+  //   if (!multiStep3Validation()) return false;
+  // }
+  // if (stepCount === 4) {
+  //   const finalFormError = multiStep4Validation();
+  //   if (!finalFormError) {
+  //     // Go to Thank You Page
+  //     window.location.href = successRedirection;
+  //   }
+  // }
+}
 
 // *********************************************
 //           SHOW FORM BY CONDITION
 // *********************************************
 function showActiveForm(stepCount) {
-  // remove active_section class from everywhere
-  document.querySelector(".active_section").classList.remove("active_section");
+  // remove active_form class from everywhere
+  document.querySelector(".active_form").classList.remove("active_form");
 
-  // set active_section class
+  // set active_form class
   document
     .querySelector(`.${formList[stepCount]}`)
-    ?.classList.add("active_section");
+    ?.classList.add("active_form");
 
   // Conditionally Hide Back Btn
   stepCount <= 0
@@ -330,10 +337,10 @@ function militaryFormValidation() {
 
     // Set Name in Multi-step form field
     document.querySelector("#policyHolderFirstName").value =
-      userData.policyHolderFirstName;
+      userData?.policyHolderFirstName;
 
     document.querySelector("#policyHolderLastName").value =
-      userData.policyHolderLastName;
+      userData?.policyHolderLastName;
   }
 
   return isValidate;
@@ -397,31 +404,32 @@ function multiStep1Validation() {
     "#policyHolderPhoneNumber"
   );
 
-  const validationFields = [
-    alphabeticOnly(policyHolderFirstName),
-    alphabeticOnly(policyHolderLastName),
-    isValueEmpty(policyHolderFirstName),
-    emailValidation(policyHolderEmail),
-    isValueEmpty(policyHolderEmail),
-    isValueEmpty(policyHolderPhoneType),
-    phoneValidation(policyHolderPhoneNumber),
-    isValueEmpty(policyHolderPhoneNumber),
-  ];
+  // const validationFields = [
+  //   alphabeticOnly(policyHolderFirstName),
+  //   alphabeticOnly(policyHolderLastName),
+  //   isValueEmpty(policyHolderFirstName),
+  //   emailValidation(policyHolderEmail),
+  //   isValueEmpty(policyHolderEmail),
+  //   isValueEmpty(policyHolderPhoneType),
+  //   phoneValidation(policyHolderPhoneNumber),
+  //   isValueEmpty(policyHolderPhoneNumber),
+  // ];
 
-  const isValidate = validationFields.every((result) => result === true);
+  // const isValidate = validationFields.every((result) => result === true);
 
-  if (isValidate) {
-    userData.policyHolderFirstName = policyHolderFirstName?.value;
-    userData.policyHolderLastName = policyHolderLastName?.value;
-    userData.policyHolderEmail = policyHolderEmail?.value;
-    userData.policyHolderPhoneType = policyHolderPhoneType?.value;
-    userData.policyHolderPhoneNumber = policyHolderPhoneNumber?.value.replace(
-      /\D/g,
-      ""
-    );
-  }
+  // if (isValidate) {
+  //   userData.policyHolderFirstName = policyHolderFirstName?.value;
+  //   userData.policyHolderLastName = policyHolderLastName?.value;
+  //   userData.policyHolderEmail = policyHolderEmail?.value;
+  //   userData.policyHolderPhoneType = policyHolderPhoneType?.value;
+  //   userData.policyHolderPhoneNumber = policyHolderPhoneNumber?.value.replace(
+  //     /\D/g,
+  //     ""
+  //   );
+  // }
 
-  return isValidate;
+  // return isValidate;
+  return true;
 }
 
 // ********** MULTI-STEP 2 Validation ***********
@@ -459,7 +467,8 @@ function multiStep2Validation() {
     userData.zip = zip?.value;
   }
 
-  return isValidate;
+  // return isValidate;
+  return true;
 }
 
 // ********** MULTI-STEP 3 Validation ***********
@@ -553,54 +562,31 @@ document.querySelectorAll(".field__input")?.forEach((input) => {
   });
 });
 
-// // KeyPress remove all Error Message
-// document.querySelectorAll(".form_container field")?.forEach((section) => {
-//   section.querySelectorAll(".field__input")?.forEach((input) => {
-//     // Remove errors if input text type update
-//     input.addEventListener("keypress", () => {
-//       section
-//         .querySelectorAll(".field_message.error")
-//         ?.forEach((errorField) => {
-//           errorField?.classList.remove("error");
-//         });
-//     });
-
-//     // Remove errors if select dropdown change
-//     input.addEventListener("change", () => {
-//       section
-//         .querySelectorAll(".field_message.error")
-//         ?.forEach((errorField) => {
-//           errorField?.classList.remove("error");
-//         });
-//     });
-//   });
-// });
-
 // *********************************************
 //            FETCH DATA FROM JSON
 // *********************************************
-const branchOfServiceElement = document.getElementById("branchOfService");
+// const branchOfServiceElement = document.getElementById("branchOfService");
 
-fetch("./json/branchOfService.json")
-  .then((response) => response.json())
-  .then((json) => getData(json))
-  .catch((err) => console.log(err));
+// fetch("./json/branchOfService.json")
+//   .then((response) => response.json())
+//   .then((json) => getData(json))
+//   .catch((err) => console.log(err));
 
-function getData(data) {
-  branchOfServiceElement?.parentElement.classList.add("loading__field");
+// function getData(data) {
+//   branchOfServiceElement?.parentElement.classList.add("loading__field");
 
-  const branchOfService = data?.branchOfService;
+//   const branchOfService = data?.branchOfService;
 
-  if (branchOfService && branchOfService?.length > 0) {
-    branchOfService?.forEach((value) => {
-      let option = document.createElement("option");
-      option.value = value;
-      option.innerText = value;
+//   if (branchOfService && branchOfService?.length > 0) {
+//     branchOfService?.forEach((value) => {
+//       let option = document.createElement("option");
+//       option.value = value;
+//       option.innerText = value;
 
-      branchOfServiceElement.appendChild(option);
-    });
+//       branchOfServiceElement.appendChild(option);
+//     });
 
-    // branchOfServiceElement.disabled = false;
-    // branchOfServiceElement?.parentElement.classList.remove("loading__field");
-  }
-}
+//     // branchOfServiceElement.disabled = false;
+//     // branchOfServiceElement?.parentElement.classList.remove("loading__field");
+//   }
+// }

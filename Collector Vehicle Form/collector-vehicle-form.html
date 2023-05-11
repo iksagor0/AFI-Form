@@ -60,7 +60,7 @@
     <!-- ************************************************ -->
     <!------------------- Radio Section -------------------->
     <!-- ************************************************ -->
-    <section class="form_section radio_select form_container">
+    <section class="form_section radio_select form_container active_form">
       <div class="container">
         <section class="heading_text_section">
           <h1 class="quote_request_heading">Eligibility For Insurance</h1>
@@ -811,7 +811,7 @@
     <!-- ************************************************ -->
     <!---------------------- MULTI-STEP 1 ------------------>
     <!-- ************************************************ -->
-    <section class="form_section multi__step_1 policyholde__form">
+    <section class="form_section multi__step_1 policyholder__form">
       <div class="container">
         <!-- ******** STEP ******** -->
         <div class="step__container">
@@ -1085,6 +1085,54 @@
               </div>
             </div>
 
+            <!-- Gender,  Marital Status-->
+            <div class="fields-row">
+              <div class="field field--large">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="policyHolderGender"
+                    >Gender</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <select
+                    class="field__input"
+                    id="policyHolderGender"
+                    name="policyHolderGender"
+                    type="select"
+                  >
+                    <option value="">--</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                  </select>
+                </div>
+              </div>
+              <div class="field field--large">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="policyHolderMaritalStatus"
+                    >Marital Status</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <select
+                    class="field__input"
+                    id="policyHolderMaritalStatus"
+                    name="policyHolderMaritalStatus"
+                    type="select"
+                  >
+                    <option value="">--</option>
+                    <option value="Married">Married</option>
+                    <option value="Single">Single</option>
+                    <option value="Divorced">Divorced</option>
+                    <option value="Widowed">Widowed</option>
+                    <option value="Cohabitant">Cohabitant</option>
+                    <option value="Civil Union Or Domestic Partner">
+                      Civil Union Or Domestic Partner
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
             <!-- Email Address, Phone Type, Phone Number-->
             <div class="fields-row">
               <div class="field field--xlarge">
@@ -1167,54 +1215,6 @@
                     </option>
                     <option value="Own Mobile Home">Own Mobile Home</option>
                     <option value="Other">Other</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-
-            <!-- Gender,  -->
-            <div class="fields-row">
-              <div class="field field--large">
-                <div class="field__label-wrapper">
-                  <label class="field__label" for="policyHolderGender"
-                    >Gender</label
-                  >
-                </div>
-                <div class="field__input-wrapper">
-                  <select
-                    class="field__input"
-                    id="policyHolderGender"
-                    name="policyHolderGender"
-                    type="select"
-                  >
-                    <option value="">--</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                  </select>
-                </div>
-              </div>
-              <div class="field field--large">
-                <div class="field__label-wrapper">
-                  <label class="field__label" for="policyHolderMaritalStatus"
-                    >Marital Status</label
-                  >
-                </div>
-                <div class="field__input-wrapper">
-                  <select
-                    class="field__input"
-                    id="policyHolderMaritalStatus"
-                    name="policyHolderMaritalStatus"
-                    type="select"
-                  >
-                    <option value="">--</option>
-                    <option value="Married">Married</option>
-                    <option value="Single">Single</option>
-                    <option value="Divorced">Divorced</option>
-                    <option value="Widowed">Widowed</option>
-                    <option value="Cohabitant">Cohabitant</option>
-                    <option value="Civil Union Or Domestic Partner">
-                      Civil Union Or Domestic Partner
-                    </option>
                   </select>
                 </div>
               </div>
@@ -2231,7 +2231,7 @@
       </div>
     </section>
 
-    <section class="form_section multi__step_3 phusical_damage_form">
+    <section class="form_section multi__step_3 physical_damage_form">
       <div class="container">
         <!-- ******** STEP ******** -->
         <div class="step__container">
@@ -2387,9 +2387,7 @@
     <!-- ************************************************ -->
     <!---------------------- MULTI-STEP 4 ------------------>
     <!-- ************************************************ -->
-    <section
-      class="form_section multi__step_4 coverage__history_form active_section"
-    >
+    <section class="form_section multi__step_4 coverage__history_form">
       <div class="container">
         <!-- <h1 class="quote_request_heading">Military Information</h1> -->
 
