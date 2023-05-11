@@ -1,6 +1,7 @@
 // DATA
-const userData = {
+const formData = {
   eligibilityStatus: "",
+  policyHolderMaritalStatus: "",
 };
 
 const successRedirection = "https://afi.org/";
@@ -68,11 +69,12 @@ nextBtn.addEventListener("click", () => {
     // }
   } else {
     //   If no additonal form
-    handleMultiStepForm(stepCount);
+    if (!handleMultiStepForm(stepCount)) return false;
   }
 
-  console.log(userData);
+  console.log(formData);
 
+  // Step Handling
   if (subStepCount === 0) {
     stepCount >= maxStep ? stepCount : stepCount++;
   } else {
@@ -80,24 +82,54 @@ nextBtn.addEventListener("click", () => {
   }
 
   // Show Form
-  showActiveForm(stepCount);
+  showActiveForm(formList[stepCount]);
 });
 
 // Back
 backBtn.addEventListener("click", () => {
   if (subStepCount === 0) {
     stepCount <= 0 ? stepCount : stepCount--;
+    showActiveForm(formList[stepCount]);
   } else {
     subStepCount--;
   }
-
-  showActiveForm(stepCount);
 });
 
+// *********************************************
+//       HANDLING MULTI-STEP FORMS
+// *********************************************
+let showSpouse = false;
+
 function handleMultiStepForm(step) {
-  // if (stepCount === 1) {
-  //   if (!multiStep1Validation()) return false;
-  // }
+  if (step === 1) {
+    subStepCount = 0;
+
+    if (!policyholderValidation()) return false;
+    const spouseValues = [
+      "Married",
+      "Cohabitant",
+      "Civil Union Or Domestic Partner",
+    ];
+    if (spouseValues.includes(formData?.policyHolderMaritalStatus)) {
+      if (showSpouse) {
+        // if (!spouseValidation()) return false;
+        console.log(spouseValidation());
+        showSpouse = false;
+        return spouseValidation();
+      } else {
+        subStepCount++;
+        showActiveForm("spouse_information");
+        showSpouse = true;
+      }
+    } else {
+      return true;
+    }
+
+    console.log({ subStepCount });
+    console.log({ stepCount });
+  } else {
+    return true;
+  }
   // if (stepCount === 2) {
   //   if (!multiStep2Validation()) return false;
   // }
@@ -116,14 +148,12 @@ function handleMultiStepForm(step) {
 // *********************************************
 //           SHOW FORM BY CONDITION
 // *********************************************
-function showActiveForm(stepCount) {
+function showActiveForm(className) {
   // remove active_form class from everywhere
   document.querySelector(".active_form").classList.remove("active_form");
 
   // set active_form class
-  document
-    .querySelector(`.${formList[stepCount]}`)
-    ?.classList.add("active_form");
+  document.querySelector(`.${className}`)?.classList.add("active_form");
 
   // Conditionally Hide Back Btn
   stepCount <= 0
@@ -296,15 +326,16 @@ function eligibilityValidation() {
     }
     maxStep = formList.length - 1;
 
-    // set eligibilityStatus to userData
-    userData.eligibilityStatus = eligibilityStatus;
+    // set eligibilityStatus to formData
+    formData.eligibilityStatus = eligibilityStatus;
   }
 
   // Error Message if value = null
   eligibilityErrorMessage(
-    userData.eligibilityStatus,
+    formData.eligibilityStatus,
     ".radio__form_section .field_message"
   );
+  subStepCount = 0;
   return eligibilityStatus;
 }
 
@@ -329,18 +360,18 @@ function militaryFormValidation() {
   const isValidate = validationFields.every((result) => result === true);
 
   if (isValidate) {
-    userData.policyHolderFirstName = militaryFirstName?.value;
-    userData.policyHolderLastName = militaryLastName?.value;
-    userData.branchOfService = branchOfService?.value;
-    userData.militaryStatus = militaryStatus?.value;
-    userData.militaryRank = militaryRank?.value;
+    formData.policyHolderFirstName = militaryFirstName?.value;
+    formData.policyHolderLastName = militaryLastName?.value;
+    formData.branchOfService = branchOfService?.value;
+    formData.militaryStatus = militaryStatus?.value;
+    formData.militaryRank = militaryRank?.value;
 
     // Set Name in Multi-step form field
     document.querySelector("#policyHolderFirstName").value =
-      userData?.policyHolderFirstName;
+      formData?.policyHolderFirstName;
 
     document.querySelector("#policyHolderLastName").value =
-      userData?.policyHolderLastName;
+      formData?.policyHolderLastName;
   }
 
   return isValidate;
@@ -361,8 +392,8 @@ function parentFormValidation() {
   const isValidate = validationFields.every((result) => result === true);
 
   if (isValidate) {
-    userData.parentFirstName = parentFirstName?.value;
-    userData.parentLastName = parentLastName?.value;
+    formData.parentFirstName = parentFirstName?.value;
+    formData.parentLastName = parentLastName?.value;
   }
 
   return isValidate;
@@ -383,15 +414,15 @@ function childFormValidation() {
   const isValidate = validationFields.every((result) => result === true);
 
   if (isValidate) {
-    userData.childFirstName = childFirstName?.value;
-    userData.childLastName = childLastName?.value;
+    formData.childFirstName = childFirstName?.value;
+    formData.childLastName = childLastName?.value;
   }
 
   return isValidate;
 }
 
 // ********** MULTI-STEP 1 Validation ***********
-function multiStep1Validation() {
+function policyholderValidation() {
   const policyHolderFirstName = document.querySelector(
     "#policyHolderFirstName"
   );
@@ -403,6 +434,11 @@ function multiStep1Validation() {
   const policyHolderPhoneNumber = document.querySelector(
     "#policyHolderPhoneNumber"
   );
+  const policyHolderMaritalStatus = document.querySelector(
+    "#policyHolderMaritalStatus"
+  );
+
+  formData.policyHolderMaritalStatus = policyHolderMaritalStatus?.value;
 
   // const validationFields = [
   //   alphabeticOnly(policyHolderFirstName),
@@ -418,11 +454,56 @@ function multiStep1Validation() {
   // const isValidate = validationFields.every((result) => result === true);
 
   // if (isValidate) {
-  //   userData.policyHolderFirstName = policyHolderFirstName?.value;
-  //   userData.policyHolderLastName = policyHolderLastName?.value;
-  //   userData.policyHolderEmail = policyHolderEmail?.value;
-  //   userData.policyHolderPhoneType = policyHolderPhoneType?.value;
-  //   userData.policyHolderPhoneNumber = policyHolderPhoneNumber?.value.replace(
+  //   formData.policyHolderFirstName = policyHolderFirstName?.value;
+  //   formData.policyHolderLastName = policyHolderLastName?.value;
+  //   formData.policyHolderEmail = policyHolderEmail?.value;
+  //   formData.policyHolderPhoneType = policyHolderPhoneType?.value;
+  //   formData.policyHolderPhoneNumber = policyHolderPhoneNumber?.value.replace(
+  //     /\D/g,
+  //     ""
+  //   );
+  // }
+
+  // return isValidate;
+  return true;
+}
+function spouseValidation() {
+  const policyHolderFirstName = document.querySelector(
+    "#policyHolderFirstName"
+  );
+  const policyHolderLastName = document.querySelector("#policyHolderLastName");
+  const policyHolderEmail = document.querySelector("#policyHolderEmail");
+  const policyHolderPhoneType = document.querySelector(
+    "#policyHolderPhoneType"
+  );
+  const policyHolderPhoneNumber = document.querySelector(
+    "#policyHolderPhoneNumber"
+  );
+  const policyHolderMaritalStatus = document.querySelector(
+    "#policyHolderMaritalStatus"
+  );
+
+  formData.policyHolderMaritalStatus = policyHolderMaritalStatus?.value;
+
+  // const validationFields = [
+  //   alphabeticOnly(policyHolderFirstName),
+  //   alphabeticOnly(policyHolderLastName),
+  //   isValueEmpty(policyHolderFirstName),
+  //   emailValidation(policyHolderEmail),
+  //   isValueEmpty(policyHolderEmail),
+  //   isValueEmpty(policyHolderPhoneType),
+  //   phoneValidation(policyHolderPhoneNumber),
+  //   isValueEmpty(policyHolderPhoneNumber),
+  // ];
+
+  // const isValidate = validationFields.every((result) => result === true);
+
+  // if (isValidate) {
+  //   formData.policyHolderFirstName = policyHolderFirstName?.value;
+  //   formData.policyHolderLastName = policyHolderLastName?.value;
+  //   formData.policyHolderEmail = policyHolderEmail?.value;
+  //   formData.policyHolderPhoneType = policyHolderPhoneType?.value;
+  //   formData.policyHolderPhoneNumber = policyHolderPhoneNumber?.value.replace(
   //     /\D/g,
   //     ""
   //   );
@@ -458,13 +539,13 @@ function multiStep2Validation() {
   const isValidate = validationFields.every((result) => result === true);
 
   if (isValidate) {
-    userData.businessName = businessName?.value;
-    userData.businessWebsite = businessWebsite?.value;
-    userData.businessType = businessType?.value;
-    userData.businessTaxId = businessTaxId?.value;
-    userData.city = city?.value;
-    userData.state = state?.value;
-    userData.zip = zip?.value;
+    formData.businessName = businessName?.value;
+    formData.businessWebsite = businessWebsite?.value;
+    formData.businessType = businessType?.value;
+    formData.businessTaxId = businessTaxId?.value;
+    formData.city = city?.value;
+    formData.state = state?.value;
+    formData.zip = zip?.value;
   }
 
   // return isValidate;
@@ -475,15 +556,15 @@ function multiStep2Validation() {
 function multiStep3Validation() {
   const typeOfInsurance = document.getElementsByName("typeOfInsurance");
 
-  userData.policyCoverage = [];
+  formData.policyCoverage = [];
 
   typeOfInsurance.forEach((item) => {
     if (item?.checked) {
-      userData.policyCoverage.push(item?.value);
+      formData.policyCoverage.push(item?.value);
     }
   });
 
-  const isValidate = userData.policyCoverage.length > 0;
+  const isValidate = formData.policyCoverage.length > 0;
 
   if (!isValidate) {
     // Error Message if value = null
@@ -503,9 +584,9 @@ function multiStep4Validation() {
 
   //   const isValidate = validationFields.every((result) => result === true);
 
-  userData.currentInsuranceCompany = currentInsuranceCompany?.value;
-  userData.insuranceCompany = insuranceCompany?.value;
-  userData.policyRenewalDate = policyRenewalDate?.value;
+  formData.currentInsuranceCompany = currentInsuranceCompany?.value;
+  formData.insuranceCompany = insuranceCompany?.value;
+  formData.policyRenewalDate = policyRenewalDate?.value;
 
   let validationFields = false;
 
