@@ -7,13 +7,32 @@ const formData = {
     make: "22",
     model: "22",
     type: "22",
-    estimateValue: "",
-    vehicleStorage: "",
+    estimateValue: "22",
+    vehicleStorage: "22",
     howVehicleDrive: "22",
     NumberOfLicensedDrivers: "22",
     NumberOfDailyUseVehicle: "22",
   },
-  moreVehiclesInfo: [],
+  moreVehiclesInfo: [
+    {
+      year: "33",
+      make: "33",
+      model: "33",
+      type: "33",
+      estimateValue: "33",
+      vehicleStorage: "33",
+      howVehicleDrive: "33",
+    },
+    {
+      year: "2022",
+      make: "22",
+      model: "22",
+      type: "22",
+      estimateValue: "22",
+      vehicleStorage: "22",
+      howVehicleDrive: "22",
+    },
+  ],
 };
 
 const successRedirection = "https://afi.org/";
@@ -110,8 +129,12 @@ function handleMultiStepForm(step) {
   if (step === formList.indexOf("add_vehicle__form")) {
     if (!addVehicleValidation()) return false;
   }
-  if (step === formList.indexOf("summary__form")) {
+  if (step === formList.indexOf("summary__form") - 1) {
     if (!summaryValidation()) return false;
+  }
+  if (step === formList.indexOf("summary__form")) {
+    // When add_more_vehicle_form submit
+    formList = formList.filter((item) => item != "add_more_vehicle_form");
   }
   if (step === formList.indexOf("violations__form")) {
     if (!spouseValidation()) return false;
@@ -133,7 +156,7 @@ function handleMultiStepForm(step) {
   //   }
   // }
 
-  summaryValidation();
+  // summaryValidation();
 
   return true;
 }
@@ -531,6 +554,9 @@ function spouseValidation() {
 }
 
 // ********** MULTI-STEP 2 Validation ***********
+const placeIndex = formList.indexOf("summary__form");
+let isVehicleSummaryAppended = false;
+
 function summaryValidation() {
   //
   const mainVehicleValues = [];
@@ -540,8 +566,6 @@ function summaryValidation() {
 
   const haveAllMainVehicleValues = mainVehicleValues.every((v) => Boolean(v));
   if (!haveAllMainVehicleValues) {
-    const placeIndex = formList.indexOf("summary__form");
-
     if (!formList.includes("add_vehicle__form")) {
       formList.splice(placeIndex, 0, "add_vehicle__form");
     }
@@ -554,6 +578,39 @@ function summaryValidation() {
       ".quote_request__summary_main_item_info"
     ).innerText = `${year} ${make} ${model}`;
   }
+
+  // *********************************************
+  const moreVehicles = formData.moreVehiclesInfo;
+  const addedSummary = document.querySelector("#moreVehicles");
+  const totalAdded = addedSummary.children?.length;
+
+  if (!isVehicleSummaryAppended) {
+    const demoItem = document.querySelector(
+      ".quote_request__summary_item.demoItem"
+    );
+    //
+    moreVehicles.forEach((info) => {
+      const clonedItem = demoItem.cloneNode(true);
+      clonedItem.classList.remove("__hide", "demoItem");
+      clonedItem.querySelector(
+        ".quote_request__summary_item_info"
+      ).innerHTML = `${info?.year} ${info?.make} ${info?.model}`;
+
+      addedSummary.appendChild(clonedItem);
+    });
+    //
+    isVehicleSummaryAppended = true;
+  }
+
+  // addedSummary
+  //   .querySelectorAll(".quote_request__summary_item")
+  //   .forEach((item, itemIndex) => {
+  //     moreVehicles.forEach((value, valueIndex) => {
+  //       if (itemIndex === valueIndex) {
+  //         item.innerText = `${value?.year} ${value?.make} ${value?.model}`;
+  //       }
+  //     });
+  //   });
 
   return true;
 }
@@ -595,6 +652,18 @@ function addVehicleValidation() {
   // return isValidate;
   return true;
 }
+
+const addVehicle = document.getElementById("addVehicle");
+addVehicle.addEventListener("click", () => {
+  if (!formList.includes("add_more_vehicle_form")) {
+    formList.splice(placeIndex, 0, "add_more_vehicle_form");
+  }
+  console.log(formList);
+  console.log(stepCount);
+  // stepCount = placeIndex;
+  showActiveForm(stepCount);
+  console.log(stepCount);
+});
 
 // ********** MULTI-STEP 3 Validation ***********
 function multiStep3Validation() {

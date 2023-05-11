@@ -605,6 +605,7 @@ textarea.field__input:focus {
 .quote_request__summary_item_info {
   color: #4a4a4a !important;
   font-weight: bold !important;
+  margin-bottom: 5px !important;
 }
 
 .button-bare {
