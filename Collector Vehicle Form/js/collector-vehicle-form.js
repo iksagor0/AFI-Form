@@ -7,10 +7,10 @@ const formData = {
     make: "22",
     model: "22",
     type: "22",
-    estimateValue: "22",
+    estimateValue: "",
     vehicleStorage: "",
     howVehicleDrive: "22",
-    NumberOfLicensedDrivers: "",
+    NumberOfLicensedDrivers: "22",
     NumberOfDailyUseVehicle: "22",
   },
   moreVehiclesInfo: [],
@@ -548,7 +548,13 @@ function summaryValidation() {
   } else {
     formList = formList.filter((form) => form != "add_vehicle__form");
     console.log("aaaaaaaaaaaa add_vehicle__form");
+    //
+    const { year, make, model } = formData.mainVehicleInfo;
+    document.querySelector(
+      ".quote_request__summary_main_item_info"
+    ).innerText = `${year} ${make} ${model}`;
   }
+
   return true;
 }
 
