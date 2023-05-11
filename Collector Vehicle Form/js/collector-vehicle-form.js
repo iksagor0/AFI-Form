@@ -558,13 +558,14 @@ const placeIndex = formList.indexOf("summary__form");
 let isVehicleSummaryAppended = false;
 
 function summaryValidation() {
-  //
+  // Check Main Vehicle data OKK or Not
   const mainVehicleValues = [];
   for (const key in formData.mainVehicleInfo) {
     mainVehicleValues.push(formData.mainVehicleInfo[key]);
   }
-
   const haveAllMainVehicleValues = mainVehicleValues.every((v) => Boolean(v));
+
+  // If Main Vehicle Data OKK then direct show SUMMARY neither show add_vehicle__form
   if (!haveAllMainVehicleValues) {
     if (!formList.includes("add_vehicle__form")) {
       formList.splice(placeIndex, 0, "add_vehicle__form");
@@ -579,16 +580,17 @@ function summaryValidation() {
     ).innerText = `${year} ${make} ${model}`;
   }
 
-  // *********************************************
+  // Add all data to moreVehicles sections
   const moreVehicles = formData.moreVehiclesInfo;
   const addedSummary = document.querySelector("#moreVehicles");
   const totalAdded = addedSummary.children?.length;
 
+  // if all data not appended then Append Data to #moreVehicles
   if (!isVehicleSummaryAppended) {
     const demoItem = document.querySelector(
       ".quote_request__summary_item.demoItem"
     );
-    //
+    // Clone the demo, create and append
     moreVehicles.forEach((info) => {
       const clonedItem = demoItem.cloneNode(true);
       clonedItem.classList.remove("__hide", "demoItem");
@@ -598,7 +600,7 @@ function summaryValidation() {
 
       addedSummary.appendChild(clonedItem);
     });
-    //
+    // after first time appending  make is TRUE to stop repeat appending
     isVehicleSummaryAppended = true;
   }
 
