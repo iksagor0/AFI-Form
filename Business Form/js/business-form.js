@@ -553,6 +553,16 @@ document.querySelectorAll(".field__input")?.forEach((input) => {
   });
 });
 
+const branchOfService = document.getElementById("branchOfService");
+branchOfService.addEventListener("change", () => {
+  const militaryRank = document.getElementById("militaryRank");
+  if (Boolean(branchOfService?.value)) {
+    militaryRank.disabled = false;
+  } else {
+    militaryRank.disabled = true;
+  }
+});
+
 // // KeyPress remove all Error Message
 // document.querySelectorAll(".form_container field")?.forEach((section) => {
 //   section.querySelectorAll(".field__input")?.forEach((input) => {
