@@ -38,58 +38,59 @@ nextBtn.addEventListener("click", () => {
     "child_information",
   ];
 
-  if (formList.some((item) => additionalForm.includes(item))) {
-    //   If additonal form has in arrayList
-    if (stepCount === 1 && formList.includes("military_information")) {
-      if (!militaryFormValidation()) return false;
-    }
+  //   If additonal form has in arrayList
+  if (stepCount === formList.indexOf("military_information")) {
+    if (!militaryFormValidation()) return false;
+  }
 
-    if (stepCount === 1 && formList.includes("parent_information")) {
-      if (!parentFormValidation()) return false;
-    }
+  if (stepCount === formList.indexOf("parent_information")) {
+    if (!parentFormValidation()) return false;
+  }
 
-    if (stepCount === 1 && formList.includes("child_information")) {
-      if (!childFormValidation()) return false;
-    }
+  if (stepCount === formList.indexOf("child_information")) {
+    if (!childFormValidation()) return false;
+  }
 
-    if (stepCount === 2) {
-      if (!multiStep1Validation()) return false;
-    }
-    if (stepCount === 3) {
-      if (!multiStep2Validation()) return false;
-    }
-    if (stepCount === 4) {
-      if (!multiStep3Validation()) return false;
-    }
+  if (stepCount === formList.indexOf("multi__step_1")) {
+    if (!multiStep1Validation()) return false;
+  }
+  if (stepCount === formList.indexOf("multi__step_2")) {
+    if (!multiStep2Validation()) return false;
+  }
+  if (stepCount === formList.indexOf("multi__step_3")) {
+    if (!multiStep3Validation()) return false;
+  }
 
-    if (stepCount === 5) {
-      const isAllFine = multiStep4Validation();
+  if (stepCount === formList.indexOf("multi__step_4")) {
+    const isAllFine = multiStep4Validation();
 
-      if (isAllFine) {
-        // Go to Thank You Page
-        window.location.href = successRedirection;
-      }
-    }
-  } else {
-    //   If no additonal form
-    if (stepCount === 1) {
-      if (!multiStep1Validation()) return false;
-    }
-    if (stepCount === 2) {
-      if (!multiStep2Validation()) return false;
-    }
-    if (stepCount === 3) {
-      if (!multiStep3Validation()) return false;
-    }
-    if (stepCount === 4) {
-      const finalFormError = multiStep4Validation();
-
-      if (!finalFormError) {
-        // Go to Thank You Page
-        window.location.href = successRedirection;
-      }
+    if (isAllFine) {
+      document.querySelector("#currentInsuranceCompany").value = "";
+      // Go to Thank You Page
+      window.location.href = successRedirection;
     }
   }
+
+  // else {
+  //   //   If no additonal form
+  //   if (stepCount === 1) {
+  //     if (!multiStep1Validation()) return false;
+  //   }
+  //   if (stepCount === 2) {
+  //     if (!multiStep2Validation()) return false;
+  //   }
+  //   if (stepCount === 3) {
+  //     if (!multiStep3Validation()) return false;
+  //   }
+  //   if (stepCount === 4) {
+  //     const finalFormError = multiStep4Validation();
+
+  //     if (!finalFormError) {
+  //       // Go to Thank You Page
+  //       window.location.href = successRedirection;
+  //     }
+  //   }
+  // }
 
   console.log(userData);
 
@@ -492,17 +493,15 @@ function multiStep4Validation() {
   const insuranceCompany = document.querySelector("#insuranceCompany");
   const policyRenewalDate = document.querySelector("#policyRenewalDate");
 
-  //   const isValidate = validationFields.every((result) => result === true);
-
   userData.currentInsuranceCompany = currentInsuranceCompany?.value;
   userData.insuranceCompany = insuranceCompany?.value;
   userData.policyRenewalDate = policyRenewalDate?.value;
 
   let validationFields = false;
 
+  // if currentInsuranceCompany = "Other" then Insurance Company value id required
   if (currentInsuranceCompany?.value === "Other") {
-    // if currentInsuranceCompany = "Other" then Insurance Company value id required
-    validationFields = !isValueEmpty(insuranceCompany);
+    validationFields = isValueEmpty(insuranceCompany);
   }
 
   return validationFields;
@@ -515,6 +514,7 @@ function multiStep4Validation() {
 const currentInsuranceCompany = document.querySelector(
   "#currentInsuranceCompany"
 );
+
 currentInsuranceCompany.addEventListener("change", () => {
   if (currentInsuranceCompany?.value === "Other") {
     document

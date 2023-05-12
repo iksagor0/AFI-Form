@@ -117,13 +117,13 @@ backBtn.addEventListener("click", () => {
 // !formList.some((item) => additionalForm.includes(item))
 function handleMultiStepForm(step) {
   // *********************************************************
-  if (stepCount === formList.indexOf("military_information")) {
+  if (step === formList.indexOf("military_information")) {
     if (!militaryFormValidation()) return false;
   }
-  if (stepCount === formList.indexOf("parent_information")) {
+  if (step === formList.indexOf("parent_information")) {
     if (!parentFormValidation()) return false;
   }
-  if (stepCount === formList.indexOf("child_information")) {
+  if (step === formList.indexOf("child_information")) {
     if (!childFormValidation()) return false;
   }
   if (step === formList.indexOf("policyholder__form")) {
