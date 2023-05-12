@@ -3,7 +3,8 @@ const formData = {
   eligibilityStatus: "",
 };
 
-const successRedirection = "https://afi.org/";
+// const successRedirection = "https://afi.org/";
+const successRedirection = "../--Model/thank-you.html";
 
 // Forms
 const multStepForm = [
@@ -479,7 +480,7 @@ function multiStep4Validation() {
   formData.insuranceCompany = insuranceCompany?.value;
   formData.policyRenewalDate = policyRenewalDate?.value;
 
-  let validationFields = false;
+  let validationFields = true;
 
   // if currentInsuranceCompany = "Other" then Insurance Company value id required
   if (currentInsuranceCompany?.value === "Other") {
