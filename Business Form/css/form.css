@@ -13,7 +13,6 @@
 
 .title_hero h1 {
   color: #fff !important;
-  color: var(--color-white) !important;
   font-size: 1.5rem !important;
   margin-bottom: 0 !important;
 }
