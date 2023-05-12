@@ -1,5 +1,5 @@
 // DATA
-const userData = {
+const formData = {
   eligibilityStatus: "",
 };
 
@@ -71,29 +71,9 @@ nextBtn.addEventListener("click", () => {
     }
   }
 
-  // else {
-  //   //   If no additonal form
-  //   if (stepCount === 1) {
-  //     if (!multiStep1Validation()) return false;
-  //   }
-  //   if (stepCount === 2) {
-  //     if (!multiStep2Validation()) return false;
-  //   }
-  //   if (stepCount === 3) {
-  //     if (!multiStep3Validation()) return false;
-  //   }
-  //   if (stepCount === 4) {
-  //     const finalFormError = multiStep4Validation();
+  console.log(formData);
 
-  //     if (!finalFormError) {
-  //       // Go to Thank You Page
-  //       window.location.href = successRedirection;
-  //     }
-  //   }
-  // }
-
-  console.log(userData);
-
+  // Step Increment
   stepCount >= maxStep ? stepCount : stepCount++;
 
   // Show Form
@@ -102,6 +82,7 @@ nextBtn.addEventListener("click", () => {
 
 // Back
 backBtn.addEventListener("click", () => {
+  // Step Decrement
   stepCount <= 0 ? stepCount : stepCount--;
 
   showActiveForm(stepCount);
@@ -139,6 +120,7 @@ function eligibilityErrorMessage(data, selector) {
   }
 }
 
+// Show error Message if value user makes any mistake
 function inputErrorMessage(selector, msg) {
   const hasErrorField =
     selector?.parentElement?.querySelector(".field_message");
@@ -290,13 +272,13 @@ function eligibilityValidation() {
     }
     maxStep = formList.length - 1;
 
-    // set eligibilityStatus to userData
-    userData.eligibilityStatus = eligibilityStatus;
+    // set eligibilityStatus to formData
+    formData.eligibilityStatus = eligibilityStatus;
   }
 
   // Error Message if value = null
   eligibilityErrorMessage(
-    userData.eligibilityStatus,
+    formData.eligibilityStatus,
     ".radio__form_section .field_message"
   );
   return eligibilityStatus;
@@ -323,18 +305,18 @@ function militaryFormValidation() {
   const isValidate = validationFields.every((result) => result === true);
 
   if (isValidate) {
-    userData.policyHolderFirstName = militaryFirstName?.value;
-    userData.policyHolderLastName = militaryLastName?.value;
-    userData.branchOfService = branchOfService?.value;
-    userData.militaryStatus = militaryStatus?.value;
-    userData.militaryRank = militaryRank?.value;
+    formData.policyHolderFirstName = militaryFirstName?.value;
+    formData.policyHolderLastName = militaryLastName?.value;
+    formData.branchOfService = branchOfService?.value;
+    formData.militaryStatus = militaryStatus?.value;
+    formData.militaryRank = militaryRank?.value;
 
     // Set Name in Multi-step form field
     document.querySelector("#policyHolderFirstName").value =
-      userData.policyHolderFirstName;
+      formData.policyHolderFirstName;
 
     document.querySelector("#policyHolderLastName").value =
-      userData.policyHolderLastName;
+      formData.policyHolderLastName;
   }
 
   return isValidate;
@@ -355,8 +337,8 @@ function parentFormValidation() {
   const isValidate = validationFields.every((result) => result === true);
 
   if (isValidate) {
-    userData.parentFirstName = parentFirstName?.value;
-    userData.parentLastName = parentLastName?.value;
+    formData.parentFirstName = parentFirstName?.value;
+    formData.parentLastName = parentLastName?.value;
   }
 
   return isValidate;
@@ -377,8 +359,8 @@ function childFormValidation() {
   const isValidate = validationFields.every((result) => result === true);
 
   if (isValidate) {
-    userData.childFirstName = childFirstName?.value;
-    userData.childLastName = childLastName?.value;
+    formData.childFirstName = childFirstName?.value;
+    formData.childLastName = childLastName?.value;
   }
 
   return isValidate;
@@ -412,11 +394,11 @@ function multiStep1Validation() {
   const isValidate = validationFields.every((result) => result === true);
 
   if (isValidate) {
-    userData.policyHolderFirstName = policyHolderFirstName?.value;
-    userData.policyHolderLastName = policyHolderLastName?.value;
-    userData.policyHolderEmail = policyHolderEmail?.value;
-    userData.policyHolderPhoneType = policyHolderPhoneType?.value;
-    userData.policyHolderPhoneNumber = policyHolderPhoneNumber?.value.replace(
+    formData.policyHolderFirstName = policyHolderFirstName?.value;
+    formData.policyHolderLastName = policyHolderLastName?.value;
+    formData.policyHolderEmail = policyHolderEmail?.value;
+    formData.policyHolderPhoneType = policyHolderPhoneType?.value;
+    formData.policyHolderPhoneNumber = policyHolderPhoneNumber?.value.replace(
       /\D/g,
       ""
     );
@@ -451,13 +433,13 @@ function multiStep2Validation() {
   const isValidate = validationFields.every((result) => result === true);
 
   if (isValidate) {
-    userData.businessName = businessName?.value;
-    userData.businessWebsite = businessWebsite?.value;
-    userData.businessType = businessType?.value;
-    userData.businessTaxId = businessTaxId?.value;
-    userData.city = city?.value;
-    userData.state = state?.value;
-    userData.zip = zip?.value;
+    formData.businessName = businessName?.value;
+    formData.businessWebsite = businessWebsite?.value;
+    formData.businessType = businessType?.value;
+    formData.businessTaxId = businessTaxId?.value;
+    formData.city = city?.value;
+    formData.state = state?.value;
+    formData.zip = zip?.value;
   }
 
   return isValidate;
@@ -467,15 +449,15 @@ function multiStep2Validation() {
 function multiStep3Validation() {
   const typeOfInsurance = document.getElementsByName("typeOfInsurance");
 
-  userData.policyCoverage = [];
+  formData.policyCoverage = [];
 
   typeOfInsurance.forEach((item) => {
     if (item?.checked) {
-      userData.policyCoverage.push(item?.value);
+      formData.policyCoverage.push(item?.value);
     }
   });
 
-  const isValidate = userData.policyCoverage.length > 0;
+  const isValidate = formData.policyCoverage.length > 0;
 
   if (!isValidate) {
     // Error Message if value = null
@@ -493,9 +475,9 @@ function multiStep4Validation() {
   const insuranceCompany = document.querySelector("#insuranceCompany");
   const policyRenewalDate = document.querySelector("#policyRenewalDate");
 
-  userData.currentInsuranceCompany = currentInsuranceCompany?.value;
-  userData.insuranceCompany = insuranceCompany?.value;
-  userData.policyRenewalDate = policyRenewalDate?.value;
+  formData.currentInsuranceCompany = currentInsuranceCompany?.value;
+  formData.insuranceCompany = insuranceCompany?.value;
+  formData.policyRenewalDate = policyRenewalDate?.value;
 
   let validationFields = false;
 
