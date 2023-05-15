@@ -60,7 +60,7 @@
     <!-- ************************************************ -->
     <!------------------- Radio Section -------------------->
     <!-- ************************************************ -->
-    <section class="form_section radio_select form_container active_form">
+    <section class="form_section radio_select form_container">
       <div class="container">
         <section class="heading_text_section">
           <h1 class="quote_request_heading">Eligibility For Insurance</h1>
@@ -1322,7 +1322,9 @@
             </div>
 
             <!-- Add Button -->
-            <button id="addVehicle" class="button" type="button">+ Add Vehicle</button>
+            <button id="addVehicle" class="button" type="button">
+              + Add Vehicle
+            </button>
           </div>
         </div>
       </div>
@@ -1759,7 +1761,7 @@
     <!-- ************************************************ -->
     <!---------------------- MULTI-STEP 3 ------------------>
     <!-- ************************************************ -->
-    <section class="form_section multi__step_3 violations__form">
+    <section class="form_section multi__step_3 violations__form active_form">
       <div class="container">
         <!-- ******** STEP ******** -->
         <div class="step__container">
@@ -1784,7 +1786,7 @@
 
             <!-- Has Any Violation -->
             <div class="fields-row">
-              <div class="field field--full">
+              <div class="field field--full has_violation_inputs_container">
                 <div class="field__label-wrapper">
                   <label
                     class="field__label"
@@ -1793,7 +1795,7 @@
                     auto insurance claims in the last 5 years?</label
                   >
                 </div>
-                <div class="field-group">
+                <div class="field-group has_violation_inputs">
                   <div class="field__input-wrapper">
                     <input
                       class="field__input"
@@ -1807,8 +1809,7 @@
                       >Yes</label
                     >
                   </div>
-                </div>
-                <div class="field-group">
+
                   <div class="field__input-wrapper">
                     <input
                       class="field__input"
@@ -1823,145 +1824,156 @@
                     >
                   </div>
                 </div>
+                <!-- <div class="field-group"></div> -->
               </div>
             </div>
 
             <!-- Driver, Type, Date -->
-            <div class="fields-row">
-              <div class="field">
-                <div class="field__label-wrapper">
-                  <label class="field__label" for="householdViolations0Driver"
-                    >Driver</label
-                  >
-                </div>
-                <div class="field__input-wrapper">
-                  <input
-                    class="field__input"
-                    id="householdViolations0Driver"
-                    name="householdViolations0Driver"
-                    type="text"
-                    pattern="^[a-zA-Z]+$"
-                    maxlength="50"
-                    placeholder=""
-                    value=""
-                  />
-                </div>
-              </div>
-              <div class="field field--xlarge">
-                <div class="field__label-wrapper">
-                  <label class="field__label" for="householdViolations0Type"
-                    >Type</label
-                  >
-                </div>
-                <div class="field__input-wrapper">
-                  <select
-                    class="field__input"
-                    id="householdViolations0Type"
-                    name="householdViolations0Type"
-                    type="select"
-                  >
-                    <option value="">Choose One</option>
-                    <option
-                      value="Accident - At Fault with payout more than $1000"
+            <div id="violation_info_fields_wrapper">
+              <div class="fields-row violation_info_fields">
+                <div class="field">
+                  <div class="field__label-wrapper">
+                    <label class="field__label" for="householdViolations0Driver"
+                      >Driver</label
                     >
-                      Accident - At Fault with payout more than $1000
-                    </option>
-                    <option value="Accident - At Fault with payout under $1000">
-                      Accident - At Fault with payout under $1000
-                    </option>
-                    <option value="Accident - Not at fault">
-                      Accident - Not at fault
-                    </option>
-                    <option value="Careless or Improper Operation">
-                      Careless or Improper Operation
-                    </option>
-                    <option
-                      value="Comprehensive Claim $1000 or less or Weather Claim"
+                  </div>
+                  <div class="field__input-wrapper">
+                    <input
+                      class="field__input"
+                      id="householdViolations0Driver"
+                      name="householdViolations0Driver"
+                      type="text"
+                      pattern="^[a-zA-Z]+$"
+                      maxlength="50"
+                      placeholder=""
+                      value=""
+                    />
+                  </div>
+                </div>
+                <div class="field field--xlarge">
+                  <div class="field__label-wrapper">
+                    <label class="field__label" for="householdViolations0Type"
+                      >Type</label
                     >
-                      Comprehensive Claim $1000 or less or Weather Claim
-                    </option>
-                    <option value="Comprehensive Claim over $1000">
-                      Comprehensive Claim over $1000
-                    </option>
-                    <option value="Driving Under Suspension">
-                      Driving Under Suspension
-                    </option>
-                    <option value="Driving While Intoxicated/Under Influence">
-                      Driving While Intoxicated/Under Influence
-                    </option>
-                    <option value="Failing to Yield">Failing to Yield</option>
-                    <option value="Felony of Motor Vehicle / Vehicle Theft">
-                      Felony of Motor Vehicle / Vehicle Theft
-                    </option>
-                    <option value="Fleeing from Police">
-                      Fleeing from Police
-                    </option>
-                    <option value="Following Vehicle Too Closely">
-                      Following Vehicle Too Closely
-                    </option>
-                    <option value="Improper Lane Changing or Passing">
-                      Improper Lane Changing or Passing
-                    </option>
-                    <option value="Improper Turning">Improper Turning</option>
-                    <option value="Leaving the Scene of an Accident">
-                      Leaving the Scene of an Accident
-                    </option>
-                    <option value="License or Credentials Violation">
-                      License or Credentials Violation
-                    </option>
-                    <option value="Minor Moving Violation">
-                      Minor Moving Violation
-                    </option>
-                    <option value="Open Container">Open Container</option>
-                    <option value="Racing">Racing</option>
-                    <option value="Reckless Driving">Reckless Driving</option>
-                    <option value="Serious License Violation">
-                      Serious License Violation
-                    </option>
-                    <option value="Speeding">Speeding</option>
-                    <option value="Speeding 1-10 MPH in 55-70 MPH Zone">
-                      Speeding 1-10 MPH in 55-70 MPH Zone
-                    </option>
-                    <option value="Speeding 1-7 MPH in 30-54 MPH Zone">
-                      Speeding 1-7 MPH in 30-54 MPH Zone
-                    </option>
-                    <option value="Traffic Device or Sign">
-                      Traffic Device or Sign
-                    </option>
-                    <option value="Vehicle Use without Owner's Consent">
-                      Vehicle Use without Owner's Consent
-                    </option>
-                    <option value="Vehicular Homicide">
-                      Vehicular Homicide
-                    </option>
-                    <option value="Wrong Way on a One-Way Street">
-                      Wrong Way on a One-Way Street
-                    </option>
-                  </select>
+                  </div>
+                  <div class="field__input-wrapper">
+                    <select
+                      class="field__input"
+                      id="householdViolations0Type"
+                      name="householdViolations0Type"
+                      type="select"
+                    >
+                      <option value="">Choose One</option>
+                      <option
+                        value="Accident - At Fault with payout more than $1000"
+                      >
+                        Accident - At Fault with payout more than $1000
+                      </option>
+                      <option
+                        value="Accident - At Fault with payout under $1000"
+                      >
+                        Accident - At Fault with payout under $1000
+                      </option>
+                      <option value="Accident - Not at fault">
+                        Accident - Not at fault
+                      </option>
+                      <option value="Careless or Improper Operation">
+                        Careless or Improper Operation
+                      </option>
+                      <option
+                        value="Comprehensive Claim $1000 or less or Weather Claim"
+                      >
+                        Comprehensive Claim $1000 or less or Weather Claim
+                      </option>
+                      <option value="Comprehensive Claim over $1000">
+                        Comprehensive Claim over $1000
+                      </option>
+                      <option value="Driving Under Suspension">
+                        Driving Under Suspension
+                      </option>
+                      <option value="Driving While Intoxicated/Under Influence">
+                        Driving While Intoxicated/Under Influence
+                      </option>
+                      <option value="Failing to Yield">Failing to Yield</option>
+                      <option value="Felony of Motor Vehicle / Vehicle Theft">
+                        Felony of Motor Vehicle / Vehicle Theft
+                      </option>
+                      <option value="Fleeing from Police">
+                        Fleeing from Police
+                      </option>
+                      <option value="Following Vehicle Too Closely">
+                        Following Vehicle Too Closely
+                      </option>
+                      <option value="Improper Lane Changing or Passing">
+                        Improper Lane Changing or Passing
+                      </option>
+                      <option value="Improper Turning">Improper Turning</option>
+                      <option value="Leaving the Scene of an Accident">
+                        Leaving the Scene of an Accident
+                      </option>
+                      <option value="License or Credentials Violation">
+                        License or Credentials Violation
+                      </option>
+                      <option value="Minor Moving Violation">
+                        Minor Moving Violation
+                      </option>
+                      <option value="Open Container">Open Container</option>
+                      <option value="Racing">Racing</option>
+                      <option value="Reckless Driving">Reckless Driving</option>
+                      <option value="Serious License Violation">
+                        Serious License Violation
+                      </option>
+                      <option value="Speeding">Speeding</option>
+                      <option value="Speeding 1-10 MPH in 55-70 MPH Zone">
+                        Speeding 1-10 MPH in 55-70 MPH Zone
+                      </option>
+                      <option value="Speeding 1-7 MPH in 30-54 MPH Zone">
+                        Speeding 1-7 MPH in 30-54 MPH Zone
+                      </option>
+                      <option value="Traffic Device or Sign">
+                        Traffic Device or Sign
+                      </option>
+                      <option value="Vehicle Use without Owner's Consent">
+                        Vehicle Use without Owner's Consent
+                      </option>
+                      <option value="Vehicular Homicide">
+                        Vehicular Homicide
+                      </option>
+                      <option value="Wrong Way on a One-Way Street">
+                        Wrong Way on a One-Way Street
+                      </option>
+                    </select>
+                  </div>
                 </div>
-              </div>
-              <div class="field field--large">
-                <div class="field__label-wrapper">
-                  <label class="field__label" for="householdViolations0Date"
-                    >Date</label
-                  >
-                </div>
-                <div class="field__input-wrapper">
-                  <input
-                    class="field__input"
-                    id="householdViolations0Date"
-                    name="householdViolations0Date"
-                    type="text"
-                    pattern="\d{1,2}/\d{1,2}/\d{4}"
-                    placeholder="MM/DD/YYYY"
-                    value=""
-                  />
+                <div class="field field--large">
+                  <div class="field__label-wrapper">
+                    <label class="field__label" for="householdViolations0Date"
+                      >Date</label
+                    >
+                  </div>
+                  <div class="field__input-wrapper">
+                    <input
+                      class="field__input"
+                      id="householdViolations0Date"
+                      name="householdViolations0Date"
+                      type="text"
+                      pattern="\d{1,2}/\d{1,2}/\d{4}"
+                      placeholder="MM/DD/YYYY"
+                      value=""
+                    />
+                  </div>
                 </div>
               </div>
             </div>
 
             <!-- Add Violation Button -->
-            <button class="button" type="button">Add Another Violation</button>
+            <button
+              id="add_violation_btn"
+              class="button add_violation_btn"
+              type="button"
+            >
+              Add Another Violation
+            </button>
           </div>
 
           <!-- ******* ASIDE  *******-->

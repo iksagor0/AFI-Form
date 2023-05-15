@@ -627,6 +627,21 @@ textarea.field__input:focus {
   gap: 2.5rem;
 }
 
+.violations__form .add_violation_btn {
+  width: auto !important;
+}
+
+.violations__form .has_violation_inputs_container {
+  display: block !important;
+}
+
+.violations__form .has_violation_inputs {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
 /* Hidden */
 .hidden_area,
 .__hide {

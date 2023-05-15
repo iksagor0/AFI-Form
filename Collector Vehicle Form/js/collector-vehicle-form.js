@@ -151,21 +151,6 @@ function handleMultiStepForm(step) {
   if (step === formList.indexOf("coverage__history_form")) {
     if (!spouseValidation()) return false;
   }
-  // if (stepCount === 2) {
-  //   if (!multiStep2Validation()) return false;
-  // }
-  // if (stepCount === 3) {
-  //   if (!multiStep3Validation()) return false;
-  // }
-  // if (stepCount === 4) {
-  //   const finalFormError = multiStep4Validation();
-  //   if (!finalFormError) {
-  //     // Go to Thank You Page
-  //     window.location.href = successRedirection;
-  //   }
-  // }
-
-  // summaryValidation();
 
   return true;
 }
@@ -687,25 +672,23 @@ function addMoreVehicleValidation() {
 }
 
 // ********** MULTI-STEP 3 Validation ***********
-function multiStep3Validation() {
-  const typeOfInsurance = document.getElementsByName("typeOfInsurance");
+const addViolationBtn = document.getElementById("add_violation_btn");
+const violationsFields = document.querySelector(".violation_info_fields");
+const violationWrapper = document.getElementById(
+  "violation_info_fields_wrapper"
+);
 
-  formData.policyCoverage = [];
+// Add more Fields to add violations
+addViolationBtn.addEventListener("click", () => {
+  const newFields = violationsFields.cloneNode(true);
 
-  typeOfInsurance.forEach((item) => {
-    if (item?.checked) {
-      formData.policyCoverage.push(item?.value);
-    }
-  });
+  violationWrapper.appendChild(newFields);
+});
 
-  const isValidate = formData.policyCoverage.length > 0;
+function violationsValidation() {
+  // Form Validation here
 
-  if (!isValidate) {
-    // Error Message if value = null
-    eligibilityErrorMessage(false, ".multi__step_3 .field_message");
-  }
-
-  return isValidate;
+  return true;
 }
 
 // ********** MULTI-STEP 4 Validation ***********
