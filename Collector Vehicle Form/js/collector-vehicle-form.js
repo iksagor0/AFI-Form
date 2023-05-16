@@ -56,9 +56,9 @@ const multStepForm = [
 const defalutForms = ["radio_select", ...multStepForm];
 let formList = defalutForms;
 
-// *********************************************
+// =*********************************************
 //       FORM SUBMITION AND STEP HANDLING
-// *********************************************
+// =*********************************************
 const nextBtn = document.querySelector("#next_btn");
 const backBtn = document.querySelector("#back_btn");
 
@@ -73,23 +73,8 @@ nextBtn.addEventListener("click", () => {
     if (!Boolean(isSelectEligibility)) return false;
   }
 
-  if (formList.some((item) => additionalForm.includes(item))) {
-    //   If additonal form has in arrayList
-    // if (stepCount === 1 && formList.includes("military_information")) {
-    //   if (!militaryFormValidation()) return false;
-    // }
-    // if (stepCount === 1 && formList.includes("parent_information")) {
-    //   if (!parentFormValidation()) return false;
-    // }
-    // if (stepCount === 1 && formList.includes("child_information")) {
-    //   if (!childFormValidation()) return false;
-    // }
-
-    if (!handleMultiStepForm(stepCount)) return false;
-  } else {
-    //   If no additonal form
-    if (!handleMultiStepForm(stepCount)) return false;
-  }
+  //  HANDLE ALL FORM SUBMISSIONS AND STEP VALIDATION
+  if (!handleMultiStepForm(stepCount)) return false;
 
   // Step Increment
   stepCount >= maxStep ? stepCount : stepCount++;
@@ -111,12 +96,11 @@ backBtn.addEventListener("click", () => {
   showActiveForm(stepCount);
 });
 
-// *********************************************
+// =*********************************************
 //       HANDLING MULTI-STEP FORMS
-// *********************************************
-// !formList.some((item) => additionalForm.includes(item))
+// =*********************************************
 function handleMultiStepForm(step) {
-  // *********************************************************
+  // =*********************************************************
   if (step === formList.indexOf("military_information")) {
     if (!militaryFormValidation()) return false;
   }
@@ -155,9 +139,9 @@ function handleMultiStepForm(step) {
   return true;
 }
 
-// *********************************************
+// =*********************************************
 //           SHOW FORM BY CONDITION
-// *********************************************
+// =*********************************************
 function showActiveForm(step) {
   maxStep = formList.length - 1;
 
@@ -176,9 +160,9 @@ function showActiveForm(step) {
     : backBtn.classList.remove("hide");
 }
 
-// *********************************************
+// =*********************************************
 //              ERROR HANDLING
-// *********************************************
+// =*********************************************
 // Error Message if value user makes any mistake
 function eligibilityErrorMessage(data, selector) {
   const errorDiv = document.querySelector(selector);
@@ -319,10 +303,10 @@ dateField.addEventListener("input", (e) => {
     : value[1] + "/" + value[2] + (value[3] ? "/" + value[3] : "");
 });
 
-// *********************************************
+// =*********************************************
 //              FORM VALIDATION
-// *********************************************
-// ********** Eligibility Validation ***********
+// =*********************************************
+// / ********** Eligibility Validation ***********
 function eligibilityValidation() {
   const eligibilityStatus = document.querySelector(
     'input[name="eligibilityStatus"]:checked'
@@ -354,7 +338,7 @@ function eligibilityValidation() {
   return eligibilityStatus;
 }
 
-// ********** Military Information ***********
+// / ********** Military Information ***********
 function militaryFormValidation() {
   const militaryFirstName = document.querySelector("#militaryFirstName");
   const militaryLastName = document.querySelector("#militaryLastName");
@@ -393,7 +377,7 @@ function militaryFormValidation() {
   return true;
 }
 
-// ********** Parent's Information ***********
+// / ********** Parent's Information ***********
 function parentFormValidation() {
   const parentFirstName = document.querySelector("#parentFirstName");
   const parentLastName = document.querySelector("#parentLastName");
@@ -415,7 +399,7 @@ function parentFormValidation() {
   return isValidate;
 }
 
-// ********** Child's Information ***********
+// / ********** Child's Information ***********
 function childFormValidation() {
   const childFirstName = document.querySelector("#childFirstName");
   const childLastName = document.querySelector("#childLastName");
@@ -437,7 +421,7 @@ function childFormValidation() {
   return isValidate;
 }
 
-// ********** MULTI-STEP 1 Validation ***********
+// / ********** MULTI-STEP 1 Validation ***********
 function policyholderValidation(step) {
   const policyHolderFirstName = document.querySelector(
     "#policyHolderFirstName"
@@ -547,7 +531,7 @@ function spouseValidation() {
   return true;
 }
 
-// ********** MULTI-STEP 2 Validation ***********
+// / ********** MULTI-STEP 2 Validation ***********
 const placeIndex = formList.indexOf("summary__form");
 let isVehicleSummaryAppended = false;
 
@@ -671,7 +655,7 @@ function addMoreVehicleValidation() {
   return true;
 }
 
-// ********** MULTI-STEP 3 Validation ***********
+// / ********** MULTI-STEP 3 Validation ***********
 const addViolationBtn = document.getElementById("add_violation_btn");
 const violationsFields = document.querySelector(".violation_info_fields");
 const violationWrapper = document.getElementById(
@@ -691,7 +675,7 @@ function violationsValidation() {
   return true;
 }
 
-// ********** MULTI-STEP 4 Validation ***********
+// / ********** MULTI-STEP 4 Validation ***********
 function summary___alidation() {
   const currentInsuranceCompany = document.querySelector(
     "#currentInsuranceCompany"
@@ -715,9 +699,9 @@ function summary___alidation() {
   return validationFields;
 }
 
-// *********************************************
+// =*********************************************
 //            OTHERS FUNCTIONALITIES
-// *********************************************
+// =*********************************************
 // if currentInsuranceCompany = "Other" then Insurance Company field will show
 const currentInsuranceCompany = document.querySelector(
   "#currentInsuranceCompany"
@@ -760,9 +744,9 @@ document.querySelectorAll(".field__input")?.forEach((input) => {
   });
 });
 
-// *********************************************
+// =*********************************************
 //            FETCH DATA FROM JSON
-// *********************************************
+// =*********************************************
 // const branchOfServiceElement = document.getElementById("branchOfService");
 
 // fetch("./json/branchOfService.json")
@@ -784,7 +768,7 @@ document.querySelectorAll(".field__input")?.forEach((input) => {
 //       branchOfServiceElement.appendChild(option);
 //     });
 
-//     // branchOfServiceElement.disabled = false;
-//     // branchOfServiceElement?.parentElement.classList.remove("loading__field");
+//      branchOfServiceElement.disabled = false;
+//      branchOfServiceElement?.parentElement.classList.remove("loading__field");
 //   }
 // }
