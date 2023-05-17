@@ -8,7 +8,7 @@ const formData = {
     model: "22",
     type: "22",
     estimateValue: "",
-    vehicleStorage: "",
+    vehicleStorage: "22",
     howVehicleDrive: "22",
     NumberOfLicensedDrivers: "22",
     NumberOfDailyUseVehicle: "22",
@@ -44,7 +44,7 @@ const additionalForm = [
 ];
 
 // Forms
-const multStepForm = [
+const multiStepForm = [
   "policyholder__form",
   // "add_vehicle__form",
   "summary__form",
@@ -53,11 +53,11 @@ const multStepForm = [
   "coverage__history_form",
 ];
 
-const defalutForms = ["radio_select", ...multStepForm];
-let formList = defalutForms;
+const defaultForms = ["radio_select", ...multiStepForm];
+let formList = defaultForms;
 
 // =*********************************************
-//       FORM SUBMITION AND STEP HANDLING
+//       FORM SUBMISSION AND STEP HANDLING
 // =*********************************************
 const nextBtn = document.querySelector("#next_btn");
 const backBtn = document.querySelector("#back_btn");
@@ -315,13 +315,13 @@ function eligibilityValidation() {
   // Select Formlist as user eligibilityStatus
   if (Boolean(eligibilityStatus)) {
     if (eligibilityStatus === "military") {
-      formList = ["radio_select", "military_information", ...multStepForm];
+      formList = ["radio_select", "military_information", ...multiStepForm];
     } else if (eligibilityStatus === "child") {
-      formList = ["radio_select", "parent_information", ...multStepForm];
+      formList = ["radio_select", "parent_information", ...multiStepForm];
     } else if (eligibilityStatus === "parent") {
-      formList = ["radio_select", "child_information", ...multStepForm];
+      formList = ["radio_select", "child_information", ...multiStepForm];
     } else {
-      formList = defalutForms;
+      formList = defaultForms;
     }
     maxStep = formList.length - 1;
 
@@ -645,9 +645,9 @@ addVehicle.addEventListener("click", () => {
 });
 
 function addMoreVehicleValidation() {
-  const isFormSummited = true;
+  const isFormSubmitted = true;
 
-  if (isFormSummited) {
+  if (isFormSubmitted) {
     formList = formList.filter((item) => item != "add_more_vehicle_form");
     stepCount = stepCount - 1;
   }
@@ -662,13 +662,51 @@ const violationWrapper = document.getElementById(
   "violation_info_fields_wrapper"
 );
 
-// Add more Fields to add violations
+// ******************* ADD MORE VIOLATIONS FIELDS *******************
 addViolationBtn.addEventListener("click", () => {
   const newFields = violationsFields.cloneNode(true);
-
   violationWrapper.appendChild(newFields);
 });
 
+//
+
+const hasViolationsFields = document.getElementsByName(
+  "householdViolationsPreviousClaims"
+);
+
+// ******************* IF householdViolationsPreviousClaims value not== Yes, then disable all *******************
+function disableViolationInputs(disable = true) {
+  const violationInputs = violationWrapper.querySelectorAll(".field__input");
+  violationInputs.forEach((input) => (input.disabled = disable));
+  addViolationBtn.disabled = disable;
+}
+
+disableViolationInputs(true);
+
+const getViolationsValue = () => {
+  let value = "";
+  hasViolationsFields?.forEach((field) => {
+    if (field?.checked) value = field.value;
+  });
+
+  return value;
+};
+
+hasViolationsFields.forEach((fields) => {
+  fields.addEventListener("change", () => {
+    let getValue = getViolationsValue();
+
+    if (getValue === "Yes") {
+      disableViolationInputs(false);
+    } else {
+      disableViolationInputs(true);
+    }
+  });
+});
+
+console.log(getViolationsValue());
+
+// ******************* Violation Form Validation *******************
 function violationsValidation() {
   // Form Validation here
 

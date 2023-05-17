@@ -2,11 +2,9 @@
              TITLE HERO 
 ********************************** */
 .title_hero {
-  background: linear-gradient(
-    120deg,
-    rgba(203, 44, 48, 0.9),
-    rgba(136, 27, 38, 0.9)
-  );
+  background: linear-gradient(120deg,
+      rgba(203, 44, 48, 0.9),
+      rgba(136, 27, 38, 0.9));
   margin-bottom: 1.25rem;
   padding: 2.5rem 0;
 }
@@ -60,6 +58,7 @@
 .radio__form_section {
   margin-bottom: 2rem;
 }
+
 .radio__form_section .radio_field_label {
   font-weight: 700 !important;
   margin-bottom: 1.5rem;
@@ -94,7 +93,7 @@
   margin-bottom: 0.25rem;
 }
 
-.radio__form_section .field-group .field__input:checked + .field__label {
+.radio__form_section .field-group .field__input:checked+.field__label {
   background-color: #003864;
   background-color: var(--color-blue-40);
   color: #fff;
@@ -158,6 +157,7 @@
   .step__container {
     margin: 3rem 0 5rem;
   }
+
   .steps__list .step::after {
     font-size: 16px;
     width: 130px;
@@ -197,12 +197,15 @@
 .military_information .form_container {
   min-height: 592px;
 }
+
 .multi__step_1 .form_container {
   min-height: 530px;
 }
+
 .multi__step_1 .multi__step_2 {
   min-height: 640px;
 }
+
 .multi__step_4 .form_container {
   min-height: 370px;
 }
@@ -273,6 +276,7 @@ textarea.field__input:focus {
   display: flex;
   max-width: 100%;
 }
+
 .field__label-wrapper.gap_30 {
   margin-right: 30px;
 }
@@ -333,6 +337,7 @@ textarea.field__input:focus {
 .note {
   color: #6e7171 !important;
 }
+
 .note a:hover {
   color: #003864 !important;
   color: var(--color-blue-40) !important;
@@ -434,6 +439,7 @@ textarea.field__input:focus {
   transition: all 0.25s;
   transition: all var(--anim-duration-half);
 }
+
 .quote_request__action_buttons .button__left:hover {
   background-color: #c1c1c1 !important;
   border-color: #c1c1c1;
@@ -453,6 +459,7 @@ textarea.field__input:focus {
 .form_section {
   display: none;
 }
+
 .form_section.active_form {
   display: block;
 }
@@ -484,6 +491,7 @@ textarea.field__input:focus {
 .field__input-wrapper.loading__field {
   position: relative;
 }
+
 .field__input-wrapper.loading__field .field__input {
   background: #00000098;
   opacity: 0.5;
@@ -493,6 +501,7 @@ textarea.field__input:focus {
   0% {
     transform: translate(-50%, -50%), rotate(0deg);
   }
+
   100% {
     transform: translate(-50%, -50%) rotate(360deg);
   }
@@ -572,6 +581,7 @@ textarea.field__input:focus {
   /* padding-left: 0.75rem; */
   position: relative;
 }
+
 .fields-row .qrf-accordion .button-bare.qrf-accordion__trigger:hover {
   text-decoration: underline;
 }
@@ -586,6 +596,7 @@ textarea.field__input:focus {
   .quote-request__fields {
     padding: 2.625rem 2.25rem;
   }
+
   .quote-request__fields--separated {
     padding: 0;
   }
@@ -640,6 +651,11 @@ textarea.field__input:focus {
   gap: 20px;
   align-items: center;
   justify-content: center;
+}
+
+.field__input:disabled,
+.button:disabled {
+  opacity: .5;
 }
 
 /* Hidden */
