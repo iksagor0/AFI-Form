@@ -7,17 +7,17 @@ const formData = {
 const successRedirection = "../--Model/thank-you.html";
 
 // Forms
-const multStepForm = [
+const multiStepForm = [
   "multi__step_1",
   "multi__step_2",
   "multi__step_3",
   "multi__step_4",
 ];
-const defalutForms = ["radio_select", ...multStepForm];
-let formList = defalutForms;
+const defaultForms = ["radio_select", ...multiStepForm];
+let formList = defaultForms;
 
 // *********************************************
-//       FORM SUBMITION AND STEP HANDLING
+//       FORM SUBMISSION AND STEP HANDLING
 // *********************************************
 const nextBtn = document.querySelector("#next_btn");
 const backBtn = document.querySelector("#back_btn");
@@ -263,13 +263,13 @@ function eligibilityValidation() {
   // Select Formlist as user eligibilityStatus
   if (Boolean(eligibilityStatus)) {
     if (eligibilityStatus === "military") {
-      formList = ["radio_select", "military_information", ...multStepForm];
+      formList = ["radio_select", "military_information", ...multiStepForm];
     } else if (eligibilityStatus === "child") {
-      formList = ["radio_select", "parent_information", ...multStepForm];
+      formList = ["radio_select", "parent_information", ...multiStepForm];
     } else if (eligibilityStatus === "parent") {
-      formList = ["radio_select", "child_information", ...multStepForm];
+      formList = ["radio_select", "child_information", ...multiStepForm];
     } else {
-      formList = defalutForms;
+      formList = defaultForms;
     }
     maxStep = formList.length - 1;
 
