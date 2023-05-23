@@ -510,6 +510,7 @@ function policyholderValidation(step) {
     isValueEmpty(policyHolderMailingAddress),
     isValueEmpty(policyHolderCity),
     isValueEmpty(policyHolderState),
+    minValue(policyHolderZip, 5, "Please enter a valid Zip code"),
     isValueEmpty(policyHolderZip),
     isValueEmpty(policyHolderDob),
     isValueEmpty(policyHolderGender),
@@ -532,7 +533,7 @@ function policyholderValidation(step) {
     formData.policyHolderCity = policyHolderCity?.value;
     formData.policyHolderState = policyHolderState?.value;
     formData.policyHolderZip = policyHolderZip?.value;
-    formData.policyHolderSsn = policyHolderSsn?.value;
+    formData.policyHolderSsn = policyHolderSsn?.value.replace(/\D/g, "");
     formData.policyHolderDob = policyHolderDob?.value;
     formData.policyHolderGender = policyHolderGender?.value;
     formData.policyHolderMaritalStatus = policyHolderMaritalStatus?.value;
@@ -543,27 +544,27 @@ function policyholderValidation(step) {
       ""
     );
     formData.policyHolderResidenceStatus = policyHolderResidenceStatus?.value;
-  }
 
-  //
-  const spouseValues = [
-    "Married",
-    "Cohabitant",
-    "Civil Union Or Domestic Partner",
-  ];
+    // SHOW SPOUSE INFORMATION FORM, IF HAVE
+    const spouseValues = [
+      "Married",
+      "Cohabitant",
+      "Civil Union Or Domestic Partner",
+    ];
 
-  if (spouseValues.includes(formData?.policyHolderMaritalStatus)) {
-    if (!formList.includes("spouse_information")) {
-      formList.splice(step + 1, 0, "spouse_information");
+    if (spouseValues.includes(formData?.policyHolderMaritalStatus)) {
+      if (!formList.includes("spouse_information")) {
+        formList.splice(step + 1, 0, "spouse_information");
+      }
     }
-  }
-  if (!spouseValues.includes(formData?.policyHolderMaritalStatus)) {
-    formList = formList.filter((form) => form != "spouse_information");
-    console.log("aaaaaaaaaaaa spouse_information");
+    if (!spouseValues.includes(formData?.policyHolderMaritalStatus)) {
+      formList = formList.filter((form) => form != "spouse_information");
+      console.log("aaaaaaaaaaaa spouse_information");
+    }
   }
 
   // return isValidate;
-  return true;
+  return isValidate;
 }
 
 function spouseValidation() {
