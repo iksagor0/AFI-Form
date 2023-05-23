@@ -159,7 +159,7 @@ function showActiveForm(step) {
   document.querySelector(`.${formList[step]}`)?.classList.add("active_form");
 
   console.log({ stepCount });
-  console.log(formData.moreVehiclesInfo);
+  console.log(formData);
 
   // Conditionally Hide Back Btn
   stepCount <= 0
@@ -667,8 +667,6 @@ function runVehicleItemsFunctionality() {
       formData.moreVehiclesInfo.splice(itemIndex, 1);
       item.classList.add("__hide");
       // item.remove();
-
-      console.log(formData.moreVehiclesInfo);
     });
   });
 }

@@ -33,13 +33,7 @@ nextBtn.addEventListener("click", () => {
     if (!Boolean(isSelectEligibility)) return false;
   }
 
-  const additionalForm = [
-    "military_information",
-    "parent_information",
-    "child_information",
-  ];
-
-  //   If additonal form has in arrayList
+  //   If additional form has in arrayList
   if (stepCount === formList.indexOf("military_information")) {
     if (!militaryFormValidation()) return false;
   }
