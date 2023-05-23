@@ -14,24 +14,24 @@ const formData = {
     NumberOfDailyUseVehicle: "22",
   },
   moreVehiclesInfo: [
-    // {
-    //   year: "33",
-    //   make: "33",
-    //   model: "33",
-    //   type: "33",
-    //   estimateValue: "33",
-    //   vehicleStorage: "33",
-    //   howVehicleDrive: "33",
-    // },
-    // {
-    //   year: "2022",
-    //   make: "22",
-    //   model: "22",
-    //   type: "22",
-    //   estimateValue: "22",
-    //   vehicleStorage: "22",
-    //   howVehicleDrive: "22",
-    // },
+    {
+      year: "33",
+      make: "33",
+      model: "33",
+      type: "33",
+      estimateValue: "33",
+      vehicleStorage: "33",
+      howVehicleDrive: "33",
+    },
+    {
+      year: "2022",
+      make: "22",
+      model: "22",
+      type: "22",
+      estimateValue: "22",
+      vehicleStorage: "22",
+      howVehicleDrive: "22",
+    },
   ],
 };
 
@@ -532,7 +532,7 @@ function spouseValidation() {
 }
 
 // / ********** MULTI-STEP 2 Validation ***********
-const placeIndex = formList.indexOf("summary__form");
+const summaryFormIndex = formList.indexOf("summary__form");
 let isVehicleSummaryAppended = false;
 
 function summaryValidation() {
@@ -551,7 +551,7 @@ function summaryValidation() {
   // If Main Vehicle Data OKK then direct show SUMMARY neither show add_vehicle__form
   if (!haveAllMainVehicleValues) {
     if (!formList.includes("add_vehicle__form")) {
-      formList.splice(placeIndex, 0, "add_vehicle__form");
+      formList.splice(summaryFormIndex, 0, "add_vehicle__form");
     }
 
     showActiveForm(stepCount);
@@ -563,6 +563,8 @@ function summaryValidation() {
     document.querySelector(
       ".quote_request__summary_main_item_info"
     ).innerText = `${year} ${make} ${model}`;
+
+    // stepCount = stepCount - 1;
   }
 
   // Add all data to moreVehicles sections
@@ -602,6 +604,16 @@ function summaryValidation() {
   return true;
 }
 
+// / ********** FUNCTIONALITY OF SUMMARY : Edit, Delete ***********
+const mainVehicleEditBtn = document.getElementById("mainVehicleEditBtn");
+mainVehicleEditBtn.addEventListener("click", () => {
+  if (!formList.includes("add_vehicle__form")) {
+    formList.splice(summaryFormIndex, 0, "add_vehicle__form");
+  }
+
+  showActiveForm(stepCount);
+});
+
 function addVehicleValidation() {
   // const mainVehicleYear = document.querySelector("#mainVehicleYear");
   // const businessWebsite = document.querySelector("#businessWebsite");
@@ -636,6 +648,9 @@ function addVehicleValidation() {
   //   formData.zip = zip?.value;
   // }
 
+  stepCount = summaryFormIndex - 1;
+  showActiveForm(stepCount);
+
   // return isValidate;
   return true;
 }
@@ -643,7 +658,7 @@ function addVehicleValidation() {
 const addVehicle = document.getElementById("addVehicle");
 addVehicle.addEventListener("click", () => {
   if (!formList.includes("add_more_vehicle_form")) {
-    formList.splice(placeIndex, 0, "add_more_vehicle_form");
+    formList.splice(summaryFormIndex, 0, "add_more_vehicle_form");
   }
 
   showActiveForm(stepCount);

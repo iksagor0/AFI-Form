@@ -111,6 +111,7 @@
                 data-name="eligibilityStatus"
                 type="radio"
                 value="dod"
+                checked
               /><label class="field__label" for="eligibilityStatus--dod"
                 >DoD Employee (Current or Retired)</label
               >
@@ -1298,7 +1299,13 @@
                   class="quote_request__summary_item_info quote_request__summary_main_item_info"
                 ></p>
                 <div class="quote_request__summary_item_actions delete_edit">
-                  <button class="button-bare" type="button">Edit</button>
+                  <button
+                    id="mainVehicleEditBtn"
+                    class="button-bare"
+                    type="button"
+                  >
+                    Edit
+                  </button>
                 </div>
               </div>
 
@@ -1367,7 +1374,7 @@
                     class="field__input"
                     id="mainVehicleYear"
                     name="mainVehicleYear"
-                    type="number"
+                    type="text"
                     maxlength="4"
                     placeholder=""
                     value=""
@@ -1803,7 +1810,6 @@
                       name="householdViolationsPreviousClaims"
                       type="radio"
                       value="Yes"
-                      checked
                     /><label
                       class="field__label"
                       for="householdViolationsPreviousClaims--Yes"
