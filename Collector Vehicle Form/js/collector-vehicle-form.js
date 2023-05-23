@@ -214,7 +214,14 @@ document.querySelectorAll(".field__input.numberOnly")?.forEach((input) => {
   });
 });
 
-// Alphabetic only
+// Input Alphabet Only
+document.querySelectorAll(".field__input.alphabeticOnly")?.forEach((input) => {
+  input.addEventListener("input", (e) => {
+    e.target.value = e.target?.value.replace(/[^a-zA-z]/g, "");
+  });
+});
+
+// Alphabetic only Validation after Submit
 function alphabeticOnly(selector) {
   const letterRegEx = /^[A-Za-z]+$/;
   if (letterRegEx.test(selector?.value)) {
@@ -436,14 +443,27 @@ function childFormValidation() {
   return isValidate;
 }
 
-// *********************************************
-//              STEP-1 VALIDATION
-// *********************************************
+// TODO*********************************************
+// TODO             STEP-1 VALIDATION
+// TODO*********************************************
 function policyholderValidation(step) {
   const policyHolderFirstName = document.querySelector(
     "#policyHolderFirstName"
   );
   const policyHolderLastName = document.querySelector("#policyHolderLastName");
+  const policyHolderSuffix = document.querySelector("#policyHolderSuffix");
+  const policyHolderMailingAddress = document.querySelector(
+    "#policyHolderMailingAddress"
+  );
+  const policyHolderCity = document.querySelector("#policyHolderCity");
+  const policyHolderState = document.querySelector("#policyHolderState");
+  const policyHolderZip = document.querySelector("#policyHolderZip");
+  const policyHolderSsn = document.querySelector("#policyHolderSsn");
+  const policyHolderDob = document.querySelector("#policyHolderDob");
+  const policyHolderGender = document.querySelector("#policyHolderGender");
+  const policyHolderMaritalStatus = document.querySelector(
+    "#policyHolderMaritalStatus"
+  );
   const policyHolderEmail = document.querySelector("#policyHolderEmail");
   const policyHolderPhoneType = document.querySelector(
     "#policyHolderPhoneType"
@@ -451,35 +471,45 @@ function policyholderValidation(step) {
   const policyHolderPhoneNumber = document.querySelector(
     "#policyHolderPhoneNumber"
   );
-  const policyHolderMaritalStatus = document.querySelector(
-    "#policyHolderMaritalStatus"
+  const policyHolderResidenceStatus = document.querySelector(
+    "#policyHolderResidenceStatus"
   );
 
-  formData.policyHolderMaritalStatus = policyHolderMaritalStatus?.value;
+  // formData.policyHolderMaritalStatus = policyHolderMaritalStatus?.value;
 
-  // const validationFields = [
-  //   alphabeticOnly(policyHolderFirstName),
-  //   alphabeticOnly(policyHolderLastName),
-  //   isValueEmpty(policyHolderFirstName),
-  //   emailValidation(policyHolderEmail),
-  //   isValueEmpty(policyHolderEmail),
-  //   isValueEmpty(policyHolderPhoneType),
-  //   phoneValidation(policyHolderPhoneNumber),
-  //   isValueEmpty(policyHolderPhoneNumber),
-  // ];
+  const validationFields = [
+    alphabeticOnly(policyHolderFirstName),
+    alphabeticOnly(policyHolderLastName),
+    isValueEmpty(policyHolderFirstName),
+    emailValidation(policyHolderEmail),
+    isValueEmpty(policyHolderEmail),
+    isValueEmpty(policyHolderPhoneType),
+    phoneValidation(policyHolderPhoneNumber),
+    isValueEmpty(policyHolderPhoneNumber),
+  ];
 
-  // const isValidate = validationFields.every((result) => result === true);
+  const isValidate = validationFields.every((result) => result === true);
 
-  // if (isValidate) {
-  //   formData.policyHolderFirstName = policyHolderFirstName?.value;
-  //   formData.policyHolderLastName = policyHolderLastName?.value;
-  //   formData.policyHolderEmail = policyHolderEmail?.value;
-  //   formData.policyHolderPhoneType = policyHolderPhoneType?.value;
-  //   formData.policyHolderPhoneNumber = policyHolderPhoneNumber?.value.replace(
-  //     /\D/g,
-  //     ""
-  //   );
-  // }
+  if (isValidate) {
+    formData.policyHolderFirstName = policyHolderFirstName?.value;
+    formData.policyHolderLastName = policyHolderLastName?.value;
+    formData.policyHolderSuffix = policyHolderSuffix?.value;
+    formData.policyHolderMailingAddress = policyHolderMailingAddress?.value;
+    formData.policyHolderCity = policyHolderCity?.value;
+    formData.policyHolderState = policyHolderState?.value;
+    formData.policyHolderZip = policyHolderZip?.value;
+    formData.policyHolderSsn = policyHolderSsn?.value;
+    formData.policyHolderDob = policyHolderDob?.value;
+    formData.policyHolderGender = policyHolderGender?.value;
+    formData.policyHolderMaritalStatus = policyHolderMaritalStatus?.value;
+    formData.policyHolderEmail = policyHolderEmail?.value;
+    formData.policyHolderPhoneType = policyHolderPhoneType?.value;
+    formData.policyHolderPhoneNumber = policyHolderPhoneNumber?.value.replace(
+      /\D/g,
+      ""
+    );
+    formData.policyHolderResidenceStatus = policyHolderResidenceStatus?.value;
+  }
 
   //
   const spouseValues = [
@@ -499,7 +529,7 @@ function policyholderValidation(step) {
   }
 
   // return isValidate;
-  return true;
+  return false;
 }
 
 function spouseValidation() {
