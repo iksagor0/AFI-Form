@@ -632,6 +632,10 @@ textarea.field__input:focus {
   padding: 0;
 }
 
+.quote_request__summary .button-bare:hover {
+  text-decoration: underline;
+}
+
 .quote_request__summary_item_actions {
   display: flex;
   align-items: center;

@@ -136,7 +136,7 @@ function handleMultiStepForm(step) {
     if (!spouseValidation()) return false;
   }
 
-  runVehicleItemFunctionality();
+  runVehicleItemsFunctionality();
 
   return true;
 }
@@ -547,9 +547,6 @@ function summaryValidation() {
     (v) => Boolean(v) === true
   );
 
-  console.log(mainVehicleValues);
-  console.log(haveAllMainVehicleValues);
-
   // If Main Vehicle Data OKK then direct show SUMMARY neither show add_vehicle__form
   if (!haveAllMainVehicleValues) {
     if (!formList.includes("add_vehicle__form")) {
@@ -606,7 +603,7 @@ function summaryValidation() {
   return true;
 }
 
-// / ********** FUNCTIONALITY OF SUMMARY : Edit, Delete ***********
+// ********** FUNCTIONALITY OF VEHICLE FORM : Edit ***********
 const mainVehicleEditBtn = document.getElementById("mainVehicleEditBtn");
 mainVehicleEditBtn.addEventListener("click", () => {
   if (!formList.includes("add_vehicle__form")) {
@@ -616,20 +613,18 @@ mainVehicleEditBtn.addEventListener("click", () => {
   showActiveForm(stepCount);
 });
 
-function runVehicleItemFunctionality() {
+// ********** FUNCTIONALITY OF MORE VEHICLE FORMS : Edit, Delete ***********
+function runVehicleItemsFunctionality() {
   const moreVehicles = document.getElementById("moreVehicles");
   const moreVehicleItems = moreVehicles.querySelectorAll(
     ".quote_request__summary_item"
   );
 
-  // if (stepCount === summaryFormIndex) {
-
-  // }
-
-  console.log(moreVehicleItems);
   moreVehicleItems.forEach((item, itemIndex) => {
     const editBtn = item.querySelector("#editBtn");
     const deleteBtn = item.querySelector("#deleteBtn");
+    const deleteYes = item.querySelector("#deleteYes");
+    const deleteNo = item.querySelector("#deleteNo");
 
     editBtn?.addEventListener("click", () => {
       if (!formList.includes("add_more_vehicle_form")) {
@@ -653,10 +648,23 @@ function runVehicleItemFunctionality() {
       }
     });
 
-    console.log(editBtn);
+    deleteBtn.addEventListener("click", () => {
+      item.querySelector(".yes_no")?.classList.remove("__hide");
+      item.querySelector(".delete_edit")?.classList.add("__hide");
+    });
+
+    deleteNo.addEventListener("click", () => {
+      item.querySelector(".yes_no")?.classList.add("__hide");
+      item.querySelector(".delete_edit")?.classList.remove("__hide");
+    });
+
+    deleteYes.addEventListener("click", () => {
+      // formData.moreVehiclesInfo[itemIndex]
+      formData.moreVehiclesInfo.splice(itemIndex, 1);
+      item.classList.add("__hide");
+    });
   });
 }
-// ---
 
 function addVehicleValidation() {
   // const mainVehicleYear = document.querySelector("#mainVehicleYear");
@@ -706,8 +714,6 @@ addVehicle.addEventListener("click", () => {
   }
 
   showActiveForm(stepCount);
-
-  console.log(formList.indexOf("add_more_vehicle_form"));
 });
 
 function addMoreVehicleValidation() {
