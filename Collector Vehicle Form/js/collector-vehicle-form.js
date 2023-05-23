@@ -18,18 +18,18 @@ const formData = {
       year: "33",
       make: "33",
       model: "33",
-      type: "33",
+      type: "Stock",
       estimateValue: "33",
-      vehicleStorage: "33",
+      vehicleStorage: "Private Garage",
       howVehicleDrive: "33",
     },
     {
       year: "2022",
       make: "22",
       model: "22",
-      type: "22",
+      type: "Modified",
       estimateValue: "22",
-      vehicleStorage: "22",
+      vehicleStorage: "Carport",
       howVehicleDrive: "22",
     },
   ],
@@ -135,6 +135,8 @@ function handleMultiStepForm(step) {
   if (step === formList.indexOf("coverage__history_form")) {
     if (!spouseValidation()) return false;
   }
+
+  runVehicleItemFunctionality();
 
   return true;
 }
@@ -613,6 +615,48 @@ mainVehicleEditBtn.addEventListener("click", () => {
 
   showActiveForm(stepCount);
 });
+
+function runVehicleItemFunctionality() {
+  const moreVehicles = document.getElementById("moreVehicles");
+  const moreVehicleItems = moreVehicles.querySelectorAll(
+    ".quote_request__summary_item"
+  );
+
+  // if (stepCount === summaryFormIndex) {
+
+  // }
+
+  console.log(moreVehicleItems);
+  moreVehicleItems.forEach((item, itemIndex) => {
+    const editBtn = item.querySelector("#editBtn");
+    const deleteBtn = item.querySelector("#deleteBtn");
+
+    editBtn?.addEventListener("click", () => {
+      if (!formList.includes("add_more_vehicle_form")) {
+        formList.splice(summaryFormIndex, 0, "add_more_vehicle_form");
+
+        showActiveForm(stepCount);
+
+        // Assign the values
+        function editFormWithValue(id, value) {
+          document.getElementById(id).value =
+            formData.moreVehiclesInfo[itemIndex][value];
+        }
+
+        editFormWithValue("moreVehicleYear", "year");
+        editFormWithValue("moreVehicleMake", "make");
+        editFormWithValue("moreVehicleModel", "model");
+        editFormWithValue("moreVehicleType", "type");
+        editFormWithValue("moreVehicleEstimatedValue", "estimateValue");
+        editFormWithValue("moreVehicleStorage", "vehicleStorage");
+        editFormWithValue("moreVehicleDriveDescription", "howVehicleDrive");
+      }
+    });
+
+    console.log(editBtn);
+  });
+}
+// ---
 
 function addVehicleValidation() {
   // const mainVehicleYear = document.querySelector("#mainVehicleYear");

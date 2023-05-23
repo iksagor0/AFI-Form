@@ -1313,15 +1313,25 @@
               <div class="quote_request__summary_item demoItem __hide">
                 <p class="quote_request__summary_item_info"></p>
                 <div class="quote_request__summary_item_actions delete_edit">
-                  <button class="button-bare deleteBtn" type="button">
+                  <button
+                    id="deleteBtn"
+                    class="button-bare deleteBtn"
+                    type="button"
+                  >
                     Delete
                   </button>
-                  <button class="button-bare" type="button">Edit</button>
+                  <button id="editBtn" class="button-bare" type="button">
+                    Edit
+                  </button>
                 </div>
                 <div class="quote_request__summary_item_actions yes_no __hide">
                   <span>Are you sure?</span>
-                  <button class="button-bare" type="button">Yes</button>
-                  <button class="button-bare" type="button">No</button>
+                  <button id="deleteYes" class="button-bare" type="button">
+                    Yes
+                  </button>
+                  <button id="deleteNo" class="button-bare" type="button">
+                    No
+                  </button>
                 </div>
               </div>
               <!-- More Vehicles Items -->
@@ -1609,13 +1619,13 @@
             <div class="fields-row">
               <div class="field field--small">
                 <div class="field__label-wrapper">
-                  <label class="field__label" for="vehicle0Year">Year</label>
+                  <label class="field__label" for="moreVehicleYear">Year</label>
                 </div>
                 <div class="field__input-wrapper">
                   <input
                     class="field__input"
-                    id="vehicle0Year"
-                    name="vehicle0Year"
+                    id="moreVehicleYear"
+                    name="moreVehicleYear"
                     type="number"
                     maxlength="4"
                     placeholder=""
@@ -1625,13 +1635,13 @@
               </div>
               <div class="field">
                 <div class="field__label-wrapper">
-                  <label class="field__label" for="vehicle0Make">Make</label>
+                  <label class="field__label" for="moreVehicleMake">Make</label>
                 </div>
                 <div class="field__input-wrapper">
                   <input
                     class="field__input"
-                    id="vehicle0Make"
-                    name="vehicle0Make"
+                    id="moreVehicleMake"
+                    name="moreVehicleMake"
                     type="text"
                     maxlength="50"
                     placeholder=""
@@ -1641,13 +1651,13 @@
               </div>
               <div class="field">
                 <div class="field__label-wrapper">
-                  <label class="field__label" for="vehicle0Model">Model</label>
+                  <label class="field__label" for="moreVehicleModel">Model</label>
                 </div>
                 <div class="field__input-wrapper">
                   <input
                     class="field__input"
-                    id="vehicle0Model"
-                    name="vehicle0Model"
+                    id="moreVehicleModel"
+                    name="moreVehicleModel"
                     type="text"
                     maxlength="50"
                     placeholder=""
@@ -1661,13 +1671,13 @@
             <div class="fields-row">
               <div class="field">
                 <div class="field__label-wrapper">
-                  <label class="field__label" for="vehicle0Type">Type</label>
+                  <label class="field__label" for="moreVehicleType">Type</label>
                 </div>
                 <div class="field__input-wrapper">
                   <select
                     class="field__input"
-                    id="vehicle0Type"
-                    name="vehicle0Type"
+                    id="moreVehicleType"
+                    name="moreVehicleType"
                     type="select"
                   >
                     <option value="">Choose One</option>
@@ -1678,15 +1688,15 @@
               </div>
               <div class="field">
                 <div class="field__label-wrapper">
-                  <label class="field__label" for="vehicle0EstimatedValue"
+                  <label class="field__label" for="moreVehicleEstimatedValue"
                     >Estimate Value of Vehicle</label
                   >
                 </div>
                 <div class="field__input-wrapper">
                   <input
                     class="field__input"
-                    id="vehicle0EstimatedValue"
-                    name="vehicle0EstimatedValue"
+                    id="moreVehicleEstimatedValue"
+                    name="moreVehicleEstimatedValue"
                     type="text"
                     maxlength="50"
                     placeholder=""
@@ -1701,15 +1711,15 @@
             <div class="fields-row">
               <div class="field field--xlarge">
                 <div class="field__label-wrapper">
-                  <label class="field__label" for="vehicle0Storage"
+                  <label class="field__label" for="moreVehicleStorage"
                     >Vehicle Storage</label
                   >
                 </div>
                 <div class="field__input-wrapper">
                   <select
                     class="field__input"
-                    id="vehicle0Storage"
-                    name="vehicle0Storage"
+                    id="moreVehicleStorage"
+                    name="moreVehicleStorage"
                     type="select"
                   >
                     <option value="">Choose One</option>
@@ -1728,7 +1738,7 @@
             <div class="fields-row">
               <div class="field field--xxlarge field--extended-label">
                 <div class="field__label-wrapper">
-                  <label class="field__label" for="vehicle0DriveDescription"
+                  <label class="field__label" for="moreVehicleDriveDescription"
                     >Describe how vehicle is driven, i.e. where to, how often,
                     etc.</label
                   >
@@ -1736,8 +1746,8 @@
                 <div class="field__input-wrapper">
                   <textarea
                     class="field__input"
-                    id="vehicle0DriveDescription"
-                    name="vehicle0DriveDescription"
+                    id="moreVehicleDriveDescription"
+                    name="moreVehicleDriveDescription"
                     placeholder=""
                   ></textarea>
                 </div>
