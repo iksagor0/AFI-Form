@@ -1651,7 +1651,9 @@
               </div>
               <div class="field">
                 <div class="field__label-wrapper">
-                  <label class="field__label" for="moreVehicleModel">Model</label>
+                  <label class="field__label" for="moreVehicleModel"
+                    >Model</label
+                  >
                 </div>
                 <div class="field__input-wrapper">
                   <input
@@ -2250,20 +2252,22 @@
         </div>
 
         <div class="quote_request__section_wrapper">
-          <!-- ******* FORM  *******-->
+          <!-- TODO ******* FORM  *******-->
+          <!-- TODO ******* FORM  *******-->
+          <!-- TODO ******* FORM  *******-->
+          <!-- TODO ******* FORM  *******-->
           <div class="form_container">
-            <section class="vehicle__liabilty">
+            <section class="damage__form __hide">
               <h1 class="quote_request_heading extra_mb">
                 Physical Damage Coverage for
-                <span class="vehicle_name">2020 Toyota V-22</span>
+                <span class="vehicle_name"><!-- 2020 Toyota V-22 --></span>
               </h1>
+
               <!-- Comprehensive Deductible -->
               <div class="fields-row">
                 <div class="field field--full">
                   <div class="field__label-wrapper gap_30">
-                    <label
-                      class="field__label"
-                      for="vehicle0LiabilityOnlyCoverage"
+                    <label class="field__label" for="empty"
                       >Liability Only Coverage</label
                     >
                   </div>
@@ -2271,14 +2275,12 @@
                     <div class="field__input-wrapper">
                       <input
                         class="field__input"
-                        id="vehicle0LiabilityOnlyCoverage--Yes"
-                        name="vehicle0LiabilityOnlyCoverage"
+                        id="liability--Yes"
+                        name="liability"
                         type="radio"
                         value="Yes"
-                        checked=""
-                      /><label
-                        class="field__label"
-                        for="vehicle0LiabilityOnlyCoverage--Yes"
+                        checked
+                      /><label class="field__label" for="liability--Yes"
                         >Yes</label
                       >
                     </div>
@@ -2286,13 +2288,11 @@
                     <div class="field__input-wrapper">
                       <input
                         class="field__input"
-                        id="vehicle0LiabilityOnlyCoverage--No"
-                        name="vehicle0LiabilityOnlyCoverage"
+                        id="liability--No"
+                        name="liability"
                         type="radio"
                         value="No"
-                      /><label
-                        class="field__label"
-                        for="vehicle0LiabilityOnlyCoverage--No"
+                      /><label class="field__label" for="liability--No"
                         >No</label
                       >
                     </div>
@@ -2306,16 +2306,17 @@
                   <div class="field__label-wrapper">
                     <label
                       class="field__label"
-                      for="vehicle0ComprehensiveDeductible"
+                      for="vehicleComprehensiveDeductible"
                       >Comprehensive Deductible</label
                     >
                   </div>
                   <div class="field__input-wrapper">
                     <select
-                      class="field__input"
-                      id="vehicle0ComprehensiveDeductible"
-                      name="vehicle0ComprehensiveDeductible"
+                      class="field__input damage"
+                      id="vehicleComprehensiveDeductible"
+                      name="vehicleComprehensiveDeductible"
                       type="select"
+                      disabled
                     >
                       <option value="">Choose One</option>
                       <option value="100">$100</option>
@@ -2327,18 +2328,17 @@
                 </div>
                 <div class="field field--xlarge">
                   <div class="field__label-wrapper">
-                    <label
-                      class="field__label"
-                      for="vehicle0CollisionDeductible"
+                    <label class="field__label" for="vehicleCollisionDeductible"
                       >Collision Deductible</label
                     >
                   </div>
                   <div class="field__input-wrapper">
                     <select
-                      class="field__input"
-                      id="vehicle0CollisionDeductible"
-                      name="vehicle0CollisionDeductible"
+                      class="field__input damage"
+                      id="vehicleCollisionDeductible"
+                      name="vehicleCollisionDeductible"
                       type="select"
+                      disabled
                     >
                       <option value="">Choose One</option>
                       <option value="No Coverage">No Coverage</option>
@@ -2351,6 +2351,8 @@
                 </div>
               </div>
             </section>
+
+            <div id="physical_damage_form_wrapper"></div>
           </div>
 
           <!-- ******* ASIDE  *******-->
