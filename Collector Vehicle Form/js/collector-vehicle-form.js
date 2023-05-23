@@ -57,14 +57,13 @@ const multiStepForm = [
 const defaultForms = ["radio_select", ...multiStepForm];
 let formList = defaultForms;
 
-// =*********************************************
+// *********************************************
 //       FORM SUBMISSION AND STEP HANDLING
-// =*********************************************
+// *********************************************
 const nextBtn = document.querySelector("#next_btn");
 const backBtn = document.querySelector("#back_btn");
 
 let stepCount = 0;
-let subStepCount = 0;
 let maxStep = formList.length - 1;
 
 // ***** NEXT FUNCTIONALITY *****
@@ -468,9 +467,9 @@ function childFormValidation() {
   return isValidate;
 }
 
-// TODO*********************************************
-// TODO             STEP-1 VALIDATION
-// TODO*********************************************
+// *********************************************
+//              STEP-1 VALIDATION
+// *********************************************
 function policyholderValidation(step) {
   const policyHolderFirstName = document.querySelector(
     "#policyHolderFirstName"
