@@ -132,12 +132,15 @@ function handleMultiStepForm(step) {
   }
   if (step === formList.indexOf("violations__form")) {
     if (!spouseValidation()) return false;
+    functionalityForEachDamageForm();
+  }
+  if (step === formList.indexOf("physical_damage_form")) {
+    if (!spouseValidation()) return false;
   }
   if (step === formList.indexOf("coverage__history_form")) {
     if (!spouseValidation()) return false;
   }
 
-  // functionalityForEachDamageForm();
   runVehicleItemsFunctionality();
 
   return true;
@@ -156,7 +159,7 @@ function showActiveForm(step) {
   document.querySelector(`.${formList[step]}`)?.classList.add("active_form");
 
   console.log({ stepCount });
-  console.log(formList);
+  console.log(formData.moreVehiclesInfo);
 
   // Conditionally Hide Back Btn
   stepCount <= 0
@@ -662,8 +665,10 @@ function runVehicleItemsFunctionality() {
 
     deleteYes.addEventListener("click", () => {
       formData.moreVehiclesInfo.splice(itemIndex, 1);
-      // item.classList.add("__hide");
-      item.remove();
+      item.classList.add("__hide");
+      // item.remove();
+
+      console.log(formData.moreVehiclesInfo);
     });
   });
 }
@@ -784,59 +789,45 @@ function violationsValidation() {
   return true;
 }
 
-// TODO: ******************* FUNCTIONALITY physical_damage_form *******************
-const damageForm = document.querySelector(".damage__form.__hide");
-const DamageFormWrapper = document.getElementById(
-  "physical_damage_form_wrapper"
-);
-const vehicleList = [formData.mainVehicleInfo, ...formData.moreVehiclesInfo];
+// ******************* FUNCTIONALITY physical_damage_form *******************
+function functionalityForEachDamageForm() {
+  const damageForm = document.querySelector(".damage__form.__hide");
+  const DamageFormWrapper = document.getElementById(
+    "physical_damage_form_wrapper"
+  );
+  const vehicleList = [formData.mainVehicleInfo, ...formData.moreVehiclesInfo];
 
-vehicleList.forEach((vehicleData, index) => {
-  const clonedItem = damageForm.cloneNode(true);
+  vehicleList.forEach((vehicleData, index) => {
+    const clonedItem = damageForm.cloneNode(true);
 
-  clonedItem.classList.remove("__hide");
-  clonedItem.querySelector(
-    ".vehicle_name"
-  ).innerHTML = `${vehicleData.year} ${vehicleData.make} ${vehicleData.model}`;
+    clonedItem.classList.remove("__hide");
+    clonedItem.querySelector(
+      ".vehicle_name"
+    ).innerHTML = `${vehicleData.year} ${vehicleData.make} ${vehicleData.model}`;
 
-  // ------------------------------------------
-  const liabilityYes = clonedItem.querySelector("#liability--Yes");
-  const liabilityNo = clonedItem.querySelector("#liability--No");
+    // ------------------------------------------
+    const liabilityYes = clonedItem.querySelector("#liability--Yes");
+    const liabilityNo = clonedItem.querySelector("#liability--No");
 
-  liabilityYes.name = `liability_${index}`;
-  liabilityNo.name = `liability_${index}`;
+    liabilityYes.name = liabilityNo.name = `liability_${index}`;
 
-  liabilityNo?.addEventListener("change", toggleDisability);
-  liabilityYes?.addEventListener("change", toggleDisability);
+    liabilityNo?.addEventListener("change", toggleDisability);
+    liabilityYes?.addEventListener("change", toggleDisability);
 
-  function toggleDisability() {
-    const disabledFields = clonedItem.querySelectorAll(".field__input.damage");
-    if (liabilityNo.checked) {
-      disabledFields.forEach((field) => (field.disabled = false));
-    } else {
-      disabledFields.forEach((field) => (field.disabled = true));
+    function toggleDisability() {
+      const disabledFields = clonedItem.querySelectorAll(
+        ".field__input.damage"
+      );
+      if (liabilityNo.checked) {
+        disabledFields.forEach((field) => (field.disabled = false));
+      } else {
+        disabledFields.forEach((field) => (field.disabled = true));
+      }
     }
-  }
-  console.log("🚀 ~ vehicleList.forEach ~ liabilityNoValue:", liabilityNo.name);
 
-  DamageFormWrapper.appendChild(clonedItem);
-});
-// function functionalityForEachDamageForm() {
-//   const damageForms = DamageFormWrapper.querySelectorAll(".damage__form");
-//   damageForms.forEach((damageForm) => {
-//     if (damageForm) {
-//       const liability = damageForm?.querySelector(
-//         "#vehicleLiabilityOnlyCoverage--No"
-//       );
-//       console.log("🚀 ~ damageForms.forEach ~ liability:", liability);
-//     }
-//     // console.log(damageForm);
-//   });
-// }
-
-// functionalityForEachDamageForm();
-
-// functionalityForEachDamageForm();
+    DamageFormWrapper.appendChild(clonedItem);
+  });
+}
 // / ********** MULTI-STEP 4 Validation ***********
 function coverageHistoryValidation() {
   const currentInsuranceCompany = document.querySelector(
