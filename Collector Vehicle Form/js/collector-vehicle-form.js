@@ -278,44 +278,57 @@ document
   });
 
 // Date Validation
-const dateField = document.querySelector("#policyRenewalDate");
-dateField.addEventListener("input", (e) => {
-  let value = e.target.value
-    .replace(/\D/g, "")
-    .match(/(\d{0,2})(\d{0,2})(\d{0,4})/);
+function dateValidation(field, getMaxYear) {
+  field?.addEventListener("input", (e) => {
+    let value = e.target.value
+      .replace(/\D/g, "")
+      .match(/(\d{0,2})(\d{0,2})(\d{0,4})/);
 
-  let [fullData, MM, DD, YYYY] = value;
+    let [fullData, MM, DD, YYYY] = value;
 
-  // Month Validation
-  if (MM.length === 1 && Number(MM) > 1) value[1] = 0 + MM[0];
-  else if (MM.length === 2 && Number(MM) <= 0) value[1] = MM[0];
-  else if (MM.length === 2 && Number(MM) > 12) value[1] = MM[0];
+    // Month Validation
+    if (MM.length === 1 && Number(MM) > 1) value[1] = 0 + MM[0];
+    else if (MM.length === 2 && Number(MM) <= 0) value[1] = MM[0];
+    else if (MM.length === 2 && Number(MM) > 12) value[1] = MM[0];
 
-  // Date Validation
-  if (DD.length === 1 && Number(DD) > 3) value[2] = 0 + DD[0];
-  else if (DD.length === 2 && Number(DD) <= 0) value[2] = DD[0];
-  else if (DD.length === 2 && Number(DD) > 31) value[2] = DD[0];
-  else if (DD.length === 2 && Number(MM) == 2 && Number(DD) > 29)
-    value[2] = DD[0];
-  else if ([4, 6, 9, 11].includes(Number(MM)) && Number(DD) > 30)
-    value[2] = DD[0];
+    // Date Validation
+    if (DD.length === 1 && Number(DD) > 3) value[2] = 0 + DD[0];
+    else if (DD.length === 2 && Number(DD) <= 0) value[2] = DD[0];
+    else if (DD.length === 2 && Number(DD) > 31) value[2] = DD[0];
+    else if (DD.length === 2 && Number(MM) == 2 && Number(DD) > 29)
+      value[2] = DD[0];
+    else if ([4, 6, 9, 11].includes(Number(MM)) && Number(DD) > 30)
+      value[2] = DD[0];
 
-  // Year validation
-  const maxYear = String(new Date().getFullYear() + 2);
+    // Year validation
+    const maxYear = String(getMaxYear);
+    // const maxYear = String(new Date().getFullYear() + 2);
 
-  if (Number(YYYY) <= 0) value[3] = "";
-  else if (YYYY.length === 1 && Number(YYYY) > 2) value[3] = "";
-  else if (YYYY.length === 2 && Number(YYYY) > 20) value[3] = YYYY[0];
-  else if (YYYY.length === 3 && Number(YYYY) > Number(maxYear.slice(0, 3)))
-    value[3] = YYYY.slice(0, 2);
-  else if (YYYY.length === 4 && Number(YYYY) > Number(maxYear))
-    value[3] = YYYY.slice(0, 3);
+    if (Number(YYYY) <= 0) value[3] = "";
+    else if (YYYY.length === 1 && Number(YYYY) > 2) value[3] = "";
+    else if (YYYY.length === 2 && Number(YYYY) > 20) value[3] = YYYY[0];
+    else if (YYYY.length === 3 && Number(YYYY) > Number(maxYear.slice(0, 3)))
+      value[3] = YYYY.slice(0, 2);
+    else if (YYYY.length === 4 && Number(YYYY) > Number(maxYear))
+      value[3] = YYYY.slice(0, 3);
 
-  // Result
-  e.target.value = !value[2]
-    ? value[1]
-    : value[1] + "/" + value[2] + (value[3] ? "/" + value[3] : "");
-});
+    // Result
+    e.target.value = !value[2]
+      ? value[1]
+      : value[1] + "/" + value[2] + (value[3] ? "/" + value[3] : "");
+  });
+}
+
+const policyRenewalDate = document.querySelector("#policyRenewalDate");
+const DOB = document.querySelector("#policyHolderDob");
+const violationsDate = document.querySelector("#householdViolationsDate");
+const spouseDOB = document.querySelector("#cohabitantDob");
+
+const thisYear = new Date().getFullYear();
+dateValidation(policyRenewalDate, thisYear + 2);
+dateValidation(DOB, thisYear - 17);
+dateValidation(spouseDOB, thisYear - 17);
+dateValidation(violationsDate, thisYear);
 
 // *********************************************
 //              FORM VALIDATION
@@ -481,11 +494,20 @@ function policyholderValidation(step) {
     alphabeticOnly(policyHolderFirstName),
     alphabeticOnly(policyHolderLastName),
     isValueEmpty(policyHolderFirstName),
+    isValueEmpty(policyHolderLastName),
+    isValueEmpty(policyHolderMailingAddress),
+    isValueEmpty(policyHolderCity),
+    isValueEmpty(policyHolderState),
+    isValueEmpty(policyHolderZip),
+    isValueEmpty(policyHolderDob),
+    isValueEmpty(policyHolderGender),
+    isValueEmpty(policyHolderMaritalStatus),
+    isValueEmpty(policyHolderEmail),
     emailValidation(policyHolderEmail),
     isValueEmpty(policyHolderEmail),
     isValueEmpty(policyHolderPhoneType),
     phoneValidation(policyHolderPhoneNumber),
-    isValueEmpty(policyHolderPhoneNumber),
+    isValueEmpty(policyHolderResidenceStatus),
   ];
 
   const isValidate = validationFields.every((result) => result === true);
@@ -529,7 +551,7 @@ function policyholderValidation(step) {
   }
 
   // return isValidate;
-  return false;
+  return true;
 }
 
 function spouseValidation() {

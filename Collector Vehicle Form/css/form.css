@@ -586,6 +586,10 @@ textarea.field__input:focus {
   text-decoration: underline;
 }
 
+.field.physicalAddressField .field_message.error {
+  margin-top: 15px !important;
+}
+
 .fields-row .qrf-accordion .qrf-accordion__heading {
   font-size: 1rem !important;
   font-weight: 700 !important;
