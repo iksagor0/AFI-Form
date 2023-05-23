@@ -310,9 +310,9 @@ dateField.addEventListener("input", (e) => {
     : value[1] + "/" + value[2] + (value[3] ? "/" + value[3] : "");
 });
 
-// =*********************************************
+// *********************************************
 //              FORM VALIDATION
-// =*********************************************
+// *********************************************
 // / ********** Eligibility Validation ***********
 function eligibilityValidation() {
   const eligibilityStatus = document.querySelector(
@@ -380,10 +380,18 @@ function militaryFormValidation() {
       formData?.policyHolderLastName;
   }
 
-  // return isValidate;
-  return true;
+  return isValidate;
 }
-
+// Military Rank should be disabled if branchOfService value none
+const branchOfService = document.getElementById("branchOfService");
+branchOfService.addEventListener("change", () => {
+  const militaryRank = document.getElementById("militaryRank");
+  if (Boolean(branchOfService?.value)) {
+    militaryRank.disabled = false;
+  } else {
+    militaryRank.disabled = true;
+  }
+});
 // / ********** Parent's Information ***********
 function parentFormValidation() {
   const parentFirstName = document.querySelector("#parentFirstName");
@@ -428,7 +436,9 @@ function childFormValidation() {
   return isValidate;
 }
 
-// / ********** MULTI-STEP 1 Validation ***********
+// *********************************************
+//              STEP-1 VALIDATION
+// *********************************************
 function policyholderValidation(step) {
   const policyHolderFirstName = document.querySelector(
     "#policyHolderFirstName"
@@ -538,7 +548,9 @@ function spouseValidation() {
   return true;
 }
 
-// / ********** MULTI-STEP 2 Validation ***********
+// *********************************************
+//              STEP-2 VALIDATION
+// *********************************************
 const summaryFormIndex = formList.indexOf("summary__form");
 let isVehicleSummaryAppended = false;
 
@@ -732,7 +744,9 @@ function addMoreVehicleValidation() {
   return true;
 }
 
-// / ********** MULTI-STEP 3 Validation ***********
+// *********************************************
+//              STEP-3 VALIDATION
+// *********************************************
 const addViolationBtn = document.getElementById("add_violation_btn");
 const violationsFields = document.querySelector(".violation_info_fields");
 const violationWrapper = document.getElementById(
@@ -780,14 +794,14 @@ hasViolationsFields.forEach((fields) => {
   });
 });
 
-// ******************* Violation Form Validation *******************
+// *********** Violation Form Validation ***********
 function violationsValidation() {
   // Form Validation here
 
   return true;
 }
 
-// ******************* FUNCTIONALITY physical_damage_form *******************
+// ********* FUNCTIONALITY physical_damage_form *********
 function functionalityForEachDamageForm() {
   const damageForm = document.querySelector(".damage__form.__hide");
   const DamageFormWrapper = document.getElementById(
@@ -826,7 +840,9 @@ function functionalityForEachDamageForm() {
     DamageFormWrapper.appendChild(clonedItem);
   });
 }
-// / ********** MULTI-STEP 4 Validation ***********
+// *********************************************
+//              STEP-4 VALIDATION
+// *********************************************
 function coverageHistoryValidation() {
   const currentInsuranceCompany = document.querySelector(
     "#currentInsuranceCompany"
@@ -850,9 +866,6 @@ function coverageHistoryValidation() {
   return validationFields;
 }
 
-// =*********************************************
-//            OTHERS FUNCTIONALITIES
-// =*********************************************
 // if currentInsuranceCompany = "Other" then Insurance Company field will show
 const currentInsuranceCompany = document.querySelector(
   "#currentInsuranceCompany"
@@ -869,6 +882,9 @@ currentInsuranceCompany.addEventListener("change", () => {
   }
 });
 
+// =*********************************************
+//            OTHERS FUNCTIONALITIES
+// =*********************************************
 // KeyPress only remove field Error Message
 document.querySelectorAll(".form_container .field")?.forEach((fieldWrapper) => {
   const removeFieldError = () => {
@@ -894,32 +910,3 @@ document.querySelectorAll(".field__input")?.forEach((input) => {
     }
   });
 });
-
-// =*********************************************
-//            FETCH DATA FROM JSON
-// =*********************************************
-// const branchOfServiceElement = document.getElementById("branchOfService");
-
-// fetch("./json/branchOfService.json")
-//   .then((response) => response.json())
-//   .then((json) => getData(json))
-//   .catch((err) => console.log(err));
-
-// function getData(data) {
-//   branchOfServiceElement?.parentElement.classList.add("loading__field");
-
-//   const branchOfService = data?.branchOfService;
-
-//   if (branchOfService && branchOfService?.length > 0) {
-//     branchOfService?.forEach((value) => {
-//       let option = document.createElement("option");
-//       option.value = value;
-//       option.innerText = value;
-
-//       branchOfServiceElement.appendChild(option);
-//     });
-
-//      branchOfServiceElement.disabled = false;
-//      branchOfServiceElement?.parentElement.classList.remove("loading__field");
-//   }
-// }

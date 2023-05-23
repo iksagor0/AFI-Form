@@ -530,6 +530,7 @@ document.querySelectorAll(".field__input")?.forEach((input) => {
   });
 });
 
+// Military Rank should be disabled if branchOfService value none
 const branchOfService = document.getElementById("branchOfService");
 branchOfService.addEventListener("change", () => {
   const militaryRank = document.getElementById("militaryRank");
