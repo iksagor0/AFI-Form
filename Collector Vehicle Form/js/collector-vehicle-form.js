@@ -7,7 +7,7 @@ const formData = {
     make: "22",
     model: "22",
     type: "22",
-    estimateValue: "",
+    estimateValue: "22",
     vehicleStorage: "22",
     howVehicleDrive: "22",
     NumberOfLicensedDrivers: "22",
@@ -541,13 +541,20 @@ function summaryValidation() {
   for (const key in formData.mainVehicleInfo) {
     mainVehicleValues.push(formData.mainVehicleInfo[key]);
   }
-  const haveAllMainVehicleValues = mainVehicleValues.every((v) => Boolean(v));
+  const haveAllMainVehicleValues = mainVehicleValues.every(
+    (v) => Boolean(v) === true
+  );
+
+  console.log(mainVehicleValues);
+  console.log(haveAllMainVehicleValues);
 
   // If Main Vehicle Data OKK then direct show SUMMARY neither show add_vehicle__form
   if (!haveAllMainVehicleValues) {
     if (!formList.includes("add_vehicle__form")) {
       formList.splice(placeIndex, 0, "add_vehicle__form");
     }
+
+    showActiveForm(stepCount);
   } else {
     formList = formList.filter((form) => form != "add_vehicle__form");
     console.log("aaaaaaaaaaaa add_vehicle__form");
