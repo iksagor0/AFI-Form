@@ -848,13 +848,13 @@ addViolationBtn.addEventListener("click", () => {
   document
     .querySelectorAll(".householdViolationsDate")
     .forEach((vDate) => dateValidation(vDate, thisYear));
+
+  clearFieldErrorMsg();
 });
 
 const hasViolationsFields = document.getElementsByName(
   "householdViolationsPreviousClaims"
 );
-
-let isDisabledViolation = true;
 
 // IF householdViolationsPreviousClaims value not== Yes, then disable all
 function disableViolationInputs(disable = true) {
@@ -939,8 +939,33 @@ function violationsValidation() {
   } else {
     const fieldsWrapper = document.querySelectorAll(".violation_info_fields");
 
-    //
-    return false;
+    const violations = [];
+    fieldsWrapper.forEach((field) => {
+      const driverField = field.querySelector("#householdViolationsDriver");
+      const typeField = field.querySelector("#householdViolationsType");
+      const dateField = field.querySelector("#householdViolationsDate");
+
+      const validationFields = [
+        alphabeticOnly(driverField),
+        isValueEmpty(driverField),
+        isValueEmpty(typeField),
+        isValueEmpty(dateField),
+      ];
+
+      const isValidate = validationFields.every((result) => result === true);
+
+      if (isValidate) {
+        const violationData = {
+          driver: driverField.value,
+          type: typeField.value,
+          date: dateField.value,
+        };
+        violations.push(violationData);
+      }
+    });
+
+    formData.householdViolations = violations;
+    return fieldsWrapper.length === violations.length;
   }
 }
 
@@ -1001,18 +1026,23 @@ currentInsuranceCompany.addEventListener("change", () => {
 //            OTHERS FUNCTIONALITIES
 // =*********************************************
 // KeyPress only remove field Error Message
-document.querySelectorAll(".form_container .field")?.forEach((fieldWrapper) => {
-  const removeFieldError = () => {
-    const errorField = fieldWrapper.querySelector(".field_message");
-    errorField?.classList.remove("error");
-  };
+function clearFieldErrorMsg() {
+  document
+    .querySelectorAll(".form_container .field")
+    ?.forEach((fieldWrapper) => {
+      const removeFieldError = () => {
+        const errorField = fieldWrapper.querySelector(".field_message");
+        errorField?.classList.remove("error");
+      };
 
-  fieldWrapper
-    .querySelectorAll(".field__input")
-    .forEach((inputField) =>
-      inputField.addEventListener("input", removeFieldError)
-    );
-});
+      fieldWrapper
+        .querySelectorAll(".field__input")
+        .forEach((inputField) =>
+          inputField.addEventListener("input", removeFieldError)
+        );
+    });
+}
+clearFieldErrorMsg();
 
 // Press Enter Submit Form
 document.querySelectorAll(".field__input")?.forEach((input) => {
