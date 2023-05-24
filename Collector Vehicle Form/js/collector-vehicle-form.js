@@ -310,6 +310,7 @@ function dateValidation(field, getMaxYear) {
     if (Number(YYYY) <= 0) value[3] = "";
     else if (YYYY.length === 1 && Number(YYYY) > 2) value[3] = "";
     else if (YYYY.length === 2 && Number(YYYY) > 20) value[3] = YYYY[0];
+    else if (YYYY.length === 2 && Number(YYYY) < 19) value[3] = YYYY[0];
     else if (YYYY.length === 3 && Number(YYYY) > Number(maxYear.slice(0, 3)))
       value[3] = YYYY.slice(0, 2);
     else if (YYYY.length === 4 && Number(YYYY) > Number(maxYear))
