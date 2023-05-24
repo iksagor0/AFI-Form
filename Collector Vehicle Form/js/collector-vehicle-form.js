@@ -25,6 +25,7 @@ const formData = {
       howVehicleDrive: "33",
     },
   ],
+  householdViolations: [],
 };
 
 const successRedirection = "https://afi.org/";
@@ -117,18 +118,18 @@ function handleMultiStepForm(step) {
     summaryValidation();
   }
   if (step === formList.indexOf("violations__form")) {
-    // if (!spouseValidation()) return false;
+    if (!violationsValidation()) return false;
   }
 
   if (step === formList.indexOf("coverage_limits_form")) {
-    // if (!spouseValidation()) return false;
+    if (!coverageLimitsValidation()) return false;
     functionalityForEachDamageForm();
   }
   if (step === formList.indexOf("physical_damage_form")) {
-    // if (!spouseValidation()) return false;
+    if (!physicalHistoryValidation()) return false;
   }
   if (step === formList.indexOf("coverage__history_form")) {
-    // if (!spouseValidation()) return false;
+    if (!coverageHistoryValidation()) return false;
   }
 
   runVehicleItemsFunctionality();
@@ -323,14 +324,14 @@ function dateValidation(field, getMaxYear) {
 
 const policyRenewalDate = document.querySelector("#policyRenewalDate");
 const DOB = document.querySelector("#policyHolderDob");
-const violationsDate = document.querySelector("#householdViolationsDate");
+const violationsDates = document.querySelectorAll(".householdViolationsDate");
 const spouseDOB = document.querySelector("#cohabitantDob");
 
 const thisYear = new Date().getFullYear();
 dateValidation(policyRenewalDate, thisYear + 2);
 dateValidation(DOB, thisYear - 17);
 dateValidation(spouseDOB, thisYear - 17);
-dateValidation(violationsDate, thisYear);
+violationsDates.forEach((vDate) => dateValidation(vDate, thisYear));
 
 // *********************************************
 //              FORM VALIDATION
@@ -842,11 +843,18 @@ const violationWrapper = document.getElementById(
 addViolationBtn.addEventListener("click", () => {
   const newFields = violationsFields.cloneNode(true);
   violationWrapper.appendChild(newFields);
+
+  // Data Validator added
+  document
+    .querySelectorAll(".householdViolationsDate")
+    .forEach((vDate) => dateValidation(vDate, thisYear));
 });
 
 const hasViolationsFields = document.getElementsByName(
   "householdViolationsPreviousClaims"
 );
+
+let isDisabledViolation = true;
 
 // IF householdViolationsPreviousClaims value not== Yes, then disable all
 function disableViolationInputs(disable = true) {
@@ -925,8 +933,24 @@ function functionalityForEachDamageForm() {
 // *********************************************
 //              STEP-3 VALIDATION
 // *********************************************
-// *********** Violation Form Validation ***********
 function violationsValidation() {
+  if (getViolationsValue() === "No") {
+    return true;
+  } else {
+    const fieldsWrapper = document.querySelectorAll(".violation_info_fields");
+
+    //
+    return false;
+  }
+}
+
+function coverageLimitsValidation() {
+  // Form Validation here
+
+  return true;
+}
+
+function physicalDamageValidation() {
   // Form Validation here
 
   return true;

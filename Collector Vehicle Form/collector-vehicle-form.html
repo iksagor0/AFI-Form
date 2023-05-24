@@ -1835,6 +1835,7 @@
                       name="householdViolationsPreviousClaims"
                       type="radio"
                       value="No"
+                      checked
                     /><label
                       class="field__label"
                       for="householdViolationsPreviousClaims--No"
@@ -1851,15 +1852,15 @@
               <div class="fields-row violation_info_fields">
                 <div class="field">
                   <div class="field__label-wrapper">
-                    <label class="field__label" for="householdViolations0Driver"
+                    <label class="field__label" for="householdViolationsDriver"
                       >Driver</label
                     >
                   </div>
                   <div class="field__input-wrapper">
                     <input
-                      class="field__input"
-                      id="householdViolations0Driver"
-                      name="householdViolations0Driver"
+                      class="field__input alphabeticOnly"
+                      id="householdViolationsDriver"
+                      name="householdViolationsDriver"
                       type="text"
                       pattern="^[a-zA-Z]+$"
                       maxlength="50"
@@ -1870,15 +1871,15 @@
                 </div>
                 <div class="field field--xlarge">
                   <div class="field__label-wrapper">
-                    <label class="field__label" for="householdViolations0Type"
+                    <label class="field__label" for="householdViolationsType"
                       >Type</label
                     >
                   </div>
                   <div class="field__input-wrapper">
                     <select
                       class="field__input"
-                      id="householdViolations0Type"
-                      name="householdViolations0Type"
+                      id="householdViolationsType"
+                      name="householdViolationsType"
                       type="select"
                     >
                       <option value="">Choose One</option>
@@ -1971,7 +1972,7 @@
                   </div>
                   <div class="field__input-wrapper">
                     <input
-                      class="field__input"
+                      class="field__input householdViolationsDate"
                       id="householdViolationsDate"
                       name="householdViolationsDate"
                       type="text"
