@@ -3,15 +3,15 @@ const formData = {
   eligibilityStatus: "",
   policyHolderMaritalStatus: null,
   mainVehicleInfo: {
-    year: "",
-    make: "",
-    model: "",
-    type: "",
-    estimateValue: "",
-    vehicleStorage: "",
-    howVehicleDrive: "",
-    NumberOfLicensedDrivers: "",
-    NumberOfDailyUseVehicle: "",
+    year: "2023",
+    make: "HP",
+    model: "Proton Saga",
+    type: "Stock",
+    estimateValue: "3000",
+    vehicleStorage: "Private Garage",
+    howVehicleDrive: "lol",
+    NumberOfLicensedDrivers: "2",
+    NumberOfDailyUseVehicle: "2",
   },
 
   moreVehiclesInfo: [
@@ -596,6 +596,7 @@ function spouseValidation() {
 // *********************************************
 const summaryFormIndex = formList.indexOf("summary__form");
 let isVehicleSummaryAppended = false;
+// let isVehicleSummaryAppended = false;
 
 // ********** "+ Add Vehicle" BUTTON FUNCTIONALITY  ***********
 const addVehicle = document.getElementById("addVehicle");
@@ -603,7 +604,8 @@ addVehicle.addEventListener("click", () => {
   if (!formList.includes("add_more_vehicle_form")) {
     formList.splice(summaryFormIndex, 0, "add_more_vehicle_form");
   }
-
+  // isVehicleSummaryAppended = true;
+  // stepCount = summaryFormIndex - 1;
   showActiveForm(stepCount);
 });
 
@@ -792,20 +794,14 @@ function addVehicleValidation() {
 }
 
 function addMoreVehicleValidation() {
-  const Year = document.querySelector("#mainVehicleYear");
-  const Make = document.querySelector("#mainVehicleMake");
-  const Model = document.querySelector("#mainVehicleModel");
-  const Type = document.querySelector("#mainVehicleType");
-  const EstimatedValue = document.querySelector("#mainVehicleEstimatedValue");
-  const Storage = document.querySelector("#mainVehicleStorage");
+  const Year = document.querySelector("#moreVehicleYear");
+  const Make = document.querySelector("#moreVehicleMake");
+  const Model = document.querySelector("#moreVehicleModel");
+  const Type = document.querySelector("#moreVehicleType");
+  const EstimatedValue = document.querySelector("#moreVehicleEstimatedValue");
+  const Storage = document.querySelector("#moreVehicleStorage");
   const DriveDescription = document.querySelector(
-    "#mainVehicleDriveDescription"
-  );
-  const LicensedDriverCount = document.querySelector(
-    "#mainVehicleLicensedDriverCount"
-  );
-  const NumberOfDailyUse = document.querySelector(
-    "#mainVehicleNumberOfDailyUse"
+    "#moreVehicleDriveDescription"
   );
 
   const validationFields = [
@@ -816,36 +812,33 @@ function addMoreVehicleValidation() {
     isValueEmpty(EstimatedValue),
     isValueEmpty(Storage),
     isValueEmpty(DriveDescription),
-    isValueEmpty(LicensedDriverCount),
-    isValueEmpty(NumberOfDailyUse),
   ];
 
   const isValidate = validationFields.every((result) => result === true);
 
   if (isValidate) {
-    formData.mainVehicleInfo.year = Year?.value;
-    formData.mainVehicleInfo.make = Make?.value;
-    formData.mainVehicleInfo.model = Model?.value;
-    formData.mainVehicleInfo.type = Type?.value;
-    formData.mainVehicleInfo.estimateValue = EstimatedValue?.value;
-    formData.mainVehicleInfo.vehicleStorage = Storage?.value;
-    formData.mainVehicleInfo.howVehicleDrive = DriveDescription?.value;
-    formData.mainVehicleInfo.NumberOfLicensedDrivers =
-      LicensedDriverCount?.value;
-    formData.mainVehicleInfo.NumberOfDailyUseVehicle = NumberOfDailyUse?.value;
+    const vehicle = {
+      year: Year?.value,
+      make: Make?.value,
+      model: Model?.value,
+      type: Type?.value,
+      estimateValue: EstimatedValue?.value,
+      vehicleStorage: Storage?.value,
+      howVehicleDrive: DriveDescription?.value,
+    };
+
+    formData.moreVehiclesInfo.push(vehicle);
 
     // REDUCE stepCount cz add_vehicle__form will remove from the formList
-    stepCount = summaryFormIndex - 1;
+    // stepCount = summaryFormIndex - 1;
     // showActiveForm(stepCount);
+
+    stepCount = summaryFormIndex - 1;
+    formList = formList.filter((item) => item != "add_more_vehicle_form");
   }
 
-  const isFormSubmitted = true;
-  if (isFormSubmitted) {
-    formList = formList.filter((item) => item != "add_more_vehicle_form");
-    stepCount = stepCount - 1;
-  }
-  // return isValidate;
-  return true;
+  return isValidate;
+  // return true;
 }
 
 // *********************************************
