@@ -633,182 +633,6 @@
     <!-- ************************************************ -->
     <!------------- Spouse Information ----------->
     <!-- ************************************************ -->
-    <section class="form_section multi__step_1 spouse_information">
-      <div class="container">
-        <!-- ******** STEP ******** -->
-        <div class="step__container">
-          <ul class="steps__list">
-            <li class="step active_step" data-text="Driver Information">1</li>
-            <li class="line"></li>
-            <li class="step" data-text="Vehicle">2</li>
-            <li class="line"></li>
-            <li class="step" data-text="Coverages">3</li>
-            <li class="line"></li>
-            <li class="step" data-text="Quote">4</li>
-          </ul>
-        </div>
-
-        <div class="quote_request__section_wrapper">
-          <!-- ******* FORM  *******-->
-          <div class="form_container min_height">
-            <h2 class="quote_request_heading">Spouse Information</h2>
-
-            <!-- First Name, Last Name, Suffix -->
-            <div class="fields-row">
-              <div class="field">
-                <div class="field__label-wrapper">
-                  <label class="field__label" for="cohabitantFirstName"
-                    >First Name</label
-                  >
-                </div>
-                <div class="field__input-wrapper">
-                  <input
-                    class="field__input alphabeticOnly"
-                    id="cohabitantFirstName"
-                    name="cohabitantFirstName"
-                    type="text"
-                    pattern="^[a-zA-Z]+$"
-                    maxlength="50"
-                    placeholder=""
-                    value=""
-                  />
-                </div>
-              </div>
-              <div class="field">
-                <div class="field__label-wrapper">
-                  <label class="field__label" for="cohabitantLastName"
-                    >Last Name</label
-                  >
-                </div>
-                <div class="field__input-wrapper">
-                  <input
-                    class="field__input alphabeticOnly"
-                    id="cohabitantLastName"
-                    name="cohabitantLastName"
-                    type="text"
-                    pattern="^[a-zA-Z]+$"
-                    maxlength="50"
-                    placeholder=""
-                    value=""
-                  />
-                </div>
-              </div>
-              <div class="field field--small">
-                <div class="field__label-wrapper">
-                  <label class="field__label" for="cohabitantSuffix"
-                    >Suffix</label
-                  >
-                </div>
-                <div class="field__input-wrapper">
-                  <select
-                    class="field__input"
-                    id="cohabitantSuffix"
-                    name="cohabitantSuffix"
-                    type="select"
-                  >
-                    <option value="">--</option>
-                    <option value="Jr.">Jr.</option>
-                    <option value="Sr.">Sr.</option>
-                    <option value="III">III</option>
-                    <option value="IV">IV</option>
-                  </select>
-                  <p class="field__note">Optional</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Social Security Number, Date of Birth -->
-            <div class="fields-row">
-              <div class="field">
-                <div class="field__label-wrapper">
-                  <label class="field__label" for="cohabitantSsn"
-                    >Social Security Number</label
-                  >
-                </div>
-                <div class="field__input-wrapper">
-                  <input
-                    class="field__input SSN"
-                    id="cohabitantSsn"
-                    name="cohabitantSsn"
-                    type="text"
-                    maxlength="11"
-                    placeholder="xxx-xx-xxxx"
-                    value=""
-                  />
-                  <p class="field__note">Optional</p>
-                </div>
-              </div>
-              <div class="field">
-                <div class="field__label-wrapper">
-                  <label class="field__label" for="cohabitantDob"
-                    >Date of Birth</label
-                  >
-                </div>
-                <div class="field__input-wrapper">
-                  <input
-                    class="field__input"
-                    id="cohabitantDob"
-                    name="cohabitantDob"
-                    type="text"
-                    pattern="\d{1,2}/\d{1,2}/\d{4}"
-                    placeholder="MM/DD/YYYY"
-                    value=""
-                  />
-                </div>
-              </div>
-            </div>
-
-            <!-- Gender -->
-            <div class="fields-row">
-              <div class="field field--small">
-                <div class="field__label-wrapper">
-                  <label class="field__label" for="cohabitantGender"
-                    >Gender</label
-                  >
-                </div>
-                <div class="field__input-wrapper">
-                  <select
-                    class="field__input"
-                    id="cohabitantGender"
-                    name="cohabitantGender"
-                    type="select"
-                  >
-                    <option value="">--</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- ******* ASIDE  *******-->
-          <aside class="quote_request_aside">
-            <h2 class="quote_request_sidebar__heading">Our Mission is You®</h2>
-            <div class="quote_request_sidebar__content">
-              <div class="quote_request_sidebar__item">
-                <h3 class="quote_request_sidebar__item_heading">
-                  Exclusive Savings
-                </h3>
-                <p class="quote_request_sidebar__item_description">
-                  Armed Forces Insurance offers special rates for military
-                  members.
-                </p>
-              </div>
-              <div class="quote_request_sidebar__item">
-                <h3 class="quote_request_sidebar__item_heading">
-                  We Shop for You
-                </h3>
-                <p class="quote_request_sidebar__item_description">
-                  AFI agents will shop across our network of providers to save
-                  you time and help you get the best value.
-                </p>
-              </div>
-            </div>
-          </aside>
-        </div>
-      </div>
-    </section>
 
     <!-- ************************************************ -->
     <!---------------------- MULTI-STEP 1 ------------------>
@@ -899,7 +723,7 @@
 
             <!-- Physical Address, City -->
             <div class="fields-row">
-              <div class="field field--xlarge physicalAddressField">
+              <div class="field field--xlarge extra_message_margin">
                 <div class="field__label-wrapper">
                   <label class="field__label" for="policyHolderMailingAddress"
                     >Physical Address
@@ -1265,6 +1089,182 @@
       </div>
     </section>
 
+    <section class="form_section multi__step_1 spouse_information">
+      <div class="container">
+        <!-- ******** STEP ******** -->
+        <div class="step__container">
+          <ul class="steps__list">
+            <li class="step active_step" data-text="Driver Information">1</li>
+            <li class="line"></li>
+            <li class="step" data-text="Vehicle">2</li>
+            <li class="line"></li>
+            <li class="step" data-text="Coverages">3</li>
+            <li class="line"></li>
+            <li class="step" data-text="Quote">4</li>
+          </ul>
+        </div>
+
+        <div class="quote_request__section_wrapper">
+          <!-- ******* FORM  *******-->
+          <div class="form_container min_height">
+            <h2 class="quote_request_heading">Spouse Information</h2>
+
+            <!-- First Name, Last Name, Suffix -->
+            <div class="fields-row">
+              <div class="field">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="cohabitantFirstName"
+                    >First Name</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <input
+                    class="field__input alphabeticOnly"
+                    id="cohabitantFirstName"
+                    name="cohabitantFirstName"
+                    type="text"
+                    pattern="^[a-zA-Z]+$"
+                    maxlength="50"
+                    placeholder=""
+                    value=""
+                  />
+                </div>
+              </div>
+              <div class="field">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="cohabitantLastName"
+                    >Last Name</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <input
+                    class="field__input alphabeticOnly"
+                    id="cohabitantLastName"
+                    name="cohabitantLastName"
+                    type="text"
+                    pattern="^[a-zA-Z]+$"
+                    maxlength="50"
+                    placeholder=""
+                    value=""
+                  />
+                </div>
+              </div>
+              <div class="field field--small">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="cohabitantSuffix"
+                    >Suffix</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <select
+                    class="field__input"
+                    id="cohabitantSuffix"
+                    name="cohabitantSuffix"
+                    type="select"
+                  >
+                    <option value="">--</option>
+                    <option value="Jr.">Jr.</option>
+                    <option value="Sr.">Sr.</option>
+                    <option value="III">III</option>
+                    <option value="IV">IV</option>
+                  </select>
+                  <p class="field__note">Optional</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Social Security Number, Date of Birth -->
+            <div class="fields-row">
+              <div class="field">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="cohabitantSsn"
+                    >Social Security Number</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <input
+                    class="field__input SSN"
+                    id="cohabitantSsn"
+                    name="cohabitantSsn"
+                    type="text"
+                    maxlength="11"
+                    placeholder="xxx-xx-xxxx"
+                    value=""
+                  />
+                  <p class="field__note">Optional</p>
+                </div>
+              </div>
+              <div class="field">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="cohabitantDob"
+                    >Date of Birth</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <input
+                    class="field__input"
+                    id="cohabitantDob"
+                    name="cohabitantDob"
+                    type="text"
+                    pattern="\d{1,2}/\d{1,2}/\d{4}"
+                    placeholder="MM/DD/YYYY"
+                    value=""
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- Gender -->
+            <div class="fields-row">
+              <div class="field">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="cohabitantGender"
+                    >Gender</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <select
+                    class="field__input"
+                    id="cohabitantGender"
+                    name="cohabitantGender"
+                    type="select"
+                  >
+                    <option value="">--</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ******* ASIDE  *******-->
+          <aside class="quote_request_aside">
+            <h2 class="quote_request_sidebar__heading">Our Mission is You®</h2>
+            <div class="quote_request_sidebar__content">
+              <div class="quote_request_sidebar__item">
+                <h3 class="quote_request_sidebar__item_heading">
+                  Exclusive Savings
+                </h3>
+                <p class="quote_request_sidebar__item_description">
+                  Armed Forces Insurance offers special rates for military
+                  members.
+                </p>
+              </div>
+              <div class="quote_request_sidebar__item">
+                <h3 class="quote_request_sidebar__item_heading">
+                  We Shop for You
+                </h3>
+                <p class="quote_request_sidebar__item_description">
+                  AFI agents will shop across our network of providers to save
+                  you time and help you get the best value.
+                </p>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
     <!-- ************************************************ -->
     <!---------------------- MULTI-STEP 2 ------------------>
     <!-- ************************************************ -->

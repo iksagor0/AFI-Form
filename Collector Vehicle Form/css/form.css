@@ -586,7 +586,7 @@ textarea.field__input:focus {
   text-decoration: underline;
 }
 
-.field.physicalAddressField .field_message.error {
+.field.extra_message_margin .field_message.error {
   margin-top: 15px !important;
 }
 

@@ -467,9 +467,9 @@ function childFormValidation() {
   return isValidate;
 }
 
-// *********************************************
-//              STEP-1 VALIDATION
-// *********************************************
+// TODO *********************************************
+// TODO             STEP-1 VALIDATION
+// TODO *********************************************
 function policyholderValidation(step) {
   const policyHolderFirstName = document.querySelector(
     "#policyHolderFirstName"
@@ -524,92 +524,78 @@ function policyholderValidation(step) {
 
   const isValidate = validationFields.every((result) => result === true);
 
-  if (isValidate) {
-    formData.policyHolderFirstName = policyHolderFirstName?.value;
-    formData.policyHolderLastName = policyHolderLastName?.value;
-    formData.policyHolderSuffix = policyHolderSuffix?.value;
-    formData.policyHolderMailingAddress = policyHolderMailingAddress?.value;
-    formData.policyHolderCity = policyHolderCity?.value;
-    formData.policyHolderState = policyHolderState?.value;
-    formData.policyHolderZip = policyHolderZip?.value;
-    formData.policyHolderSsn = policyHolderSsn?.value.replace(/\D/g, "");
-    formData.policyHolderDob = policyHolderDob?.value;
-    formData.policyHolderGender = policyHolderGender?.value;
-    formData.policyHolderMaritalStatus = policyHolderMaritalStatus?.value;
-    formData.policyHolderEmail = policyHolderEmail?.value;
-    formData.policyHolderPhoneType = policyHolderPhoneType?.value;
-    formData.policyHolderPhoneNumber = policyHolderPhoneNumber?.value.replace(
-      /\D/g,
-      ""
-    );
-    formData.policyHolderResidenceStatus = policyHolderResidenceStatus?.value;
+  // if (isValidate) {
+  formData.policyHolderFirstName = policyHolderFirstName?.value;
+  formData.policyHolderLastName = policyHolderLastName?.value;
+  formData.policyHolderSuffix = policyHolderSuffix?.value;
+  formData.policyHolderMailingAddress = policyHolderMailingAddress?.value;
+  formData.policyHolderCity = policyHolderCity?.value;
+  formData.policyHolderState = policyHolderState?.value;
+  formData.policyHolderZip = policyHolderZip?.value;
+  formData.policyHolderSsn = policyHolderSsn?.value.replace(/\D/g, "");
+  formData.policyHolderDob = policyHolderDob?.value;
+  formData.policyHolderGender = policyHolderGender?.value;
+  formData.policyHolderMaritalStatus = policyHolderMaritalStatus?.value;
+  formData.policyHolderEmail = policyHolderEmail?.value;
+  formData.policyHolderPhoneType = policyHolderPhoneType?.value;
+  formData.policyHolderPhoneNumber = policyHolderPhoneNumber?.value.replace(
+    /\D/g,
+    ""
+  );
+  formData.policyHolderResidenceStatus = policyHolderResidenceStatus?.value;
 
-    // SHOW SPOUSE INFORMATION FORM, IF HAVE
-    const spouseValues = [
-      "Married",
-      "Cohabitant",
-      "Civil Union Or Domestic Partner",
-    ];
+  // SHOW SPOUSE INFORMATION FORM, IF HAVE
+  const spouseValues = [
+    "Married",
+    "Cohabitant",
+    "Civil Union Or Domestic Partner",
+  ];
 
-    if (spouseValues.includes(formData?.policyHolderMaritalStatus)) {
-      if (!formList.includes("spouse_information")) {
-        formList.splice(step + 1, 0, "spouse_information");
-      }
-    }
-    if (!spouseValues.includes(formData?.policyHolderMaritalStatus)) {
-      formList = formList.filter((form) => form != "spouse_information");
-      console.log("aaaaaaaaaaaa spouse_information");
+  if (spouseValues.includes(formData?.policyHolderMaritalStatus)) {
+    if (!formList.includes("spouse_information")) {
+      formList.splice(step + 1, 0, "spouse_information");
     }
   }
-
-  // return isValidate;
-  return isValidate;
-}
-
-function spouseValidation() {
-  const policyHolderFirstName = document.querySelector(
-    "#policyHolderFirstName"
-  );
-  const policyHolderLastName = document.querySelector("#policyHolderLastName");
-  const policyHolderEmail = document.querySelector("#policyHolderEmail");
-  const policyHolderPhoneType = document.querySelector(
-    "#policyHolderPhoneType"
-  );
-  const policyHolderPhoneNumber = document.querySelector(
-    "#policyHolderPhoneNumber"
-  );
-  const policyHolderMaritalStatus = document.querySelector(
-    "#policyHolderMaritalStatus"
-  );
-
-  formData.policyHolderMaritalStatus = policyHolderMaritalStatus?.value;
-
-  // const validationFields = [
-  //   alphabeticOnly(policyHolderFirstName),
-  //   alphabeticOnly(policyHolderLastName),
-  //   isValueEmpty(policyHolderFirstName),
-  //   emailValidation(policyHolderEmail),
-  //   isValueEmpty(policyHolderEmail),
-  //   isValueEmpty(policyHolderPhoneType),
-  //   phoneValidation(policyHolderPhoneNumber),
-  //   isValueEmpty(policyHolderPhoneNumber),
-  // ];
-
-  // const isValidate = validationFields.every((result) => result === true);
-
-  // if (isValidate) {
-  //   formData.policyHolderFirstName = policyHolderFirstName?.value;
-  //   formData.policyHolderLastName = policyHolderLastName?.value;
-  //   formData.policyHolderEmail = policyHolderEmail?.value;
-  //   formData.policyHolderPhoneType = policyHolderPhoneType?.value;
-  //   formData.policyHolderPhoneNumber = policyHolderPhoneNumber?.value.replace(
-  //     /\D/g,
-  //     ""
-  //   );
+  if (!spouseValues.includes(formData?.policyHolderMaritalStatus)) {
+    formList = formList.filter((form) => form != "spouse_information");
+    console.log("aaaaaaaaaaaa spouse_information");
+  }
   // }
 
   // return isValidate;
   return true;
+}
+
+function spouseValidation() {
+  const cohabitantFirstName = document.querySelector("#cohabitantFirstName");
+  const cohabitantLastName = document.querySelector("#cohabitantLastName");
+  const cohabitantSuffix = document.querySelector("#cohabitantSuffix");
+  const cohabitantSsn = document.querySelector("#cohabitantSsn");
+  const cohabitantDob = document.querySelector("#cohabitantDob");
+  const cohabitantGender = document.querySelector("#cohabitantGender");
+
+  const validationFields = [
+    alphabeticOnly(cohabitantFirstName),
+    alphabeticOnly(cohabitantLastName),
+    isValueEmpty(cohabitantFirstName),
+    isValueEmpty(cohabitantLastName),
+    isValueEmpty(cohabitantDob),
+    isValueEmpty(cohabitantGender),
+  ];
+
+  const isValidate = validationFields.every((result) => result === true);
+
+  if (isValidate) {
+    formData.cohabitantFirstName = cohabitantFirstName?.value;
+    formData.cohabitantLastName = cohabitantLastName?.value;
+    formData.cohabitantSuffix = cohabitantSuffix?.value;
+    formData.cohabitantSsn = cohabitantSsn?.value.replace(/\D/g, "");
+    formData.cohabitantDob = cohabitantDob?.value;
+    formData.cohabitantGender = cohabitantGender?.value;
+  }
+
+  return isValidate;
+  // return true;
 }
 
 // *********************************************
