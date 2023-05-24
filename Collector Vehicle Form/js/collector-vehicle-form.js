@@ -10,7 +10,7 @@ const formData = {
     estimateValue: "3000",
     vehicleStorage: "Private Garage",
     howVehicleDrive: "lol",
-    NumberOfLicensedDrivers: "2",
+    NumberOfLicensedDrivers: "",
     NumberOfDailyUseVehicle: "2",
   },
 
@@ -113,16 +113,17 @@ function handleMultiStepForm(step) {
   }
   if (step === formList.indexOf("add_vehicle__form")) {
     if (!addVehicleValidation()) return false;
-  }
-  if (step === formList.indexOf("summary__form") - 1) {
-    if (!summaryValidation()) return false;
-  }
-  if (step === formList.indexOf("summary__form")) {
-    // When add_more_vehicle_form submit
-    formList = formList.filter((item) => item != "add_more_vehicle_form");
+    summaryValidation();
   }
   if (step === formList.indexOf("add_more_vehicle_form")) {
     if (!addMoreVehicleValidation()) return false;
+    summaryValidation();
+  }
+  if (
+    step === formList.indexOf("summary__form") ||
+    step === formList.indexOf("summary__form") - 1
+  ) {
+    if (!summaryValidation()) return false;
   }
   if (step === formList.indexOf("violations__form")) {
     if (!spouseValidation()) return false;
@@ -709,8 +710,8 @@ function summaryValidation() {
   const addedSummary = document.querySelector("#moreVehicles");
   const totalAdded = addedSummary.children?.length;
 
-  // if all data not appended then Append Data to #moreVehicles
-  if (!isVehicleSummaryAppended) {
+  if (moreVehicles.length > 0) {
+    addedSummary.innerHTML = "";
     const demoItem = document.querySelector(
       ".quote_request__summary_item.demoItem"
     );
@@ -725,8 +726,27 @@ function summaryValidation() {
       addedSummary.appendChild(clonedItem);
     });
     // after first time appending  make is TRUE to stop repeat appending
-    isVehicleSummaryAppended = true;
+    // isVehicleSummaryAppended = true;
   }
+
+  // if all data not appended then Append Data to #moreVehicles
+  // if (!isVehicleSummaryAppended) {
+  //   const demoItem = document.querySelector(
+  //     ".quote_request__summary_item.demoItem"
+  //   );
+  //   // Clone the demo, create and append
+  //   moreVehicles.forEach((info) => {
+  //     const clonedItem = demoItem.cloneNode(true);
+  //     clonedItem.classList.remove("__hide", "demoItem");
+  //     clonedItem.querySelector(
+  //       ".quote_request__summary_item_info"
+  //     ).innerHTML = `${info?.year} ${info?.make} ${info?.model}`;
+
+  //     addedSummary.appendChild(clonedItem);
+  //   });
+  //   // after first time appending  make is TRUE to stop repeat appending
+  //   isVehicleSummaryAppended = true;
+  // }
 
   // addedSummary
   //   .querySelectorAll(".quote_request__summary_item")
