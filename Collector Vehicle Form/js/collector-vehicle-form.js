@@ -10,7 +10,7 @@ const formData = {
     estimateValue: "3000",
     vehicleStorage: "Private Garage",
     howVehicleDrive: "lol",
-    NumberOfLicensedDrivers: "",
+    NumberOfLicensedDrivers: "2",
     NumberOfDailyUseVehicle: "2",
   },
 
@@ -596,17 +596,20 @@ function spouseValidation() {
 //              STEP-2 FUNCTIONALITY
 // *********************************************
 const summaryFormIndex = formList.indexOf("summary__form");
-let isVehicleSummaryAppended = false;
-// let isVehicleSummaryAppended = false;
+let editVehicleIndex = -1;
 
 // ********** "+ Add Vehicle" BUTTON FUNCTIONALITY  ***********
 const addVehicle = document.getElementById("addVehicle");
+
 addVehicle.addEventListener("click", () => {
+  const fields = document.querySelectorAll(
+    ".add_more_vehicle_form .field__input"
+  );
+  fields.forEach((field) => (field.value = ""));
+
   if (!formList.includes("add_more_vehicle_form")) {
     formList.splice(summaryFormIndex, 0, "add_more_vehicle_form");
   }
-  // isVehicleSummaryAppended = true;
-  // stepCount = summaryFormIndex - 1;
   showActiveForm(stepCount);
 });
 
@@ -634,6 +637,8 @@ function runVehicleItemsFunctionality() {
     const deleteNo = item.querySelector("#deleteNo");
 
     editBtn?.addEventListener("click", () => {
+      editVehicleIndex = itemIndex;
+
       if (!formList.includes("add_more_vehicle_form")) {
         formList.splice(summaryFormIndex, 0, "add_more_vehicle_form");
 
@@ -673,9 +678,9 @@ function runVehicleItemsFunctionality() {
   });
 }
 
-// TODO *********************************************
-// TODO              STEP-2 VALIDATION
-// TODO *********************************************
+// *********************************************
+//              STEP-2 VALIDATION
+// *********************************************
 function summaryValidation() {
   // Check Main Vehicle data OKK or Not
   const mainVehicleValues = [];
@@ -695,14 +700,11 @@ function summaryValidation() {
     showActiveForm(stepCount);
   } else {
     formList = formList.filter((form) => form != "add_vehicle__form");
-    console.log("aaaaaaaaaaaa add_vehicle__form");
-    //
+    // show data in Summary
     const { year, make, model } = formData.mainVehicleInfo;
     document.querySelector(
       ".quote_request__summary_main_item_info"
     ).innerText = `${year} ${make} ${model}`;
-
-    // stepCount = stepCount - 1;
   }
 
   // Add all data to moreVehicles sections
@@ -710,6 +712,7 @@ function summaryValidation() {
   const addedSummary = document.querySelector("#moreVehicles");
   const totalAdded = addedSummary.children?.length;
 
+  // if all data not appended then Append Data to #moreVehicles
   if (moreVehicles.length > 0) {
     addedSummary.innerHTML = "";
     const demoItem = document.querySelector(
@@ -723,40 +726,10 @@ function summaryValidation() {
         ".quote_request__summary_item_info"
       ).innerHTML = `${info?.year} ${info?.make} ${info?.model}`;
 
+      // append clone element in Summary
       addedSummary.appendChild(clonedItem);
     });
-    // after first time appending  make is TRUE to stop repeat appending
-    // isVehicleSummaryAppended = true;
   }
-
-  // if all data not appended then Append Data to #moreVehicles
-  // if (!isVehicleSummaryAppended) {
-  //   const demoItem = document.querySelector(
-  //     ".quote_request__summary_item.demoItem"
-  //   );
-  //   // Clone the demo, create and append
-  //   moreVehicles.forEach((info) => {
-  //     const clonedItem = demoItem.cloneNode(true);
-  //     clonedItem.classList.remove("__hide", "demoItem");
-  //     clonedItem.querySelector(
-  //       ".quote_request__summary_item_info"
-  //     ).innerHTML = `${info?.year} ${info?.make} ${info?.model}`;
-
-  //     addedSummary.appendChild(clonedItem);
-  //   });
-  //   // after first time appending  make is TRUE to stop repeat appending
-  //   isVehicleSummaryAppended = true;
-  // }
-
-  // addedSummary
-  //   .querySelectorAll(".quote_request__summary_item")
-  //   .forEach((item, itemIndex) => {
-  //     moreVehicles.forEach((value, valueIndex) => {
-  //       if (itemIndex === valueIndex) {
-  //         item.innerText = `${value?.year} ${value?.make} ${value?.model}`;
-  //       }
-  //     });
-  //   });
 
   return true;
 }
@@ -806,11 +779,9 @@ function addVehicleValidation() {
 
     // REDUCE stepCount cz add_vehicle__form will remove from the formList
     stepCount = summaryFormIndex - 1;
-    // showActiveForm(stepCount);
   }
 
-  // return isValidate;
-  return true;
+  return isValidate;
 }
 
 function addMoreVehicleValidation() {
@@ -847,12 +818,15 @@ function addMoreVehicleValidation() {
       howVehicleDrive: DriveDescription?.value,
     };
 
-    formData.moreVehiclesInfo.push(vehicle);
+    // UPDATE or CREATE Vehicle Data
+    if (editVehicleIndex >= 0) {
+      formData.moreVehiclesInfo[editVehicleIndex] = vehicle;
+      editVehicleIndex = -1;
+    } else {
+      formData.moreVehiclesInfo.push(vehicle);
+    }
 
-    // REDUCE stepCount cz add_vehicle__form will remove from the formList
-    // stepCount = summaryFormIndex - 1;
-    // showActiveForm(stepCount);
-
+    // REDUCE stepCount and REMOVE add_more_vehicle_form from the formList
     stepCount = summaryFormIndex - 1;
     formList = formList.filter((item) => item != "add_more_vehicle_form");
   }
