@@ -771,18 +771,16 @@ function addVehicleValidation() {
   const isValidate = validationFields.every((result) => result === true);
 
   if (isValidate) {
-    formData.mainVehicleInfo.year = mainVehicleYear?.value;
-    formData.mainVehicleInfo.make = mainVehicleMake?.value;
-    formData.mainVehicleInfo.model = mainVehicleModel?.value;
-    formData.mainVehicleInfo.type = mainVehicleType?.value;
-    formData.mainVehicleInfo.estimateValue = mainVehicleEstimatedValue?.value;
-    formData.mainVehicleInfo.vehicleStorage = mainVehicleStorage?.value;
-    formData.mainVehicleInfo.howVehicleDrive =
-      mainVehicleDriveDescription?.value;
+    formData.mainVehicleInfo.year = Year?.value;
+    formData.mainVehicleInfo.make = Make?.value;
+    formData.mainVehicleInfo.model = Model?.value;
+    formData.mainVehicleInfo.type = Type?.value;
+    formData.mainVehicleInfo.estimateValue = EstimatedValue?.value;
+    formData.mainVehicleInfo.vehicleStorage = Storage?.value;
+    formData.mainVehicleInfo.howVehicleDrive = DriveDescription?.value;
     formData.mainVehicleInfo.NumberOfLicensedDrivers =
-      mainVehicleLicensedDriverCount?.value;
-    formData.mainVehicleInfo.NumberOfDailyUseVehicle =
-      mainVehicleNumberOfDailyUse?.value;
+      LicensedDriverCount?.value;
+    formData.mainVehicleInfo.NumberOfDailyUseVehicle = NumberOfDailyUse?.value;
 
     // REDUCE stepCount cz add_vehicle__form will remove from the formList
     stepCount = summaryFormIndex - 1;
@@ -794,8 +792,54 @@ function addVehicleValidation() {
 }
 
 function addMoreVehicleValidation() {
-  const isFormSubmitted = true;
+  const Year = document.querySelector("#mainVehicleYear");
+  const Make = document.querySelector("#mainVehicleMake");
+  const Model = document.querySelector("#mainVehicleModel");
+  const Type = document.querySelector("#mainVehicleType");
+  const EstimatedValue = document.querySelector("#mainVehicleEstimatedValue");
+  const Storage = document.querySelector("#mainVehicleStorage");
+  const DriveDescription = document.querySelector(
+    "#mainVehicleDriveDescription"
+  );
+  const LicensedDriverCount = document.querySelector(
+    "#mainVehicleLicensedDriverCount"
+  );
+  const NumberOfDailyUse = document.querySelector(
+    "#mainVehicleNumberOfDailyUse"
+  );
 
+  const validationFields = [
+    isValueEmpty(Year),
+    isValueEmpty(Make),
+    isValueEmpty(Model),
+    isValueEmpty(Type),
+    isValueEmpty(EstimatedValue),
+    isValueEmpty(Storage),
+    isValueEmpty(DriveDescription),
+    isValueEmpty(LicensedDriverCount),
+    isValueEmpty(NumberOfDailyUse),
+  ];
+
+  const isValidate = validationFields.every((result) => result === true);
+
+  if (isValidate) {
+    formData.mainVehicleInfo.year = Year?.value;
+    formData.mainVehicleInfo.make = Make?.value;
+    formData.mainVehicleInfo.model = Model?.value;
+    formData.mainVehicleInfo.type = Type?.value;
+    formData.mainVehicleInfo.estimateValue = EstimatedValue?.value;
+    formData.mainVehicleInfo.vehicleStorage = Storage?.value;
+    formData.mainVehicleInfo.howVehicleDrive = DriveDescription?.value;
+    formData.mainVehicleInfo.NumberOfLicensedDrivers =
+      LicensedDriverCount?.value;
+    formData.mainVehicleInfo.NumberOfDailyUseVehicle = NumberOfDailyUse?.value;
+
+    // REDUCE stepCount cz add_vehicle__form will remove from the formList
+    stepCount = summaryFormIndex - 1;
+    // showActiveForm(stepCount);
+  }
+
+  const isFormSubmitted = true;
   if (isFormSubmitted) {
     formList = formList.filter((item) => item != "add_more_vehicle_form");
     stepCount = stepCount - 1;
