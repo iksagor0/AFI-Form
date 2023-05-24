@@ -24,15 +24,6 @@ const formData = {
       vehicleStorage: "Private Garage",
       howVehicleDrive: "33",
     },
-    {
-      year: "2020",
-      make: "22",
-      model: "22",
-      type: "Modified",
-      estimateValue: "22",
-      vehicleStorage: "Carport",
-      howVehicleDrive: "22",
-    },
   ],
 };
 
@@ -123,17 +114,21 @@ function handleMultiStepForm(step) {
     step === formList.indexOf("summary__form") ||
     step === formList.indexOf("summary__form") - 1
   ) {
-    if (!summaryValidation()) return false;
+    summaryValidation();
   }
   if (step === formList.indexOf("violations__form")) {
-    if (!spouseValidation()) return false;
+    // if (!spouseValidation()) return false;
+  }
+
+  if (step === formList.indexOf("coverage_limits_form")) {
+    // if (!spouseValidation()) return false;
     functionalityForEachDamageForm();
   }
   if (step === formList.indexOf("physical_damage_form")) {
-    if (!spouseValidation()) return false;
+    // if (!spouseValidation()) return false;
   }
   if (step === formList.indexOf("coverage__history_form")) {
-    if (!spouseValidation()) return false;
+    // if (!spouseValidation()) return false;
   }
 
   runVehicleItemsFunctionality();
@@ -730,8 +725,6 @@ function summaryValidation() {
       addedSummary.appendChild(clonedItem);
     });
   }
-
-  return true;
 }
 
 function addVehicleValidation() {
@@ -836,7 +829,7 @@ function addMoreVehicleValidation() {
 }
 
 // *********************************************
-//              STEP-3 VALIDATION
+//              STEP-3 FUNCTIONALITY
 // *********************************************
 const addViolationBtn = document.getElementById("add_violation_btn");
 const violationsFields = document.querySelector(".violation_info_fields");
@@ -844,19 +837,18 @@ const violationWrapper = document.getElementById(
   "violation_info_fields_wrapper"
 );
 
-// ******************* ADD MORE VIOLATIONS FIELDS *******************
+// ******************* Violation Form Functionality *******************
+// ADD MORE VIOLATIONS FIELDS
 addViolationBtn.addEventListener("click", () => {
   const newFields = violationsFields.cloneNode(true);
   violationWrapper.appendChild(newFields);
 });
 
-//
-
 const hasViolationsFields = document.getElementsByName(
   "householdViolationsPreviousClaims"
 );
 
-// ****** IF householdViolationsPreviousClaims value not== Yes, then disable all ******
+// IF householdViolationsPreviousClaims value not== Yes, then disable all
 function disableViolationInputs(disable = true) {
   const violationInputs = violationWrapper.querySelectorAll(".field__input");
   violationInputs.forEach((input) => (input.disabled = disable));
@@ -873,6 +865,7 @@ const getViolationsValue = () => {
   return value;
 };
 
+// Get every violation Radio field's value
 hasViolationsFields.forEach((fields) => {
   fields.addEventListener("change", () => {
     let getValue = getViolationsValue();
@@ -885,13 +878,6 @@ hasViolationsFields.forEach((fields) => {
   });
 });
 
-// *********** Violation Form Validation ***********
-function violationsValidation() {
-  // Form Validation here
-
-  return true;
-}
-
 // ********* FUNCTIONALITY physical_damage_form *********
 function functionalityForEachDamageForm() {
   const damageForm = document.querySelector(".damage__form.__hide");
@@ -900,6 +886,10 @@ function functionalityForEachDamageForm() {
   );
   const vehicleList = [formData.mainVehicleInfo, ...formData.moreVehiclesInfo];
 
+  // Clear DamageFormWrapper Children
+  DamageFormWrapper.innerHTML = "";
+
+  // Add Vehicle data to DamageFormWrapper with other fields
   vehicleList.forEach((vehicleData, index) => {
     const clonedItem = damageForm.cloneNode(true);
 
@@ -930,6 +920,16 @@ function functionalityForEachDamageForm() {
 
     DamageFormWrapper.appendChild(clonedItem);
   });
+}
+
+// *********************************************
+//              STEP-3 VALIDATION
+// *********************************************
+// *********** Violation Form Validation ***********
+function violationsValidation() {
+  // Form Validation here
+
+  return true;
 }
 // *********************************************
 //              STEP-4 VALIDATION
