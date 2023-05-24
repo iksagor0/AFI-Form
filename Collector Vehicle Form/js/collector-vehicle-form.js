@@ -501,6 +501,7 @@ function policyholderValidation(step) {
     isValueEmpty(policyHolderState),
     minValue(policyHolderZip, 5, "Please enter a valid Zip code"),
     isValueEmpty(policyHolderZip),
+    minValue(policyHolderDob, 10, "Please enter a valid Date"),
     isValueEmpty(policyHolderDob),
     isValueEmpty(policyHolderGender),
     isValueEmpty(policyHolderMaritalStatus),
@@ -569,6 +570,7 @@ function spouseValidation() {
     alphabeticOnly(cohabitantLastName),
     isValueEmpty(cohabitantFirstName),
     isValueEmpty(cohabitantLastName),
+    minValue(cohabitantDob, 10, "Please enter a valid Date"),
     isValueEmpty(cohabitantDob),
     isValueEmpty(cohabitantGender),
   ];
@@ -949,6 +951,7 @@ function violationsValidation() {
         alphabeticOnly(driverField),
         isValueEmpty(driverField),
         isValueEmpty(typeField),
+        minValue(dateField, 10, "Please enter a valid Date"),
         isValueEmpty(dateField),
       ];
 
