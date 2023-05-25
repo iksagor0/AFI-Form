@@ -661,6 +661,17 @@ textarea.field__input:focus {
   justify-content: center;
 }
 
+@media screen and (min-width: 48em) {
+  .has_violation_row {
+    margin-bottom: 20px;
+  }
+}
+
+.has_violation_row .field_message.error {
+  text-align: center !important;
+  width: 100%;
+}
+
 .field__input:disabled,
 .button:disabled {
   opacity: .5;

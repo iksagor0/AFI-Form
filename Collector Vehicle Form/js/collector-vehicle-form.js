@@ -914,6 +914,10 @@ hasViolationsFields.forEach((fields) => {
     } else {
       disableViolationInputs(true);
     }
+
+    const fieldContainer = document.querySelector(".violations__form");
+    const errors = fieldContainer.querySelectorAll(".field_message.error");
+    errors.forEach((error) => error.remove());
   });
 });
 
@@ -968,7 +972,7 @@ function violationsValidation() {
   if (getViolationsValue() === "No") {
     formData.householdViolations = "No violations in last 5 years";
     return true;
-  } else {
+  } else if (getViolationsValue() === "Yes") {
     const fieldsWrapper = document.querySelectorAll(".violation_info_fields");
 
     const violations = [];
@@ -1005,6 +1009,13 @@ function violationsValidation() {
     // if (checkedYes) {
     formData.householdViolations = violations;
     return fieldsWrapper.length === violations.length;
+  } else {
+    const fieldContainer = document.querySelector(
+      ".has_violation_inputs_container"
+    );
+    isValueEmpty(fieldContainer);
+
+    return false;
   }
 }
 
