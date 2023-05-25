@@ -12,6 +12,7 @@ const formData = {
     howVehicleDrive: "lol",
     NumberOfLicensedDrivers: "2",
     NumberOfDailyUseVehicle: "2",
+    // liabilityData: {},
   },
 
   moreVehiclesInfo: [
@@ -23,9 +24,10 @@ const formData = {
       estimateValue: "33",
       vehicleStorage: "Private Garage",
       howVehicleDrive: "33",
+      // liabilityData: {},
     },
   ],
-  householdViolations: [],
+  householdViolations: "No violations in last 5 years",
 };
 
 const successRedirection = "https://afi.org/";
@@ -126,7 +128,7 @@ function handleMultiStepForm(step) {
     functionalityForEachDamageForm();
   }
   if (step === formList.indexOf("physical_damage_form")) {
-    if (!physicalHistoryValidation()) return false;
+    if (!physicalDamageValidation()) return false;
   }
   if (step === formList.indexOf("coverage__history_form")) {
     if (!coverageHistoryValidation()) return false;
@@ -172,7 +174,7 @@ function eligibilityErrorMessage(data, selector) {
   }
 }
 
-function inputErrorMessage(selector, msg) {
+function inputErrorMessage(selector, msg, removeError) {
   const hasErrorField =
     selector?.parentElement?.querySelector(".field_message");
 
@@ -185,6 +187,10 @@ function inputErrorMessage(selector, msg) {
   } else {
     hasErrorField?.classList.add("error");
     hasErrorField.innerHTML = msg;
+  }
+
+  if (removeError === true) {
+    hasErrorField?.remove();
   }
 }
 
@@ -942,7 +948,6 @@ function violationsValidation() {
   } else {
     const fieldsWrapper = document.querySelectorAll(".violation_info_fields");
 
-    const violations = [];
     fieldsWrapper.forEach((field) => {
       const driverField = field.querySelector("#householdViolationsDriver");
       const typeField = field.querySelector("#householdViolationsType");
@@ -958,6 +963,7 @@ function violationsValidation() {
 
       const isValidate = validationFields.every((result) => result === true);
 
+      const violations = [];
       if (isValidate) {
         const violationData = {
           driver: driverField.value,
@@ -1002,14 +1008,71 @@ function coverageLimitsValidation() {
       uninsuredMotoristBodilyInjury?.value;
   }
 
-  return isValidate;
-  // return true;
+  // return isValidate;
+  return true;
 }
 
 function physicalDamageValidation() {
-  // Form Validation here
+  const liabilityData = [];
 
-  return true;
+  const wrapper = document.getElementById("physical_damage_form_wrapper");
+  const damageFieldSections = wrapper.querySelectorAll(".damage__form");
+
+  // VALIDATE EVERY FIELD SECTION
+  damageFieldSections.forEach((section) => {
+    const getFields = () => {
+      return section.querySelectorAll(".field__input.damage");
+    };
+
+    let sectionData = {
+      liabilityOnlyCoverage: "Yes",
+    };
+    const validationFields = [true];
+
+    getFields().forEach((field) => {
+      if (field.disabled) {
+        // If field is disabled then Remove error msg element
+        inputErrorMessage(field, "", true);
+        inputErrorMessage(field, "", true);
+      } else {
+        field.addEventListener("input", () =>
+          inputErrorMessage(field, "", true)
+        );
+
+        // If field is enabled then check validation and get data
+        const isFieldValid = isValueEmpty(field);
+        validationFields.push(isFieldValid);
+        if (isFieldValid) {
+          sectionData.liabilityOnlyCoverage = "No";
+          sectionData = {
+            ...sectionData,
+            [field.name]: field.value,
+          };
+        }
+      }
+    });
+
+    // If this section is Valid then set date
+    const isValidate = validationFields.every((result) => result === true);
+    if (isValidate) {
+      liabilityData.push(sectionData);
+    }
+  });
+
+  // If all sections are field and data is valid then set date to formData Vehicle
+  const isAllDataValid = liabilityData.length === damageFieldSections.length;
+  if (isAllDataValid) {
+    liabilityData.forEach((data, index) => {
+      if (index === 0)
+        formData.mainVehicleInfo.liabilityData = liabilityData[0];
+      else {
+        formData.moreVehiclesInfo[index - 1].liabilityData =
+          liabilityData[index];
+      }
+    });
+  }
+
+  return isAllDataValid;
 }
 // *********************************************
 //              STEP-4 VALIDATION
