@@ -27,6 +27,10 @@ const formData = {
     //   // liabilityData: {},
     // },
   ],
+  vehicleInfo: {
+    mainVehicle: {},
+    moreVehicle: {},
+  },
   householdViolations: "No violations in last 5 years",
 };
 
@@ -690,10 +694,13 @@ function runVehicleItemsFunctionality() {
 // *********************************************
 function summaryValidation() {
   // Check Main Vehicle data OKK or Not
+  const mainVehicleFields = document.querySelectorAll(
+    ".add_vehicle__form .field__input"
+  );
+
   const mainVehicleValues = [];
-  for (const key in formData.mainVehicleInfo) {
-    mainVehicleValues.push(formData.mainVehicleInfo[key]);
-  }
+  mainVehicleFields.forEach((field) => mainVehicleValues.push(field.value));
+
   const haveAllMainVehicleValues = mainVehicleValues.every(
     (v) => Boolean(v) === true
   );
