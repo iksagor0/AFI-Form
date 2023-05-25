@@ -854,6 +854,9 @@ const violationWrapper = document.getElementById(
 // ADD MORE VIOLATIONS FIELDS
 addViolationBtn.addEventListener("click", () => {
   const newFields = violationsFields.cloneNode(true);
+  newFields
+    .querySelectorAll(".field__input")
+    .forEach((field) => (field.value = ""));
   violationWrapper.appendChild(newFields);
 
   // Data Validator added
@@ -861,6 +864,7 @@ addViolationBtn.addEventListener("click", () => {
     .querySelectorAll(".householdViolationsDate")
     .forEach((vDate) => dateValidation(vDate, thisYear));
 
+  // for new fields
   clearFieldErrorMsg();
 });
 
