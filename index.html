@@ -26,21 +26,60 @@
       }
       li {
         margin-bottom: 10px;
+        display: grid;
+        grid-template-columns: 1fr 120px;
+        position: relative;
+        /* align-items: center; */
       }
-      ul {
+
+      li::before {
+        content: "";
+        width: 5px;
+        aspect-ratio: 1/1;
+        background: #000;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        left: -15px;
+        transform: translateY(-50%);
+      }
+
+      ul.list {
         margin-left: 20%;
         margin-top: 30px;
+        max-width: 320px;
+      }
+
+      .download {
+        /* margin-left: 20px; */
+        /* color: rgb(28, 15, 171); */
+        color: rgb(6, 102, 158);
+        font-size: 15px !important;
+        font-style: italic;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        font-family: "Zilla Slab", serif;
       }
     </style>
   </head>
   <body>
     <h1>AFI Form</h1>
 
-    <ul>
-      <li><a href="./Business Form/business-form.html">Business Form</a></li>
+    <ul class="list">
+      <li>
+        <a href="./Business Form/business-form.html">Business Form</a>
+        <a href="./Business Form/Business Form.zip" class="download"
+          >Download Zip</a
+        >
+      </li>
       <li>
         <a href="./Collector Vehicle Form/collector-vehicle-form.html"
           >Collector Vehicle Form</a
+        >
+        <a
+          href="./Collector Vehicle Form/Collector Vehicle Form.zip"
+          class="download"
+          >Download Zip</a
         >
       </li>
     </ul>
