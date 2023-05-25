@@ -423,8 +423,8 @@ function childFormValidation() {
   if (isValidate) {
     const child = (formData.childInfo = {});
 
-    child.childFirstName = childFirstName?.value;
-    child.childLastName = childLastName?.value;
+    child.firstName = childFirstName?.value;
+    child.lLastName = childLastName?.value;
   }
 
   return isValidate;
@@ -445,8 +445,10 @@ function parentFormValidation() {
   const isValidate = validationFields.every((result) => result === true);
 
   if (isValidate) {
-    formData.parentFirstName = parentFirstName?.value;
-    formData.parentLastName = parentLastName?.value;
+    const parent = (formData.parentInfo = {});
+
+    parent.firstName = parentFirstName?.value;
+    parent.lastName = parentLastName?.value;
   }
 
   return isValidate;
