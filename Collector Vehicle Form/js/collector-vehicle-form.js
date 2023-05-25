@@ -28,8 +28,7 @@ const formData = {
     // },
   ],
   vehicleInfo: {
-    mainVehicle: {},
-    moreVehicle: {},
+    vehicles: [],
   },
   householdViolations: "No violations in last 5 years",
 };
@@ -778,16 +777,17 @@ function addVehicleValidation() {
   const isValidate = validationFields.every((result) => result === true);
 
   if (isValidate) {
-    formData.mainVehicleInfo.year = Year?.value;
-    formData.mainVehicleInfo.make = Make?.value;
-    formData.mainVehicleInfo.model = Model?.value;
-    formData.mainVehicleInfo.type = Type?.value;
-    formData.mainVehicleInfo.estimateValue = EstimatedValue?.value;
-    formData.mainVehicleInfo.vehicleStorage = Storage?.value;
-    formData.mainVehicleInfo.howVehicleDrive = DriveDescription?.value;
-    formData.mainVehicleInfo.NumberOfLicensedDrivers =
-      LicensedDriverCount?.value;
-    formData.mainVehicleInfo.NumberOfDailyUseVehicle = NumberOfDailyUse?.value;
+    const vehicle = (formData.vehicleInfo.vehicles[0] = {});
+
+    vehicle.year = Year?.value;
+    vehicle.make = Make?.value;
+    vehicle.model = Model?.value;
+    vehicle.type = Type?.value;
+    vehicle.estimateValue = EstimatedValue?.value;
+    vehicle.vehicleStorage = Storage?.value;
+    vehicle.howVehicleDrive = DriveDescription?.value;
+    formData.vehicleInfo.numberOfLicensedDrivers = LicensedDriverCount?.value;
+    formData.vehicleInfo.numberOfDailyUseVehicle = NumberOfDailyUse?.value;
 
     // REDUCE stepCount cz add_vehicle__form will remove from the formList
     stepCount = summaryFormIndex - 1;
