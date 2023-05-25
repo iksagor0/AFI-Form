@@ -5,6 +5,8 @@ const formData = {
   vehicleInfo: {
     vehicles: [],
   },
+  householdViolations: null,
+  policyCoverageLimits: {},
 };
 
 const successRedirection = "https://afi.org/";
@@ -1005,11 +1007,11 @@ function coverageLimitsValidation() {
   const isValidate = validationFields.every((result) => result === true);
 
   if (isValidate) {
-    formData.bodilyInjuryLiability = bodilyInjuryLiability?.value;
-    formData.propertyDamageLiability = propertyDamageLiability?.value;
-    formData.medicalPayment = medicalPayment?.value;
-    formData.uninsuredMotoristBodilyInjury =
-      uninsuredMotoristBodilyInjury?.value;
+    const data = formData.policyCoverageLimits;
+    data.bodilyInjuryLiability = bodilyInjuryLiability?.value;
+    data.propertyDamageLiability = propertyDamageLiability?.value;
+    data.medicalPayment = medicalPayment?.value;
+    data.uninsuredMotoristBodilyInjury = uninsuredMotoristBodilyInjury?.value;
   }
 
   // return isValidate;
