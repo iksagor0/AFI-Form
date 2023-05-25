@@ -1037,9 +1037,7 @@ function physicalDamageValidation() {
         inputErrorMessage(field, "", true);
         inputErrorMessage(field, "", true);
       } else {
-        field.addEventListener("input", () =>
-          inputErrorMessage(field, "", true)
-        );
+        clearFieldErrorMsg();
 
         // If field is enabled then check validation and get data
         const isFieldValid = isValueEmpty(field);
