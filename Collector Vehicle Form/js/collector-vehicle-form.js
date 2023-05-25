@@ -2,35 +2,9 @@
 const formData = {
   eligibilityStatus: "",
   policyHolder: {},
-  mainVehicleInfo: {
-    year: "",
-    make: "",
-    model: "",
-    // type: "Stock",
-    // estimateValue: "3000",
-    // vehicleStorage: "Private Garage",
-    // howVehicleDrive: "lol",
-    // NumberOfLicensedDrivers: "2",
-    // NumberOfDailyUseVehicle: "2",
-    // liabilityData: {},
-  },
-
-  moreVehiclesInfo: [
-    // {
-    //   year: "33",
-    //   make: "33",
-    //   model: "33",
-    //   type: "Stock",
-    //   estimateValue: "33",
-    //   vehicleStorage: "Private Garage",
-    //   howVehicleDrive: "33",
-    //   // liabilityData: {},
-    // },
-  ],
   vehicleInfo: {
     vehicles: [],
   },
-  householdViolations: "No violations in last 5 years",
 };
 
 const successRedirection = "https://afi.org/";
@@ -801,6 +775,7 @@ function addVehicleValidation() {
     stepCount = summaryFormIndex - 1;
   }
 
+  return true;
   return isValidate;
 }
 
@@ -962,9 +937,12 @@ function functionalityForEachDamageForm() {
 // *********************************************
 function violationsValidation() {
   if (getViolationsValue() === "No") {
+    formData.householdViolations = "No violations in last 5 years";
     return true;
   } else {
     const fieldsWrapper = document.querySelectorAll(".violation_info_fields");
+
+    const violations = [];
 
     fieldsWrapper.forEach((field) => {
       const driverField = field.querySelector("#householdViolationsDriver");
@@ -981,7 +959,6 @@ function violationsValidation() {
 
       const isValidate = validationFields.every((result) => result === true);
 
-      const violations = [];
       if (isValidate) {
         const violationData = {
           driver: driverField.value,
@@ -992,8 +969,17 @@ function violationsValidation() {
       }
     });
 
+    const checkedYes = document.getElementById(
+      "householdViolationsPreviousClaims--Yes"
+    ).checked;
+
+    // if (checkedYes) {
     formData.householdViolations = violations;
     return fieldsWrapper.length === violations.length;
+    // } else {
+    //   formData.householdViolations = "No violations in last 5 years";
+    //   return true;
+    // }
   }
 }
 
