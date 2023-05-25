@@ -378,11 +378,13 @@ function militaryFormValidation() {
   const isValidate = validationFields.every((result) => result === true);
 
   if (isValidate) {
-    formData.policyHolderFirstName = militaryFirstName?.value;
-    formData.policyHolderLastName = militaryLastName?.value;
-    formData.branchOfService = branchOfService?.value;
-    formData.militaryStatus = militaryStatus?.value;
-    formData.militaryRank = militaryRank?.value;
+    const military = (formData.militaryInfo = {});
+
+    military.firstName = militaryFirstName?.value;
+    military.lastName = militaryLastName?.value;
+    military.branchOfService = branchOfService?.value;
+    military.status = militaryStatus?.value;
+    military.rank = militaryRank?.value;
 
     // Set Name in Multi-step form field
     document.querySelector("#policyHolderFirstName").value =
