@@ -132,6 +132,8 @@ function handleMultiStepForm(step) {
   }
   if (step === formList.indexOf("coverage__history_form")) {
     if (!coverageHistoryValidation()) return false;
+
+    alert("Done");
   }
 
   runVehicleItemsFunctionality();
@@ -1074,6 +1076,7 @@ function physicalDamageValidation() {
 
   return isAllDataValid;
 }
+
 // *********************************************
 //              STEP-4 VALIDATION
 // *********************************************
@@ -1090,11 +1093,23 @@ function coverageHistoryValidation() {
   formData.insuranceCompany = insuranceCompany?.value;
   formData.policyRenewalDate = policyRenewalDate?.value;
 
-  let validationFields = false;
+  let validationFields = true;
 
   if (currentInsuranceCompany?.value === "Other") {
     // if currentInsuranceCompany = "Other" then Insurance Company value id required
-    validationFields = !isValueEmpty(insuranceCompany);
+    const isValid = isValueEmpty(insuranceCompany);
+    if (!isValid) validationFields = false;
+  }
+
+  if (formData.policyRenewalDate.length > 0) {
+    // User Inputted Data then check the value Valid or not
+    const isValid = minValue(
+      policyRenewalDate,
+      10,
+      "Please enter a valid Date"
+    );
+
+    if (!isValid) validationFields = false;
   }
 
   return validationFields;
