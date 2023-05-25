@@ -974,9 +974,36 @@ function violationsValidation() {
 }
 
 function coverageLimitsValidation() {
-  // Form Validation here
+  const bodilyInjuryLiability = document.querySelector(
+    "#bodilyInjuryLiability"
+  );
+  const propertyDamageLiability = document.querySelector(
+    "#propertyDamageLiability"
+  );
+  const medicalPayment = document.querySelector("#medicalPayment");
+  const uninsuredMotoristBodilyInjury = document.querySelector(
+    "#uninsuredMotoristBodilyInjury"
+  );
 
-  return true;
+  const validationFields = [
+    isValueEmpty(bodilyInjuryLiability),
+    isValueEmpty(propertyDamageLiability),
+    isValueEmpty(medicalPayment),
+    isValueEmpty(uninsuredMotoristBodilyInjury),
+  ];
+
+  const isValidate = validationFields.every((result) => result === true);
+
+  if (isValidate) {
+    formData.bodilyInjuryLiability = bodilyInjuryLiability?.value;
+    formData.propertyDamageLiability = propertyDamageLiability?.value;
+    formData.medicalPayment = medicalPayment?.value;
+    formData.uninsuredMotoristBodilyInjury =
+      uninsuredMotoristBodilyInjury?.value;
+  }
+
+  return isValidate;
+  // return true;
 }
 
 function physicalDamageValidation() {
