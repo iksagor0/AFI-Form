@@ -1,31 +1,31 @@
 // DATA
 const formData = {
   eligibilityStatus: "",
-  policyHolderMaritalStatus: null,
+  policyHolder: {},
   mainVehicleInfo: {
-    year: "2023",
-    make: "HP",
-    model: "Proton Saga",
-    type: "Stock",
-    estimateValue: "3000",
-    vehicleStorage: "Private Garage",
-    howVehicleDrive: "lol",
-    NumberOfLicensedDrivers: "2",
-    NumberOfDailyUseVehicle: "2",
+    // year: "2023",
+    // make: "HP",
+    // model: "Proton Saga",
+    // type: "Stock",
+    // estimateValue: "3000",
+    // vehicleStorage: "Private Garage",
+    // howVehicleDrive: "lol",
+    // NumberOfLicensedDrivers: "2",
+    // NumberOfDailyUseVehicle: "2",
     // liabilityData: {},
   },
 
   moreVehiclesInfo: [
-    {
-      year: "33",
-      make: "33",
-      model: "33",
-      type: "Stock",
-      estimateValue: "33",
-      vehicleStorage: "Private Garage",
-      howVehicleDrive: "33",
-      // liabilityData: {},
-    },
+    // {
+    //   year: "33",
+    //   make: "33",
+    //   model: "33",
+    //   type: "Stock",
+    //   estimateValue: "33",
+    //   vehicleStorage: "Private Garage",
+    //   howVehicleDrive: "33",
+    //   // liabilityData: {},
+    // },
   ],
   householdViolations: "No violations in last 5 years",
 };
@@ -525,24 +525,23 @@ function policyholderValidation(step) {
   const isValidate = validationFields.every((result) => result === true);
 
   // if (isValidate) {
-  formData.policyHolderFirstName = policyHolderFirstName?.value;
-  formData.policyHolderLastName = policyHolderLastName?.value;
-  formData.policyHolderSuffix = policyHolderSuffix?.value;
-  formData.policyHolderMailingAddress = policyHolderMailingAddress?.value;
-  formData.policyHolderCity = policyHolderCity?.value;
-  formData.policyHolderState = policyHolderState?.value;
-  formData.policyHolderZip = policyHolderZip?.value;
-  formData.policyHolderSsn = policyHolderSsn?.value.replace(/\D/g, "");
-  formData.policyHolderDob = policyHolderDob?.value;
-  formData.policyHolderGender = policyHolderGender?.value;
-  formData.policyHolderMaritalStatus = policyHolderMaritalStatus?.value;
-  formData.policyHolderEmail = policyHolderEmail?.value;
-  formData.policyHolderPhoneType = policyHolderPhoneType?.value;
-  formData.policyHolderPhoneNumber = policyHolderPhoneNumber?.value.replace(
-    /\D/g,
-    ""
-  );
-  formData.policyHolderResidenceStatus = policyHolderResidenceStatus?.value;
+  const policyHolder = formData.policyHolder;
+
+  policyHolder.firstName = policyHolderFirstName?.value;
+  policyHolder.lastName = policyHolderLastName?.value;
+  policyHolder.suffix = policyHolderSuffix?.value;
+  policyHolder.mailingAddress = policyHolderMailingAddress?.value;
+  policyHolder.city = policyHolderCity?.value;
+  policyHolder.state = policyHolderState?.value;
+  policyHolder.zip = policyHolderZip?.value;
+  policyHolder.ssn = policyHolderSsn?.value.replace(/\D/g, "");
+  policyHolder.dob = policyHolderDob?.value;
+  policyHolder.gender = policyHolderGender?.value;
+  policyHolder.maritalStatus = policyHolderMaritalStatus?.value;
+  policyHolder.email = policyHolderEmail?.value;
+  policyHolder.phoneType = policyHolderPhoneType?.value;
+  policyHolder.phoneNumber = policyHolderPhoneNumber?.value.replace(/\D/g, "");
+  policyHolder.residenceStatus = policyHolderResidenceStatus?.value;
 
   // SHOW SPOUSE INFORMATION FORM, IF HAVE
   const spouseValues = [
@@ -551,12 +550,12 @@ function policyholderValidation(step) {
     "Civil Union Or Domestic Partner",
   ];
 
-  if (spouseValues.includes(formData?.policyHolderMaritalStatus)) {
+  if (spouseValues.includes(formData.policyHolder?.maritalStatus)) {
     if (!formList.includes("spouse_information")) {
       formList.splice(step + 1, 0, "spouse_information");
     }
   }
-  if (!spouseValues.includes(formData?.policyHolderMaritalStatus)) {
+  if (!spouseValues.includes(formData.policyHolder?.maritalStatus)) {
     formList = formList.filter((form) => form != "spouse_information");
     console.log("aaaaaaaaaaaa spouse_information");
   }
