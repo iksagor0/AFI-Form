@@ -3,9 +3,9 @@ const formData = {
   eligibilityStatus: "",
   policyHolder: {},
   mainVehicleInfo: {
-    // year: "2023",
-    // make: "HP",
-    // model: "Proton Saga",
+    year: "",
+    make: "",
+    model: "",
     // type: "Stock",
     // estimateValue: "3000",
     // vehicleStorage: "Private Garage",
@@ -586,16 +586,17 @@ function spouseValidation() {
   const isValidate = validationFields.every((result) => result === true);
 
   if (isValidate) {
-    formData.cohabitantFirstName = cohabitantFirstName?.value;
-    formData.cohabitantLastName = cohabitantLastName?.value;
-    formData.cohabitantSuffix = cohabitantSuffix?.value;
-    formData.cohabitantSsn = cohabitantSsn?.value.replace(/\D/g, "");
-    formData.cohabitantDob = cohabitantDob?.value;
-    formData.cohabitantGender = cohabitantGender?.value;
+    const cohabitant = (formData.cohabitantInfo = {});
+
+    cohabitant.firstName = cohabitantFirstName?.value;
+    cohabitant.lastName = cohabitantLastName?.value;
+    cohabitant.suffix = cohabitantSuffix?.value;
+    cohabitant.ssn = cohabitantSsn?.value.replace(/\D/g, "");
+    cohabitant.dob = cohabitantDob?.value;
+    cohabitant.gender = cohabitantGender?.value;
   }
 
   return isValidate;
-  // return true;
 }
 
 // *********************************************
