@@ -268,6 +268,16 @@ document.querySelectorAll(".SSN").forEach((field) => {
   });
 });
 
+// Dollar Field Pattern
+const dollarField = document.querySelector(".field__input.dollar_field");
+
+dollarField.addEventListener("input", (e) => {
+  if (e.target.value) {
+    let modifiedValue = e.target.value.match(/.{1,3}/g).join(",");
+    e.target.value = `$${modifiedValue}`;
+  }
+});
+
 // Date Validation
 function dateValidation(field, getMaxYear) {
   field?.addEventListener("input", (e) => {
@@ -776,7 +786,7 @@ function addVehicleValidation() {
     vehicle.make = Make?.value;
     vehicle.model = Model?.value;
     vehicle.type = Type?.value;
-    vehicle.estimateValue = EstimatedValue?.value;
+    vehicle.estimateValue = EstimatedValue?.value.replace(/\D/g, "");
     vehicle.vehicleStorage = Storage?.value;
     vehicle.howVehicleDrive = DriveDescription?.value;
     formData.vehicleInfo.numberOfLicensedDrivers = LicensedDriverCount?.value;
@@ -819,7 +829,7 @@ function addMoreVehicleValidation() {
       make: Make?.value,
       model: Model?.value,
       type: Type?.value,
-      estimateValue: EstimatedValue?.value,
+      estimateValue: EstimatedValue?.value.replace(/\D/g, ""),
       vehicleStorage: Storage?.value,
       howVehicleDrive: DriveDescription?.value,
     };
