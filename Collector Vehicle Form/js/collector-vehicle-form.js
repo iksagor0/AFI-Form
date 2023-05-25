@@ -10,7 +10,8 @@ const formData = {
   coverageHistory: {},
 };
 
-const successRedirection = "https://afi.org/";
+// const successRedirection = "https://afi.org/";
+// const successRedirection = "../--Model/thank-you.html";
 
 // Forms
 const multiStepForm = [
@@ -114,6 +115,10 @@ function handleMultiStepForm(step) {
     if (!coverageHistoryValidation()) return false;
 
     alert("Done");
+
+    // document.querySelector("#currentInsuranceCompany").value = "";
+    // Go to Thank You Page
+    // window.location.href = successRedirection;
   }
 
   runVehicleItemsFunctionality();
@@ -522,45 +527,47 @@ function policyholderValidation(step) {
 
   const isValidate = validationFields.every((result) => result === true);
 
-  // if (isValidate) {
-  const policyHolder = formData.policyHolder;
+  if (isValidate) {
+    const policyHolder = formData.policyHolder;
 
-  policyHolder.firstName = policyHolderFirstName?.value;
-  policyHolder.lastName = policyHolderLastName?.value;
-  policyHolder.suffix = policyHolderSuffix?.value;
-  policyHolder.mailingAddress = policyHolderMailingAddress?.value;
-  policyHolder.city = policyHolderCity?.value;
-  policyHolder.state = policyHolderState?.value;
-  policyHolder.zip = policyHolderZip?.value;
-  policyHolder.ssn = policyHolderSsn?.value.replace(/\D/g, "");
-  policyHolder.dob = policyHolderDob?.value;
-  policyHolder.gender = policyHolderGender?.value;
-  policyHolder.maritalStatus = policyHolderMaritalStatus?.value;
-  policyHolder.email = policyHolderEmail?.value;
-  policyHolder.phoneType = policyHolderPhoneType?.value;
-  policyHolder.phoneNumber = policyHolderPhoneNumber?.value.replace(/\D/g, "");
-  policyHolder.residenceStatus = policyHolderResidenceStatus?.value;
+    policyHolder.firstName = policyHolderFirstName?.value;
+    policyHolder.lastName = policyHolderLastName?.value;
+    policyHolder.suffix = policyHolderSuffix?.value;
+    policyHolder.mailingAddress = policyHolderMailingAddress?.value;
+    policyHolder.city = policyHolderCity?.value;
+    policyHolder.state = policyHolderState?.value;
+    policyHolder.zip = policyHolderZip?.value;
+    policyHolder.ssn = policyHolderSsn?.value.replace(/\D/g, "");
+    policyHolder.dob = policyHolderDob?.value;
+    policyHolder.gender = policyHolderGender?.value;
+    policyHolder.maritalStatus = policyHolderMaritalStatus?.value;
+    policyHolder.email = policyHolderEmail?.value;
+    policyHolder.phoneType = policyHolderPhoneType?.value;
+    policyHolder.phoneNumber = policyHolderPhoneNumber?.value.replace(
+      /\D/g,
+      ""
+    );
+    policyHolder.residenceStatus = policyHolderResidenceStatus?.value;
 
-  // SHOW SPOUSE INFORMATION FORM, IF HAVE
-  const spouseValues = [
-    "Married",
-    "Cohabitant",
-    "Civil Union Or Domestic Partner",
-  ];
+    // SHOW SPOUSE INFORMATION FORM, IF HAVE
+    const spouseValues = [
+      "Married",
+      "Cohabitant",
+      "Civil Union Or Domestic Partner",
+    ];
 
-  if (spouseValues.includes(formData.policyHolder?.maritalStatus)) {
-    if (!formList.includes("spouse_information")) {
-      formList.splice(step + 1, 0, "spouse_information");
+    if (spouseValues.includes(formData.policyHolder?.maritalStatus)) {
+      if (!formList.includes("spouse_information")) {
+        formList.splice(step + 1, 0, "spouse_information");
+      }
+    }
+    if (!spouseValues.includes(formData.policyHolder?.maritalStatus)) {
+      formList = formList.filter((form) => form != "spouse_information");
+      console.log("aaaaaaaaaaaa spouse_information");
     }
   }
-  if (!spouseValues.includes(formData.policyHolder?.maritalStatus)) {
-    formList = formList.filter((form) => form != "spouse_information");
-    console.log("aaaaaaaaaaaa spouse_information");
-  }
-  // }
 
-  // return isValidate;
-  return true;
+  return isValidate;
 }
 
 function spouseValidation() {
@@ -796,7 +803,6 @@ function addVehicleValidation() {
     stepCount = summaryFormIndex - 1;
   }
 
-  return true;
   return isValidate;
 }
 
@@ -848,7 +854,6 @@ function addMoreVehicleValidation() {
   }
 
   return isValidate;
-  // return true;
 }
 
 // *********************************************
@@ -919,7 +924,6 @@ function functionalityForEachDamageForm() {
     "physical_damage_form_wrapper"
   );
   const vehicleList = formData.vehicleInfo.vehicles;
-  // const vehicleList = [formData.mainVehicleInfo, ...formData.moreVehiclesInfo];
 
   // Clear DamageFormWrapper Children
   DamageFormWrapper.innerHTML = "";
@@ -933,7 +937,7 @@ function functionalityForEachDamageForm() {
       ".vehicle_name"
     ).innerHTML = `${vehicleData.year} ${vehicleData.make} ${vehicleData.model}`;
 
-    // ------------------------------------------
+    // liability radio fields functionality
     const liabilityYes = clonedItem.querySelector("#liability--Yes");
     const liabilityNo = clonedItem.querySelector("#liability--No");
 
@@ -1001,10 +1005,6 @@ function violationsValidation() {
     // if (checkedYes) {
     formData.householdViolations = violations;
     return fieldsWrapper.length === violations.length;
-    // } else {
-    //   formData.householdViolations = "No violations in last 5 years";
-    //   return true;
-    // }
   }
 }
 
@@ -1037,8 +1037,7 @@ function coverageLimitsValidation() {
     data.uninsuredMotoristBodilyInjury = uninsuredMotoristBodilyInjury?.value;
   }
 
-  // return isValidate;
-  return true;
+  return isValidate;
 }
 
 function physicalDamageValidation() {
