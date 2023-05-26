@@ -458,7 +458,7 @@ textarea.field__input:focus {
 }
 
 /* ************************************************* */
-/*                  FORM FUNCTIONITY                 */
+/*                  FORM FUNCTIONALITY                 */
 /* ************************************************* */
 .form_section {
   display: none;
@@ -598,6 +598,11 @@ textarea.field__input:focus {
   font-size: 1rem !important;
   font-weight: 700 !important;
   margin-bottom: 10px !important;
+  display: none;
+}
+
+.qrf-accordion.qrf-accordion--active .qrf-accordion__heading {
+  display: block;
 }
 
 @media screen and (min-width: 48em) {

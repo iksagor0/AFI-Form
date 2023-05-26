@@ -928,6 +928,16 @@ hasViolationsFields.forEach((fields) => {
   });
 });
 
+// **** coverageLimitsValidation 'qrf-accordion' Functionality ****
+const accordionButtons = document.querySelectorAll(".qrf-accordion__trigger");
+
+accordionButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const accordion = button.closest(".qrf-accordion");
+    accordion.classList.toggle("qrf-accordion--active");
+  });
+});
+
 // ********* FUNCTIONALITY physical_damage_form *********
 function functionalityForEachDamageForm() {
   const damageForm = document.querySelector(".damage__form.__hide");
