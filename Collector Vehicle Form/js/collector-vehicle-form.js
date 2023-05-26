@@ -402,11 +402,8 @@ function militaryFormValidation() {
     military.rank = militaryRank?.value;
 
     // Set Name in Multi-step form field
-    document.querySelector("#policyHolderFirstName").value =
-      formData?.policyHolderFirstName;
-
-    document.querySelector("#policyHolderLastName").value =
-      formData?.policyHolderLastName;
+    document.querySelector("#policyHolderFirstName").value = military.firstName;
+    document.querySelector("#policyHolderLastName").value = military.lastName;
   }
 
   return isValidate;
