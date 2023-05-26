@@ -90,7 +90,7 @@
   width: 100%;
   color: #363636;
   color: var(--color-gray-30);
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.3rem;
 }
 
 .radio__form_section .field-group .field__input:checked+.field__label {
@@ -188,6 +188,10 @@
   background-color: var(--color-gray-10);
   flex-grow: 1;
   padding: 1.5rem 1rem;
+}
+
+.form_container.radio_select {
+  background: none;
 }
 
 .form_container.min_height {
