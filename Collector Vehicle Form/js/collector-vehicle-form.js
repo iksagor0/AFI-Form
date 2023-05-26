@@ -27,6 +27,8 @@ const multiStepForm = [
 const defaultForms = ["radio_select", ...multiStepForm];
 let formList = defaultForms;
 
+// let summaryFormIndex = formList.indexOf("summary__form");
+
 // *********************************************
 //       FORM SUBMISSION AND STEP HANDLING
 // *********************************************
@@ -88,17 +90,17 @@ function handleMultiStepForm(step) {
   }
   if (step === formList.indexOf("add_vehicle__form")) {
     if (!addVehicleValidation()) return false;
-    summaryValidation();
+    summaryFunctionality();
   }
   if (step === formList.indexOf("add_more_vehicle_form")) {
     if (!addMoreVehicleValidation()) return false;
-    summaryValidation();
+    summaryFunctionality();
   }
   if (
     step === formList.indexOf("summary__form") ||
     step === formList.indexOf("summary__form") - 1
   ) {
-    summaryValidation();
+    summaryFunctionality();
   }
   if (step === formList.indexOf("violations__form")) {
     if (!violationsValidation()) return false;
@@ -121,6 +123,8 @@ function handleMultiStepForm(step) {
     // window.location.href = successRedirection;
   }
 
+  // Run after every submission
+  // summaryFormIndex = formList.indexOf("summary__form");
   runVehicleItemsFunctionality();
 
   return true;
@@ -567,6 +571,7 @@ function policyholderValidation(step) {
     }
   }
 
+  return true;
   return isValidate;
 }
 
@@ -607,7 +612,6 @@ function spouseValidation() {
 // *********************************************
 //              STEP-2 FUNCTIONALITY
 // *********************************************
-const summaryFormIndex = formList.indexOf("summary__form");
 let editVehicleIndex = -1;
 
 // ********** "+ Add Vehicle" BUTTON FUNCTIONALITY  ***********
@@ -620,7 +624,8 @@ addVehicle.addEventListener("click", () => {
   fields.forEach((field) => (field.value = ""));
 
   if (!formList.includes("add_more_vehicle_form")) {
-    formList.splice(summaryFormIndex, 0, "add_more_vehicle_form");
+    const summaryIndex = formList.indexOf("summary__form");
+    formList.splice(summaryIndex, 0, "add_more_vehicle_form");
   }
   showActiveForm(stepCount);
 });
@@ -628,8 +633,10 @@ addVehicle.addEventListener("click", () => {
 // ********** FUNCTIONALITY OF VEHICLE FORM : Edit ***********
 const mainVehicleEditBtn = document.getElementById("mainVehicleEditBtn");
 mainVehicleEditBtn.addEventListener("click", () => {
+  const summaryIndex = formList.indexOf("summary__form");
+
   if (!formList.includes("add_vehicle__form")) {
-    formList.splice(summaryFormIndex, 0, "add_vehicle__form");
+    formList.splice(summaryIndex, 0, "add_vehicle__form");
   }
 
   showActiveForm(stepCount);
@@ -652,7 +659,8 @@ function runVehicleItemsFunctionality() {
       editVehicleIndex = itemIndex;
 
       if (!formList.includes("add_more_vehicle_form")) {
-        formList.splice(summaryFormIndex, 0, "add_more_vehicle_form");
+        const summaryIndex = formList.indexOf("summary__form");
+        formList.splice(summaryIndex, 0, "add_more_vehicle_form");
 
         showActiveForm(stepCount);
 
@@ -694,7 +702,7 @@ function runVehicleItemsFunctionality() {
 // *********************************************
 //              STEP-2 VALIDATION
 // *********************************************
-function summaryValidation() {
+function summaryFunctionality() {
   // Check Main Vehicle data OKK or Not
   const mainVehicleFields = document.querySelectorAll(
     ".add_vehicle__form .field__input"
@@ -710,17 +718,21 @@ function summaryValidation() {
   // If Main Vehicle Data OKK then direct show SUMMARY neither show add_vehicle__form
   if (!haveAllMainVehicleValues) {
     if (!formList.includes("add_vehicle__form")) {
-      formList.splice(summaryFormIndex, 0, "add_vehicle__form");
+      const summaryIndex = formList.indexOf("summary__form");
+
+      formList.splice(summaryIndex, 0, "add_vehicle__form");
     }
 
     showActiveForm(stepCount);
   } else {
     formList = formList.filter((form) => form != "add_vehicle__form");
     // show data in Summary
-    const { year, make, model } = formData.vehicleInfo.vehicles[0];
-    document.querySelector(
-      ".quote_request__summary_main_item_info"
-    ).innerText = `${year} ${make} ${model}`;
+    if (formData.vehicleInfo.vehicles.length > 0) {
+      const { year, make, model } = formData.vehicleInfo.vehicles[0];
+      document.querySelector(
+        ".quote_request__summary_main_item_info"
+      ).innerText = `${year} ${make} ${model}`;
+    }
   }
 
   // Add all data to moreVehicles sections
@@ -800,7 +812,8 @@ function addVehicleValidation() {
     formData.vehicleInfo.numberOfDailyUseVehicle = NumberOfDailyUse?.value;
 
     // REDUCE stepCount cz add_vehicle__form will remove from the formList
-    stepCount = summaryFormIndex - 1;
+    const summaryIndex = formList.indexOf("summary__form");
+    stepCount = summaryIndex - 2;
   }
 
   return isValidate;
@@ -849,7 +862,8 @@ function addMoreVehicleValidation() {
     }
 
     // REDUCE stepCount and REMOVE add_more_vehicle_form from the formList
-    stepCount = summaryFormIndex - 1;
+    const summaryIndex = formList.indexOf("summary__form");
+    stepCount = summaryIndex - 2;
     formList = formList.filter((item) => item != "add_more_vehicle_form");
   }
 
@@ -955,7 +969,10 @@ function functionalityForEachDamageForm() {
         ".field__input.damage"
       );
       if (liabilityNo.checked) {
-        disabledFields.forEach((field) => (field.disabled = false));
+        disabledFields.forEach((field) => {
+          field.disabled = false;
+          isValueEmpty(field);
+        });
       } else {
         disabledFields.forEach((field) => (field.disabled = true));
       }
@@ -1132,7 +1149,7 @@ function coverageHistoryValidation() {
     if (!isValid) validationFields = false;
   }
 
-  if (formData.policyRenewalDate.length > 0) {
+  if (policyRenewalDate?.value.length > 0) {
     // User Inputted Data then check the value Valid or not
     const isValid = minValue(
       policyRenewalDate,
