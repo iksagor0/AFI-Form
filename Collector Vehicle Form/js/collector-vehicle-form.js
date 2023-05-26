@@ -24,10 +24,7 @@ const multiStepForm = [
   "coverage__history_form",
 ];
 
-const defaultForms = ["radio_select", ...multiStepForm];
-let formList = defaultForms;
-
-// let summaryFormIndex = formList.indexOf("summary__form");
+let formList = ["radio_select", ...multiStepForm];
 
 // *********************************************
 //       FORM SUBMISSION AND STEP HANDLING
@@ -124,7 +121,6 @@ function handleMultiStepForm(step) {
   }
 
   // Run after every submission
-  // summaryFormIndex = formList.indexOf("summary__form");
   runVehicleItemsFunctionality();
 
   return true;
@@ -359,7 +355,7 @@ function eligibilityValidation() {
     } else if (eligibilityStatus === "parent") {
       formList = ["radio_select", "child_information", ...multiStepForm];
     } else {
-      formList = defaultForms;
+      formList = ["radio_select", ...multiStepForm];
     }
     maxStep = formList.length - 1;
 
