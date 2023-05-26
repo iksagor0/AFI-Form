@@ -564,7 +564,6 @@ function policyholderValidation(step) {
     }
   }
 
-  return true;
   return isValidate;
 }
 
