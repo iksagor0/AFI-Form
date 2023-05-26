@@ -971,10 +971,12 @@ function functionalityForEachDamageForm() {
       if (liabilityNo.checked) {
         disabledFields.forEach((field) => {
           field.disabled = false;
-          isValueEmpty(field);
         });
       } else {
-        disabledFields.forEach((field) => (field.disabled = true));
+        disabledFields.forEach((field) => {
+          inputErrorMessage(field, "", true);
+          field.disabled = true;
+        });
       }
     }
 
