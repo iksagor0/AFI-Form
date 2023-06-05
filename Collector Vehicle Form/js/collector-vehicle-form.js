@@ -325,7 +325,6 @@ function dateValidation(field, getMaxYear) {
       : value[1] + "/" + value[2] + (value[3] ? "/" + value[3] : "");
   });
 }
-
 const policyRenewalDate = document.querySelector("#policyRenewalDate");
 const DOB = document.querySelector("#policyHolderDob");
 const violationsDates = document.querySelectorAll(".householdViolationsDate");

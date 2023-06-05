@@ -121,6 +121,48 @@ document
   });
 
 // Date Validation
+const thisYear = new Date().getFullYear();
+function dateValidation(field, getMaxYear = thisYear) {
+  field?.addEventListener("input", (e) => {
+    let value = e.target.value
+      .replace(/\D/g, "")
+      .match(/(\d{0,2})(\d{0,2})(\d{0,4})/);
+
+    let [fullData, MM, DD, YYYY] = value;
+
+    // Month Validation
+    if (MM.length === 1 && Number(MM) > 1) value[1] = 0 + MM[0];
+    else if (MM.length === 2 && Number(MM) <= 0) value[1] = MM[0];
+    else if (MM.length === 2 && Number(MM) > 12) value[1] = MM[0];
+
+    // Date Validation
+    if (DD.length === 1 && Number(DD) > 3) value[2] = 0 + DD[0];
+    else if (DD.length === 2 && Number(DD) <= 0) value[2] = DD[0];
+    else if (DD.length === 2 && Number(DD) > 31) value[2] = DD[0];
+    else if (DD.length === 2 && Number(MM) == 2 && Number(DD) > 29)
+      value[2] = DD[0];
+    else if ([4, 6, 9, 11].includes(Number(MM)) && Number(DD) > 30)
+      value[2] = DD[0];
+
+    // Year validation
+    const maxYear = String(getMaxYear);
+    // const maxYear = String(new Date().getFullYear() + 2);
+
+    if (Number(YYYY) <= 0) value[3] = "";
+    else if (YYYY.length === 1 && Number(YYYY) > 2) value[3] = "";
+    else if (YYYY.length === 2 && Number(YYYY) > 20) value[3] = YYYY[0];
+    else if (YYYY.length === 2 && Number(YYYY) < 19) value[3] = YYYY[0];
+    else if (YYYY.length === 3 && Number(YYYY) > Number(maxYear.slice(0, 3)))
+      value[3] = YYYY.slice(0, 2);
+    else if (YYYY.length === 4 && Number(YYYY) > Number(maxYear))
+      value[3] = YYYY.slice(0, 3);
+
+    // Result
+    e.target.value = !value[2]
+      ? value[1]
+      : value[1] + "/" + value[2] + (value[3] ? "/" + value[3] : "");
+  });
+}
 
 // *********************************************
 //              FORM VALIDATION
@@ -194,22 +236,6 @@ function validateForm(formClassName) {
 // *********************************************
 //            COMMON FUNCTIONALITIES
 // *********************************************
-// if currentInsuranceCompany = "Other" then Insurance Company field will show
-const currentInsuranceCompany = document.querySelector(
-  "#currentInsuranceCompany"
-);
-
-currentInsuranceCompany?.addEventListener("change", () => {
-  if (currentInsuranceCompany?.value === "Other") {
-    document
-      .querySelector(".multi__step_4 .insuranceCompany")
-      ?.classList.remove("conditionally_hidden_field");
-  } else {
-    document
-      .querySelector(".multi__step_4 .insuranceCompany")
-      ?.classList.add("conditionally_hidden_field");
-  }
-});
 
 // KeyPress only remove field Error Message
 document.querySelectorAll(".form_container .field")?.forEach((fieldWrapper) => {
@@ -237,14 +263,38 @@ document.querySelectorAll(".field__input")?.forEach((input) => {
   });
 });
 
-// STEP 4 Form Functionality
+// ***** STEP 4 Form Functionality *****
 // Military Rank should be disabled if branchOfService value none
 const branchOfService = document.getElementById("branchOfService");
-branchOfService.addEventListener("change", () => {
-  const militaryRank = document.getElementById("militaryRank");
-  if (Boolean(branchOfService?.value)) {
-    militaryRank.disabled = false;
+
+if (branchOfService) {
+  branchOfService?.addEventListener("change", () => {
+    const militaryRank = document.getElementById("militaryRank");
+    if (Boolean(branchOfService?.value)) {
+      militaryRank.disabled = false;
+    } else {
+      militaryRank.disabled = true;
+    }
+  });
+}
+
+// if currentInsuranceCompany = "Other" then Insurance Company field will show
+const currentInsuranceCompany = document.querySelector(
+  "#currentInsuranceCompany"
+);
+
+currentInsuranceCompany?.addEventListener("change", () => {
+  if (currentInsuranceCompany?.value === "Other") {
+    document
+      .querySelector(".multi__step_4 .insuranceCompany")
+      ?.classList.remove("conditionally_hidden_field");
   } else {
-    militaryRank.disabled = true;
+    document
+      .querySelector(".multi__step_4 .insuranceCompany")
+      ?.classList.add("conditionally_hidden_field");
   }
 });
+
+// STEP 4 - Policy Renewal Data Validation
+const policyRenewalDate = document.querySelector("#policyRenewalDate");
+if (policyRenewalDate) dateValidation(policyRenewalDate, thisYear + 2);
