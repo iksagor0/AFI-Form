@@ -597,7 +597,7 @@ branchOfService.addEventListener("change", () => {
 //   }
 // }
 
-// // Post/Save Data
+// Post/Save Data
 // function saveData(postURL, data) {
 //   fetch(postURL, {
 //     method: "POST",
@@ -612,8 +612,8 @@ branchOfService.addEventListener("change", () => {
 // // saveData(URL, formData);
 
 // // Testing
-// function validateForm(formName) {
-//   const allFields = document.querySelectorAll(formName + " .field__input");
+// function validateForm(formClassName) {
+//   const allFields = document.querySelectorAll(formClassName + " .field__input");
 
 //   const classAndValidator = [
 //     { class: "email", validator: emailValidation },
