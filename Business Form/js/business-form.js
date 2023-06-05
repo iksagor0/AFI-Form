@@ -596,3 +596,53 @@ branchOfService.addEventListener("change", () => {
 //     // branchOfServiceElement?.parentElement.classList.remove("loading__field");
 //   }
 // }
+
+// // Post/Save Data
+// function saveData(postURL, data) {
+//   fetch(postURL, {
+//     method: "POST",
+//     body: data,
+//   })
+//     .then((res) => res.json())
+//     .then((resData) => console.log(resData))
+//     .catch((err) => console.error(err));
+// }
+
+// const URL = "https://jsonplaceholder.typicode.com/posts";
+// // saveData(URL, formData);
+
+// // Testing
+// function validateForm(formName) {
+//   const allFields = document.querySelectorAll(formName + " .field__input");
+
+//   const classAndValidator = [
+//     { class: "email", validator: emailValidation },
+//     { class: "phone", validator: phoneValidation },
+//     { class: "alphabeticOnly", validator: alphabeticOnly },
+//     { class: "required", validator: isValueEmpty },
+//   ];
+
+//   const checkValidation = [];
+
+//   allFields.forEach((field) => {
+//     classAndValidator.forEach((checker) => {
+//       if (field.classList.contains(checker.class)) {
+//         checkValidation.push(checker.validator(field));
+//       }
+
+//       if (field.classList.contains("zip")) {
+//         minValue(field, 5, "Please enter a valid Zip code");
+//       }
+//     });
+//   });
+
+//   const isValidate = checkValidation.every((result) => result === true);
+
+//   if (isValidate) {
+//     allFields.forEach((field) => {
+//       formData[field?.id] = field.value;
+//     });
+//   }
+
+//   return isValidate;
+// }
