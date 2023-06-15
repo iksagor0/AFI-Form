@@ -444,6 +444,7 @@ input.field__input:focus {
   display: none;
 }
 
+.form_section.active_form,
 .form_section.active_section {
   display: block;
 }

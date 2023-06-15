@@ -45,7 +45,7 @@
     <!-- CSS -->
     <link rel="stylesheet" href="../Assets/common.css" />
     <link rel="stylesheet" href="../Assets/form.css" />
-    <link rel="stylesheet" href="../Assets/collector-vehicle.css" />
+    <!-- <link rel="stylesheet" href="../Assets/collector-vehicle.css" /> -->
   </head>
 
   <body class="body">
@@ -61,7 +61,7 @@
     <!-- ************************************************ -->
     <!------------------- Radio Section -------------------->
     <!-- ************************************************ -->
-    <section class="form_section radio_select form_container active_form">
+    <section class="form_section radio_select form_container active_section">
       <div class="container">
         <section class="heading_text_section">
           <h1 class="quote_request_heading">Eligibility For Insurance</h1>
@@ -638,13 +638,11 @@
         <!-- ******** STEP ******** -->
         <div class="step__container">
           <ul class="steps__list">
-            <li class="step active_step" data-text="Driver Information">1</li>
+            <li class="step active_step" data-text="Policy Holder Info">1</li>
             <li class="line"></li>
-            <li class="step" data-text="Vehicle">2</li>
+            <li class="step" data-text="Property to be Quoted">2</li>
             <li class="line"></li>
-            <li class="step" data-text="Coverages">3</li>
-            <li class="line"></li>
-            <li class="step" data-text="Quote">4</li>
+            <li class="step" data-text="Quote">3</li>
           </ul>
         </div>
 
@@ -1091,13 +1089,11 @@
         <!-- ******** STEP ******** -->
         <div class="step__container">
           <ul class="steps__list">
-            <li class="step active_step" data-text="Driver Information">1</li>
+            <li class="step active_step" data-text="Policy Holder Info">1</li>
             <li class="line"></li>
-            <li class="step" data-text="Vehicle">2</li>
+            <li class="step" data-text="Property to be Quoted">2</li>
             <li class="line"></li>
-            <li class="step" data-text="Coverages">3</li>
-            <li class="line"></li>
-            <li class="step" data-text="Quote">4</li>
+            <li class="step" data-text="Quote">3</li>
           </ul>
         </div>
 
@@ -1265,102 +1261,21 @@
     <!-- ************************************************ -->
     <!---------------------- MULTI-STEP 2 ------------------>
     <!-- ************************************************ -->
-    <!-- VEHICLE SUMMARY -->
-    <section class="form_section multi__step_2 summary__form">
-      <div class="container">
-        <!-- ******** STEP ******** -->
-        <div class="step__container">
-          <ul class="steps__list">
-            <li class="step active_step" data-text="Driver Information">1</li>
-            <li class="line"></li>
-
-            <li class="step active_step" data-text="Vehicle">2</li>
-            <li class="line"></li>
-
-            <li class="step" data-text="Coverages">3</li>
-            <li class="line"></li>
-
-            <li class="step" data-text="Quote">4</li>
-          </ul>
-        </div>
-
-        <div class="quote_request__section_wrapper">
-          <div class="form_container">
-            <h2 class="quote_request_heading">Your Policy Has 2 Vehicles</h2>
-            <!-- Summary -->
-            <div class="quote_request__summary">
-              <!-- Main Vehicle -->
-              <div
-                class="quote_request__summary_item quote_request__summary_main_item"
-              >
-                <p
-                  class="quote_request__summary_item_info quote_request__summary_main_item_info"
-                ></p>
-                <div class="quote_request__summary_item_actions delete_edit">
-                  <button
-                    id="mainVehicleEditBtn"
-                    class="button-bare"
-                    type="button"
-                  >
-                    Edit
-                  </button>
-                </div>
-              </div>
-
-              <!-- Demo Vehicles Items -->
-              <div class="quote_request__summary_item demoItem __hide">
-                <p class="quote_request__summary_item_info"></p>
-                <div class="quote_request__summary_item_actions delete_edit">
-                  <button
-                    id="deleteBtn"
-                    class="button-bare deleteBtn"
-                    type="button"
-                  >
-                    Delete
-                  </button>
-                  <button id="editBtn" class="button-bare" type="button">
-                    Edit
-                  </button>
-                </div>
-                <div class="quote_request__summary_item_actions yes_no __hide">
-                  <span>Are you sure?</span>
-                  <button id="deleteYes" class="button-bare" type="button">
-                    Yes
-                  </button>
-                  <button id="deleteNo" class="button-bare" type="button">
-                    No
-                  </button>
-                </div>
-              </div>
-              <!-- More Vehicles Items -->
-              <div id="moreVehicles"></div>
-            </div>
-
-            <!-- Add Button -->
-            <button id="addVehicle" class="button" type="button">
-              + Add Vehicle
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- MAIN VEHICLE FORM -->
-    <section class="form_section multi__step_2 add_vehicle__form">
+    <section class="form_section multi__step_2 property_quoted_form">
       <div class="container">
         <!-- ******** STEP ******** -->
         <div class="step__container">
           <ul class="steps__list">
-            <li class="step active_step" data-text="Driver Information">1</li>
+            <li class="step active_step" data-text="Policy Holder Info">1</li>
             <li class="line"></li>
 
-            <li class="step active_step" data-text="Vehicle">2</li>
+            <li class="step active_step" data-text="Property to be Quoted">
+              2
+            </li>
             <li class="line"></li>
 
-            <li class="step" data-text="Coverages">3</li>
-            <li class="line"></li>
-
-            <li class="step" data-text="Quote">4</li>
+            <li class="step" data-text="Quote">3</li>
           </ul>
         </div>
 
@@ -1588,21 +1503,20 @@
     </section>
 
     <!-- ADD MORE VEHICLE FORM -->
-    <section class="form_section multi__step_2 add_more_vehicle_form">
+    <section class="form_section multi__step_2 property_overview_form">
       <div class="container">
         <!-- ******** STEP ******** -->
         <div class="step__container">
           <ul class="steps__list">
-            <li class="step active_step" data-text="Driver Information">1</li>
+            <li class="step active_step" data-text="Policy Holder Info">1</li>
             <li class="line"></li>
 
-            <li class="step active_step" data-text="Vehicle">2</li>
+            <li class="step active_step" data-text="Property to be Quoted">
+              2
+            </li>
             <li class="line"></li>
 
-            <li class="step" data-text="Coverages">3</li>
-            <li class="line"></li>
-
-            <li class="step" data-text="Quote">4</li>
+            <li class="step" data-text="Quote">3</li>
           </ul>
         </div>
 
@@ -1776,688 +1690,76 @@
     <!-- ************************************************ -->
     <!---------------------- MULTI-STEP 3 ------------------>
     <!-- ************************************************ -->
-    <section class="form_section multi__step_3 violations__form">
+    <!-- ADD MORE VEHICLE FORM -->
+    <section class="form_section multi__step_2 property_details_form">
       <div class="container">
-        <!-- ******** STEP ******** -->
-        <div class="step__container">
-          <ul class="steps__list">
-            <li class="step active_step" data-text="Driver Information">1</li>
-            <li class="line"></li>
-
-            <li class="step active_step" data-text="Vehicle">2</li>
-            <li class="line"></li>
-
-            <li class="step active_step" data-text="Coverages">3</li>
-            <li class="line"></li>
-
-            <li class="step" data-text="Quote">4</li>
-          </ul>
-        </div>
-
-        <div class="quote_request__section_wrapper">
-          <!-- ******* FORM  *******-->
-          <div class="form_container">
-            <h2 class="quote_request_heading">Household Violations</h2>
-
-            <!-- Has Any Violation -->
-            <div class="fields-row has_violation_row">
-              <div class="field field--full has_violation_inputs_container">
-                <div class="field__label-wrapper">
-                  <label
-                    class="field__label"
-                    for="householdViolationsPreviousClaims"
-                    >Has any driver had any moving violations, accidents, or
-                    auto insurance claims in the last 5 years?</label
-                  >
-                </div>
-                <div class="field-group has_violation_inputs">
-                  <div class="field__input-wrapper">
-                    <input
-                      class="field__input"
-                      id="householdViolationsPreviousClaims--Yes"
-                      name="householdViolationsPreviousClaims"
-                      type="radio"
-                      value="Yes"
-                    /><label
-                      class="field__label"
-                      for="householdViolationsPreviousClaims--Yes"
-                      >Yes</label
-                    >
-                  </div>
-
-                  <div class="field__input-wrapper">
-                    <input
-                      class="field__input"
-                      id="householdViolationsPreviousClaims--No"
-                      name="householdViolationsPreviousClaims"
-                      type="radio"
-                      value="No"
-                    /><label
-                      class="field__label"
-                      for="householdViolationsPreviousClaims--No"
-                      >No</label
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Driver, Type, Date -->
-            <div id="violation_info_fields_wrapper">
-              <div class="fields-row violation_info_fields">
-                <div class="field">
-                  <div class="field__label-wrapper">
-                    <label class="field__label" for="householdViolationsDriver"
-                      >Driver</label
-                    >
-                  </div>
-                  <div class="field__input-wrapper">
-                    <input
-                      class="field__input alphabeticOnly"
-                      id="householdViolationsDriver"
-                      name="householdViolationsDriver"
-                      type="text"
-                      pattern="^[a-zA-Z]+$"
-                      maxlength="50"
-                      placeholder=""
-                      value=""
-                    />
-                  </div>
-                </div>
-                <div class="field field--xlarge">
-                  <div class="field__label-wrapper">
-                    <label class="field__label" for="householdViolationsType"
-                      >Type</label
-                    >
-                  </div>
-                  <div class="field__input-wrapper">
-                    <select
-                      class="field__input"
-                      id="householdViolationsType"
-                      name="householdViolationsType"
-                      type="select"
-                    >
-                      <option value="">Choose One</option>
-                      <option
-                        value="Accident - At Fault with payout more than $1000"
-                      >
-                        Accident - At Fault with payout more than $1000
-                      </option>
-                      <option
-                        value="Accident - At Fault with payout under $1000"
-                      >
-                        Accident - At Fault with payout under $1000
-                      </option>
-                      <option value="Accident - Not at fault">
-                        Accident - Not at fault
-                      </option>
-                      <option value="Careless or Improper Operation">
-                        Careless or Improper Operation
-                      </option>
-                      <option
-                        value="Comprehensive Claim $1000 or less or Weather Claim"
-                      >
-                        Comprehensive Claim $1000 or less or Weather Claim
-                      </option>
-                      <option value="Comprehensive Claim over $1000">
-                        Comprehensive Claim over $1000
-                      </option>
-                      <option value="Driving Under Suspension">
-                        Driving Under Suspension
-                      </option>
-                      <option value="Driving While Intoxicated/Under Influence">
-                        Driving While Intoxicated/Under Influence
-                      </option>
-                      <option value="Failing to Yield">Failing to Yield</option>
-                      <option value="Felony of Motor Vehicle / Vehicle Theft">
-                        Felony of Motor Vehicle / Vehicle Theft
-                      </option>
-                      <option value="Fleeing from Police">
-                        Fleeing from Police
-                      </option>
-                      <option value="Following Vehicle Too Closely">
-                        Following Vehicle Too Closely
-                      </option>
-                      <option value="Improper Lane Changing or Passing">
-                        Improper Lane Changing or Passing
-                      </option>
-                      <option value="Improper Turning">Improper Turning</option>
-                      <option value="Leaving the Scene of an Accident">
-                        Leaving the Scene of an Accident
-                      </option>
-                      <option value="License or Credentials Violation">
-                        License or Credentials Violation
-                      </option>
-                      <option value="Minor Moving Violation">
-                        Minor Moving Violation
-                      </option>
-                      <option value="Open Container">Open Container</option>
-                      <option value="Racing">Racing</option>
-                      <option value="Reckless Driving">Reckless Driving</option>
-                      <option value="Serious License Violation">
-                        Serious License Violation
-                      </option>
-                      <option value="Speeding">Speeding</option>
-                      <option value="Speeding 1-10 MPH in 55-70 MPH Zone">
-                        Speeding 1-10 MPH in 55-70 MPH Zone
-                      </option>
-                      <option value="Speeding 1-7 MPH in 30-54 MPH Zone">
-                        Speeding 1-7 MPH in 30-54 MPH Zone
-                      </option>
-                      <option value="Traffic Device or Sign">
-                        Traffic Device or Sign
-                      </option>
-                      <option value="Vehicle Use without Owner's Consent">
-                        Vehicle Use without Owner's Consent
-                      </option>
-                      <option value="Vehicular Homicide">
-                        Vehicular Homicide
-                      </option>
-                      <option value="Wrong Way on a One-Way Street">
-                        Wrong Way on a One-Way Street
-                      </option>
-                    </select>
-                  </div>
-                </div>
-                <div class="field field--large">
-                  <div class="field__label-wrapper">
-                    <label class="field__label" for="householdViolationsDate"
-                      >Date</label
-                    >
-                  </div>
-                  <div class="field__input-wrapper">
-                    <input
-                      class="field__input householdViolationsDate"
-                      id="householdViolationsDate"
-                      name="householdViolationsDate"
-                      type="text"
-                      pattern="\d{1,2}/\d{1,2}/\d{4}"
-                      placeholder="MM/DD/YYYY"
-                      value=""
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Add Violation Button -->
-            <button
-              id="add_violation_btn"
-              class="button add_violation_btn"
-              type="button"
-            >
-              Add Another Violation
-            </button>
-          </div>
-
-          <!-- ******* ASIDE  *******-->
-          <aside class="quote_request_aside">
-            <h2 class="quote_request_sidebar__heading">Helpful Tips</h2>
-            <div class="quote_request_sidebar__content">
-              <div class="quote_request_sidebar__item">
-                <h3 class="quote_request_sidebar__item_heading">
-                  Which Accidents or Violations Do I Include?
-                </h3>
-                <p class="quote_request_sidebar__item_description">
-                  To ensure quote accuracy, it is important to include all
-                  accidents (at-fault and not at-fault) as well as any moving
-                  violations for all drivers for a 5 year period.
-                </p>
-              </div>
-
-              <div class="quote_request_sidebar__item">
-                <h3 class="quote_request_sidebar__item_heading">
-                  What If I Don't Remember the Date?
-                </h3>
-                <p class="quote_request_sidebar__item_description">
-                  What If I Don't Remember the Date? If you are unsure of the
-                  exact accident or violation date, simply enter the year that
-                  the incident occurred (e.g. 01/01/2020).
-                </p>
-              </div>
-            </div>
-          </aside>
-        </div>
-      </div>
-    </section>
-
-    <section class="form_section multi__step_3 coverage_limits_form">
-      <div class="container">
-        <!-- ******** STEP ******** -->
-        <div class="step__container">
-          <ul class="steps__list">
-            <li class="step active_step" data-text="Driver Information">1</li>
-            <li class="line"></li>
-
-            <li class="step active_step" data-text="Vehicle">2</li>
-            <li class="line"></li>
-
-            <li class="step active_step" data-text="Coverages">3</li>
-            <li class="line"></li>
-
-            <li class="step" data-text="Quote">4</li>
-          </ul>
-        </div>
-
-        <h1 class="quote_request_heading">
-          Your Overall Policy Coverage Limits
-        </h1>
-        <div class="quote_request__section_wrapper">
-          <!-- ******* FORM  *******-->
-          <div class="form_container">
-            <div class="quote-request__section-columns">
-              <div
-                class="quote-request__fields quote-request__fields--separated"
-              >
-                <div class="fields-row">
-                  <div class="field extra_message_margin">
-                    <div class="field__label-wrapper">
-                      <label class="field__label" for="bodilyInjuryLiability"
-                        >Bodily Injury Liability<span class="field__sublabel"
-                          >If you are legally liable for injuries to others in
-                          an accident, your policy will pay up to this amount
-                        </span></label
-                      >
-                      <div class="qrf-accordion">
-                        <button
-                          class="button-bare qrf-accordion__trigger"
-                          type="button"
-                        >
-                          <span class="qrf_accordion">+</span> Learn More
-                        </button>
-
-                        <h5 class="qrf-accordion__heading">
-                          Coverage on your Collector Vehicle policy should match
-                          the coverage on your policy for your regular use
-                          vehicles.
-                        </h5>
-                      </div>
-                    </div>
-                    <div class="field__input-wrapper">
-                      <select
-                        class="field__input"
-                        id="bodilyInjuryLiability"
-                        name="bodilyInjuryLiability"
-                        type="select"
-                      >
-                        <option value="">Choose One</option>
-                        <option value="State Minimum">State Minimum</option>
-                        <option value="25/50">$25,000/$50,000</option>
-                        <option value="50/100">$50,000/$100,000</option>
-                        <option value="100/300">$100,000/$300,000</option>
-                        <option value="250/500">$250,000/$500,000</option>
-                      </select>
-                      <p class="field__note">Per Person/Per Accident</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="fields-row">
-                  <div class="field extra_message_margin">
-                    <div class="field__label-wrapper">
-                      <label class="field__label" for="propertyDamageLiability"
-                        >Property Damage Liability<span class="field__sublabel"
-                          >If you damage someone else's vehicle or property in
-                          an auto accident, your policy will pay up to this
-                          amount</span
-                        ></label
-                      >
-                      <div class="qrf-accordion">
-                        <button
-                          class="button-bare qrf-accordion__trigger"
-                          type="button"
-                        >
-                          + Learn More
-                        </button>
-
-                        <h5 class="qrf-accordion__heading">
-                          Coverage on your Collector Vehicle policy should match
-                          the coverage on your policy for your regular use
-                          vehicles.
-                        </h5>
-                      </div>
-                    </div>
-                    <div class="field__input-wrapper">
-                      <select
-                        class="field__input"
-                        id="propertyDamageLiability"
-                        name="propertyDamageLiability"
-                        type="select"
-                      >
-                        <option value="">Choose One</option>
-                        <option value="10,000">$10,000</option>
-                        <option value="25,000">$25,000</option>
-                        <option value="50,000">$50,000</option>
-                        <option value="100,000">$100,000</option>
-                      </select>
-                      <p class="field__note">Per Accident</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="fields-row">
-                  <div class="field extra_message_margin">
-                    <div class="field__label-wrapper">
-                      <label class="field__label" for="medicalPayment"
-                        >Medical Payments<span class="field__sublabel"
-                          >If you or your passengers are injured in an auto
-                          accident, your policy will pay up to this amount
-                        </span></label
-                      >
-                      <div class="qrf-accordion">
-                        <button
-                          class="button-bare qrf-accordion__trigger"
-                          type="button"
-                        >
-                          + Learn More
-                        </button>
-
-                        <h5 class="qrf-accordion__heading">
-                          Coverage on your Collector Vehicle policy should match
-                          the coverage on your policy for your regular use
-                          vehicles.
-                        </h5>
-                      </div>
-                    </div>
-                    <div class="field__input-wrapper">
-                      <select
-                        class="field__input"
-                        id="medicalPayment"
-                        name="medicalPayment"
-                        type="select"
-                      >
-                        <option value="">Choose One</option>
-                        <option value="None">None (Reject)</option>
-                        <option value="1,000">$1,000</option>
-                        <option value="2,000">$2,000</option>
-                        <option value="5,000">$5,000</option>
-                        <option value="10,000">$10,000</option>
-                      </select>
-                      <p class="field__note">Per Person</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="fields-row">
-                  <div class="field extra_message_margin">
-                    <div class="field__label-wrapper">
-                      <label
-                        class="field__label"
-                        for="uninsuredMotoristBodilyInjury"
-                        >Uninsured Motorist Bodily Injury<span
-                          class="field__sublabel"
-                          >If an uninsured driver injures you or a family
-                          member, your policy will pay up to this amount</span
-                        ></label
-                      >
-                      <div class="qrf-accordion">
-                        <button
-                          class="button-bare qrf-accordion__trigger"
-                          type="button"
-                        >
-                          + Learn More
-                        </button>
-
-                        <h5 class="qrf-accordion__heading">
-                          Coverage on your Collector Vehicle policy should match
-                          the coverage on your policy for your regular use
-                          vehicles.
-                        </h5>
-                      </div>
-                    </div>
-                    <div class="field__input-wrapper">
-                      <select
-                        class="field__input"
-                        id="uninsuredMotoristBodilyInjury"
-                        name="uninsuredMotoristBodilyInjury"
-                        type="select"
-                      >
-                        <option value="">Choose One</option>
-                        <option value="None">None (Reject)</option>
-                        <option value="State Minimum">State Minimum</option>
-                        <option value="25/50">$25,000/$50,000</option>
-                        <option value="50/100">$50,000/$100,000</option>
-                        <option value="100/300">$100,000/$300,000</option>
-                        <option value="250/500">$250,000/$500,000</option>
-                      </select>
-                      <p class="field__note">Per Person/Per Accident</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="form_section multi__step_3 physical_damage_form">
-      <div class="container">
-        <!-- ******** STEP ******** -->
-        <div class="step__container">
-          <ul class="steps__list">
-            <li class="step active_step" data-text="Driver Information">1</li>
-            <li class="line"></li>
-
-            <li class="step active_step" data-text="Vehicle">2</li>
-            <li class="line"></li>
-
-            <li class="step active_step" data-text="Coverages">3</li>
-            <li class="line"></li>
-
-            <li class="step" data-text="Quote">4</li>
-          </ul>
-        </div>
-
-        <div class="quote_request__section_wrapper">
-          <div class="form_container">
-            <section class="damage__form __hide">
-              <h1 class="quote_request_heading extra_mb">
-                Physical Damage Coverage for
-                <span class="vehicle_name"><!-- 2020 Toyota V-22 --></span>
-              </h1>
-
-              <!-- Comprehensive Deductible -->
-              <div class="fields-row">
-                <div class="field field--full">
-                  <div class="field__label-wrapper gap_30">
-                    <label class="field__label" for="empty"
-                      >Liability Only Coverage</label
-                    >
-                  </div>
-                  <div class="field-group flex_gap_10">
-                    <div class="field__input-wrapper">
-                      <input
-                        class="field__input"
-                        id="liability--Yes"
-                        name="liability"
-                        type="radio"
-                        value="Yes"
-                        checked
-                      /><label class="field__label" for="liability--Yes"
-                        >Yes</label
-                      >
-                    </div>
-
-                    <div class="field__input-wrapper">
-                      <input
-                        class="field__input"
-                        id="liability--No"
-                        name="liability"
-                        type="radio"
-                        value="No"
-                      /><label class="field__label" for="liability--No"
-                        >No</label
-                      >
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Collision Deductible -->
-              <div class="fields-row">
-                <div class="field field--xlarge">
-                  <div class="field__label-wrapper">
-                    <label
-                      class="field__label"
-                      for="vehicleComprehensiveDeductible"
-                      >Comprehensive Deductible</label
-                    >
-                  </div>
-                  <div class="field__input-wrapper">
-                    <select
-                      class="field__input damage"
-                      id="vehicleComprehensiveDeductible"
-                      name="vehicleComprehensiveDeductible"
-                      type="select"
-                      disabled
-                    >
-                      <option value="">Choose One</option>
-                      <option value="100">$100</option>
-                      <option value="250">$250</option>
-                      <option value="500">$500</option>
-                      <option value="1000">$1,000</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="field field--xlarge">
-                  <div class="field__label-wrapper">
-                    <label class="field__label" for="vehicleCollisionDeductible"
-                      >Collision Deductible</label
-                    >
-                  </div>
-                  <div class="field__input-wrapper">
-                    <select
-                      class="field__input damage"
-                      id="vehicleCollisionDeductible"
-                      name="vehicleCollisionDeductible"
-                      type="select"
-                      disabled
-                    >
-                      <option value="">Choose One</option>
-                      <option value="No Coverage">No Coverage</option>
-                      <option value="100">$100</option>
-                      <option value="250">$250</option>
-                      <option value="500">$500</option>
-                      <option value="1000">$1,000</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            <div id="physical_damage_form_wrapper"></div>
-          </div>
-
-          <!-- ******* ASIDE  *******-->
-          <aside class="quote_request_aside">
-            <h2 class="quote_request_sidebar__heading">Helpful Tips</h2>
-            <div class="quote_request_sidebar__content">
-              <div class="quote_request_sidebar__item">
-                <h3 class="quote_request_sidebar__item_heading">
-                  What Is Comprehensive Coverage?
-                </h3>
-                <p class="quote_request_sidebar__item_description">
-                  Comprehensive Coverage, also known as "Other Than Collision"
-                  Coverage, provides coverage for your vehicle due to damage
-                  caused from theft, vandalism, fire, weather, or colliding with
-                  an animal.
-                </p>
-              </div>
-
-              <div class="quote_request_sidebar__item">
-                <h3 class="quote_request_sidebar__item_heading">
-                  What Is Collision Coverage?
-                </h3>
-                <p class="quote_request_sidebar__item_description">
-                  Collision Coverage pays for damage to your vehicle due to
-                  colliding with another vehicle or object other than an animal.
-                </p>
-              </div>
-            </div>
-          </aside>
-        </div>
-      </div>
-    </section>
-
-    <!-- ************************************************ -->
-    <!---------------------- MULTI-STEP 4 ------------------>
-    <!-- ************************************************ -->
-    <section class="form_section multi__step_4 coverage__history_form">
-      <div class="container">
-        <!-- <h1 class="quote_request_heading">Military Information</h1> -->
-
         <!-- ******** STEP ******** -->
         <div class="step__container">
           <ul class="steps__list">
             <li class="step active_step" data-text="Policy Holder Info">1</li>
             <li class="line"></li>
 
-            <li class="step active_step" data-text="Business Info">2</li>
+            <li class="step active_step" data-text="Property to be Quoted">
+              2
+            </li>
             <li class="line"></li>
 
-            <li class="step active_step" data-text="Coverages">3</li>
-            <li class="line"></li>
-
-            <li class="step active_step" data-text="Quote">4</li>
+            <li class="step" data-text="Quote">3</li>
           </ul>
         </div>
 
         <div class="quote_request__section_wrapper">
           <!-- ******* FORM  *******-->
           <div class="form_container">
-            <h2 class="quote_request_heading">Coverage History</h2>
+            <h2 class="quote_request_heading">Vehicle Information</h2>
 
-            <!-- Current Insurance Company -->
+            <!-- Year, Make, Model -->
             <div class="fields-row">
-              <div class="field field--xlarge">
+              <div class="field field--small">
                 <div class="field__label-wrapper">
-                  <label class="field__label" for="currentInsuranceCompany"
-                    >Current Insurance Company</label
-                  >
+                  <label class="field__label" for="moreVehicleYear">Year</label>
                 </div>
                 <div class="field__input-wrapper">
-                  <select
-                    class="field__input"
-                    id="currentInsuranceCompany"
-                    name="currentInsuranceCompany"
-                    type="select"
-                  >
-                    <option value="">Choose One</option>
-                    <option value="None">None</option>
-                    <option value="AIG">AIG</option>
-                    <option value="Allied">Allied</option>
-                    <option value="Allstate">Allstate</option>
-                    <option value="American Family">American Family</option>
-                    <option value="Chubb">Chubb</option>
-                    <option value="Farmers">Farmers</option>
-                    <option value="Geico">Geico</option>
-                    <option value="Hartford">Hartford</option>
-                    <option value="Liberty Mutual">Liberty Mutual</option>
-                    <option value="Nationwide">Nationwide</option>
-                    <option value="Progressive">Progressive</option>
-                    <option value="Safeco">Safeco</option>
-                    <option value="State Farm">State Farm</option>
-                    <option value="Travelers">Travelers</option>
-                    <option value="USAA">USAA</option>
-                    <option value="Other">Other</option>
-                  </select>
-                  <p class="field__note">Optional</p>
+                  <input
+                    class="field__input numberOnly"
+                    id="moreVehicleYear"
+                    name="moreVehicleYear"
+                    type="text"
+                    maxlength="4"
+                    placeholder=""
+                    value=""
+                  />
                 </div>
               </div>
-
-              <!-- Extent by select others -->
-              <div
-                class="field field--extended-label insuranceCompany conditionally_hidden_field"
-              >
+              <div class="field">
                 <div class="field__label-wrapper">
-                  <label class="field__label" for="insuranceCompany"
-                    >Insurance Company</label
+                  <label class="field__label" for="moreVehicleMake">Make</label>
+                </div>
+                <div class="field__input-wrapper">
+                  <input
+                    class="field__input"
+                    id="moreVehicleMake"
+                    name="moreVehicleMake"
+                    type="text"
+                    maxlength="50"
+                    placeholder=""
+                    value=""
+                  />
+                </div>
+              </div>
+              <div class="field">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="moreVehicleModel"
+                    >Model</label
                   >
                 </div>
                 <div class="field__input-wrapper">
                   <input
                     class="field__input"
-                    id="insuranceCompany"
-                    name="insuranceCompany"
+                    id="moreVehicleModel"
+                    name="moreVehicleModel"
                     type="text"
+                    maxlength="50"
                     placeholder=""
                     value=""
                   />
@@ -2465,25 +1767,89 @@
               </div>
             </div>
 
-            <!-- Policy Renewal Date -->
+            <!-- Type, Estimate Value of Vehicle -->
             <div class="fields-row">
+              <div class="field">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="moreVehicleType">Type</label>
+                </div>
+                <div class="field__input-wrapper">
+                  <select
+                    class="field__input"
+                    id="moreVehicleType"
+                    name="moreVehicleType"
+                    type="select"
+                  >
+                    <option value="">Choose One</option>
+                    <option value="Stock">Stock</option>
+                    <option value="Modified">Modified</option>
+                  </select>
+                </div>
+              </div>
               <div class="field extra_message_margin">
                 <div class="field__label-wrapper">
-                  <label class="field__label" for="policyRenewalDate"
-                    >Policy Renewal Date</label
+                  <label class="field__label" for="moreVehicleEstimatedValue"
+                    >Estimate Value of Vehicle</label
                   >
                 </div>
                 <div class="field__input-wrapper">
                   <input
                     class="field__input numberOnly"
-                    id="policyRenewalDate"
-                    name="policyRenewalDate"
+                    id="moreVehicleEstimatedValue"
+                    name="moreVehicleEstimatedValue"
                     type="text"
-                    pattern="\d{1,2}/\d{1,2}/\d{4}"
-                    placeholder="MM/DD/YYYY"
+                    maxlength="50"
+                    placeholder=""
                     value=""
                   />
-                  <p class="field__note">Optional</p>
+                  <p class="field__note">Numerical Values Only</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Vehicle Storage -->
+            <div class="fields-row">
+              <div class="field field--xlarge">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="moreVehicleStorage"
+                    >Vehicle Storage</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <select
+                    class="field__input"
+                    id="moreVehicleStorage"
+                    name="moreVehicleStorage"
+                    type="select"
+                  >
+                    <option value="">Choose One</option>
+                    <option value="Private Garage">Private Garage</option>
+                    <option value="Carport">Carport</option>
+                    <option value="Driveway">Driveway</option>
+                    <option value="Other Enclosed Structure">
+                      Other Enclosed Structure
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Textarea = Describe how vehicle is driven -->
+            <div class="fields-row">
+              <div class="field field--xxlarge field--extended-label">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="moreVehicleDriveDescription"
+                    >Describe how vehicle is driven, i.e. where to, how often,
+                    etc.</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <textarea
+                    class="field__input"
+                    id="moreVehicleDriveDescription"
+                    name="moreVehicleDriveDescription"
+                    placeholder=""
+                  ></textarea>
                 </div>
               </div>
             </div>
@@ -2491,26 +1857,16 @@
 
           <!-- ******* ASIDE  *******-->
           <aside class="quote_request_aside">
-            <h2 class="quote_request_sidebar__heading">Helpful Tips</h2>
+            <h2 class="quote_request_sidebar__heading">Why AFI?</h2>
             <div class="quote_request_sidebar__content">
               <div class="quote_request_sidebar__item">
                 <h3 class="quote_request_sidebar__item_heading">
-                  Where Do I Find My Renewal or Expiration Date?
+                  Saving You Time and Money
                 </h3>
                 <p class="quote_request_sidebar__item_description">
-                  Refer to your current policy declarations page for the policy
-                  renewal or expiration date. If date is unknown, enter any
-                  future date (e.g. 01/01/2020)
-                </p>
-              </div>
-
-              <div class="quote_request_sidebar__item">
-                <h3 class="quote_request_sidebar__item_heading">
-                  Need Help Now?
-                </h3>
-                <p class="quote_request_sidebar__item_description">
-                  Call us at 800-295-9649 from 7:30am-6:30pm CST M-F. Our
-                  dedicated agents are standing by to help.
+                  We have access to quote your insurance through a network of
+                  national carriers to find the best policy solution for your
+                  unique needs.
                 </p>
               </div>
             </div>
@@ -2542,6 +1898,6 @@
     </section>
 
     <!-- *********** JAVASCRIPT *********** -->
-    <script src="./js/collector-vehicle-form.js"></script>
+    <script src="./js/flood-form.js"></script>
   </body>
 </html>

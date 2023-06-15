@@ -234,7 +234,7 @@ function eligibilityValidation() {
 // *********************************************
 //              FORM VALIDATION
 // *********************************************
-function validateForm(formClassName) {
+function validateForm(formClassName, formData) {
   const allFields = document.querySelectorAll(formClassName + " .field__input");
 
   const classAndValidator = [

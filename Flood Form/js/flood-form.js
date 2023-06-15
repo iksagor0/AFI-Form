@@ -1,13 +1,6 @@
 // DATA
-const formData = {
+const floodFormData = {
   eligibilityStatus: "",
-  policyHolder: {},
-  vehicleInfo: {
-    vehicles: [],
-  },
-  householdViolations: null,
-  policyCoverageLimits: {},
-  coverageHistory: {},
 };
 
 // const successRedirection = "https://afi.org/";
@@ -16,10 +9,9 @@ const formData = {
 // Forms
 const multiStepForm = [
   "policyholder__form",
-  // "add_vehicle__form",
   "summary__form",
-  "violations__form",
-  "coverage_limits_form",
+  "property_quoted_form",
+  "property_overview_form",
   "physical_damage_form",
   "coverage__history_form",
 ];
