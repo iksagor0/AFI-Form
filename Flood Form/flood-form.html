@@ -666,9 +666,8 @@
                     name="policyHolderMailingAddress"
                     type="text"
                     maxlength="100"
-                    placeholder=""
                     autocomplete="none"
-                    value=""
+                    data-match="address"
                   />
                   <p class="field__note">Location where vehicle is stored</p>
                 </div>
@@ -686,9 +685,8 @@
                     name="policyHolderCity"
                     type="text"
                     maxlength="50"
-                    placeholder=""
                     autocomplete="none"
-                    value=""
+                    data-match="city"
                   />
                 </div>
               </div>
@@ -708,6 +706,7 @@
                     id="policyHolderState"
                     name="policyHolderState"
                     type="select"
+                    data-match="state"
                   >
                     <option value="">--</option>
                     <option value="UT">Utah</option>
@@ -731,9 +730,8 @@
                     type="text"
                     pattern="[0-9]{5}"
                     maxlength="5"
-                    placeholder=""
                     autocomplete="none"
-                    value=""
+                    data-match="zip"
                   />
                 </div>
               </div>
@@ -1142,7 +1140,6 @@
                       id="propertyAddressSameAsMailing--true"
                       name="propertyAddressSameAsMailing"
                       type="checkbox"
-                      value="true"
                     /><label
                       class="field__label"
                       for="propertyAddressSameAsMailing--true"
@@ -1164,14 +1161,12 @@
                 </div>
                 <div class="field__input-wrapper">
                   <input
-                    class="field__input"
+                    class="field__input required"
                     id="propertyAddress"
                     name="propertyAddress"
                     type="text"
-                    required=""
                     maxlength="100"
-                    placeholder=""
-                    value=""
+                    data-match="address"
                   />
                 </div>
               </div>
@@ -1185,14 +1180,12 @@
                 </div>
                 <div class="field__input-wrapper">
                   <input
-                    class="field__input"
+                    class="field__input required"
                     id="propertyCity"
                     name="propertyCity"
                     type="text"
-                    required=""
                     maxlength="50"
-                    placeholder=""
-                    value=""
+                    data-match="city"
                   />
                 </div>
               </div>
@@ -1206,15 +1199,17 @@
                 </div>
                 <div class="field__input-wrapper">
                   <select
-                    class="field__input"
+                    class="field__input required"
                     id="propertyState"
                     name="propertyState"
                     type="select"
-                    required=""
+                    data-match="state"
                   >
                     <option value="">--</option>
+                    <option value="UT">Utah</option>
                     <option value="AL">Alabama</option>
                     <option value="AK">Alaska</option>
+                    <option value="CA">California</option>
                   </select>
                 </div>
               </div>
@@ -1224,15 +1219,13 @@
                 </div>
                 <div class="field__input-wrapper">
                   <input
-                    class="field__input"
+                    class="field__input required zip"
                     id="propertyZip"
                     name="propertyZip"
                     type="text"
-                    required=""
                     pattern="[0-9]{5}"
                     maxlength="5"
-                    placeholder=""
-                    value=""
+                    data-match="zip"
                   />
                 </div>
               </div>
@@ -1297,11 +1290,10 @@
                 </div>
                 <div class="field__input-wrapper">
                   <select
-                    class="field__input"
+                    class="field__input required"
                     id="propertyYearBuilt"
                     name="propertyYearBuilt"
                     type="select"
-                    required=""
                   >
                     <option value="">--</option>
                     <option value="2023">2023</option>
@@ -1321,7 +1313,6 @@
                     id="propertyOccupancy"
                     name="propertyOccupancy"
                     type="select"
-                    required=""
                   >
                     <option value="">--</option>
                     <option value="primaryOwnerOccupied">

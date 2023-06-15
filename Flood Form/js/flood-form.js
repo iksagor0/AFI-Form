@@ -73,35 +73,17 @@ function handleFloodForms(step) {
 
   if (step === formList.indexOf("policyholder_form")) {
     if (!floodPolicyholderValidation(step)) return false;
+    floodPropertyQuotedFormFunc();
   }
   if (step === formList.indexOf("spouse_information")) {
     if (!validateForm("spouse_information")) return false;
   }
-  if (step === formList.indexOf("add_vehicle__form")) {
-    if (!addVehicleValidation()) return false;
-    summaryFunctionality();
-  }
-  if (step === formList.indexOf("add_more_vehicle_form")) {
-    if (!addMoreVehicleValidation()) return false;
-    summaryFunctionality();
-  }
-  if (
-    step === formList.indexOf("summary__form") ||
-    step === formList.indexOf("summary__form") - 1
-  ) {
-    summaryFunctionality();
-  }
-  if (step === formList.indexOf("violations__form")) {
-    if (!violationsValidation()) return false;
+
+  if (step === formList.indexOf("property_quoted_form")) {
+    if (!validateForm("property_quoted_form")) return false;
   }
 
-  if (step === formList.indexOf("coverage_limits_form")) {
-    if (!coverageLimitsValidation()) return false;
-    functionalityForEachDamageForm();
-  }
-  if (step === formList.indexOf("physical_damage_form")) {
-    if (!physicalDamageValidation()) return false;
-  }
+  //
   if (step === formList.indexOf("coverage__history_form")) {
     if (!coverageHistoryValidation()) return false;
 
@@ -152,6 +134,7 @@ function floodMilitaryValidation() {
   document.querySelector("#policyHolderFirstName").value = formData[fnameValue];
   document.querySelector("#policyHolderLastName").value = formData[lnameValue];
 
+  return true;
   return isValidate;
 }
 
@@ -180,46 +163,58 @@ function floodPolicyholderValidation(step) {
     }
   }
 
-  return isValidate;
-}
-
-function spouseValidation() {
-  const cohabitantFirstName = document.querySelector("#cohabitantFirstName");
-  const cohabitantLastName = document.querySelector("#cohabitantLastName");
-  const cohabitantSuffix = document.querySelector("#cohabitantSuffix");
-  const cohabitantSsn = document.querySelector("#cohabitantSsn");
-  const cohabitantDob = document.querySelector("#cohabitantDob");
-  const cohabitantGender = document.querySelector("#cohabitantGender");
-
-  const validationFields = [
-    alphabeticOnly(cohabitantFirstName),
-    alphabeticOnly(cohabitantLastName),
-    isValueEmpty(cohabitantFirstName),
-    isValueEmpty(cohabitantLastName),
-    minValue(cohabitantDob, 10, "Please enter a valid Date"),
-    isValueEmpty(cohabitantDob),
-    isValueEmpty(cohabitantGender),
-  ];
-
-  const isValidate = validationFields.every((result) => result === true);
-
-  if (isValidate) {
-    const cohabitant = (formData.cohabitantInfo = {});
-
-    cohabitant.firstName = cohabitantFirstName?.value;
-    cohabitant.lastName = cohabitantLastName?.value;
-    cohabitant.suffix = cohabitantSuffix?.value;
-    cohabitant.ssn = cohabitantSsn?.value.replace(/\D/g, "");
-    cohabitant.dob = cohabitantDob?.value;
-    cohabitant.gender = cohabitantGender?.value;
-  }
-
+  return true;
   return isValidate;
 }
 
 // *********************************************
 //              STEP-2 FUNCTIONALITY
 // *********************************************
+
+function floodPropertyQuotedFormFunc() {
+  const isFloodSameAddressEl = document.getElementById(
+    "propertyAddressSameAsMailing--true"
+  );
+
+  isFloodSameAddressEl?.addEventListener("change", () => {
+    const floodQuotedMatchEl = document.querySelectorAll(
+      ".property_quoted_form .field__input"
+    );
+
+    if (isFloodSameAddressEl.checked) {
+      // const floodAddress = document.getElementById(
+      //   "policyHolderMailingAddress"
+      // ).name;
+      // const floodCity = document.getElementById("policyHolderCity").name;
+      // const floodState = document.getElementById("policyHolderState").name;
+      // const floodZip = document.getElementById("policyHolderZip").name;
+      const floodHolderMatchEl = document.querySelectorAll(
+        ".policyholder_form .field__input"
+      );
+
+      floodHolderMatchEl.forEach((element) => {
+        const elementMatch = element.getAttribute("data-match");
+
+        floodQuotedMatchEl.forEach((el) => {
+          const elMatch = el.getAttribute("data-match");
+
+          if (elMatch === elementMatch) el.value = element.value;
+          el.disabled = true;
+          isFloodSameAddressEl.disabled = false;
+        });
+      });
+
+      //
+    } else {
+      floodQuotedMatchEl.forEach((el, i) => {
+        el.value = "";
+        el.disabled = false;
+
+        if (i === 1) el.focus();
+      });
+    }
+  });
+}
 
 // *********************************************
 //              STEP-2 VALIDATION
