@@ -76,6 +76,7 @@ function handleFloodForms(step) {
 
   if (step === formList.indexOf("property_quoted_form")) {
     if (!floodPropertyQuotedValidation()) return false;
+    floodOverviewFunc();
   }
 
   if (step === formList.indexOf("property_overview_form")) {
@@ -199,13 +200,32 @@ function floodPropertyQuotedValidation() {
 // *********************************************
 //              STEP-3 VALIDATION
 // *********************************************
+const awareOfFloodLossesOnProperty = document.querySelector(
+  ".field__input[name=awareOfFloodLossesOnProperty]:checked"
+);
+
+function floodOverviewFunc() {
+  const howManyLossesHaveOccurred = document.getElementById(
+    "howManyLossesHaveOccurred"
+  );
+
+  document
+    .querySelectorAll(".field__input[name=awareOfFloodLossesOnProperty]")
+    .forEach((field) => {
+      field.addEventListener("change", () => {
+        if (field.checked && field?.value === "Yes") {
+          howManyLossesHaveOccurred.disabled = false;
+        } else {
+          howManyLossesHaveOccurred.disabled = true;
+        }
+      });
+    });
+}
+
 function floodOverviewValidation() {
   const isValidate = validateForm("property_overview_form");
 
   //
-  const awareOfFloodLossesOnProperty = document.querySelector(
-    ".field__input[name=awareOfFloodLossesOnProperty]:checked"
-  );
 
   if (!awareOfFloodLossesOnProperty) {
     const awareOfFloodError = document.querySelector(".awareOfFloodError");
