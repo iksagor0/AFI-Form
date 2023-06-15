@@ -12,8 +12,7 @@ const multiStepForm = [
   "summary__form",
   "property_quoted_form",
   "property_overview_form",
-  "physical_damage_form",
-  "coverage__history_form",
+  "property_details_form",
 ];
 
 let formList = ["radio_select", ...multiStepForm];

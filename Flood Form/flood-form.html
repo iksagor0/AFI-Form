@@ -46,6 +46,17 @@
     <link rel="stylesheet" href="../Assets/common.css" />
     <link rel="stylesheet" href="../Assets/form.css" />
     <!-- <link rel="stylesheet" href="../Assets/collector-vehicle.css" /> -->
+    <style>
+      @media screen and (min-width: 48em) {
+        .flood__step .steps__list .step::after {
+          width: 160px;
+        }
+      }
+
+      .flood__step .steps__list .line {
+        width: 11%;
+      }
+    </style>
   </head>
 
   <body class="body">
@@ -61,7 +72,7 @@
     <!-- ************************************************ -->
     <!------------------- Radio Section -------------------->
     <!-- ************************************************ -->
-    <section class="form_section radio_select form_container active_section">
+    <section class="form_section radio_select form_container">
       <div class="container">
         <section class="heading_text_section">
           <h1 class="quote_request_heading">Eligibility For Insurance</h1>
@@ -633,7 +644,7 @@
     <!-- ************************************************ -->
     <!---------------------- MULTI-STEP 1 ------------------>
     <!-- ************************************************ -->
-    <section class="form_section multi__step_1 policyholder__form">
+    <section class="form_section flood__step policyholder__form active_section">
       <div class="container">
         <!-- ******** STEP ******** -->
         <div class="step__container">
@@ -715,12 +726,12 @@
               </div>
             </div>
 
-            <!-- Physical Address, City -->
+            <!-- Mailing Address, City -->
             <div class="fields-row">
               <div class="field field--xlarge extra_message_margin">
                 <div class="field__label-wrapper">
                   <label class="field__label" for="policyHolderMailingAddress"
-                    >Physical Address
+                    >Mailing Address
                   </label>
                 </div>
                 <div class="field__input-wrapper">
@@ -1012,34 +1023,6 @@
               </div>
             </div>
 
-            <!-- Residence Status -->
-            <div class="fields-row">
-              <div class="field">
-                <div class="field__label-wrapper">
-                  <label class="field__label" for="policyHolderResidenceStatus"
-                    >Residence Status</label
-                  >
-                </div>
-                <div class="field__input-wrapper">
-                  <select
-                    class="field__input"
-                    id="policyHolderResidenceStatus"
-                    name="policyHolderResidenceStatus"
-                    type="select"
-                  >
-                    <option value="">Choose One</option>
-                    <option value="Homeowner">Homeowner</option>
-                    <option value="Renter">Renter</option>
-                    <option value="Government Housing">
-                      Government Housing
-                    </option>
-                    <option value="Own Mobile Home">Own Mobile Home</option>
-                    <option value="Other">Other</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-
             <!-- Note -->
             <p class="note">
               To offer you an accurate quote and/or policy, we (AFI and AFI
@@ -1057,15 +1040,15 @@
 
           <!-- ******* ASIDE  *******-->
           <aside class="quote_request_aside" style="max-width: 200px">
-            <h2 class="quote_request_sidebar__heading">Helpful Tips</h2>
+            <h2 class="quote_request_sidebar__heading">
+              Protecting Your Largest Investment
+            </h2>
             <div class="quote_request_sidebar__content">
               <div class="quote_request_sidebar__item">
-                <h3 class="quote_request_sidebar__item_heading">
-                  Tell Us About Yourself
-                </h3>
                 <p class="quote_request_sidebar__item_description">
-                  Providing this information will help our agents get you the
-                  most accurate rate for your quote.
+                  Floods are more likely to occur than fires in many parts of
+                  the country, yet fewer homeowners are protected from floods. A
+                  standard homeowner policy does not cover flood damage
                 </p>
               </div>
               <div class="quote_request_sidebar__item">
@@ -1084,7 +1067,7 @@
     </section>
 
     <!-- SPOUSE INFORMATION -->
-    <section class="form_section multi__step_1 spouse_information">
+    <section class="form_section flood__step spouse_information">
       <div class="container">
         <!-- ******** STEP ******** -->
         <div class="step__container">
@@ -1262,7 +1245,7 @@
     <!---------------------- MULTI-STEP 2 ------------------>
     <!-- ************************************************ -->
     <!-- MAIN VEHICLE FORM -->
-    <section class="form_section multi__step_2 property_quoted_form">
+    <section class="form_section flood__step property_quoted_form">
       <div class="container">
         <!-- ******** STEP ******** -->
         <div class="step__container">
@@ -1503,7 +1486,7 @@
     </section>
 
     <!-- ADD MORE VEHICLE FORM -->
-    <section class="form_section multi__step_2 property_overview_form">
+    <section class="form_section flood__step property_overview_form">
       <div class="container">
         <!-- ******** STEP ******** -->
         <div class="step__container">
@@ -1691,7 +1674,7 @@
     <!---------------------- MULTI-STEP 3 ------------------>
     <!-- ************************************************ -->
     <!-- ADD MORE VEHICLE FORM -->
-    <section class="form_section multi__step_2 property_details_form">
+    <section class="form_section flood__step property_details_form">
       <div class="container">
         <!-- ******** STEP ******** -->
         <div class="step__container">

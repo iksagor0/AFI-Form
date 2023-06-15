@@ -118,7 +118,7 @@
 .steps__list .step {
   width: 3rem;
   aspect-ratio: 1/1;
-  border: 1px solid #d1d1d1;
+  border: 2px solid #d1d1d1;
   border-radius: 50%;
   /* overflow: hidden; */
   display: grid;
@@ -374,7 +374,7 @@ input.field__input:focus {
 
 .quote_request_sidebar__item_heading {
   font-size: 0.875rem !important;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.25rem !important;
 }
 
 .quote_request_sidebar__item_description {
