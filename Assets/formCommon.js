@@ -164,9 +164,6 @@ function dateValidation(field, getMaxYear = thisYear) {
   });
 }
 
-// *********************************************
-//              FORM VALIDATION
-// *********************************************
 // ********** Eligibility Validation ***********
 function eligibilityValidation() {
   const eligibilityStatus = document.querySelector(
@@ -198,6 +195,9 @@ function eligibilityValidation() {
   return eligibilityStatus;
 }
 
+// *********************************************
+//              FORM VALIDATION
+// *********************************************
 function validateForm(formClassName) {
   const allFields = document.querySelectorAll(formClassName + " .field__input");
 
@@ -236,7 +236,6 @@ function validateForm(formClassName) {
 // *********************************************
 //            COMMON FUNCTIONALITIES
 // *********************************************
-
 // KeyPress only remove field Error Message
 document.querySelectorAll(".form_container .field")?.forEach((fieldWrapper) => {
   const removeFieldError = () => {
@@ -263,7 +262,9 @@ document.querySelectorAll(".field__input")?.forEach((input) => {
   });
 });
 
-// ***** STEP 4 Form Functionality *****
+// *********************************************
+//            COMMON STEP 4 FUNCTIONALITIES
+// *********************************************
 // Military Rank should be disabled if branchOfService value none
 const branchOfService = document.getElementById("branchOfService");
 

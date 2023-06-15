@@ -334,32 +334,6 @@ dateField.addEventListener("input", (e) => {
 // *********************************************
 //            FETCH DATA FROM JSON
 // *********************************************
-// const branchOfServiceElement = document.getElementById("branchOfService");
-
-// fetch("./json/branchOfService.json")
-//   .then((response) => response.json())
-//   .then((json) => getData(json))
-//   .catch((err) => console.log(err));
-
-// function getData(data) {
-//   branchOfServiceElement?.parentElement.classList.add("loading__field");
-
-//   const branchOfService = data?.branchOfService;
-
-//   if (branchOfService && branchOfService?.length > 0) {
-//     branchOfService?.forEach((value) => {
-//       let option = document.createElement("option");
-//       option.value = value;
-//       option.innerText = value;
-
-//       branchOfServiceElement.appendChild(option);
-//     });
-
-//     // branchOfServiceElement.disabled = false;
-//     // branchOfServiceElement?.parentElement.classList.remove("loading__field");
-//   }
-// }
-
 // Post/Save Data
 // function saveData(postURL, data) {
 //   fetch(postURL, {
