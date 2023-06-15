@@ -85,8 +85,8 @@ function handleFloodForms(step) {
   }
 
   //
-  if (step === formList.indexOf("coverage__history_form")) {
-    if (!coverageHistoryValidation()) return false;
+  if (step === formList.indexOf("property_details_form")) {
+    if (!floodDetailsValidation()) return false;
 
     alert("Done");
 
@@ -248,7 +248,7 @@ function floodOverviewValidation() {
   }
 
   return true;
-  return isValidate && awareOfFloodLossesOnProperty;
+  return isValidate && Boolean(awareOfFloodLossesOnProperty);
 }
 
 // *********************************************
@@ -290,6 +290,32 @@ function floodDetailsFunc() {
       garageValue?.classList.remove("required");
     }
   });
+}
+
+function floodDetailsValidation() {
+  const isValidate = validateForm("property_details_form");
+
+  //
+  const isStructureACondominium = document.querySelector(
+    ".field__input[name=isStructureACondominium]:checked"
+  );
+  if (!isStructureACondominium) {
+    const structureACondomError = document.querySelector(
+      ".structureACondomError"
+    );
+    structureACondomError.style.display = "block";
+
+    document
+      .querySelectorAll(".field__input[name=isStructureACondominium]")
+      .forEach((el) =>
+        el.addEventListener(
+          "change",
+          () => (structureACondomError.style.display = "none")
+        )
+      );
+  }
+
+  return isValidate && Boolean(isStructureACondominium);
 }
 
 // =*********************************************
