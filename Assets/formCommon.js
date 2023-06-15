@@ -200,6 +200,7 @@ function dateValidation(field, getMaxYear = thisYear) {
       : value[1] + "/" + value[2] + (value[3] ? "/" + value[3] : "");
   });
 }
+document.querySelectorAll(".DOB").forEach((el) => dateValidation(el));
 
 // *********************************************
 //             Eligibility Validation
@@ -242,7 +243,14 @@ function validateForm(formClassName) {
     `.${formClassName} .field__input`
   );
 
+  const dateValidator = (field) =>
+    minValue(field, 10, "Please enter a valid date");
+
   const classAndValidator = [
+    {
+      class: "date",
+      validator: dateValidator,
+    },
     { class: "email", validator: emailValidation },
     { class: "phone", validator: phoneValidation },
     { class: "alphabeticOnly", validator: alphabeticOnly },
