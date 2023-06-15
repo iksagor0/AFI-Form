@@ -72,7 +72,7 @@ function handleFloodForms(step) {
   }
 
   if (step === formList.indexOf("policyholder_form")) {
-    if (!policyholderValidation(step)) return false;
+    if (!floodPolicyholderValidation(step)) return false;
   }
   if (step === formList.indexOf("spouse_information")) {
     if (!spouseValidation()) return false;
@@ -158,7 +158,7 @@ function floodMilitaryValidation() {
 // *********************************************
 //             STEP-1 VALIDATION
 // *********************************************
-function policyholderValidation(step) {
+function floodPolicyholderValidation(step) {
   const isValidate = validateForm("policyholder_form");
 
   if (isValidate) {
