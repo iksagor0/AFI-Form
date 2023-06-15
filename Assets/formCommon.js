@@ -1,24 +1,25 @@
+const formData = {};
+
 // *********************************************
 //           SHOW FORM BY CONDITION
 // *********************************************
-function showActiveForm(stepCount) {
+function showActiveForm(step, formList) {
+  console.log({ step });
+
   // remove active_section class from everywhere
-  document.querySelector(".active_section").classList.remove("active_section");
+  document.querySelector(".active_section")?.classList.remove("active_section");
 
   // set active_section class
-  document
-    .querySelector(`.${formList[stepCount]}`)
-    ?.classList.add("active_section");
+  document.querySelector(`.${formList[step]}`)?.classList.add("active_section");
 
   // Conditionally Hide Back Btn
-  stepCount <= 0
-    ? backBtn.classList.add("hide")
-    : backBtn.classList.remove("hide");
+  step <= 0 ? backBtn.classList.add("hide") : backBtn?.classList.remove("hide");
 }
 
 // *********************************************
-//              ERROR HANDLING
+//    VALIDATION & ERROR HANDLING LIBRARY
 // *********************************************
+
 // Error Message if value user makes any mistake
 function eligibilityErrorMessage(data, selector) {
   const errorDiv = document.querySelector(selector);
@@ -147,7 +148,7 @@ document.querySelectorAll(".SSN").forEach((field) => {
 // Dollar Field Pattern
 const dollarField = document.querySelector(".field__input.dollar_field");
 
-dollarField.addEventListener("input", (e) => {
+dollarField?.addEventListener("input", (e) => {
   if (e.target.value) {
     let modifiedValue = e.target.value.match(/.{1,3}/g).join(",");
     e.target.value = `$${modifiedValue}`;
@@ -201,7 +202,7 @@ function dateValidation(field, getMaxYear = thisYear) {
 // *********************************************
 //             Eligibility Validation
 // *********************************************
-function eligibilityValidation() {
+function eligibilityValidation(forms = []) {
   const eligibilityStatus = document.querySelector(
     'input[name="eligibilityStatus"]:checked'
   )?.value;
@@ -209,13 +210,13 @@ function eligibilityValidation() {
   // Select Formlist as user eligibilityStatus
   if (Boolean(eligibilityStatus)) {
     if (eligibilityStatus === "military") {
-      formList = ["radio_select", "military_information", ...multiStepForm];
+      formList = ["radio_select", "military_information", ...forms];
     } else if (eligibilityStatus === "child") {
-      formList = ["radio_select", "parent_information", ...multiStepForm];
+      formList = ["radio_select", "parent_information", ...forms];
     } else if (eligibilityStatus === "parent") {
-      formList = ["radio_select", "child_information", ...multiStepForm];
+      formList = ["radio_select", "child_information", ...forms];
     } else {
-      formList = defaultForms;
+      formList = ["radio_select", ...forms];
     }
     maxStep = formList.length - 1;
 
