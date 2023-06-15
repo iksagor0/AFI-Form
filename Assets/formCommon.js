@@ -6,7 +6,7 @@ let formList = ["radio_select"];
 // *********************************************
 function showActiveForm(step) {
   console.log({ step });
-  console.log(formList);
+  console.log(formData);
 
   // remove active_section class from everywhere
   document.querySelector(".active_section")?.classList.remove("active_section");
@@ -124,7 +124,7 @@ function phoneNumberPattern(selector) {
     selector = document.getElementById("policyHolderPhoneNumber");
   }
 
-  selector.addEventListener("input", (e) => {
+  selector?.addEventListener("input", (e) => {
     var x = e.target.value
       .replace(/\D/g, "")
       .match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
@@ -208,7 +208,6 @@ function eligibilityValidation(forms = []) {
   const eligibilityStatus = document.querySelector(
     'input[name="eligibilityStatus"]:checked'
   )?.value;
-  console.log(forms);
 
   // Select Formlist as user eligibilityStatus
   if (Boolean(eligibilityStatus)) {
@@ -238,8 +237,10 @@ function eligibilityValidation(forms = []) {
 // *********************************************
 //              FORM VALIDATION
 // *********************************************
-function validateForm(formClassName, formData) {
-  const allFields = document.querySelectorAll(formClassName + " .field__input");
+function validateForm(formClassName) {
+  const allFields = document.querySelectorAll(
+    `.${formClassName} .field__input`
+  );
 
   const classAndValidator = [
     { class: "email", validator: emailValidation },
