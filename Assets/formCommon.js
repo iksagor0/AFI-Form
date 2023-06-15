@@ -275,7 +275,7 @@ function validateForm(formClassName) {
 
   if (isValidate) {
     allFields.forEach((field) => {
-      formData[field?.id] = field.value;
+      formData[field?.name] = field.value;
     });
   }
 

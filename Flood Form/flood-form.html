@@ -1309,7 +1309,7 @@
                 </div>
                 <div class="field__input-wrapper">
                   <select
-                    class="field__input"
+                    class="field__input required"
                     id="propertyOccupancy"
                     name="propertyOccupancy"
                     type="select"
@@ -1336,13 +1336,10 @@
                 </div>
                 <div class="field__input-wrapper">
                   <input
-                    class="field__input"
+                    class="field__input required numberOnly"
                     id="totalLivingAreaSqFt"
                     name="totalLivingAreaSqFt"
-                    type="number"
-                    required=""
-                    placeholder=""
-                    value=""
+                    type="text"
                   />
                   <p class="field__note">Numerical Values Only</p>
                 </div>
@@ -1358,13 +1355,10 @@
                 </div>
                 <div class="field__input-wrapper">
                   <input
-                    class="field__input"
+                    class="field__input required numberOnly"
                     id="structuralValue"
                     name="structuralValue"
                     type="text"
-                    required=""
-                    placeholder=""
-                    value=""
                   />
                   <p class="field__note">Numerical Values Only</p>
                 </div>
@@ -1377,12 +1371,10 @@
                 </div>
                 <div class="field__input-wrapper">
                   <input
-                    class="field__input"
+                    class="field__input required"
                     id="floodZone"
                     name="floodZone"
                     type="text"
-                    placeholder=""
-                    value=""
                   />
                   <p class="field__note">Optional</p>
                 </div>
@@ -1403,7 +1395,6 @@
                       id="awareOfFloodLossesOnProperty--Yes"
                       name="awareOfFloodLossesOnProperty"
                       type="radio"
-                      required=""
                       value="Yes"
                     /><label
                       class="field__label"
@@ -1428,6 +1419,15 @@
                     >
                   </div>
                 </div>
+
+                <div
+                  class="field__error-messages awareOfFloodError"
+                  style="margin-left: 10px"
+                >
+                  <span class="field__error-message"
+                    >This field is required</span
+                  >
+                </div>
               </div>
             </div>
             <!-- How many losses have occurred? -->
@@ -1440,14 +1440,10 @@
                 </div>
                 <div class="field__input-wrapper">
                   <input
-                    class="field__input"
+                    class="field__input numberOnly"
                     id="howManyLossesHaveOccurred"
                     name="howManyLossesHaveOccurred"
-                    type="number"
-                    required=""
-                    disabled=""
-                    placeholder=""
-                    value=""
+                    type="text"
                   />
                 </div>
               </div>
@@ -1465,7 +1461,7 @@
                 </div>
                 <div class="field__input-wrapper">
                   <input
-                    class="field__input"
+                    class="field__input numberOnly"
                     id="howMuchMortgageInsuranceRequired"
                     name="howMuchMortgageInsuranceRequired"
                     type="text"

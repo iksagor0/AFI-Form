@@ -46,11 +46,6 @@ backBtn?.addEventListener("click", () => {
   // Step Decrement
   floodStep <= 0 ? floodStep : floodStep--;
 
-  // 2 side back for add_more_vehicle_form
-  if (floodStep + 1 === formList.indexOf("add_more_vehicle_form")) {
-    formList = formList.filter((item) => item != "add_more_vehicle_form");
-    floodStep = formList.indexOf("summary__form");
-  }
   showActiveForm(floodStep, formList);
 });
 
@@ -80,7 +75,11 @@ function handleFloodForms(step) {
   }
 
   if (step === formList.indexOf("property_quoted_form")) {
-    if (!validateForm("property_quoted_form")) return false;
+    if (!floodPropertyQuotedValidation()) return false;
+  }
+
+  if (step === formList.indexOf("property_overview_form")) {
+    if (!floodOverviewValidation()) return false;
   }
 
   //
@@ -97,31 +96,9 @@ function handleFloodForms(step) {
   return true;
 }
 
-// =*********************************************
-//           SHOW FORM BY CONDITION
-// =*********************************************
-// function showActiveForm(step) {
-//   floodMaxStep = formList.length - 1;
-
-//   // remove active_form class from everywhere
-//   document.querySelector(".active_form")?.classList.remove("active_form");
-
-//   // set active_form class
-//   document.querySelector(`.${formList[step]}`)?.classList.add("active_form");
-
-//   console.log({ floodStep });
-//   console.log(formData);
-
-//   // Conditionally Hide Back Btn
-//   floodStep <= 0
-//     ? backBtn.classList.add("hide")
-//     : backBtn.classList.remove("hide");
-// }
-
 // *********************************************
 //              FORM VALIDATION
 // *********************************************
-// / ********** Eligibility Validation ***********
 
 // / ********** Military Information ***********
 function floodMilitaryValidation() {
@@ -168,26 +145,19 @@ function floodPolicyholderValidation(step) {
 }
 
 // *********************************************
-//              STEP-2 FUNCTIONALITY
+//     STEP-2 FUNCTIONALITY & VALIDATION
 // *********************************************
+const isFloodSameAddressEl = document.getElementById(
+  "propertyAddressSameAsMailing--true"
+);
 
 function floodPropertyQuotedFormFunc() {
-  const isFloodSameAddressEl = document.getElementById(
-    "propertyAddressSameAsMailing--true"
-  );
-
   isFloodSameAddressEl?.addEventListener("change", () => {
     const floodQuotedMatchEl = document.querySelectorAll(
       ".property_quoted_form .field__input"
     );
 
     if (isFloodSameAddressEl.checked) {
-      // const floodAddress = document.getElementById(
-      //   "policyHolderMailingAddress"
-      // ).name;
-      // const floodCity = document.getElementById("policyHolderCity").name;
-      // const floodState = document.getElementById("policyHolderState").name;
-      // const floodZip = document.getElementById("policyHolderZip").name;
       const floodHolderMatchEl = document.querySelectorAll(
         ".policyholder_form .field__input"
       );
@@ -216,13 +186,43 @@ function floodPropertyQuotedFormFunc() {
   });
 }
 
-// *********************************************
-//              STEP-2 VALIDATION
-// *********************************************
+function floodPropertyQuotedValidation() {
+  if (isFloodSameAddressEl.checked) {
+    formData[isFloodSameAddressEl.name] = true;
+    return true;
+  } else {
+    const isValidate = validateForm("property_quoted_form");
+    return isValidate;
+  }
+}
 
 // *********************************************
-//              STEP-3 FUNCTIONALITY
+//              STEP-3 VALIDATION
 // *********************************************
+function floodOverviewValidation() {
+  const isValidate = validateForm("property_overview_form");
+
+  //
+  const awareOfFloodLossesOnProperty = document.querySelector(
+    ".field__input[name=awareOfFloodLossesOnProperty]:checked"
+  );
+
+  if (!awareOfFloodLossesOnProperty) {
+    const awareOfFloodError = document.querySelector(".awareOfFloodError");
+    awareOfFloodError.style.display = "block";
+
+    document
+      .querySelectorAll(".field__input[name=awareOfFloodLossesOnProperty]")
+      .forEach((el) =>
+        el.addEventListener(
+          "change",
+          () => (awareOfFloodError.style.display = "none")
+        )
+      );
+  }
+
+  return isValidate && awareOfFloodLossesOnProperty;
+}
 
 // =*********************************************
 //            OTHERS FUNCTIONALITIES

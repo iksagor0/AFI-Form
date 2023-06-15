@@ -456,7 +456,8 @@ input.field__input:focus {
   display: none;
 }
 
-.field_message {
+.field_message,
+.field__error-messages {
   color: #cb2c30;
   color: var(--color-red-10);
   font-size: 0.875rem !important;
