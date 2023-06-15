@@ -1,8 +1,3 @@
-// DATA
-// const floodFormData = {
-//   eligibilityStatus: "",
-// };
-
 // const successRedirection = "https://afi.org/";
 // const successRedirection = "../--Model/thank-you.html";
 
@@ -90,7 +85,6 @@ function handleFloodForms(step) {
 
     alert("Done");
 
-    // document.querySelector("#currentInsuranceCompany").value = "";
     // Go to Thank You Page
     // window.location.href = successRedirection;
   }
@@ -317,37 +311,3 @@ function floodDetailsValidation() {
 
   return isValidate && Boolean(isStructureACondominium);
 }
-
-// =*********************************************
-//            OTHERS FUNCTIONALITIES
-// =*********************************************
-// KeyPress only remove field Error Message
-function clearFieldErrorMsg() {
-  document
-    .querySelectorAll(".form_container .field")
-    ?.forEach((fieldWrapper) => {
-      const removeFieldError = () => {
-        const errorField = fieldWrapper.querySelector(".field_message");
-        errorField?.classList.remove("error");
-      };
-
-      fieldWrapper
-        .querySelectorAll(".field__input")
-        .forEach((inputField) =>
-          inputField.addEventListener("input", removeFieldError)
-        );
-    });
-}
-clearFieldErrorMsg();
-
-// Press Enter Submit Form
-document.querySelectorAll(".field__input")?.forEach((input) => {
-  input.addEventListener("keypress", (event) => {
-    if (event.key === "Enter") {
-      event.preventDefault();
-
-      // Trigger the button element with a click
-      document.getElementById("next_btn").click();
-    }
-  });
-});
