@@ -200,11 +200,12 @@ function floodPropertyQuotedValidation() {
 // *********************************************
 //              STEP-3 VALIDATION
 // *********************************************
-const awareOfFloodLossesOnProperty = document.querySelector(
-  ".field__input[name=awareOfFloodLossesOnProperty]:checked"
-);
 
 function floodOverviewFunc() {
+  const awareOfFloodLossesOnProperty = document.querySelector(
+    ".field__input[name=awareOfFloodLossesOnProperty]:checked"
+  );
+
   const howManyLossesHaveOccurred = document.getElementById(
     "howManyLossesHaveOccurred"
   );
@@ -215,8 +216,10 @@ function floodOverviewFunc() {
       field.addEventListener("change", () => {
         if (field.checked && field?.value === "Yes") {
           howManyLossesHaveOccurred.disabled = false;
+          howManyLossesHaveOccurred?.classList.add("required");
         } else {
           howManyLossesHaveOccurred.disabled = true;
+          howManyLossesHaveOccurred?.classList.remove("required");
         }
       });
     });
@@ -226,7 +229,9 @@ function floodOverviewValidation() {
   const isValidate = validateForm("property_overview_form");
 
   //
-
+  const awareOfFloodLossesOnProperty = document.querySelector(
+    ".field__input[name=awareOfFloodLossesOnProperty]:checked"
+  );
   if (!awareOfFloodLossesOnProperty) {
     const awareOfFloodError = document.querySelector(".awareOfFloodError");
     awareOfFloodError.style.display = "block";
