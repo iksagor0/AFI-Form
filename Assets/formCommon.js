@@ -64,6 +64,13 @@ document.querySelectorAll(".field__input.numberOnly")?.forEach((input) => {
   });
 });
 
+// Input Alphabet Only
+document.querySelectorAll(".field__input.alphabeticOnly")?.forEach((input) => {
+  input.addEventListener("input", (e) => {
+    e.target.value = e.target?.value.replace(/[^a-zA-z]/g, "");
+  });
+});
+
 // Alphabetic only
 function alphabeticOnly(selector) {
   const letterRegEx = /^[A-Za-z]+$/;
@@ -109,9 +116,12 @@ function phoneValidation(selector) {
 }
 
 // Phone Number Pattern
-document
-  .getElementById("policyHolderPhoneNumber")
-  .addEventListener("input", (e) => {
+function phoneNumberPattern(selector) {
+  if (!selector) {
+    selector = document.getElementById("policyHolderPhoneNumber");
+  }
+
+  selector.addEventListener("input", (e) => {
     var x = e.target.value
       .replace(/\D/g, "")
       .match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
@@ -119,6 +129,30 @@ document
       ? x[1]
       : "(" + x[1] + ") " + x[2] + (x[3] ? "-" + x[3] : "");
   });
+}
+phoneNumberPattern();
+
+// Social Security Number Pattern
+document.querySelectorAll(".SSN").forEach((field) => {
+  field.addEventListener("input", (e) => {
+    var x = e.target.value
+      .replace(/\D/g, "")
+      .match(/(\d{0,3})(\d{0,2})(\d{0,4})/);
+    e.target.value = !x[2]
+      ? x[1]
+      : x[1] + "-" + x[2] + (x[3] ? "-" + x[3] : "");
+  });
+});
+
+// Dollar Field Pattern
+const dollarField = document.querySelector(".field__input.dollar_field");
+
+dollarField.addEventListener("input", (e) => {
+  if (e.target.value) {
+    let modifiedValue = e.target.value.match(/.{1,3}/g).join(",");
+    e.target.value = `$${modifiedValue}`;
+  }
+});
 
 // Date Validation
 const thisYear = new Date().getFullYear();
@@ -164,7 +198,9 @@ function dateValidation(field, getMaxYear = thisYear) {
   });
 }
 
-// ********** Eligibility Validation ***********
+// *********************************************
+//             Eligibility Validation
+// *********************************************
 function eligibilityValidation() {
   const eligibilityStatus = document.querySelector(
     'input[name="eligibilityStatus"]:checked'
