@@ -60,6 +60,10 @@
       .flood__step.spouse_information .form_container.min_height {
         min-height: 560px;
       }
+      .flood__step .fields-row .field.field--extended-label .field__label {
+        position: relative;
+        width: 200%;
+      }
     </style>
   </head>
 
@@ -1250,9 +1254,7 @@
     <!---------------------- MULTI-STEP 2 ------------------>
     <!-- ************************************************ -->
     <!-- PROPERTY QUOTED FORM -->
-    <section
-      class="form_section flood__step property_quoted_form active_section"
-    >
+    <section class="form_section flood__step property_quoted_form">
       <div class="container">
         <!-- ******** STEP ******** -->
         <div class="step__container">
@@ -1407,7 +1409,9 @@
     </section>
 
     <!-- PROPERTY OVERVIEW FORM -->
-    <section class="form_section flood__step property_overview_form">
+    <section
+      class="form_section flood__step property_overview_form active_section"
+    >
       <div class="container">
         <!-- ******** STEP ******** -->
         <div class="step__container">
@@ -1427,94 +1431,71 @@
         <div class="quote_request__section_wrapper">
           <!-- ******* FORM  *******-->
           <div class="form_container">
-            <h2 class="quote_request_heading">Vehicle Information</h2>
+            <h2 class="quote_request_heading">Property Overview</h2>
 
-            <!-- Year, Make, Model -->
+            <!-- Year Built, Occupancy,Total Living Area -->
             <div class="fields-row">
               <div class="field field--small">
                 <div class="field__label-wrapper">
-                  <label class="field__label" for="moreVehicleYear">Year</label>
-                </div>
-                <div class="field__input-wrapper">
-                  <input
-                    class="field__input numberOnly"
-                    id="moreVehicleYear"
-                    name="moreVehicleYear"
-                    type="text"
-                    maxlength="4"
-                    placeholder=""
-                    value=""
-                  />
-                </div>
-              </div>
-              <div class="field">
-                <div class="field__label-wrapper">
-                  <label class="field__label" for="moreVehicleMake">Make</label>
-                </div>
-                <div class="field__input-wrapper">
-                  <input
-                    class="field__input"
-                    id="moreVehicleMake"
-                    name="moreVehicleMake"
-                    type="text"
-                    maxlength="50"
-                    placeholder=""
-                    value=""
-                  />
-                </div>
-              </div>
-              <div class="field">
-                <div class="field__label-wrapper">
-                  <label class="field__label" for="moreVehicleModel"
-                    >Model</label
+                  <label class="field__label" for="propertyYearBuilt"
+                    >Year Built</label
                   >
-                </div>
-                <div class="field__input-wrapper">
-                  <input
-                    class="field__input"
-                    id="moreVehicleModel"
-                    name="moreVehicleModel"
-                    type="text"
-                    maxlength="50"
-                    placeholder=""
-                    value=""
-                  />
-                </div>
-              </div>
-            </div>
-
-            <!-- Type, Estimate Value of Vehicle -->
-            <div class="fields-row">
-              <div class="field">
-                <div class="field__label-wrapper">
-                  <label class="field__label" for="moreVehicleType">Type</label>
                 </div>
                 <div class="field__input-wrapper">
                   <select
                     class="field__input"
-                    id="moreVehicleType"
-                    name="moreVehicleType"
+                    id="propertyYearBuilt"
+                    name="propertyYearBuilt"
                     type="select"
+                    required=""
                   >
-                    <option value="">Choose One</option>
-                    <option value="Stock">Stock</option>
-                    <option value="Modified">Modified</option>
+                    <option value="">--</option>
+                    <option value="2023">2023</option>
+                    <option value="2022">2022</option>
                   </select>
                 </div>
               </div>
-              <div class="field extra_message_margin">
+              <div class="field field--extended">
                 <div class="field__label-wrapper">
-                  <label class="field__label" for="moreVehicleEstimatedValue"
-                    >Estimate Value of Vehicle</label
+                  <label class="field__label" for="propertyOccupancy"
+                    >Occupancy</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <select
+                    class="field__input"
+                    id="propertyOccupancy"
+                    name="propertyOccupancy"
+                    type="select"
+                    required=""
+                  >
+                    <option value="">--</option>
+                    <option value="primaryOwnerOccupied">
+                      Primary Owner Occupied
+                    </option>
+                    <option value="seasonalSecondaryResidence">
+                      Seasonal/Secondary Residence
+                    </option>
+                    <option value="vacant">Vacant</option>
+                    <option value="rentalOrNonOwnerOccupied">
+                      Rental or Non Owner Occupied
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div class="field field--extended">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="totalLivingAreaSqFt"
+                    >Total Living Area (sq ft)</label
                   >
                 </div>
                 <div class="field__input-wrapper">
                   <input
-                    class="field__input numberOnly"
-                    id="moreVehicleEstimatedValue"
-                    name="moreVehicleEstimatedValue"
-                    type="text"
-                    maxlength="50"
+                    class="field__input"
+                    id="totalLivingAreaSqFt"
+                    name="totalLivingAreaSqFt"
+                    type="number"
+                    required=""
                     placeholder=""
                     value=""
                   />
@@ -1522,50 +1503,131 @@
                 </div>
               </div>
             </div>
-
-            <!-- Vehicle Storage -->
+            <!-- Structural Value, Flood Zone (If Known) -->
             <div class="fields-row">
-              <div class="field field--xlarge">
+              <div class="field field--large">
                 <div class="field__label-wrapper">
-                  <label class="field__label" for="moreVehicleStorage"
-                    >Vehicle Storage</label
+                  <label class="field__label" for="structuralValue"
+                    >Structural Value</label
                   >
                 </div>
                 <div class="field__input-wrapper">
-                  <select
+                  <input
                     class="field__input"
-                    id="moreVehicleStorage"
-                    name="moreVehicleStorage"
-                    type="select"
+                    id="structuralValue"
+                    name="structuralValue"
+                    type="text"
+                    required=""
+                    placeholder=""
+                    value=""
+                  />
+                  <p class="field__note">Numerical Values Only</p>
+                </div>
+              </div>
+              <div class="field field--large">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="floodZone"
+                    >Flood Zone (If Known)</label
                   >
-                    <option value="">Choose One</option>
-                    <option value="Private Garage">Private Garage</option>
-                    <option value="Carport">Carport</option>
-                    <option value="Driveway">Driveway</option>
-                    <option value="Other Enclosed Structure">
-                      Other Enclosed Structure
-                    </option>
-                  </select>
+                </div>
+                <div class="field__input-wrapper">
+                  <input
+                    class="field__input"
+                    id="floodZone"
+                    name="floodZone"
+                    type="text"
+                    placeholder=""
+                    value=""
+                  />
+                  <p class="field__note">Optional</p>
                 </div>
               </div>
             </div>
-
-            <!-- Textarea = Describe how vehicle is driven -->
+            <!-- Are you aware of flood losses on this property? -->
             <div class="fields-row">
-              <div class="field field--xxlarge field--extended-label">
+              <div class="field field--full">
+                <div class="field__label-wrapper" style="margin-right: 2rem">
+                  <label class="field__label" for="awareOfFloodLossesOnProperty"
+                    >Are you aware of flood losses on this property?</label
+                  >
+                </div>
+                <div class="field-group" style="margin-right: 1rem">
+                  <div class="field__input-wrapper">
+                    <input
+                      class="field__input"
+                      id="awareOfFloodLossesOnProperty--Yes"
+                      name="awareOfFloodLossesOnProperty"
+                      type="radio"
+                      required=""
+                      value="Yes"
+                    /><label
+                      class="field__label"
+                      for="awareOfFloodLossesOnProperty--Yes"
+                      >Yes</label
+                    >
+                  </div>
+                </div>
+                <div class="field-group">
+                  <div class="field__input-wrapper">
+                    <input
+                      class="field__input"
+                      id="awareOfFloodLossesOnProperty--No"
+                      name="awareOfFloodLossesOnProperty"
+                      type="radio"
+                      required=""
+                      value="No"
+                    /><label
+                      class="field__label"
+                      for="awareOfFloodLossesOnProperty--No"
+                      >No</label
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- How many losses have occurred? -->
+            <div class="fields-row">
+              <div class="field field--extended field--extended-label">
                 <div class="field__label-wrapper">
-                  <label class="field__label" for="moreVehicleDriveDescription"
-                    >Describe how vehicle is driven, i.e. where to, how often,
-                    etc.</label
+                  <label class="field__label" for="howManyLossesHaveOccurred"
+                    >How many losses have occurred?</label
                   >
                 </div>
                 <div class="field__input-wrapper">
-                  <textarea
+                  <input
                     class="field__input"
-                    id="moreVehicleDriveDescription"
-                    name="moreVehicleDriveDescription"
+                    id="howManyLossesHaveOccurred"
+                    name="howManyLossesHaveOccurred"
+                    type="number"
+                    required=""
+                    disabled=""
                     placeholder=""
-                  ></textarea>
+                    value=""
+                  />
+                </div>
+              </div>
+            </div>
+            <!-- If your mortgage requires this insurance, how much is required? -->
+            <div class="fields-row">
+              <div class="field field--xlarge field--extended-label">
+                <div class="field__label-wrapper">
+                  <label
+                    class="field__label"
+                    for="howMuchMortgageInsuranceRequired"
+                    >If your mortgage requires this insurance, how much is
+                    required?</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <input
+                    class="field__input"
+                    id="howMuchMortgageInsuranceRequired"
+                    name="howMuchMortgageInsuranceRequired"
+                    type="text"
+                    placeholder=""
+                    value=""
+                  />
+                  <p class="field__note">Numerical Values Only</p>
                 </div>
               </div>
             </div>
@@ -1573,16 +1635,17 @@
 
           <!-- ******* ASIDE  *******-->
           <aside class="quote_request_aside">
-            <h2 class="quote_request_sidebar__heading">Why AFI?</h2>
+            <h2 class="quote_request_sidebar__heading">Did You Know?</h2>
             <div class="quote_request_sidebar__content">
               <div class="quote_request_sidebar__item">
-                <h3 class="quote_request_sidebar__item_heading">
-                  Saving You Time and Money
-                </h3>
                 <p class="quote_request_sidebar__item_description">
-                  We have access to quote your insurance through a network of
-                  national carriers to find the best policy solution for your
-                  unique needs.
+                  Everyone is considered to be in a flood zone. Approximately
+                  one-third of flood losses occur in low risk zones.
+                </p>
+                <p class="quote_request_sidebar__item_description">
+                  AFI works with the largest Write Your Own (WYO) flood insurer
+                  in the country to help you find the best coverage solution for
+                  your flood insurance needs.
                 </p>
               </div>
             </div>
