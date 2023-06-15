@@ -1071,7 +1071,7 @@
     </section>
 
     <!-- SPOUSE INFORMATION -->
-    <section class="form_section flood__step spouse_information active_section">
+    <section class="form_section flood__step spouse_information">
       <div class="container">
         <!-- ******** STEP ******** -->
         <div class="step__container">
@@ -1249,8 +1249,10 @@
     <!-- ************************************************ -->
     <!---------------------- MULTI-STEP 2 ------------------>
     <!-- ************************************************ -->
-    <!-- MAIN VEHICLE FORM -->
-    <section class="form_section flood__step property_quoted_form">
+    <!-- PROPERTY QUOTED FORM -->
+    <section
+      class="form_section flood__step property_quoted_form active_section"
+    >
       <div class="container">
         <!-- ******** STEP ******** -->
         <div class="step__container">
@@ -1270,55 +1272,46 @@
         <div class="quote_request__section_wrapper">
           <!-- ******* FORM  *******-->
           <div class="form_container">
-            <h2 class="quote_request_heading">Vehicle Information</h2>
+            <h2 class="quote_request_heading">Property to be Quoted</h2>
 
-            <!-- Year, Make, Model -->
+            <!-- checkbox is same as mailing address -->
             <div class="fields-row">
-              <div class="field field--small">
-                <div class="field__label-wrapper">
-                  <label class="field__label" for="mainVehicleYear">Year</label>
-                </div>
-                <div class="field__input-wrapper">
-                  <input
-                    class="field__input"
-                    id="mainVehicleYear"
-                    name="mainVehicleYear"
-                    type="text"
-                    maxlength="4"
-                    placeholder=""
-                    value=""
-                  />
-                </div>
-              </div>
-              <div class="field">
-                <div class="field__label-wrapper">
-                  <label class="field__label" for="mainVehicleMake">Make</label>
-                </div>
-                <div class="field__input-wrapper">
-                  <input
-                    class="field__input"
-                    id="mainVehicleMake"
-                    name="mainVehicleMake"
-                    type="text"
-                    maxlength="50"
-                    placeholder=""
-                    value=""
-                  />
+              <div class="field field--full">
+                <div class="field-group field-group--inline">
+                  <div class="field__input-wrapper">
+                    <input
+                      class="field__input"
+                      id="propertyAddressSameAsMailing--true"
+                      name="propertyAddressSameAsMailing"
+                      type="checkbox"
+                      value="true"
+                    /><label
+                      class="field__label"
+                      for="propertyAddressSameAsMailing--true"
+                      >My property to be quoted is the same as mailing
+                      address</label
+                    >
+                  </div>
                 </div>
               </div>
-              <div class="field">
+            </div>
+
+            <!-- Address -->
+            <div class="fields-row">
+              <div class="field field--xxlarge">
                 <div class="field__label-wrapper">
-                  <label class="field__label" for="mainVehicleModel"
-                    >Model</label
+                  <label class="field__label" for="propertyAddress"
+                    >Address</label
                   >
                 </div>
                 <div class="field__input-wrapper">
                   <input
                     class="field__input"
-                    id="mainVehicleModel"
-                    name="mainVehicleModel"
+                    id="propertyAddress"
+                    name="propertyAddress"
                     type="text"
-                    maxlength="50"
+                    required=""
+                    maxlength="100"
                     placeholder=""
                     value=""
                   />
@@ -1326,145 +1319,63 @@
               </div>
             </div>
 
-            <!-- Type, Estimate Value of Vehicle -->
-            <div class="fields-row">
-              <div class="field">
-                <div class="field__label-wrapper">
-                  <label class="field__label" for="mainVehicleType">Type</label>
-                </div>
-                <div class="field__input-wrapper">
-                  <select
-                    class="field__input"
-                    id="mainVehicleType"
-                    name="mainVehicleType"
-                    type="select"
-                  >
-                    <option value="">Choose One</option>
-                    <option value="Stock">Stock</option>
-                    <option value="Modified">Modified</option>
-                  </select>
-                </div>
-              </div>
-              <div class="field extra_message_margin">
-                <div class="field__label-wrapper">
-                  <label class="field__label" for="mainVehicleEstimatedValue"
-                    >Estimate Value of Vehicle</label
-                  >
-                </div>
-                <div class="field__input-wrapper">
-                  <input
-                    class="field__input numberOnly dollar_field"
-                    id="mainVehicleEstimatedValue"
-                    name="mainVehicleEstimatedValue"
-                    type="text"
-                    maxlength="20"
-                    placeholder=""
-                    value=""
-                  />
-                  <p class="field__note">Numerical Values Only</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Vehicle Storage -->
+            <!-- City -->
             <div class="fields-row">
               <div class="field field--xlarge">
                 <div class="field__label-wrapper">
-                  <label class="field__label" for="mainVehicleStorage"
-                    >Vehicle Storage</label
-                  >
+                  <label class="field__label" for="propertyCity">City</label>
                 </div>
                 <div class="field__input-wrapper">
-                  <select
+                  <input
                     class="field__input"
-                    id="mainVehicleStorage"
-                    name="mainVehicleStorage"
-                    type="select"
-                  >
-                    <option value="">Choose One</option>
-                    <option value="Private Garage">Private Garage</option>
-                    <option value="Carport">Carport</option>
-                    <option value="Driveway">Driveway</option>
-                    <option value="Other Enclosed Structure">
-                      Other Enclosed Structure
-                    </option>
-                  </select>
-                </div>
-              </div>
-            </div>
-
-            <!-- Textarea = Describe how vehicle is driven -->
-            <div class="fields-row">
-              <div class="field field--xxlarge field--extended-label">
-                <div class="field__label-wrapper">
-                  <label class="field__label" for="mainVehicleDriveDescription"
-                    >Describe how vehicle is driven, i.e. where to, how often,
-                    etc.</label
-                  >
-                </div>
-                <div class="field__input-wrapper">
-                  <textarea
-                    class="field__input"
-                    id="mainVehicleDriveDescription"
-                    name="mainVehicleDriveDescription"
+                    id="propertyCity"
+                    name="propertyCity"
+                    type="text"
+                    required=""
+                    maxlength="50"
                     placeholder=""
-                  ></textarea>
+                    value=""
+                  />
                 </div>
               </div>
             </div>
 
-            <!-- Number of Licensed-->
+            <!-- State, Zip-->
             <div class="fields-row">
-              <div class="field field--xlarge field--extended-label">
+              <div class="field field--xlarge">
                 <div class="field__label-wrapper">
-                  <label
-                    class="field__label"
-                    for="mainVehicleLicensedDriverCount"
-                    >Number of Licensed Drivers Living in Household</label
-                  >
+                  <label class="field__label" for="propertyState">State</label>
                 </div>
                 <div class="field__input-wrapper">
                   <select
                     class="field__input"
-                    id="mainVehicleLicensedDriverCount"
-                    name="mainVehicleLicensedDriverCount"
+                    id="propertyState"
+                    name="propertyState"
                     type="select"
+                    required=""
                   >
-                    <option value="">Choose One</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6 or more">6 or more</option>
+                    <option value="">--</option>
+                    <option value="AL">Alabama</option>
+                    <option value="AK">Alaska</option>
                   </select>
                 </div>
               </div>
-            </div>
-
-            <!-- Number Of Daily Use -->
-            <div class="fields-row">
-              <div class="field field--xlarge field--extended-label">
+              <div class="field field--small">
                 <div class="field__label-wrapper">
-                  <label class="field__label" for="mainVehicleNumberOfDailyUse"
-                    >Number Of Daily Use Vehicles In Household</label
-                  >
+                  <label class="field__label" for="propertyZip">Zip</label>
                 </div>
                 <div class="field__input-wrapper">
-                  <select
+                  <input
                     class="field__input"
-                    id="mainVehicleNumberOfDailyUse"
-                    name="mainVehicleNumberOfDailyUse"
-                    type="select"
-                  >
-                    <option value="">Choose One</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6 or more">6 or more</option>
-                  </select>
+                    id="propertyZip"
+                    name="propertyZip"
+                    type="text"
+                    required=""
+                    pattern="[0-9]{5}"
+                    maxlength="5"
+                    placeholder=""
+                    value=""
+                  />
                 </div>
               </div>
             </div>
@@ -1472,16 +1383,21 @@
 
           <!-- ******* ASIDE  *******-->
           <aside class="quote_request_aside">
-            <h2 class="quote_request_sidebar__heading">Why AFI?</h2>
+            <h2 class="quote_request_sidebar__heading">Did You Know?</h2>
             <div class="quote_request_sidebar__content">
               <div class="quote_request_sidebar__item">
-                <h3 class="quote_request_sidebar__item_heading">
-                  Saving You Time and Money
-                </h3>
                 <p class="quote_request_sidebar__item_description">
-                  We have access to quote your insurance through a network of
-                  national carriers to find the best policy solution for your
-                  unique needs.
+                  Flood insurance covers direct physical loss caused by "flood."
+                  In simple terms, a flood is an excess of water on land that is
+                  normally dry.
+                </p>
+                <p class="quote_request_sidebar__item_description">
+                  Federal disaster assistance is only available if the President
+                  declares a disaster. Less than 50 percent of all flooding
+                  incidents are awarded a Federal Disaster Assistance
+                  declaration. If the President declares a Federal Disaster
+                  Area, most disaster assistance is provided in the form of a
+                  loan that must be repaid - principal plus interest.
                 </p>
               </div>
             </div>
@@ -1490,7 +1406,7 @@
       </div>
     </section>
 
-    <!-- ADD MORE VEHICLE FORM -->
+    <!-- PROPERTY OVERVIEW FORM -->
     <section class="form_section flood__step property_overview_form">
       <div class="container">
         <!-- ******** STEP ******** -->
@@ -1678,7 +1594,7 @@
     <!-- ************************************************ -->
     <!---------------------- MULTI-STEP 3 ------------------>
     <!-- ************************************************ -->
-    <!-- ADD MORE VEHICLE FORM -->
+    <!-- PROPERTY DETAILS FORM -->
     <section class="form_section flood__step property_details_form">
       <div class="container">
         <!-- ******** STEP ******** -->
