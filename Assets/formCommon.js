@@ -1,10 +1,12 @@
 const formData = {};
 
+let formList = ["radio_select"];
 // *********************************************
 //           SHOW FORM BY CONDITION
 // *********************************************
-function showActiveForm(step, formList) {
+function showActiveForm(step) {
   console.log({ step });
+  console.log(formList);
 
   // remove active_section class from everywhere
   document.querySelector(".active_section")?.classList.remove("active_section");
@@ -206,6 +208,7 @@ function eligibilityValidation(forms = []) {
   const eligibilityStatus = document.querySelector(
     'input[name="eligibilityStatus"]:checked'
   )?.value;
+  console.log(forms);
 
   // Select Formlist as user eligibilityStatus
   if (Boolean(eligibilityStatus)) {
@@ -218,7 +221,7 @@ function eligibilityValidation(forms = []) {
     } else {
       formList = ["radio_select", ...forms];
     }
-    maxStep = formList.length - 1;
+    // maxStep = formList.length - 1;
 
     // set eligibilityStatus to formData
     formData.eligibilityStatus = eligibilityStatus;

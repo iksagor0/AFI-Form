@@ -14,10 +14,8 @@ const floodFormSteps = [
   "property_details_form",
 ];
 
-let floodFormList = ["radio_select", ...floodFormSteps];
-
 let floodStep = 0;
-let floodMaxStep = floodFormList.length - 1;
+let floodMaxStep = formList.length;
 
 // *********************************************
 //       FORM SUBMISSION AND STEP HANDLING
@@ -28,19 +26,19 @@ const backBtn = document.querySelector("#back_btn");
 // ***** NEXT FUNCTIONALITY *****
 nextBtn?.addEventListener("click", () => {
   if (floodStep === 0) {
-    const isSelectEligibility = eligibilityValidation();
+    const isSelectEligibility = eligibilityValidation(floodFormSteps);
     if (!Boolean(isSelectEligibility)) return false;
+    floodMaxStep = formList.length - 1;
   }
 
   //  HANDLE ALL FORM SUBMISSIONS AND STEP VALIDATION
-  console.log(handleFloodForms(floodStep));
   if (!handleFloodForms(floodStep)) return false;
 
   // Step Increment
   floodStep >= floodMaxStep ? floodStep : floodStep++;
 
   // Show Form
-  showActiveForm(floodStep, floodFormList);
+  showActiveForm(floodStep, formList);
 });
 
 // Back
@@ -49,13 +47,11 @@ backBtn?.addEventListener("click", () => {
   floodStep <= 0 ? floodStep : floodStep--;
 
   // 2 side back for add_more_vehicle_form
-  if (floodStep + 1 === floodFormList.indexOf("add_more_vehicle_form")) {
-    floodFormList = floodFormList.filter(
-      (item) => item != "add_more_vehicle_form"
-    );
-    floodStep = floodFormList.indexOf("summary__form");
+  if (floodStep + 1 === formList.indexOf("add_more_vehicle_form")) {
+    formList = formList.filter((item) => item != "add_more_vehicle_form");
+    floodStep = formList.indexOf("summary__form");
   }
-  showActiveForm(floodStep);
+  showActiveForm(floodStep, formList);
 });
 
 // =*********************************************
@@ -63,47 +59,47 @@ backBtn?.addEventListener("click", () => {
 // =*********************************************
 function handleFloodForms(step) {
   // =*********************************************************
-  if (step === floodFormList.indexOf("military_information")) {
+  if (step === formList.indexOf("military_information")) {
     if (!militaryFormValidation()) return false;
   }
-  if (step === floodFormList.indexOf("parent_information")) {
+  if (step === formList.indexOf("parent_information")) {
     if (!parentFormValidation()) return false;
   }
-  if (step === floodFormList.indexOf("child_information")) {
+  if (step === formList.indexOf("child_information")) {
     if (!childFormValidation()) return false;
   }
-  if (step === floodFormList.indexOf("policyholder__form")) {
+  if (step === formList.indexOf("policyholder__form")) {
     if (!policyholderValidation(step)) return false;
   }
-  if (step === floodFormList.indexOf("spouse_information")) {
+  if (step === formList.indexOf("spouse_information")) {
     if (!spouseValidation()) return false;
   }
-  if (step === floodFormList.indexOf("add_vehicle__form")) {
+  if (step === formList.indexOf("add_vehicle__form")) {
     if (!addVehicleValidation()) return false;
     summaryFunctionality();
   }
-  if (step === floodFormList.indexOf("add_more_vehicle_form")) {
+  if (step === formList.indexOf("add_more_vehicle_form")) {
     if (!addMoreVehicleValidation()) return false;
     summaryFunctionality();
   }
   if (
-    step === floodFormList.indexOf("summary__form") ||
-    step === floodFormList.indexOf("summary__form") - 1
+    step === formList.indexOf("summary__form") ||
+    step === formList.indexOf("summary__form") - 1
   ) {
     summaryFunctionality();
   }
-  if (step === floodFormList.indexOf("violations__form")) {
+  if (step === formList.indexOf("violations__form")) {
     if (!violationsValidation()) return false;
   }
 
-  if (step === floodFormList.indexOf("coverage_limits_form")) {
+  if (step === formList.indexOf("coverage_limits_form")) {
     if (!coverageLimitsValidation()) return false;
     functionalityForEachDamageForm();
   }
-  if (step === floodFormList.indexOf("physical_damage_form")) {
+  if (step === formList.indexOf("physical_damage_form")) {
     if (!physicalDamageValidation()) return false;
   }
-  if (step === floodFormList.indexOf("coverage__history_form")) {
+  if (step === formList.indexOf("coverage__history_form")) {
     if (!coverageHistoryValidation()) return false;
 
     alert("Done");
@@ -120,13 +116,13 @@ function handleFloodForms(step) {
 //           SHOW FORM BY CONDITION
 // =*********************************************
 // function showActiveForm(step) {
-//   floodMaxStep = floodFormList.length - 1;
+//   floodMaxStep = formList.length - 1;
 
 //   // remove active_form class from everywhere
 //   document.querySelector(".active_form")?.classList.remove("active_form");
 
 //   // set active_form class
-//   document.querySelector(`.${floodFormList[step]}`)?.classList.add("active_form");
+//   document.querySelector(`.${formList[step]}`)?.classList.add("active_form");
 
 //   console.log({ floodStep });
 //   console.log(formData);
@@ -141,8 +137,6 @@ function handleFloodForms(step) {
 //              FORM VALIDATION
 // *********************************************
 // / ********** Eligibility Validation ***********
-// eligibilityValidation(floodFormSteps);
-// console.log(floodFormList);
 
 // / ********** Military Information ***********
 function militaryFormValidation() {
@@ -315,14 +309,12 @@ function policyholderValidation(step) {
     ];
 
     if (spouseValues.includes(formData.policyHolder?.maritalStatus)) {
-      if (!floodFormList.includes("spouse_information")) {
-        floodFormList.splice(step + 1, 0, "spouse_information");
+      if (!formList.includes("spouse_information")) {
+        formList.splice(step + 1, 0, "spouse_information");
       }
     }
     if (!spouseValues.includes(formData.policyHolder?.maritalStatus)) {
-      floodFormList = floodFormList.filter(
-        (form) => form != "spouse_information"
-      );
+      formList = formList.filter((form) => form != "spouse_information");
       console.log("aaaaaaaaaaaa spouse_information");
     }
   }
