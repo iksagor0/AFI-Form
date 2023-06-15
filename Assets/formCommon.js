@@ -246,11 +246,15 @@ function validateForm(formClassName) {
   const dateValidator = (field) =>
     minValue(field, 10, "Please enter a valid date");
 
+  const zipValidator = (field) =>
+    minValue(field, 5, "Please enter a valid Zip code");
+
   const classAndValidator = [
     {
       class: "date",
       validator: dateValidator,
     },
+    { class: "zip", validator: zipValidator },
     { class: "email", validator: emailValidation },
     { class: "phone", validator: phoneValidation },
     { class: "alphabeticOnly", validator: alphabeticOnly },
@@ -263,10 +267,6 @@ function validateForm(formClassName) {
     classAndValidator.forEach((checker) => {
       if (field.classList.contains(checker.class)) {
         checkValidation.push(checker.validator(field));
-      }
-
-      if (field.classList.contains("zip")) {
-        minValue(field, 5, "Please enter a valid Zip code");
       }
     });
   });
