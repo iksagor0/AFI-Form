@@ -75,7 +75,7 @@ function handleFloodForms(step) {
     if (!floodPolicyholderValidation(step)) return false;
   }
   if (step === formList.indexOf("spouse_information")) {
-    if (!spouseValidation()) return false;
+    if (!validateForm("spouse_information")) return false;
   }
   if (step === formList.indexOf("add_vehicle__form")) {
     if (!addVehicleValidation()) return false;
