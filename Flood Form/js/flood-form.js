@@ -81,6 +81,7 @@ function handleFloodForms(step) {
 
   if (step === formList.indexOf("property_overview_form")) {
     if (!floodOverviewValidation()) return false;
+    floodDetailsFunc();
   }
 
   //
@@ -146,7 +147,7 @@ function floodPolicyholderValidation(step) {
 }
 
 // *********************************************
-//     STEP-2 FUNCTIONALITY & VALIDATION
+// STEP-2 "Property to be Quoted" FUNCTIONALITY & VALIDATION
 // *********************************************
 const isFloodSameAddressEl = document.getElementById(
   "propertyAddressSameAsMailing--true"
@@ -198,7 +199,7 @@ function floodPropertyQuotedValidation() {
 }
 
 // *********************************************
-//              STEP-3 VALIDATION
+// STEP-2 "Property Overview" FUNCTIONALITY & VALIDATION
 // *********************************************
 
 function floodOverviewFunc() {
@@ -246,7 +247,49 @@ function floodOverviewValidation() {
       );
   }
 
+  return true;
   return isValidate && awareOfFloodLossesOnProperty;
+}
+
+// *********************************************
+// STEP-3 "Property Details" FUNCTIONALITY & VALIDATION
+// *********************************************
+function floodDetailsFunc() {
+  const isStructureACondominium = document.querySelector(
+    ".field__input[name=isStructureACondominium]:checked"
+  );
+
+  const whatFloorIsYourCondominiumOn = document.getElementById(
+    "whatFloorIsYourCondominiumOn"
+  );
+
+  document
+    .querySelectorAll(".field__input[name=isStructureACondominium]")
+    .forEach((field) => {
+      field.addEventListener("change", () => {
+        if (field.checked && field?.value === "Yes") {
+          whatFloorIsYourCondominiumOn.disabled = false;
+          whatFloorIsYourCondominiumOn?.classList.add("required");
+        } else {
+          whatFloorIsYourCondominiumOn.disabled = true;
+          whatFloorIsYourCondominiumOn?.classList.remove("required");
+        }
+      });
+    });
+
+  //
+  const garageType = document.getElementById("garageType");
+  const garageValue = document.getElementById("garageValue");
+
+  garageType.addEventListener("change", (e) => {
+    if (e.target.value === "Detached") {
+      garageValue.disabled = false;
+      garageValue?.classList.add("required");
+    } else {
+      garageValue.disabled = true;
+      garageValue?.classList.remove("required");
+    }
+  });
 }
 
 // =*********************************************
