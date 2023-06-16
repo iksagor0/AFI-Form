@@ -292,7 +292,7 @@ function militaryValidation() {
 
   document.querySelector("#policyHolderFirstName").value = formData[fnameValue];
   document.querySelector("#policyHolderLastName").value = formData[lnameValue];
-
+  debugger;
   return isValidate;
 }
 

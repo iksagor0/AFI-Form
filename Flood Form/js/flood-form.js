@@ -10,7 +10,7 @@ const floodFormSteps = [
 ];
 
 let floodStep = 0;
-let floodMaxStep = formList.length;
+let floodMaxStep = formList.length - 1;
 
 // *********************************************
 //       FORM SUBMISSION AND STEP HANDLING

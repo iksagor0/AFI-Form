@@ -453,7 +453,7 @@ input.field__input:focus {
 .hidden_area,
 .__hide,
 .hide {
-  display: none;
+  display: none !important;
 }
 
 .field_message,

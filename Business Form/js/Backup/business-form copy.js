@@ -1,13 +1,20 @@
+// DATA
+const formData = {
+  eligibilityStatus: "",
+};
+
 // const successRedirection = "https://afi.org/";
-// const successRedirection = "../--Model/thank-you.html";
+const successRedirection = "../--Model/thank-you.html";
 
 // Forms
-const businessFormSteps = [
+const multiStepForm = [
   "multi__step_1",
   "multi__step_2",
   "multi__step_3",
   "multi__step_4",
 ];
+const defaultForms = ["radio_select", ...multiStepForm];
+let formList = defaultForms;
 
 // *********************************************
 //       FORM SUBMISSION AND STEP HANDLING
@@ -15,68 +22,65 @@ const businessFormSteps = [
 const nextBtn = document.querySelector("#next_btn");
 const backBtn = document.querySelector("#back_btn");
 
-let businessStep = 0;
-let businessMaxStep = formList.length - 1;
+let stepCount = 0;
+let maxStep = formList.length - 1;
 
 // ***** NEXT FUNCTIONALITY *****
 nextBtn.addEventListener("click", () => {
-  if (businessStep === 0) {
-    const isSelectEligibility = eligibilityValidation(businessFormSteps);
+  const isSelectEligibility = eligibilityValidation();
+
+  if (stepCount === 0) {
     if (!Boolean(isSelectEligibility)) return false;
-    businessMaxStep = formList.length - 1;
   }
 
   //   If additional form has in arrayList
-  if (businessStep === formList.indexOf("military_information")) {
-    if (!militaryValidation()) return false;
+  if (stepCount === formList.indexOf("military_information")) {
+    if (!militaryFormValidation()) return false;
   }
 
-  if (businessStep === formList.indexOf("parent_information")) {
-    if (!validateForm("parent_information")) return false;
+  if (stepCount === formList.indexOf("parent_information")) {
+    if (!parentFormValidation()) return false;
   }
 
-  if (businessStep === formList.indexOf("child_information")) {
-    if (!validateForm("child_information")) return false;
+  if (stepCount === formList.indexOf("child_information")) {
+    if (!childFormValidation()) return false;
   }
 
-  if (businessStep === formList.indexOf("multi__step_1")) {
-    if (!validateForm("multi__step_1")) return false;
+  if (stepCount === formList.indexOf("multi__step_1")) {
+    if (!multiStep1Validation()) return false;
   }
-
-  if (businessStep === formList.indexOf("multi__step_2")) {
+  if (stepCount === formList.indexOf("multi__step_2")) {
     if (!multiStep2Validation()) return false;
   }
-
-  if (businessStep === formList.indexOf("multi__step_3")) {
+  if (stepCount === formList.indexOf("multi__step_3")) {
     if (!multiStep3Validation()) return false;
   }
 
-  if (businessStep === formList.indexOf("multi__step_4")) {
+  if (stepCount === formList.indexOf("multi__step_4")) {
     const isAllFine = multiStep4Validation();
 
     if (isAllFine) {
-      alert("DONE");
       document.querySelector("#currentInsuranceCompany").value = "";
       // Go to Thank You Page
-      // window.location.href = successRedirection;
+      window.location.href = successRedirection;
     }
   }
 
   console.log(formData);
 
   // Step Increment
-  businessStep >= businessMaxStep ? businessStep : businessStep++;
+  stepCount >= maxStep ? stepCount : stepCount++;
 
   // Show Form
-  showActiveForm(businessStep);
+  showActiveForm(stepCount);
 });
 
 // Back
 backBtn.addEventListener("click", () => {
   // Step Decrement
-  businessStep <= 0 ? businessStep : businessStep--;
+  stepCount <= 0 ? stepCount : stepCount--;
 
-  showActiveForm(businessStep);
+  showActiveForm(stepCount);
 });
 
 // ********** Military Information ***********
