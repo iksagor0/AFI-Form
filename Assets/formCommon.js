@@ -358,40 +358,47 @@ document.querySelectorAll(".field__input")?.forEach((input) => {
   });
 });
 
+function militaryFormFunc() {
+  // Military Rank should be disabled if branchOfService value none
+  const branchOfService = document.getElementById("branchOfService");
+
+  if (branchOfService) {
+    branchOfService.addEventListener("change", () => {
+      const militaryRank = document.getElementById("militaryRank");
+      if (Boolean(branchOfService?.value)) {
+        militaryRank.disabled = false;
+      } else {
+        militaryRank.disabled = true;
+      }
+    });
+  }
+}
+
 // *********************************************
 //            COMMON STEP 4 FUNCTIONALITIES
 // *********************************************
-// Military Rank should be disabled if branchOfService value none
-const branchOfService = document.getElementById("branchOfService");
+function coverageHistoryFunc() {
+  // if currentInsuranceCompany = "Other" then Insurance Company field will show
+  const currentInsuranceCompany = document.querySelector(
+    "#currentInsuranceCompany"
+  );
 
-if (branchOfService) {
-  branchOfService?.addEventListener("change", () => {
-    const militaryRank = document.getElementById("militaryRank");
-    if (Boolean(branchOfService?.value)) {
-      militaryRank.disabled = false;
+  currentInsuranceCompany?.addEventListener("change", () => {
+    const insuranceCompany = document.getElementById("insuranceCompany");
+    const insComWrapper = document.querySelector(
+      ".multi__step_4 .insuranceCompany"
+    );
+
+    if (currentInsuranceCompany?.value === "Other") {
+      insComWrapper?.classList.remove("conditionally_hidden_field");
+      insuranceCompany?.classList.add("required");
     } else {
-      militaryRank.disabled = true;
+      insComWrapper?.classList.add("conditionally_hidden_field");
+      insuranceCompany?.classList.remove("required");
     }
   });
+
+  // STEP 4 - Policy Renewal Data Validation
+  const policyRenewalDate = document.querySelector("#policyRenewalDate");
+  if (policyRenewalDate) dateValidation(policyRenewalDate, thisYear + 2);
 }
-
-// if currentInsuranceCompany = "Other" then Insurance Company field will show
-const currentInsuranceCompany = document.querySelector(
-  "#currentInsuranceCompany"
-);
-
-currentInsuranceCompany?.addEventListener("change", () => {
-  if (currentInsuranceCompany?.value === "Other") {
-    document
-      .querySelector(".multi__step_4 .insuranceCompany")
-      ?.classList.remove("conditionally_hidden_field");
-  } else {
-    document
-      .querySelector(".multi__step_4 .insuranceCompany")
-      ?.classList.add("conditionally_hidden_field");
-  }
-});
-
-// STEP 4 - Policy Renewal Data Validation
-const policyRenewalDate = document.querySelector("#policyRenewalDate");
-if (policyRenewalDate) dateValidation(policyRenewalDate, thisYear + 2);
