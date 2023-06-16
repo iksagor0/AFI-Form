@@ -1,4 +1,16 @@
 /* *********************************
+             SITECORE CSS 
+********************************** */
+#wrapper {
+  overflow: unset !important;
+}
+
+.afiFormContainer {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* *********************************
              TITLE HERO 
 ********************************** */
 .title_hero {
@@ -187,7 +199,7 @@
   background-color: #f6f6f6;
   background-color: var(--color-gray-10);
   flex-grow: 1;
-  padding: 1.5rem 1rem;
+  padding: 10px;
 }
 
 .form_container.radio_select {
@@ -334,7 +346,9 @@ input.field__input:focus {
   }
 
   .form_container {
-    padding: 2.625rem 2.25rem;
+    /* padding: 2.625rem 2.25rem; */
+    padding: 20px;
+    padding-bottom: 0;
   }
 
   .fields-row {

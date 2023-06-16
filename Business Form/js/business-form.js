@@ -16,8 +16,11 @@ const businessFormSteps = [
 let businessStep = 0;
 let businessMaxStep = formList.length - 1;
 
+const businessNextBtn = document.querySelector("#businessNextBtn");
+const businessBackBtn = document.querySelector("#businessBackBtn");
+
 // ***** NEXT FUNCTIONALITY *****
-nextBtn?.addEventListener("click", () => {
+businessNextBtn?.addEventListener("click", () => {
   if (businessStep === 0) {
     const isSelectEligibility = eligibilityValidation(businessFormSteps);
     if (!Boolean(isSelectEligibility)) return false;
@@ -66,15 +69,15 @@ nextBtn?.addEventListener("click", () => {
   businessStep >= businessMaxStep ? businessStep : businessStep++;
 
   // Show Form
-  showActiveForm(businessStep);
+  showActiveForm(businessStep, businessBackBtn);
 });
 
 // Back
-backBtn?.addEventListener("click", () => {
+businessBackBtn?.addEventListener("click", () => {
   // Step Decrement
   businessStep <= 0 ? businessStep : businessStep--;
 
-  showActiveForm(businessStep);
+  showActiveForm(businessStep, businessBackBtn);
 });
 
 // *********************************************
