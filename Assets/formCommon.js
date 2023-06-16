@@ -4,6 +4,9 @@ let formList = ["radio_select"];
 // *********************************************
 //           SHOW FORM BY CONDITION
 // *********************************************
+const nextBtn = document.querySelector("#next_btn");
+const backBtn = document.querySelector("#back_btn");
+
 function showActiveForm(step) {
   console.log({ step });
   console.log(formData);

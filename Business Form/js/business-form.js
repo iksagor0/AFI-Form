@@ -12,14 +12,12 @@ const businessFormSteps = [
 // *********************************************
 //       FORM SUBMISSION AND STEP HANDLING
 // *********************************************
-const nextBtn = document.querySelector("#next_btn");
-const backBtn = document.querySelector("#back_btn");
 
 let businessStep = 0;
 let businessMaxStep = formList.length - 1;
 
 // ***** NEXT FUNCTIONALITY *****
-nextBtn.addEventListener("click", () => {
+nextBtn?.addEventListener("click", () => {
   if (businessStep === 0) {
     const isSelectEligibility = eligibilityValidation(businessFormSteps);
     if (!Boolean(isSelectEligibility)) return false;
@@ -64,8 +62,6 @@ nextBtn.addEventListener("click", () => {
     }
   }
 
-  console.log(formData);
-
   // Step Increment
   businessStep >= businessMaxStep ? businessStep : businessStep++;
 
@@ -74,22 +70,21 @@ nextBtn.addEventListener("click", () => {
 });
 
 // Back
-backBtn.addEventListener("click", () => {
+backBtn?.addEventListener("click", () => {
   // Step Decrement
   businessStep <= 0 ? businessStep : businessStep--;
 
   showActiveForm(businessStep);
 });
 
-// ********** Military Information ***********
-
-// ********** Parent's Information ***********
-
-// ********** Child's Information ***********
-
-// ********** MULTI-STEP 1 Validation ***********
-
-// ********** MULTI-STEP 2 Validation ***********
+// *********************************************
+//              FORM VALIDATION
+// *********************************************
+/*
+ *
+ * Note: Most of the form validate by using common validation functions from formCommon.js file.
+ *
+ */
 
 // ********** MULTI-STEP 3 Validation ***********
 function policyCoverageOptions() {
@@ -112,8 +107,6 @@ function policyCoverageOptions() {
 
   return isValidate;
 }
-
-// ********** MULTI-STEP 4 Validation ***********
 
 // *********************************************
 //            FETCH DATA FROM JSON

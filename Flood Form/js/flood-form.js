@@ -15,8 +15,6 @@ let floodMaxStep = formList.length - 1;
 // *********************************************
 //       FORM SUBMISSION AND STEP HANDLING
 // *********************************************
-const nextBtn = document.querySelector("#next_btn");
-const backBtn = document.querySelector("#back_btn");
 
 // ***** NEXT FUNCTIONALITY *****
 nextBtn?.addEventListener("click", () => {
