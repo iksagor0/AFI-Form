@@ -282,6 +282,18 @@ function validateForm(formClassName) {
   return isValidate;
 }
 
+function militaryValidation() {
+  const isValidate = validateForm("military_information");
+
+  // Set Name in Multi-step form field
+  const fnameValue = document.querySelector("#militaryFirstName").name;
+  const lnameValue = document.querySelector("#militaryLastName").name;
+
+  document.querySelector("#policyHolderFirstName").value = formData[fnameValue];
+  document.querySelector("#policyHolderLastName").value = formData[lnameValue];
+
+  return isValidate;
+}
 // *********************************************
 //            COMMON FUNCTIONALITIES
 // *********************************************

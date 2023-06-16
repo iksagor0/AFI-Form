@@ -50,7 +50,7 @@ backBtn?.addEventListener("click", () => {
 function handleFloodForms(step) {
   // =*********************************************************
   if (step === formList.indexOf("military_information")) {
-    if (!floodMilitaryValidation()) return false;
+    if (!militaryValidation()) return false;
   }
 
   if (step === formList.indexOf("parent_information")) {
@@ -97,18 +97,18 @@ function handleFloodForms(step) {
 // *********************************************
 
 // / ********** Military Information ***********
-function floodMilitaryValidation() {
-  const isValidate = validateForm("military_information");
+// function floodMilitaryValidation() {
+//   const isValidate = validateForm("military_information");
 
-  // Set Name in Multi-step form field
-  const fnameValue = document.querySelector("#militaryFirstName").name;
-  const lnameValue = document.querySelector("#militaryLastName").name;
+//   // Set Name in Multi-step form field
+//   const fnameValue = document.querySelector("#militaryFirstName").name;
+//   const lnameValue = document.querySelector("#militaryLastName").name;
 
-  document.querySelector("#policyHolderFirstName").value = formData[fnameValue];
-  document.querySelector("#policyHolderLastName").value = formData[lnameValue];
+//   document.querySelector("#policyHolderFirstName").value = formData[fnameValue];
+//   document.querySelector("#policyHolderLastName").value = formData[lnameValue];
 
-  return isValidate;
-}
+//   return isValidate;
+// }
 
 // *********************************************
 //             STEP-1 VALIDATION
