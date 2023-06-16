@@ -1,5 +1,5 @@
-// const successRedirection = "https://afi.org/";
-// const successRedirection = "../--Model/thank-you.html";
+// const floodSuccessRedirection = "https://afi.org/";
+// const floodSuccessRedirection = "../--Model/thank-you.html";
 
 // Forms
 const floodFormSteps = [
@@ -62,7 +62,7 @@ function handleFloodForms(step) {
   }
 
   if (step === formList.indexOf("policyholder_form")) {
-    if (!floodPolicyholderValidation(step)) return false;
+    if (!policyholderValidation(step)) return false;
     floodPropertyQuotedFormFunc();
   }
   if (step === formList.indexOf("spouse_information")) {
@@ -86,57 +86,19 @@ function handleFloodForms(step) {
     alert("Done");
 
     // Go to Thank You Page
-    // window.location.href = successRedirection;
+    // window.location.href = floodSuccessRedirection;
   }
 
   return true;
 }
 
 // *********************************************
-//              FORM VALIDATION
-// *********************************************
-
-// / ********** Military Information ***********
-// function floodMilitaryValidation() {
-//   const isValidate = validateForm("military_information");
-
-//   // Set Name in Multi-step form field
-//   const fnameValue = document.querySelector("#militaryFirstName").name;
-//   const lnameValue = document.querySelector("#militaryLastName").name;
-
-//   document.querySelector("#policyHolderFirstName").value = formData[fnameValue];
-//   document.querySelector("#policyHolderLastName").value = formData[lnameValue];
-
-//   return isValidate;
-// }
-
-// *********************************************
 //             STEP-1 VALIDATION
 // *********************************************
-function floodPolicyholderValidation(step) {
-  const isValidate = validateForm("policyholder_form");
 
-  if (isValidate) {
-    // SHOW SPOUSE INFORMATION FORM, IF HAVE
-    const spouseValues = [
-      "Married",
-      "Cohabitant",
-      "Civil Union Or Domestic Partner",
-    ];
+// Policy Holder validation from formCommon.js (policyholderValidation)
 
-    if (spouseValues.includes(formData.policyHolderMaritalStatus)) {
-      if (!formList.includes("spouse_information")) {
-        formList.splice(step + 1, 0, "spouse_information");
-      }
-    }
-    if (!spouseValues.includes(formData.policyHolderMaritalStatus)) {
-      formList = formList.filter((form) => form != "spouse_information");
-      console.log("aaaaaaaaaaaa spouse_information");
-    }
-  }
-
-  return isValidate;
-}
+// Spouse validate by default validateForm in handleFloodForms function
 
 // *********************************************
 // STEP-2 "Property to be Quoted" FUNCTIONALITY & VALIDATION

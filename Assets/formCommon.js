@@ -282,6 +282,7 @@ function validateForm(formClassName) {
   return isValidate;
 }
 
+// MILITARY INFO FROM VALIDATION
 function militaryValidation() {
   const isValidate = validateForm("military_information");
 
@@ -291,6 +292,39 @@ function militaryValidation() {
 
   document.querySelector("#policyHolderFirstName").value = formData[fnameValue];
   document.querySelector("#policyHolderLastName").value = formData[lnameValue];
+
+  return isValidate;
+}
+
+// POLICY HOLDER FORM VALIDATION
+function policyholderValidation(step) {
+  const isValidate = validateForm("policyholder_form");
+
+  if (isValidate) {
+    // SHOW SPOUSE INFORMATION FORM, IF HAVE
+    const spouseValues = [
+      "Married",
+      "Cohabitant",
+      "Civil Union Or Domestic Partner",
+    ];
+
+    if (spouseValues.includes(formData.policyHolderMaritalStatus)) {
+      if (!formList.includes("spouse_information")) {
+        formList.splice(step + 1, 0, "spouse_information");
+      }
+    }
+    if (!spouseValues.includes(formData.policyHolderMaritalStatus)) {
+      formList = formList.filter((form) => form != "spouse_information");
+
+      const spouseField = document.querySelectorAll(
+        ".spouse_information .field__input"
+      );
+
+      spouseField.forEach((field) => {
+        delete formData[field.name];
+      });
+    }
+  }
 
   return isValidate;
 }
