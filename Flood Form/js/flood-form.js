@@ -107,7 +107,6 @@ function floodMilitaryValidation() {
   document.querySelector("#policyHolderFirstName").value = formData[fnameValue];
   document.querySelector("#policyHolderLastName").value = formData[lnameValue];
 
-  return true;
   return isValidate;
 }
 
@@ -136,7 +135,6 @@ function floodPolicyholderValidation(step) {
     }
   }
 
-  return true;
   return isValidate;
 }
 
@@ -187,6 +185,8 @@ function floodPropertyQuotedValidation() {
     formData[isFloodSameAddressEl.name] = true;
     return true;
   } else {
+    formData[isFloodSameAddressEl.name] = false;
+
     const isValidate = validateForm("property_quoted_form");
     return isValidate;
   }
@@ -241,7 +241,6 @@ function floodOverviewValidation() {
       );
   }
 
-  return true;
   return isValidate && Boolean(awareOfFloodLossesOnProperty);
 }
 
