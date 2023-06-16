@@ -3,8 +3,8 @@
 
 // Forms
 const businessFormSteps = [
-  "multi__step_1",
-  "multi__step_2",
+  "policyholder_form",
+  "business_information",
   "multi__step_3",
   "multi__step_4",
 ];
@@ -39,12 +39,12 @@ nextBtn.addEventListener("click", () => {
     if (!validateForm("child_information")) return false;
   }
 
-  if (businessStep === formList.indexOf("multi__step_1")) {
-    if (!validateForm("multi__step_1")) return false;
+  if (businessStep === formList.indexOf("policyholder_form")) {
+    if (!policyholderValidation(businessStep)) return false;
   }
 
-  if (businessStep === formList.indexOf("multi__step_2")) {
-    if (!multiStep2Validation()) return false;
+  if (businessStep === formList.indexOf("business_information")) {
+    if (!validateForm("business_information")) return false;
   }
 
   if (businessStep === formList.indexOf("multi__step_3")) {
