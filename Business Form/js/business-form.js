@@ -20,6 +20,7 @@ const businessNextBtn = document.querySelector("#businessNextBtn");
 const businessBackBtn = document.querySelector("#businessBackBtn");
 
 // ***** NEXT FUNCTIONALITY *****
+floodNextBtn(businessNextBtn);
 businessNextBtn?.addEventListener("click", () => {
   if (businessStep === 0) {
     const isSelectEligibility = eligibilityValidation(businessFormSteps);

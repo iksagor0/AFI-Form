@@ -347,16 +347,18 @@ document.querySelectorAll(".form_container .field")?.forEach((fieldWrapper) => {
 });
 
 // Press Enter Submit Form
-document.querySelectorAll(".field__input")?.forEach((input) => {
-  input.addEventListener("keypress", (event) => {
-    if (event?.key === "Enter") {
-      event.preventDefault();
+function pressEnterToSubmit(nextBtn) {
+  document.querySelectorAll(".field__input")?.forEach((input) => {
+    input.addEventListener("keypress", (event) => {
+      if (event?.key === "Enter") {
+        event.preventDefault();
 
-      // Trigger the button element with a click
-      document.getElementById("next_btn").click();
-    }
+        // Trigger the button element with a click
+        document.getElementById(nextBtn).click();
+      }
+    });
   });
-});
+}
 
 function militaryFormFunc() {
   // Military Rank should be disabled if branchOfService value none

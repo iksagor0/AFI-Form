@@ -20,6 +20,7 @@ const floodBackBtn = document.querySelector("#floodBackBtn");
 // *********************************************
 
 // ***** NEXT FUNCTIONALITY *****
+pressEnterToSubmit(floodNextBtn);
 nextBtn?.addEventListener("click", () => {
   if (floodStep === 0) {
     const isSelectEligibility = eligibilityValidation(floodFormSteps);
