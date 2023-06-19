@@ -1,20 +1,8 @@
-// DATA
-const formData = {
-  eligibilityStatus: "",
-  policyHolder: {},
-  vehicleInfo: {
-    vehicles: [],
-  },
-  householdViolations: null,
-  policyCoverageLimits: {},
-  coverageHistory: {},
-};
-
 // const successRedirection = "https://afi.org/";
 // const successRedirection = "../--Model/thank-you.html";
 
 // Forms
-const multiStepForm = [
+const vehicleMultiStepForm = [
   "policyholder__form",
   // "add_vehicle__form",
   "summary__form",
@@ -24,45 +12,44 @@ const multiStepForm = [
   "coverage__history_form",
 ];
 
-let formList = ["radio_select", ...multiStepForm];
-
 // *********************************************
 //       FORM SUBMISSION AND STEP HANDLING
 // *********************************************
-const nextBtn = document.querySelector("#next_btn");
-const backBtn = document.querySelector("#back_btn");
+const vehicleNextBtn = document.querySelector("#vehicleNextBtn");
+const vehicleBackBtn = document.querySelector("#vehicleBackBtn");
 
-let stepCount = 0;
-let maxStep = formList.length - 1;
+let vehicleStep = 0;
+let vehicleMaxStep = formList.length - 1;
 
 // ***** NEXT FUNCTIONALITY *****
 nextBtn.addEventListener("click", () => {
-  if (stepCount === 0) {
-    const isSelectEligibility = eligibilityValidation();
+  if (businessStep === 0) {
+    const isSelectEligibility = eligibilityValidation(businessFormSteps);
     if (!Boolean(isSelectEligibility)) return false;
+    businessMaxStep = formList.length - 1;
+    militaryFormFunc();
   }
-
   //  HANDLE ALL FORM SUBMISSIONS AND STEP VALIDATION
-  if (!handleMultiStepForm(stepCount)) return false;
+  if (!handleMultiStepForm(vehicleStep)) return false;
 
   // Step Increment
-  stepCount >= maxStep ? stepCount : stepCount++;
+  vehicleStep >= vehicleMaxStep ? vehicleStep : vehicleStep++;
 
   // Show Form
-  showActiveForm(stepCount);
+  showActiveForm(floodStep, vehicleBackBtn);
 });
 
 // Back
 backBtn.addEventListener("click", () => {
   // Step Decrement
-  stepCount <= 0 ? stepCount : stepCount--;
+  vehicleStep <= 0 ? vehicleStep : vehicleStep--;
 
   // 2 side back for add_more_vehicle_form
-  if (stepCount + 1 === formList.indexOf("add_more_vehicle_form")) {
+  if (vehicleStep + 1 === formList.indexOf("add_more_vehicle_form")) {
     formList = formList.filter((item) => item != "add_more_vehicle_form");
-    stepCount = formList.indexOf("summary__form");
+    vehicleStep = formList.indexOf("summary__form");
   }
-  showActiveForm(stepCount);
+  showActiveForm(floodStep, vehicleBackBtn);
 });
 
 // =*********************************************
@@ -71,20 +58,25 @@ backBtn.addEventListener("click", () => {
 function handleMultiStepForm(step) {
   // =*********************************************************
   if (step === formList.indexOf("military_information")) {
-    if (!militaryFormValidation()) return false;
+    if (!militaryValidation()) return false;
   }
+
   if (step === formList.indexOf("parent_information")) {
-    if (!parentFormValidation()) return false;
+    if (!validateForm("parent_information")) return false;
   }
+
   if (step === formList.indexOf("child_information")) {
-    if (!childFormValidation()) return false;
+    if (!validateForm("child_information")) return false;
   }
-  if (step === formList.indexOf("policyholder__form")) {
+
+  if (step === formList.indexOf("policyholder_form")) {
     if (!policyholderValidation(step)) return false;
   }
   if (step === formList.indexOf("spouse_information")) {
-    if (!spouseValidation()) return false;
+    if (!validateForm("spouse_information")) return false;
   }
+
+  //
   if (step === formList.indexOf("add_vehicle__form")) {
     if (!addVehicleValidation()) return false;
     summaryFunctionality();
@@ -130,7 +122,7 @@ function handleMultiStepForm(step) {
 //           SHOW FORM BY CONDITION
 // =*********************************************
 function showActiveForm(step) {
-  maxStep = formList.length - 1;
+  vehicleMaxStep = formList.length - 1;
 
   // remove active_form class from everywhere
   document.querySelector(".active_form")?.classList.remove("active_form");
@@ -138,11 +130,11 @@ function showActiveForm(step) {
   // set active_form class
   document.querySelector(`.${formList[step]}`)?.classList.add("active_form");
 
-  console.log({ stepCount });
+  console.log({ vehicleStep });
   console.log(formData);
 
   // Conditionally Hide Back Btn
-  stepCount <= 0
+  vehicleStep <= 0
     ? backBtn.classList.add("hide")
     : backBtn.classList.remove("hide");
 }
@@ -348,15 +340,23 @@ function eligibilityValidation() {
   // Select Formlist as user eligibilityStatus
   if (Boolean(eligibilityStatus)) {
     if (eligibilityStatus === "military") {
-      formList = ["radio_select", "military_information", ...multiStepForm];
+      formList = [
+        "radio_select",
+        "military_information",
+        ...vehicleMultiStepForm,
+      ];
     } else if (eligibilityStatus === "child") {
-      formList = ["radio_select", "parent_information", ...multiStepForm];
+      formList = [
+        "radio_select",
+        "parent_information",
+        ...vehicleMultiStepForm,
+      ];
     } else if (eligibilityStatus === "parent") {
-      formList = ["radio_select", "child_information", ...multiStepForm];
+      formList = ["radio_select", "child_information", ...vehicleMultiStepForm];
     } else {
-      formList = ["radio_select", ...multiStepForm];
+      formList = ["radio_select", ...vehicleMultiStepForm];
     }
-    maxStep = formList.length - 1;
+    vehicleMaxStep = formList.length - 1;
 
     // set eligibilityStatus to formData
     formData.eligibilityStatus = eligibilityStatus;
@@ -618,7 +618,7 @@ addVehicle.addEventListener("click", () => {
     const summaryIndex = formList.indexOf("summary__form");
     formList.splice(summaryIndex, 0, "add_more_vehicle_form");
   }
-  showActiveForm(stepCount);
+  showActiveForm(floodStep, vehicleBackBtn);
 });
 
 // ********** FUNCTIONALITY OF VEHICLE FORM : Edit ***********
@@ -630,7 +630,7 @@ mainVehicleEditBtn.addEventListener("click", () => {
     formList.splice(summaryIndex, 0, "add_vehicle__form");
   }
 
-  showActiveForm(stepCount);
+  showActiveForm(floodStep, vehicleBackBtn);
 });
 
 // ********** FUNCTIONALITY OF MORE VEHICLE FORMS : Edit, Delete ***********
@@ -653,7 +653,7 @@ function runVehicleItemsFunctionality() {
         const summaryIndex = formList.indexOf("summary__form");
         formList.splice(summaryIndex, 0, "add_more_vehicle_form");
 
-        showActiveForm(stepCount);
+        showActiveForm(floodStep, vehicleBackBtn);
 
         // Assign the values
         function editFormWithValue(id, value) {
@@ -714,7 +714,7 @@ function summaryFunctionality() {
       formList.splice(summaryIndex, 0, "add_vehicle__form");
     }
 
-    showActiveForm(stepCount);
+    showActiveForm(floodStep, vehicleBackBtn);
   } else {
     formList = formList.filter((form) => form != "add_vehicle__form");
     // show data in Summary
@@ -802,9 +802,9 @@ function addVehicleValidation() {
     formData.vehicleInfo.numberOfLicensedDrivers = LicensedDriverCount?.value;
     formData.vehicleInfo.numberOfDailyUseVehicle = NumberOfDailyUse?.value;
 
-    // REDUCE stepCount cz add_vehicle__form will remove from the formList
+    // REDUCE vehicleStep cz add_vehicle__form will remove from the formList
     const summaryIndex = formList.indexOf("summary__form");
-    stepCount = summaryIndex - 2;
+    vehicleStep = summaryIndex - 2;
   }
 
   return isValidate;
@@ -852,9 +852,9 @@ function addMoreVehicleValidation() {
       formData.vehicleInfo.vehicles.push(vehicle);
     }
 
-    // REDUCE stepCount and REMOVE add_more_vehicle_form from the formList
+    // REDUCE vehicleStep and REMOVE add_more_vehicle_form from the formList
     const summaryIndex = formList.indexOf("summary__form");
-    stepCount = summaryIndex - 2;
+    vehicleStep = summaryIndex - 2;
     formList = formList.filter((item) => item != "add_more_vehicle_form");
   }
 

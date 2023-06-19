@@ -12,6 +12,9 @@ const floodFormSteps = [
 let floodStep = 0;
 let floodMaxStep = formList.length - 1;
 
+const floodNextBtn = document.querySelector("#floodNextBtn");
+const floodBackBtn = document.querySelector("#floodBackBtn");
+
 // *********************************************
 //       FORM SUBMISSION AND STEP HANDLING
 // *********************************************
@@ -31,7 +34,7 @@ nextBtn?.addEventListener("click", () => {
   floodStep >= floodMaxStep ? floodStep : floodStep++;
 
   // Show Form
-  showActiveForm(floodStep, formList);
+  showActiveForm(floodStep, floodNextBtn);
 });
 
 // Back
@@ -39,7 +42,7 @@ backBtn?.addEventListener("click", () => {
   // Step Decrement
   floodStep <= 0 ? floodStep : floodStep--;
 
-  showActiveForm(floodStep, formList);
+  showActiveForm(floodStep, floodNextBtn);
 });
 
 // =*********************************************
