@@ -1,4 +1,4 @@
-const formData = {};
+let formData = {};
 
 let formList = ["radio_select"];
 // *********************************************
@@ -292,7 +292,6 @@ function militaryValidation() {
 
   document.querySelector("#policyHolderFirstName").value = formData[fnameValue];
   document.querySelector("#policyHolderLastName").value = formData[lnameValue];
-  debugger;
   return isValidate;
 }
 
@@ -326,7 +325,6 @@ function policyholderValidation(step) {
     }
   }
 
-  debugger;
   return isValidate;
 }
 // *********************************************
