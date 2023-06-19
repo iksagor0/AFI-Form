@@ -1,4 +1,16 @@
 /* *********************************
+             SITECORE CSS 
+********************************** */
+#wrapper {
+  overflow: unset !important;
+}
+
+.afiFormContainer {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* *********************************
              TITLE HERO 
 ********************************** */
 .title_hero {
@@ -118,7 +130,7 @@
 .steps__list .step {
   width: 3rem;
   aspect-ratio: 1/1;
-  border: 1px solid #d1d1d1;
+  border: 2px solid #d1d1d1;
   border-radius: 50%;
   /* overflow: hidden; */
   display: grid;
@@ -187,7 +199,7 @@
   background-color: #f6f6f6;
   background-color: var(--color-gray-10);
   flex-grow: 1;
-  padding: 1.5rem 1rem;
+  padding: 10px;
 }
 
 .form_container.radio_select {
@@ -334,7 +346,9 @@ input.field__input:focus {
   }
 
   .form_container {
-    padding: 2.625rem 2.25rem;
+    /* padding: 2.625rem 2.25rem; */
+    padding: 20px;
+    padding-bottom: 0;
   }
 
   .fields-row {
@@ -374,7 +388,7 @@ input.field__input:focus {
 
 .quote_request_sidebar__item_heading {
   font-size: 0.875rem !important;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.25rem !important;
 }
 
 .quote_request_sidebar__item_description {
@@ -444,15 +458,20 @@ input.field__input:focus {
   display: none;
 }
 
+.form_section.active_form,
 .form_section.active_section {
   display: block;
 }
 
+/* Hidden */
+.hidden_area,
+.__hide,
 .hide {
   display: none !important;
 }
 
-.field_message {
+.field_message,
+.field__error-messages {
   color: #cb2c30;
   color: var(--color-red-10);
   font-size: 0.875rem !important;
@@ -471,7 +490,7 @@ input.field__input:focus {
 /* ********************************
       Loading Animation
 ************************************/
-
+/* 
 .field__input-wrapper.loading__field {
   position: relative;
 }
@@ -503,4 +522,4 @@ input.field__input:focus {
   left: 50%;
   transform: translate(-50%, -50%);
   animation: circle 0.5s linear infinite;
-}
+} */
