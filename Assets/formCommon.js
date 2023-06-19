@@ -352,7 +352,7 @@ function pressEnterToSubmit(nextBtn) {
         event.preventDefault();
 
         // Trigger the button element with a click
-        document.getElementById(nextBtn).click();
+        nextBtn?.click();
       }
     });
   });
