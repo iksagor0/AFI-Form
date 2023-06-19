@@ -238,7 +238,7 @@ function eligibilityValidation(forms = []) {
 // *********************************************
 //              FORM VALIDATION
 // *********************************************
-function validateForm(formClassName) {
+function validateForm(formClassName, dataAssign = true) {
   const allFields = document.querySelectorAll(
     `.${formClassName} .field__input`
   );
@@ -273,7 +273,7 @@ function validateForm(formClassName) {
 
   const isValidate = checkValidation.every((result) => result === true);
 
-  if (isValidate) {
+  if (isValidate && dataAssign) {
     allFields.forEach((field) => {
       formData[field?.name] = field.value;
     });

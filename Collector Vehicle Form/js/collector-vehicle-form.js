@@ -136,102 +136,6 @@ function handleVehicleStepForm(step) {
 //              FORM VALIDATION
 // *********************************************
 
-// // / ********** Military Information ***********
-// function militaryFormValidation() {
-//   const militaryFirstName = document.querySelector("#militaryFirstName");
-//   const militaryLastName = document.querySelector("#militaryLastName");
-//   const branchOfService = document.querySelector("#branchOfService");
-//   const militaryStatus = document.querySelector("#militaryStatus");
-//   const militaryRank = document.querySelector("#militaryRank");
-
-//   const validationFields = [
-//     alphabeticOnly(militaryFirstName),
-//     isValueEmpty(militaryFirstName),
-//     alphabeticOnly(militaryLastName),
-//     isValueEmpty(militaryLastName),
-//     isValueEmpty(branchOfService),
-//     isValueEmpty(militaryStatus),
-//     isValueEmpty(militaryRank),
-//   ];
-
-//   const isValidate = validationFields.every((result) => result === true);
-
-//   if (isValidate) {
-//     const military = (formData.militaryInfo = {});
-
-//     military.firstName = militaryFirstName?.value;
-//     military.lastName = militaryLastName?.value;
-//     military.branchOfService = branchOfService?.value;
-//     military.status = militaryStatus?.value;
-//     military.rank = militaryRank?.value;
-
-//     // Set Name in Multi-step form field
-//     document.querySelector("#policyHolderFirstName").value = military.firstName;
-//     document.querySelector("#policyHolderLastName").value = military.lastName;
-//   }
-
-//   return isValidate;
-// }
-
-// // Military Rank should be disabled if branchOfService value none
-// const branchOfService = document.getElementById("branchOfService");
-// branchOfService.addEventListener("change", () => {
-//   const militaryRank = document.getElementById("militaryRank");
-//   if (Boolean(branchOfService?.value)) {
-//     militaryRank.disabled = false;
-//   } else {
-//     militaryRank.disabled = true;
-//   }
-// });
-
-// / ********** Child's Information ***********
-function childFormValidation() {
-  const childFirstName = document.querySelector("#childFirstName");
-  const childLastName = document.querySelector("#childLastName");
-
-  const validationFields = [
-    alphabeticOnly(childFirstName),
-    alphabeticOnly(childLastName),
-    isValueEmpty(childFirstName),
-    isValueEmpty(childLastName),
-  ];
-
-  const isValidate = validationFields.every((result) => result === true);
-
-  if (isValidate) {
-    const child = (formData.childInfo = {});
-
-    child.firstName = childFirstName?.value;
-    child.lLastName = childLastName?.value;
-  }
-
-  return isValidate;
-}
-
-// / ********** Child's Information ***********
-function parentFormValidation() {
-  const parentFirstName = document.querySelector("#parentFirstName");
-  const parentLastName = document.querySelector("#parentLastName");
-
-  const validationFields = [
-    alphabeticOnly(parentFirstName),
-    alphabeticOnly(parentLastName),
-    isValueEmpty(parentFirstName),
-    isValueEmpty(parentLastName),
-  ];
-
-  const isValidate = validationFields.every((result) => result === true);
-
-  if (isValidate) {
-    const parent = (formData.parentInfo = {});
-
-    parent.firstName = parentFirstName?.value;
-    parent.lastName = parentLastName?.value;
-  }
-
-  return isValidate;
-}
-
 // *********************************************
 //             STEP-1 VALIDATION
 // *********************************************
@@ -373,7 +277,7 @@ let editVehicleIndex = -1;
 // ********** "+ Add Vehicle" BUTTON FUNCTIONALITY  ***********
 const addVehicle = document.getElementById("addVehicle");
 
-addVehicle.addEventListener("click", () => {
+addVehicle?.addEventListener("click", () => {
   const fields = document.querySelectorAll(
     ".add_more_vehicle_form .field__input"
   );
@@ -388,7 +292,7 @@ addVehicle.addEventListener("click", () => {
 
 // ********** FUNCTIONALITY OF VEHICLE FORM : Edit ***********
 const mainVehicleEditBtn = document.getElementById("mainVehicleEditBtn");
-mainVehicleEditBtn.addEventListener("click", () => {
+mainVehicleEditBtn?.addEventListener("click", () => {
   const summaryIndex = formList.indexOf("summary__form");
 
   if (!formList.includes("add_vehicle__form")) {
