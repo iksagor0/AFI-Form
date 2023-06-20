@@ -21,7 +21,7 @@ const floodBackBtn = document.querySelector("#floodBackBtn");
 
 // ***** NEXT FUNCTIONALITY *****
 pressEnterToSubmit(floodNextBtn);
-nextBtn?.addEventListener("click", () => {
+floodNextBtn?.addEventListener("click", () => {
   if (floodStep === 0) {
     const isSelectEligibility = eligibilityValidation(floodFormSteps);
     if (!Boolean(isSelectEligibility)) return false;
@@ -39,7 +39,7 @@ nextBtn?.addEventListener("click", () => {
 });
 
 // Back
-backBtn?.addEventListener("click", () => {
+floodBackBtn?.addEventListener("click", () => {
   // Step Decrement
   floodStep <= 0 ? floodStep : floodStep--;
 

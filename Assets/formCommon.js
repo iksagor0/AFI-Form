@@ -151,7 +151,7 @@ document.querySelectorAll(".SSN").forEach((field) => {
 function currencyFieldFunc() {
   const dollarField = document.querySelectorAll(".field__input.dollar");
 
-  dollarField.forEach((field) => {
+  dollarField?.forEach((field) => {
     field?.addEventListener("input", (e) => {
       if (e.target.value) {
         let modifiedValue = e.target.value
