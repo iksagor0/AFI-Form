@@ -159,3 +159,12 @@
   opacity: .5;
 }
 
+.flex_gap_10 {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.gap_20 {
+  gap: 20px;
+}

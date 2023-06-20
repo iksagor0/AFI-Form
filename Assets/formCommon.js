@@ -331,18 +331,23 @@ function policyholderValidation(step) {
 //            COMMON FUNCTIONALITIES
 // *********************************************
 // KeyPress only remove field Error Message
-document.querySelectorAll(".form_container .field")?.forEach((fieldWrapper) => {
-  const removeFieldError = () => {
-    const errorField = fieldWrapper?.querySelector(".field_message");
-    errorField?.classList.remove("error");
-  };
+function removeErrorOnChange() {
+  document
+    .querySelectorAll(".form_container .field")
+    ?.forEach((fieldWrapper) => {
+      const removeFieldError = () => {
+        const errorField = fieldWrapper?.querySelector(".field_message");
+        errorField?.classList.remove("error");
+      };
 
-  fieldWrapper
-    ?.querySelectorAll(".field__input")
-    .forEach((inputField) =>
-      inputField?.addEventListener("input", removeFieldError)
-    );
-});
+      fieldWrapper
+        ?.querySelectorAll(".field__input")
+        .forEach((inputField) =>
+          inputField?.addEventListener("input", removeFieldError)
+        );
+    });
+}
+removeErrorOnChange();
 
 // Press Enter Submit Form
 function pressEnterToSubmit(nextBtn) {

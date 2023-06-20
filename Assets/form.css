@@ -346,9 +346,9 @@ input.field__input:focus {
   }
 
   .form_container {
-    /* padding: 2.625rem 2.25rem; */
-    padding: 20px;
-    padding-bottom: 0;
+    padding: 2.625rem 2.25rem;
+    /* padding: 20px;
+    padding-bottom: 0; */
   }
 
   .fields-row {

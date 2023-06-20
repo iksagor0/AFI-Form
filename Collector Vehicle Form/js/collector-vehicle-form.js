@@ -71,7 +71,7 @@ function handleVehicleStepForm(step) {
   }
 
   if (step === formList.indexOf("policyholder_form")) {
-    if (!policyholderValidation(step)) return false;
+    // if (!policyholderValidation(step)) return false;
   }
   if (step === formList.indexOf("spouse_information")) {
     if (!validateForm("spouse_information")) return false;
@@ -99,14 +99,15 @@ function handleVehicleStepForm(step) {
   }
 
   if (step === formList.indexOf("coverage_limits_form")) {
-    if (!coverageLimitsValidation()) return false;
+    // if (!validateForm("coverage_limits_form")) return false;
     functionalityForEachDamageForm();
   }
   if (step === formList.indexOf("physical_damage_form")) {
     if (!physicalDamageValidation()) return false;
+    coverageHistoryFunc();
   }
   if (step === formList.indexOf("coverage__history_form")) {
-    if (!coverageHistoryValidation()) return false;
+    if (!validateForm("coverage_history_form")) return false;
 
     alert("Done");
 
@@ -322,6 +323,7 @@ function addVehicleValidation() {
 
     allFields.forEach((field) => {
       collectorVehicles[0][field.name] = field.value;
+      collectorVehicles[0].vehicleId = 0;
     });
 
     // REDUCE vehicleStep cz add_vehicle__form will remove from the formList
@@ -406,10 +408,6 @@ addViolationBtn.addEventListener("click", () => {
   clearFieldErrorMsg();
 });
 
-const hasViolationsFields = document.getElementsByName(
-  "householdViolationsPreviousClaims"
-);
-
 // IF householdViolationsPreviousClaims value not== Yes, then disable all
 function disableViolationInputs(disable = true) {
   const violationInputs = violationWrapper.querySelectorAll(".field__input");
@@ -418,6 +416,9 @@ function disableViolationInputs(disable = true) {
 }
 disableViolationInputs(true);
 
+const hasViolationsFields = document.getElementsByName(
+  "householdViolationsPreviousClaims"
+);
 const getViolationsValue = () => {
   let value = "";
   hasViolationsFields?.forEach((field) => {
@@ -429,7 +430,7 @@ const getViolationsValue = () => {
 
 // Get every violation Radio field's value
 hasViolationsFields.forEach((fields) => {
-  fields.addEventListener("change", () => {
+  fields?.addEventListener("change", () => {
     let getValue = getViolationsValue();
 
     if (getValue === "Yes") {
@@ -460,19 +461,23 @@ function functionalityForEachDamageForm() {
   const DamageFormWrapper = document.getElementById(
     "physical_damage_form_wrapper"
   );
-  const vehicleList = collectorVehicles;
 
   // Clear DamageFormWrapper Children
   DamageFormWrapper.innerHTML = "";
 
+  // const vehicleList = collectorVehicles;
   // Add Vehicle data to DamageFormWrapper with other fields
-  vehicleList.forEach((vehicleData, index) => {
+  collectorVehicles.forEach((vData, index) => {
+    const year = vData[`vehicle${vData.vehicleId}Year`];
+    const make = vData[`vehicle${vData.vehicleId}Make`];
+    const model = vData[`vehicle${vData.vehicleId}Model`];
+
     const clonedItem = damageForm.cloneNode(true);
 
     clonedItem.classList.remove("__hide");
     clonedItem.querySelector(
       ".vehicle_name"
-    ).innerHTML = `${vehicleData.year} ${vehicleData.make} ${vehicleData.model}`;
+    ).innerHTML = `${year} ${make} ${model}`;
 
     // liability radio fields functionality
     const liabilityYes = clonedItem.querySelector("#liability--Yes");
@@ -487,20 +492,26 @@ function functionalityForEachDamageForm() {
       const disabledFields = clonedItem.querySelectorAll(
         ".field__input.damage"
       );
+
       if (liabilityNo.checked) {
         disabledFields.forEach((field) => {
           field.disabled = false;
+          field.classList.add("required");
         });
       } else {
         disabledFields.forEach((field) => {
           inputErrorMessage(field, "", true);
           field.disabled = true;
+          field.classList.remove("required");
         });
       }
     }
 
     DamageFormWrapper.appendChild(clonedItem);
   });
+
+  //
+  removeErrorOnChange();
 }
 
 // *********************************************
@@ -508,14 +519,15 @@ function functionalityForEachDamageForm() {
 // *********************************************
 function violationsValidation() {
   if (getViolationsValue() === "No") {
-    formData.householdViolations = "No violations in last 5 years";
+    formData.householdViolationsPreviousClaims =
+      "No violations in last 5 years";
     return true;
   } else if (getViolationsValue() === "Yes") {
     const fieldsWrapper = document.querySelectorAll(".violation_info_fields");
 
     const violations = [];
 
-    fieldsWrapper.forEach((field) => {
+    fieldsWrapper.forEach((field, i) => {
       const driverField = field.querySelector("#householdViolationsDriver");
       const typeField = field.querySelector("#householdViolationsType");
       const dateField = field.querySelector("#householdViolationsDate");
@@ -531,10 +543,11 @@ function violationsValidation() {
       const isValidate = validationFields.every((result) => result === true);
 
       if (isValidate) {
+        // const vLength = violations.length
         const violationData = {
-          driver: driverField.value,
-          type: typeField.value,
-          date: dateField.value,
+          [`householdViolations${i}Driver`]: driverField.value,
+          [`householdViolations${i}Type`]: typeField.value,
+          [`householdViolations${i}Date`]: dateField.value,
         };
         violations.push(violationData);
       }
@@ -545,7 +558,8 @@ function violationsValidation() {
     ).checked;
 
     // if (checkedYes) {
-    formData.householdViolations = violations;
+    // formData.householdViolations = violations;
+    violations.forEach((info) => (formData = { ...formData, ...info }));
     return fieldsWrapper.length === violations.length;
   } else {
     const fieldContainer = document.querySelector(
@@ -557,97 +571,102 @@ function violationsValidation() {
   }
 }
 
-function coverageLimitsValidation() {
-  const bodilyInjuryLiability = document.querySelector(
-    "#bodilyInjuryLiability"
-  );
-  const propertyDamageLiability = document.querySelector(
-    "#propertyDamageLiability"
-  );
-  const medicalPayment = document.querySelector("#medicalPayment");
-  const uninsuredMotoristBodilyInjury = document.querySelector(
-    "#uninsuredMotoristBodilyInjury"
-  );
+// function physicalDamageValidation() {
+//   const liabilityData = [];
 
-  const validationFields = [
-    isValueEmpty(bodilyInjuryLiability),
-    isValueEmpty(propertyDamageLiability),
-    isValueEmpty(medicalPayment),
-    isValueEmpty(uninsuredMotoristBodilyInjury),
-  ];
+//   const wrapper = document.getElementById("physical_damage_form_wrapper");
+//   const damageFieldSections = wrapper.querySelectorAll(".damage__form");
 
-  const isValidate = validationFields.every((result) => result === true);
+//   // VALIDATE EVERY FIELD SECTION
+//   damageFieldSections.forEach((section,i) => {
+//     const getFields =  section.querySelectorAll(".field__input.damage");
+
+//     let sectionData = {
+//       [`liability${}OnlyCoverage`]: "Yes",
+//     };
+//     const validationFields = [true];
+
+//     getFields?.forEach((field) => {
+//       if (field.disabled) {
+//         // If field is disabled then Remove error msg element
+//         inputErrorMessage(field, "", true);
+//         inputErrorMessage(field, "", true);
+//       } else {
+//         clearFieldErrorMsg();
+
+//         // If field is enabled then check validation and get data
+//         const isFieldValid = isValueEmpty(field);
+//         validationFields.push(isFieldValid);
+//         if (isFieldValid) {
+//           sectionData.liabilityOnlyCoverage = "No";
+//           sectionData = {
+//             ...sectionData,
+//             [field.name]: field.value,
+//           };
+//         }
+//       }
+//     });
+
+//     // If this section is Valid then set date
+//     const isValidate = validationFields.every((result) => result === true);
+//     if (isValidate) {
+//       liabilityData.push(sectionData);
+//     }
+//   });
+
+//   // If all sections are field and data is valid then set date to formData Vehicle
+//   const isAllDataValid = liabilityData.length === damageFieldSections.length;
+//   if (isAllDataValid) {
+//     liabilityData.forEach((data, i) => {
+//       collectorVehicles[i].liabilityData = liabilityData[i];
+//     });
+//   }
+
+//   return isAllDataValid;
+// }
+
+function physicalDamageValidation() {
+  const isValidate = validateForm("physical_damage_form", false);
 
   if (isValidate) {
-    const data = formData.policyCoverageLimits;
-    data.bodilyInjuryLiability = bodilyInjuryLiability?.value;
-    data.propertyDamageLiability = propertyDamageLiability?.value;
-    data.medicalPayment = medicalPayment?.value;
-    data.uninsuredMotoristBodilyInjury = uninsuredMotoristBodilyInjury?.value;
+    const damageForms = document.querySelectorAll(
+      "#physical_damage_form_wrapper .damage__form"
+    );
+
+    damageForms.forEach((damageForm, i) => {
+      const vId = collectorVehicles[i].vehicleId;
+
+      const liaCoVal = damageForm.querySelector(
+        `input[name=liability_${i}]:checked`
+      )?.value;
+
+      collectorVehicles[i][`vehicle${vId}LiabilityOnlyCoverage`] = liaCoVal;
+
+      if (liaCoVal === "No") {
+        const comVal = damageForm.querySelector(
+          ".field__input.vehicleComprehensiveDeductible"
+        )?.value;
+        const colVal = damageForm.querySelector(
+          ".field__input.vehicleCollisionDeductible"
+        )?.value;
+
+        collectorVehicles[i][`vehicle${vId}ComprehensiveDeductible`] = comVal;
+        collectorVehicles[i][`vehicle${vId}CollisionDeductible`] = colVal;
+        debugger;
+      }
+
+      debugger;
+    });
   }
+
+  summaryFunctionality();
 
   return isValidate;
 }
-
-function physicalDamageValidation() {
-  const liabilityData = [];
-
-  const wrapper = document.getElementById("physical_damage_form_wrapper");
-  const damageFieldSections = wrapper.querySelectorAll(".damage__form");
-
-  // VALIDATE EVERY FIELD SECTION
-  damageFieldSections.forEach((section) => {
-    const getFields = () => {
-      return section.querySelectorAll(".field__input.damage");
-    };
-
-    let sectionData = {
-      liabilityOnlyCoverage: "Yes",
-    };
-    const validationFields = [true];
-
-    getFields().forEach((field) => {
-      if (field.disabled) {
-        // If field is disabled then Remove error msg element
-        inputErrorMessage(field, "", true);
-        inputErrorMessage(field, "", true);
-      } else {
-        clearFieldErrorMsg();
-
-        // If field is enabled then check validation and get data
-        const isFieldValid = isValueEmpty(field);
-        validationFields.push(isFieldValid);
-        if (isFieldValid) {
-          sectionData.liabilityOnlyCoverage = "No";
-          sectionData = {
-            ...sectionData,
-            [field.name]: field.value,
-          };
-        }
-      }
-    });
-
-    // If this section is Valid then set date
-    const isValidate = validationFields.every((result) => result === true);
-    if (isValidate) {
-      liabilityData.push(sectionData);
-    }
-  });
-
-  // If all sections are field and data is valid then set date to formData Vehicle
-  const isAllDataValid = liabilityData.length === damageFieldSections.length;
-  if (isAllDataValid) {
-    liabilityData.forEach((data, i) => {
-      collectorVehicles[i].liabilityData = liabilityData[i];
-    });
-  }
-
-  return isAllDataValid;
-}
-
 // *********************************************
 //              STEP-4 VALIDATION
 // *********************************************
+
 function coverageHistoryValidation() {
   const currentInsuranceCompany = document.querySelector(
     "#currentInsuranceCompany"
