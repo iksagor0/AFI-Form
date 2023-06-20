@@ -148,14 +148,23 @@ document.querySelectorAll(".SSN").forEach((field) => {
 });
 
 // Dollar Field Pattern
-const dollarField = document.querySelector(".field__input.dollar_field");
+function currencyFieldFunc() {
+  const dollarField = document.querySelectorAll(".field__input.dollar");
 
-dollarField?.addEventListener("input", (e) => {
-  if (e.target.value) {
-    let modifiedValue = e.target.value.match(/.{1,3}/g).join(",");
-    e.target.value = `$${modifiedValue}`;
-  }
-});
+  dollarField.forEach((field) => {
+    field?.addEventListener("input", (e) => {
+      if (e.target.value) {
+        let modifiedValue = e.target.value
+          .toString()
+          .replace(/\D/g, "")
+          .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+        e.target.value = `$${modifiedValue}`;
+      }
+    });
+  });
+}
+currencyFieldFunc();
 
 // Date Validation
 const thisYear = new Date().getFullYear();
