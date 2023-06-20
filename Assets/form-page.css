@@ -190,3 +190,17 @@
   position: relative;
   width: 200%;
 }
+
+
+/* ********************************
+      Small Form Page
+************************************/
+.email_confirmation #small_back_btn2 {
+  background: #d6d6d6 !important;
+  color: #000 !important;
+  border: #d6d6d6 !important;
+}
+
+.email_confirmation #small_submit_btn {
+  width: 15rem !important;
+}
