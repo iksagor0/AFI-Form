@@ -159,3 +159,48 @@
   opacity: .5;
 }
 
+.flex_gap_10 {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.gap_20 {
+  gap: 20px;
+}
+
+/* ********************************
+      Flood PAGE
+************************************/
+@media screen and (min-width: 48em) {
+  .flood__step .steps__list .step::after {
+    width: 160px;
+  }
+}
+
+.flood__step .steps__list .line {
+  width: 11%;
+}
+
+.flood__step.spouse_information .form_container.min_height {
+  min-height: 560px;
+}
+
+.flood__step .fields-row .field.field--extended-label .field__label {
+  position: relative;
+  width: 200%;
+}
+
+
+/* ********************************
+      Small Form Page
+************************************/
+.email_confirmation #small_back_btn2 {
+  background: #d6d6d6 !important;
+  color: #000 !important;
+  border: #d6d6d6 !important;
+}
+
+.email_confirmation #small_submit_btn {
+  width: 15rem !important;
+}

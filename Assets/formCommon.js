@@ -148,14 +148,23 @@ document.querySelectorAll(".SSN").forEach((field) => {
 });
 
 // Dollar Field Pattern
-const dollarField = document.querySelector(".field__input.dollar_field");
+function currencyFieldFunc() {
+  const dollarField = document.querySelectorAll(".field__input.dollar");
 
-dollarField?.addEventListener("input", (e) => {
-  if (e.target.value) {
-    let modifiedValue = e.target.value.match(/.{1,3}/g).join(",");
-    e.target.value = `$${modifiedValue}`;
-  }
-});
+  dollarField?.forEach((field) => {
+    field?.addEventListener("input", (e) => {
+      if (e.target.value) {
+        let modifiedValue = e.target.value
+          .toString()
+          .replace(/\D/g, "")
+          .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+        e.target.value = `$${modifiedValue}`;
+      }
+    });
+  });
+}
+currencyFieldFunc();
 
 // Date Validation
 const thisYear = new Date().getFullYear();
@@ -201,6 +210,7 @@ function dateValidation(field, getMaxYear = thisYear) {
   });
 }
 document.querySelectorAll(".DOB").forEach((el) => dateValidation(el));
+document.querySelectorAll(".date").forEach((el) => dateValidation(el));
 
 // *********************************************
 //             Eligibility Validation
@@ -331,18 +341,23 @@ function policyholderValidation(step) {
 //            COMMON FUNCTIONALITIES
 // *********************************************
 // KeyPress only remove field Error Message
-document.querySelectorAll(".form_container .field")?.forEach((fieldWrapper) => {
-  const removeFieldError = () => {
-    const errorField = fieldWrapper?.querySelector(".field_message");
-    errorField?.classList.remove("error");
-  };
+function removeErrorOnChange() {
+  document
+    .querySelectorAll(".form_container .field")
+    ?.forEach((fieldWrapper) => {
+      const removeFieldError = () => {
+        const errorField = fieldWrapper?.querySelector(".field_message");
+        errorField?.classList.remove("error");
+      };
 
-  fieldWrapper
-    ?.querySelectorAll(".field__input")
-    .forEach((inputField) =>
-      inputField?.addEventListener("input", removeFieldError)
-    );
-});
+      fieldWrapper
+        ?.querySelectorAll(".field__input")
+        .forEach((inputField) =>
+          inputField?.addEventListener("input", removeFieldError)
+        );
+    });
+}
+removeErrorOnChange();
 
 // Press Enter Submit Form
 function pressEnterToSubmit(nextBtn) {
