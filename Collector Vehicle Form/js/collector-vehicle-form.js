@@ -9,7 +9,7 @@ const vehicleForms = [
   "violations__form",
   "coverage_limits_form",
   "physical_damage_form",
-  "coverage__history_form",
+  "coverage_history_form",
 ];
 
 // *********************************************
@@ -57,7 +57,6 @@ vehicleBackBtn.addEventListener("click", () => {
 //       HANDLING MULTI-STEP FORMS
 // =*********************************************
 function handleVehicleStepForm(step) {
-  // =*********************************************************
   if (step === formList.indexOf("military_information")) {
     if (!militaryValidation()) return false;
   }
@@ -71,7 +70,7 @@ function handleVehicleStepForm(step) {
   }
 
   if (step === formList.indexOf("policyholder_form")) {
-    // if (!policyholderValidation(step)) return false;
+    if (!policyholderValidation(step)) return false;
   }
   if (step === formList.indexOf("spouse_information")) {
     if (!validateForm("spouse_information")) return false;
@@ -99,19 +98,18 @@ function handleVehicleStepForm(step) {
   }
 
   if (step === formList.indexOf("coverage_limits_form")) {
-    // if (!validateForm("coverage_limits_form")) return false;
+    if (!validateForm("coverage_limits_form")) return false;
     functionalityForEachDamageForm();
   }
   if (step === formList.indexOf("physical_damage_form")) {
     if (!physicalDamageValidation()) return false;
     coverageHistoryFunc();
   }
-  if (step === formList.indexOf("coverage__history_form")) {
+  if (step === formList.indexOf("coverage_history_form")) {
     if (!validateForm("coverage_history_form")) return false;
 
     alert("Done");
 
-    // document.querySelector("#currentInsuranceCompany").value = "";
     // Go to Thank You Page
     // window.location.href = successRedirection;
   }
@@ -307,6 +305,7 @@ function summaryFunctionality() {
   // });
 
   collectorVehicles.forEach((info) => (formData = { ...formData, ...info }));
+  delete formData.vehicleId;
 
   runVehicleItemsFunctionality();
 }
@@ -364,8 +363,6 @@ function addMoreVehicleValidation() {
 
       // collectorVehicles[Number(vehicleId)] = vehicleData;
       editVehicleIndex = -1;
-
-      debugger;
     } else {
       vehicleData.vehicleId = vehicleId;
 
@@ -392,7 +389,7 @@ const violationWrapper = document.getElementById(
 
 // ******************* Violation Form Functionality *******************
 // ADD MORE VIOLATIONS FIELDS
-addViolationBtn.addEventListener("click", () => {
+addViolationBtn?.addEventListener("click", () => {
   const newFields = violationsFields.cloneNode(true);
   newFields
     .querySelectorAll(".field__input")
@@ -448,7 +445,7 @@ hasViolationsFields.forEach((fields) => {
 // **** coverageLimitsValidation 'qrf-accordion' Functionality ****
 const accordionButtons = document.querySelectorAll(".qrf-accordion__trigger");
 
-accordionButtons.forEach((button) => {
+accordionButtons?.forEach((button) => {
   button.addEventListener("click", () => {
     const accordion = button.closest(".qrf-accordion");
     accordion.classList.toggle("qrf-accordion--active");
@@ -571,60 +568,6 @@ function violationsValidation() {
   }
 }
 
-// function physicalDamageValidation() {
-//   const liabilityData = [];
-
-//   const wrapper = document.getElementById("physical_damage_form_wrapper");
-//   const damageFieldSections = wrapper.querySelectorAll(".damage__form");
-
-//   // VALIDATE EVERY FIELD SECTION
-//   damageFieldSections.forEach((section,i) => {
-//     const getFields =  section.querySelectorAll(".field__input.damage");
-
-//     let sectionData = {
-//       [`liability${}OnlyCoverage`]: "Yes",
-//     };
-//     const validationFields = [true];
-
-//     getFields?.forEach((field) => {
-//       if (field.disabled) {
-//         // If field is disabled then Remove error msg element
-//         inputErrorMessage(field, "", true);
-//         inputErrorMessage(field, "", true);
-//       } else {
-//         clearFieldErrorMsg();
-
-//         // If field is enabled then check validation and get data
-//         const isFieldValid = isValueEmpty(field);
-//         validationFields.push(isFieldValid);
-//         if (isFieldValid) {
-//           sectionData.liabilityOnlyCoverage = "No";
-//           sectionData = {
-//             ...sectionData,
-//             [field.name]: field.value,
-//           };
-//         }
-//       }
-//     });
-
-//     // If this section is Valid then set date
-//     const isValidate = validationFields.every((result) => result === true);
-//     if (isValidate) {
-//       liabilityData.push(sectionData);
-//     }
-//   });
-
-//   // If all sections are field and data is valid then set date to formData Vehicle
-//   const isAllDataValid = liabilityData.length === damageFieldSections.length;
-//   if (isAllDataValid) {
-//     liabilityData.forEach((data, i) => {
-//       collectorVehicles[i].liabilityData = liabilityData[i];
-//     });
-//   }
-
-//   return isAllDataValid;
-// }
-
 function physicalDamageValidation() {
   const isValidate = validateForm("physical_damage_form", false);
 
@@ -652,10 +595,7 @@ function physicalDamageValidation() {
 
         collectorVehicles[i][`vehicle${vId}ComprehensiveDeductible`] = comVal;
         collectorVehicles[i][`vehicle${vId}CollisionDeductible`] = colVal;
-        debugger;
       }
-
-      debugger;
     });
   }
 
@@ -663,92 +603,9 @@ function physicalDamageValidation() {
 
   return isValidate;
 }
+
 // *********************************************
 //              STEP-4 VALIDATION
 // *********************************************
 
-function coverageHistoryValidation() {
-  const currentInsuranceCompany = document.querySelector(
-    "#currentInsuranceCompany"
-  );
-  const insuranceCompany = document.querySelector("#insuranceCompany");
-  const policyRenewalDate = document.querySelector("#policyRenewalDate");
-
-  //   const isValidate = validationFields.every((result) => result === true);
-  const history = formData.coverageHistory;
-
-  history.currentInsuranceCompany = currentInsuranceCompany?.value;
-  history.insuranceCompany = insuranceCompany?.value;
-  history.policyRenewalDate = policyRenewalDate?.value;
-
-  let validationFields = true;
-
-  if (currentInsuranceCompany?.value === "Other") {
-    // if currentInsuranceCompany = "Other" then Insurance Company value id required
-    const isValid = isValueEmpty(insuranceCompany);
-    if (!isValid) validationFields = false;
-  }
-
-  if (policyRenewalDate?.value.length > 0) {
-    // User Inputted Data then check the value Valid or not
-    const isValid = minValue(
-      policyRenewalDate,
-      10,
-      "Please enter a valid Date"
-    );
-
-    if (!isValid) validationFields = false;
-  }
-
-  return validationFields;
-}
-
-// if currentInsuranceCompany = "Other" then Insurance Company field will show
-const currentInsuranceCompany = document.querySelector(
-  "#currentInsuranceCompany"
-);
-currentInsuranceCompany.addEventListener("change", () => {
-  if (currentInsuranceCompany?.value === "Other") {
-    document
-      .querySelector(".multi__step_4 .insuranceCompany")
-      ?.classList.remove("conditionally_hidden_field");
-  } else {
-    document
-      .querySelector(".multi__step_4 .insuranceCompany")
-      ?.classList.add("conditionally_hidden_field");
-  }
-});
-
-// =*********************************************
-//            OTHERS FUNCTIONALITIES
-// =*********************************************
-// KeyPress only remove field Error Message
-function clearFieldErrorMsg() {
-  document
-    .querySelectorAll(".form_container .field")
-    ?.forEach((fieldWrapper) => {
-      const removeFieldError = () => {
-        const errorField = fieldWrapper.querySelector(".field_message");
-        errorField?.classList.remove("error");
-      };
-
-      fieldWrapper
-        .querySelectorAll(".field__input")
-        .forEach((inputField) =>
-          inputField.addEventListener("input", removeFieldError)
-        );
-    });
-}
-clearFieldErrorMsg();
-
-// Press Enter Submit Form
-document.querySelectorAll(".field__input")?.forEach((input) => {
-  input.addEventListener("keypress", (event) => {
-    if (event.key === "Enter") {
-      event.preventDefault();
-
-      // Trigger the button element with a click
-      document.getElementById("next_btn").click();
-    }
-  });
-});
+// Note: Step 1, 4 is in formCommon.js file
