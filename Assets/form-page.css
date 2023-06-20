@@ -168,3 +168,25 @@
 .gap_20 {
   gap: 20px;
 }
+
+/* ********************************
+      Flood PAGE
+************************************/
+@media screen and (min-width: 48em) {
+  .flood__step .steps__list .step::after {
+    width: 160px;
+  }
+}
+
+.flood__step .steps__list .line {
+  width: 11%;
+}
+
+.flood__step.spouse_information .form_container.min_height {
+  min-height: 560px;
+}
+
+.flood__step .fields-row .field.field--extended-label .field__label {
+  position: relative;
+  width: 200%;
+}
