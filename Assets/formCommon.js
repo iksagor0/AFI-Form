@@ -201,6 +201,7 @@ function dateValidation(field, getMaxYear = thisYear) {
   });
 }
 document.querySelectorAll(".DOB").forEach((el) => dateValidation(el));
+document.querySelectorAll(".date").forEach((el) => dateValidation(el));
 
 // *********************************************
 //             Eligibility Validation
