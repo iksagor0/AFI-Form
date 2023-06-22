@@ -360,6 +360,10 @@ input.field__input:focus {
   }
 }
 
+textarea.field__input {
+  min-height: 180px;
+}
+
 /* *********************************
                 ASIDE 
 ********************************** */

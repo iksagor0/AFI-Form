@@ -253,6 +253,9 @@ function validateForm(formClassName, dataAssign = true) {
     `.${formClassName} .field__input`
   );
 
+  const yearValidator = (field) =>
+    minValue(field, 4, "Please enter a valid year");
+
   const dateValidator = (field) =>
     minValue(field, 10, "Please enter a valid date");
 
@@ -260,10 +263,8 @@ function validateForm(formClassName, dataAssign = true) {
     minValue(field, 5, "Please enter a valid Zip code");
 
   const classAndValidator = [
-    {
-      class: "date",
-      validator: dateValidator,
-    },
+    { class: "year", validator: dateValidator },
+    { class: "date", validator: dateValidator },
     { class: "zip", validator: zipValidator },
     { class: "email", validator: emailValidation },
     { class: "phone", validator: phoneValidation },

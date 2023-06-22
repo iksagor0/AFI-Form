@@ -125,7 +125,7 @@ function handleVehicleStepForm(step) {
 let collectorVehicles = [];
 let vehicleId = 0;
 let editVehicleIndex = -1;
-const maxVehicleItem = 5;
+const maxVehicleItem = 4;
 
 // ********** "+ Add Vehicle" BUTTON FUNCTIONALITY  ***********
 const addVehicle = document.getElementById("addVehicle");
@@ -142,7 +142,19 @@ addVehicle?.addEventListener("click", function () {
   }
   showActiveForm(vehicleStep, vehicleBackBtn);
 
+  // Set VehicleId dynamically
   vehicleId = collectorVehicles.length;
+  for (let i = 0; i < maxVehicleItem; i++) {
+    const vId = collectorVehicles[i]?.vehicleId;
+
+    if (i != vId) {
+      vehicleId = i;
+      break;
+    }
+
+    vehicleId;
+    debugger;
+  }
 
   if (vehicleId >= maxVehicleItem) this.disabled = true;
 });
