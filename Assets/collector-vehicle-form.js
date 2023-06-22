@@ -70,7 +70,7 @@ function handleVehicleStepForm(step) {
   }
 
   if (step === formList.indexOf("policyholder_form")) {
-    if (!policyholderValidation(step)) return false;
+    // if (!policyholderValidation(step)) return false;
   }
   if (step === formList.indexOf("spouse_information")) {
     if (!validateForm("spouse_information")) return false;
@@ -122,12 +122,15 @@ function handleVehicleStepForm(step) {
 // *********************************************
 //              STEP-2 FUNCTIONALITY
 // *********************************************
+let collectorVehicles = [];
+let vehicleId = 0;
 let editVehicleIndex = -1;
+const maxVehicleItem = 5;
 
 // ********** "+ Add Vehicle" BUTTON FUNCTIONALITY  ***********
 const addVehicle = document.getElementById("addVehicle");
 
-addVehicle?.addEventListener("click", () => {
+addVehicle?.addEventListener("click", function () {
   const fields = document.querySelectorAll(
     ".add_more_vehicle_form .field__input"
   );
@@ -139,7 +142,9 @@ addVehicle?.addEventListener("click", () => {
   }
   showActiveForm(vehicleStep, vehicleBackBtn);
 
-  vehicleId++;
+  vehicleId = collectorVehicles.length;
+
+  if (vehicleId >= maxVehicleItem) this.disabled = true;
 });
 
 // ********** FUNCTIONALITY OF VEHICLE FORM : Edit ***********
@@ -216,6 +221,8 @@ function runVehicleItemsFunctionality() {
 
       item.classList.add("__hide");
       item.remove(); // delete elements
+
+      addVehicle.disabled = false;
     });
   });
 }
@@ -223,8 +230,7 @@ function runVehicleItemsFunctionality() {
 // *********************************************
 //              STEP-2 VALIDATION
 // *********************************************
-let collectorVehicles = [];
-let vehicleId = 0;
+
 function summaryFunctionality() {
   //
   // Check Main Vehicle data OKK or Not
