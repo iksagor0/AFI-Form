@@ -124,7 +124,7 @@ function handleVehicleStepForm(step) {
 // *********************************************
 let collectorVehicles = [];
 let vehicleId = 0;
-let editVehicleIndex = -1;
+let editVehicleIndex = -9999;
 const maxVehicleItem = 4;
 
 // ********** "+ Add Vehicle" BUTTON FUNCTIONALITY  ***********
@@ -156,7 +156,7 @@ addVehicle?.addEventListener("click", function () {
     debugger;
   }
 
-  if (vehicleId >= maxVehicleItem) this.disabled = true;
+  if (collectorVehicles.length >= maxVehicleItem) this.disabled = true;
 });
 
 // ********** FUNCTIONALITY OF VEHICLE FORM : Edit ***********
@@ -369,7 +369,7 @@ function addMoreVehicleValidation() {
     console.log("🚀 ~ allFields.forEach ~ collectorVehicles:", vehicleData);
 
     // UPDATE or CREATE Vehicle Data
-    if (editVehicleIndex >= 0) {
+    if (editVehicleIndex > 0) {
       const matchId = collectorVehicles.filter(
         (v) => v.vehicleId == editVehicleIndex
       );
@@ -384,7 +384,7 @@ function addMoreVehicleValidation() {
     } else {
       vehicleData.vehicleId = vehicleId;
 
-      collectorVehicles[vehicleId] = vehicleData;
+      collectorVehicles.push(vehicleData);
     }
 
     // REDUCE vehicleStep and REMOVE add_more_vehicle_form from the formList
@@ -407,11 +407,15 @@ const violationWrapper = document.getElementById(
 
 // ******************* Violation Form Functionality *******************
 // ADD MORE VIOLATIONS FIELDS
-addViolationBtn?.addEventListener("click", () => {
+addViolationBtn?.addEventListener("click", function () {
   const newFields = violationsFields.cloneNode(true);
   newFields
     .querySelectorAll(".field__input")
     .forEach((field) => (field.value = ""));
+
+  // for new fields : clearFieldErrorMsg
+  newFields.querySelectorAll(".error").forEach((errField) => errField.remove());
+
   violationWrapper.appendChild(newFields);
 
   // Data Validator added
@@ -419,8 +423,10 @@ addViolationBtn?.addEventListener("click", () => {
     .querySelectorAll(".householdViolationsDate")
     .forEach((vDate) => dateValidation(vDate, thisYear));
 
-  // for new fields
-  clearFieldErrorMsg();
+  if (violationWrapper.children.length >= 5) {
+    this.disabled = true;
+  }
+  debugger;
 });
 
 // IF householdViolationsPreviousClaims value not== Yes, then disable all

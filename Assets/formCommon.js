@@ -263,7 +263,7 @@ function validateForm(formClassName, dataAssign = true) {
     minValue(field, 5, "Please enter a valid Zip code");
 
   const classAndValidator = [
-    { class: "year", validator: dateValidator },
+    { class: "year", validator: yearValidator },
     { class: "date", validator: dateValidator },
     { class: "zip", validator: zipValidator },
     { class: "email", validator: emailValidation },
