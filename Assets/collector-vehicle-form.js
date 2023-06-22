@@ -503,8 +503,20 @@ function functionalityForEachDamageForm() {
     // liability radio fields functionality
     const liabilityYes = clonedItem.querySelector("#liability--Yes");
     const liabilityNo = clonedItem.querySelector("#liability--No");
+    const liabilityYesLabel = clonedItem.querySelector(".liability_Yes_label");
+    const liabilityNoLabel = clonedItem.querySelector(".liability_No_label");
 
-    liabilityYes.name = liabilityNo.name = `liability_${index}`;
+    const nameOfLiability = `liability_${index}`;
+    const noIdOfLiability = nameOfLiability + "--No";
+    const yesIdOfLiability = nameOfLiability + "--Yes";
+
+    liabilityYes.name = liabilityNo.name = nameOfLiability;
+
+    liabilityYes.id = noIdOfLiability;
+    liabilityNo.id = yesIdOfLiability;
+
+    liabilityYesLabel.setAttribute("for", noIdOfLiability);
+    liabilityNoLabel.setAttribute("for", yesIdOfLiability);
 
     liabilityNo?.addEventListener("change", toggleDisability);
     liabilityYes?.addEventListener("change", toggleDisability);
