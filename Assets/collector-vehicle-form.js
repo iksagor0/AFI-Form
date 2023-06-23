@@ -157,6 +157,19 @@ addVehicle?.addEventListener("click", function () {
   }
 
   if (collectorVehicles.length >= maxVehicleItem) this.disabled = true;
+
+  //set field name and id
+  const allFields = document.querySelectorAll(
+    `.add_more_vehicle_form .field__input`
+  );
+
+  allFields.forEach((field) => {
+    const fieldName = field.getAttribute("data-field");
+    const property = `vehicle${vehicleId}${fieldName}`;
+
+    field.id = property;
+    field.name = property;
+  });
 });
 
 // ********** FUNCTIONALITY OF VEHICLE FORM : Edit ***********
@@ -355,18 +368,15 @@ function addMoreVehicleValidation() {
   const isValidate = validateForm("add_more_vehicle_form", false);
 
   if (isValidate) {
-    // const vehicleLength = collectorVehicles.length;
+    const vehicleData = {};
+
     const allFields = document.querySelectorAll(
       `.add_more_vehicle_form .field__input`
     );
 
-    const vehicleData = {};
-
     allFields.forEach((field) => {
-      const property = field.name.replace("-", String(vehicleId));
-      vehicleData[property] = field.value;
+      vehicleData[field.name] = field.value;
     });
-    console.log("🚀 ~ allFields.forEach ~ collectorVehicles:", vehicleData);
 
     // UPDATE or CREATE Vehicle Data
     if (editVehicleIndex > 0) {
@@ -511,7 +521,8 @@ function functionalityForEachDamageForm() {
     const noIdOfLiability = nameOfLiability + "--No";
     const yesIdOfLiability = nameOfLiability + "--Yes";
 
-    liabilityYes.name = liabilityNo.name = nameOfLiability;
+    liabilityYes.name = nameOfLiability;
+    liabilityNo.name = nameOfLiability;
 
     liabilityYes.id = yesIdOfLiability;
     liabilityNo.id = noIdOfLiability;
