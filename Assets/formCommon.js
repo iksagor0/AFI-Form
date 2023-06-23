@@ -1,4 +1,14 @@
-let formData = { StartDate: Date.now() };
+let formData = {
+  StartDate: Date.now(),
+  firstCommandAdvisorName: null,
+  ResponseType: null,
+  ResponseDescription: null,
+  AdvisorName: null,
+  OfferDescription: null,
+  ZipCode: null,
+  QuoteKey: "",
+  MemberNumber: "",
+};
 
 let formList = ["radio_select"];
 // *********************************************
@@ -381,27 +391,52 @@ function militaryFormFunc() {
   if (branchOfService) {
     branchOfService.addEventListener("change", () => {
       const militaryRank = document.getElementById("militaryRank");
-      awaitedField(militaryRank);
 
-      setTimeout(() => {
-        if (Boolean(branchOfService?.value)) {
-          militaryRank.disabled = false;
-        } else {
-          militaryRank.disabled = true;
-        }
-      }, 1500);
+      if (Boolean(branchOfService?.value)) {
+        militaryRank.disabled = false;
+      } else {
+        militaryRank.disabled = true;
+      }
+
+      awaitedField(militaryRank, true);
+
+      var selectedtext = $("#branchOfService option:selected").text();
+      debugger;
+      $.ajax({
+        type: "GET",
+        url: "/api/sitecore/Quote/GetMilitaryRanks?type=" + selectedtext,
+        dataType: "json",
+        contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+        data: "{}",
+        success: function (data) {
+          let dropdown = $("#militaryRank");
+          dropdown.empty();
+
+          $("#militaryRank").append('<option value="">Select Rank</option>');
+          var jsonArray = JSON.parse(data);
+          var option;
+          for (var i = 0; i < jsonArray.length; i++) {
+            option = document.createElement("option");
+            option.text = jsonArray[i]["label"];
+            option.value = jsonArray[i]["value"];
+            militaryRank.add(option);
+          }
+
+          awaitedField(militaryRank, false);
+        },
+      });
     });
   }
 }
 
-function awaitedField(el) {
-  el.value = "wait";
-  el.disabled = true;
-
-  setTimeout(() => {
+function awaitedField(el, disability) {
+  if (disability) {
+    el.value = "wait";
+    el.disabled = true;
+  } else {
     el.value = "";
     el.disabled = false;
-  }, 1500);
+  }
 }
 
 // *********************************************
@@ -466,5 +501,7 @@ async function saveData(url, data, nextBtn, cForm) {
   nextBtn.disabled = false;
   nextBtn.innerText = "Next";
 
-  return res;
+  const jsonData = await res.json();
+
+  return jsonData;
 }

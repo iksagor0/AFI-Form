@@ -44,35 +44,26 @@ businessNextBtn?.addEventListener("click", async () => {
   if (businessStep === formList.indexOf("policyholder_form")) {
     if (!policyholderValidation(businessStep)) return false;
 
-    const res = await saveData(
-      "/sc-api/forms/save-business",
-      formData,
-      businessNextBtn,
-      "policyholder_form"
-    );
+    // Save Data
+    const resData = saveBusiness("policyholder_form");
+    if (!resData || resData.QuoteId <= 0) return false;
   }
 
   if (businessStep === formList.indexOf("business_information")) {
     if (!validateForm("business_information")) return false;
 
-    const res = await saveData(
-      "/sc-api/forms/save-business",
-      formData,
-      businessNextBtn,
-      "business_information"
-    );
+    // Save Data
+    const resData = saveBusiness("business_information");
+    if (!resData || resData.QuoteId <= 0) return false;
   }
 
   if (businessStep === formList.indexOf("policy_coverage_options")) {
     if (!policyCoverageOptions()) return false;
     coverageHistoryFunc();
 
-    const res = await saveData(
-      "/sc-api/forms/save-business",
-      formData,
-      businessNextBtn,
-      "policy_coverage_options"
-    );
+    // Save Data
+    const resData = saveBusiness("policy_coverage_options");
+    if (!resData || resData.QuoteId <= 0) return false;
   }
 
   if (businessStep === formList.indexOf("coverage_history_form")) {
@@ -80,12 +71,10 @@ businessNextBtn?.addEventListener("click", async () => {
 
     if (isAllFine) {
       // alert("DONE");
-      const res = await saveData(
-        "/sc-api/forms/save-business",
-        formData,
-        businessNextBtn,
-        "coverage_history_form"
-      );
+      // Save Data
+      const resData = saveBusiness("coverage_history_form");
+      if (!resData || resData.QuoteId <= 0) return false;
+
       // Go to Thank You Page
       window.location.href = businessSuccessRedirection;
     }
@@ -106,6 +95,16 @@ businessBackBtn?.addEventListener("click", () => {
   showActiveForm(businessStep, businessBackBtn);
 });
 
+function saveBusiness(form) {
+  const resData = saveData(
+    "/sc-api/forms/save-business",
+    formData,
+    businessNextBtn,
+    form
+  );
+
+  return resData;
+}
 // *********************************************
 //              FORM VALIDATION
 // *********************************************
