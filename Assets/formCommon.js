@@ -381,13 +381,27 @@ function militaryFormFunc() {
   if (branchOfService) {
     branchOfService.addEventListener("change", () => {
       const militaryRank = document.getElementById("militaryRank");
-      if (Boolean(branchOfService?.value)) {
-        militaryRank.disabled = false;
-      } else {
-        militaryRank.disabled = true;
-      }
+      awaitedField(militaryRank);
+
+      setTimeout(() => {
+        if (Boolean(branchOfService?.value)) {
+          militaryRank.disabled = false;
+        } else {
+          militaryRank.disabled = true;
+        }
+      }, 1500);
     });
   }
+}
+
+function awaitedField(el) {
+  el.value = "wait";
+  el.disabled = true;
+
+  setTimeout(() => {
+    el.value = "";
+    el.disabled = false;
+  }, 1500);
 }
 
 // *********************************************
