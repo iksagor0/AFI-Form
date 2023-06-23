@@ -1,6 +1,3 @@
-// const successRedirection = "https://afi.org/";
-// const successRedirection = "../--Model/thank-you.html";
-
 // Forms
 const businessFormSteps = [
   "policyholder_form",
@@ -22,10 +19,11 @@ const businessBackBtn = document.querySelector("#businessBackBtn");
 // ***** NEXT FUNCTIONALITY *****
 pressEnterToSubmit(businessNextBtn);
 
-businessNextBtn?.addEventListener("click", () => {
+businessNextBtn?.addEventListener("click", async () => {
   if (businessStep === 0) {
     const isSelectEligibility = eligibilityValidation(businessFormSteps);
     if (!Boolean(isSelectEligibility)) return false;
+
     businessMaxStep = formList.length - 1;
     militaryFormFunc();
   }
@@ -45,6 +43,17 @@ businessNextBtn?.addEventListener("click", () => {
 
   if (businessStep === formList.indexOf("policyholder_form")) {
     if (!policyholderValidation(businessStep)) return false;
+
+    formData.StartDate = getStringDateAndTime();
+
+    const data = { title: "foo", body: "bar", userId: 1 }; // Data
+
+    const res = await saveData(
+      "https://jsonplaceholder.typicode.com/posts",
+      data,
+      businessNextBtn,
+      "policyholder_form"
+    );
   }
 
   if (businessStep === formList.indexOf("business_information")) {
@@ -61,9 +70,9 @@ businessNextBtn?.addEventListener("click", () => {
 
     if (isAllFine) {
       alert("DONE");
-      // document.querySelector("#currentInsuranceCompany").value = "";
+
       // Go to Thank You Page
-      // window.location.href = successRedirection;
+      // window.location.href = businessSuccessRedirection;
     }
   }
 

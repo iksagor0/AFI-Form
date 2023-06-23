@@ -418,3 +418,49 @@ function coverageHistoryFunc() {
   const policyRenewalDate = document.querySelector("#policyRenewalDate");
   if (policyRenewalDate) dateValidation(policyRenewalDate, thisYear + 2);
 }
+
+/********************************************************
+ *                   YOUR COMMENT HERE
+ ********************************************************/
+function getStringDateAndTime() {
+  return new Date().toISOString();
+
+  // ******************* another option *******************
+  // // Get the current timestamp in milliseconds
+  // var timestamp = Date.now();
+  // // Convert the timestamp to a human-readable format
+  // var date = new Date(timestamp);
+  // var dateString = date.toLocaleDateString();
+  // var timeString = date.toLocaleTimeString();
+  // var formattedDateString = dateString + " " + timeString;
+}
+
+// SAVE FORM DATA
+async function saveData(url, data, nextBtn, cForm) {
+  const currForm = document.querySelector("." + cForm);
+  const formFields = currForm.querySelectorAll(".field__input");
+
+  // Processing Start
+  formFields.forEach((field) => (field.disabled = true));
+  nextBtn.disabled = true;
+  nextBtn.innerText = "Saving...";
+
+  // https://jsonplaceholder.typicode.com/posts
+  // https://afi.org/sc-api/forms/save-business
+
+  // API Call
+  const res = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-type": "application/json; charset=UTF-8",
+    },
+    body: JSON.stringify(data), // data
+  });
+
+  // Processing Done
+  formFields.forEach((field) => (field.disabled = false));
+  nextBtn.disabled = false;
+  nextBtn.innerText = "Next";
+
+  return res;
+}

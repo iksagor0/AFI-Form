@@ -492,6 +492,11 @@ textarea.field__input {
   display: none;
 }
 
+input[type="text"]:disabled,
+button:disabled {
+  opacity: .6;
+}
+
 /* ********************************
       Loading Animation
 ************************************/
