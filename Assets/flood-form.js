@@ -26,6 +26,8 @@ floodNextBtn?.addEventListener("click", () => {
     const isSelectEligibility = eligibilityValidation(floodFormSteps);
     if (!Boolean(isSelectEligibility)) return false;
     floodMaxStep = formList.length - 1;
+
+    militaryFormFunc();
   }
 
   //  HANDLE ALL FORM SUBMISSIONS AND STEP VALIDATION
@@ -35,7 +37,7 @@ floodNextBtn?.addEventListener("click", () => {
   floodStep >= floodMaxStep ? floodStep : floodStep++;
 
   // Show Form
-  showActiveForm(floodStep, floodNextBtn);
+  showActiveForm(floodStep, floodBackBtn);
 });
 
 // Back
@@ -43,7 +45,7 @@ floodBackBtn?.addEventListener("click", () => {
   // Step Decrement
   floodStep <= 0 ? floodStep : floodStep--;
 
-  showActiveForm(floodStep, floodNextBtn);
+  showActiveForm(floodStep, floodBackBtn);
 });
 
 // =*********************************************
@@ -110,29 +112,36 @@ const isFloodSameAddressEl = document.getElementById(
 );
 
 function floodPropertyQuotedFormFunc() {
-  isFloodSameAddressEl?.addEventListener("change", () => {
-    const floodQuotedMatchEl = document.querySelectorAll(
-      ".property_quoted_form .field__input"
+  //
+  const floodQuotedMatchEl = document.querySelectorAll(
+    ".property_quoted_form .field__input"
+  );
+
+  function setMatchedData(disability) {
+    const floodHolderMatchEl = document.querySelectorAll(
+      ".policyholder_form .field__input"
     );
 
-    if (isFloodSameAddressEl.checked) {
-      const floodHolderMatchEl = document.querySelectorAll(
-        ".policyholder_form .field__input"
-      );
+    floodHolderMatchEl.forEach((element) => {
+      const elementMatch = element.getAttribute("data-match");
 
-      floodHolderMatchEl.forEach((element) => {
-        const elementMatch = element.getAttribute("data-match");
+      floodQuotedMatchEl.forEach((el) => {
+        const elMatch = el.getAttribute("data-match");
 
-        floodQuotedMatchEl.forEach((el) => {
-          const elMatch = el.getAttribute("data-match");
-
-          if (elMatch === elementMatch) el.value = element.value;
-          el.disabled = true;
-          isFloodSameAddressEl.disabled = false;
-        });
+        if (elMatch === elementMatch) el.value = element.value;
+        el.disabled = disability;
+        isFloodSameAddressEl.disabled = false;
       });
+    });
+  }
 
-      //
+  setMatchedData(false);
+  document.getElementById("propertyAddress").value = "";
+
+  // Same Mailing CheckBox Functionality
+  isFloodSameAddressEl?.addEventListener("change", () => {
+    if (isFloodSameAddressEl.checked) {
+      setMatchedData(true);
     } else {
       floodQuotedMatchEl.forEach((el, i) => {
         el.value = "";
