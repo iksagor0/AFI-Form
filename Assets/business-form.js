@@ -44,13 +44,9 @@ businessNextBtn?.addEventListener("click", async () => {
   if (businessStep === formList.indexOf("policyholder_form")) {
     if (!policyholderValidation(businessStep)) return false;
 
-    formData.StartDate = getStringDateAndTime();
-
-    const data = { title: "foo", body: "bar", userId: 1 }; // Data
-
     const res = await saveData(
-      "https://jsonplaceholder.typicode.com/posts",
-      data,
+      "/sc-api/forms/save-business",
+      formData,
       businessNextBtn,
       "policyholder_form"
     );
@@ -58,21 +54,40 @@ businessNextBtn?.addEventListener("click", async () => {
 
   if (businessStep === formList.indexOf("business_information")) {
     if (!validateForm("business_information")) return false;
+
+    const res = await saveData(
+      "/sc-api/forms/save-business",
+      formData,
+      businessNextBtn,
+      "business_information"
+    );
   }
 
   if (businessStep === formList.indexOf("policy_coverage_options")) {
     if (!policyCoverageOptions()) return false;
     coverageHistoryFunc();
+
+    const res = await saveData(
+      "/sc-api/forms/save-business",
+      formData,
+      businessNextBtn,
+      "policy_coverage_options"
+    );
   }
 
   if (businessStep === formList.indexOf("coverage_history_form")) {
     const isAllFine = validateForm("coverage_history_form");
 
     if (isAllFine) {
-      alert("DONE");
-
+      // alert("DONE");
+      const res = await saveData(
+        "/sc-api/forms/save-business",
+        formData,
+        businessNextBtn,
+        "coverage_history_form"
+      );
       // Go to Thank You Page
-      // window.location.href = businessSuccessRedirection;
+      window.location.href = businessSuccessRedirection;
     }
   }
 
@@ -121,20 +136,3 @@ function policyCoverageOptions() {
 
   return isValidate;
 }
-
-// *********************************************
-//            FETCH DATA FROM JSON
-// *********************************************
-// Post/Save Data
-// function saveData(postURL, data) {
-//   fetch(postURL, {
-//     method: "POST",
-//     body: data,
-//   })
-//     .then((res) => res.json())
-//     .then((resData) => console.log(resData))
-//     .catch((err) => console.error(err));
-// }
-
-// const URL = "https://jsonplaceholder.typicode.com/posts";
-// // saveData(URL, formData);
