@@ -70,7 +70,7 @@ function handleVehicleStepForm(step) {
   }
 
   if (step === formList.indexOf("policyholder_form")) {
-    if (!policyholderValidation(step)) return false;
+    // if (!policyholderValidation(step)) return false;
   }
   if (step === formList.indexOf("spouse_information")) {
     if (!validateForm("spouse_information")) return false;
@@ -489,9 +489,10 @@ function functionalityForEachDamageForm() {
   // const vehicleList = collectorVehicles;
   // Add Vehicle data to DamageFormWrapper with other fields
   collectorVehicles.forEach((vData, index) => {
-    const year = vData[`vehicle${vData.vehicleId}Year`];
-    const make = vData[`vehicle${vData.vehicleId}Make`];
-    const model = vData[`vehicle${vData.vehicleId}Model`];
+    const vId = vData.vehicleId;
+    const year = vData[`vehicle${vId}Year`];
+    const make = vData[`vehicle${vId}Make`];
+    const model = vData[`vehicle${vId}Model`];
 
     const clonedItem = damageForm.cloneNode(true);
 
@@ -506,14 +507,14 @@ function functionalityForEachDamageForm() {
     const liabilityYesLabel = clonedItem.querySelector(".liability_Yes_label");
     const liabilityNoLabel = clonedItem.querySelector(".liability_No_label");
 
-    const nameOfLiability = `liability_${index}`;
+    const nameOfLiability = `vehicle${vId}LiabilityOnlyCoverage`;
     const noIdOfLiability = nameOfLiability + "--No";
     const yesIdOfLiability = nameOfLiability + "--Yes";
 
     liabilityYes.name = liabilityNo.name = nameOfLiability;
 
-    liabilityYes.id = noIdOfLiability;
-    liabilityNo.id = yesIdOfLiability;
+    liabilityYes.id = yesIdOfLiability;
+    liabilityNo.id = noIdOfLiability;
 
     liabilityYesLabel.setAttribute("for", noIdOfLiability);
     liabilityNoLabel.setAttribute("for", yesIdOfLiability);
@@ -605,6 +606,40 @@ function violationsValidation() {
 }
 
 function physicalDamageValidation() {
+  const fieldError = collectorVehicles.map((vData) => {
+    const vId = vData.vehicleId;
+
+    const radioFields = document.querySelectorAll(
+      `input[name=vehicle${vId}LiabilityOnlyCoverage]`
+    );
+
+    const fieldChecked = document.querySelector(
+      `input[name=vehicle${vId}LiabilityOnlyCoverage]:checked`
+    );
+
+    const fieldParent = radioFields[0].closest(".fields-row");
+    const fieldError = fieldParent.querySelector(".field__error-message");
+
+    radioFields.forEach((field) => {
+      field.addEventListener("change", () => {
+        fieldError.style.display = "none";
+      });
+    });
+
+    debugger;
+
+    if (!fieldChecked) {
+      fieldError.style.display = "block";
+      return false;
+    } else {
+      return true;
+    }
+  });
+
+  const isRadioChecked = fieldError.every((b) => b === true);
+  if (!isRadioChecked) return false;
+
+  //
   const isValidate = validateForm("physical_damage_form", false);
 
   if (isValidate) {
@@ -616,7 +651,7 @@ function physicalDamageValidation() {
       const vId = collectorVehicles[i].vehicleId;
 
       const liaCoVal = damageForm.querySelector(
-        `input[name=liability_${i}]:checked`
+        `input[name=vehicle${vId}LiabilityOnlyCoverage]:checked`
       )?.value;
 
       collectorVehicles[i][`vehicle${vId}LiabilityOnlyCoverage`] = liaCoVal;
@@ -634,6 +669,8 @@ function physicalDamageValidation() {
       }
     });
   }
+
+  debugger;
 
   summaryFunctionality();
 

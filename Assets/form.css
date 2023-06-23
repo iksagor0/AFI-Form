@@ -475,7 +475,8 @@ textarea.field__input {
 }
 
 .field_message,
-.field__error-messages {
+.field__error-messages,
+.field__error-message {
   color: #cb2c30;
   color: var(--color-red-10);
   font-size: 0.875rem !important;
