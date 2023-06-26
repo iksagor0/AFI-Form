@@ -76,7 +76,7 @@ businessNextBtn?.addEventListener("click", async () => {
       if (!resData || resData.QuoteId <= 0) return false;
 
       // Go to Thank You Page
-      //   window.location.href = businessSuccessRedirection;
+      window.location.href = businessSuccessRedirection;
     }
   }
 
