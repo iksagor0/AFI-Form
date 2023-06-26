@@ -401,7 +401,7 @@ function militaryFormFunc() {
       awaitedField(militaryRank, true);
 
       var selectedtext = $("#branchOfService option:selected").text();
-      debugger;
+
       $.ajax({
         type: "GET",
         url: "/api/sitecore/Quote/GetMilitaryRanks?type=" + selectedtext,
