@@ -308,8 +308,8 @@ function militaryValidation() {
   const isValidate = validateForm("military_information");
 
   // Set Name in Multi-step form field
-  const fnameValue = document.querySelector("#eligibilityFirstName").name;
-  const lnameValue = document.querySelector("#eligibilityLastName").name;
+  const fnameValue = document.querySelector("#eligibilityFirstName")?.name;
+  const lnameValue = document.querySelector("#eligibilityLastName")?.name;
 
   document.querySelector("#policyHolderFirstName").value = formData[fnameValue];
   document.querySelector("#policyHolderLastName").value = formData[lnameValue];
@@ -398,33 +398,34 @@ function militaryFormFunc() {
         militaryRank.disabled = true;
       }
 
-      awaitedField(militaryRank, true);
+      // ******************* GET OPTIONS DYNAMICALLY *******************
+      // awaitedField(militaryRank, true);
 
-      var selectedtext = $("#branchOfService option:selected").text();
+      // var selectedtext = $("#branchOfService option:selected").text();
 
-      $.ajax({
-        type: "GET",
-        url: "/api/sitecore/Quote/GetMilitaryRanks?type=" + selectedtext,
-        dataType: "json",
-        contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-        data: "{}",
-        success: function (data) {
-          let dropdown = $("#militaryRank");
-          dropdown.empty();
+      // $.ajax({
+      //   type: "GET",
+      //   url: "/api/sitecore/Quote/GetMilitaryRanks?type=" + selectedtext,
+      //   dataType: "json",
+      //   contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+      //   data: "{}",
+      //   success: function (data) {
+      //     let dropdown = $("#militaryRank");
+      //     dropdown.empty();
 
-          $("#militaryRank").append('<option value="">Select Rank</option>');
-          var jsonArray = JSON.parse(data);
-          var option;
-          for (var i = 0; i < jsonArray.length; i++) {
-            option = document.createElement("option");
-            option.text = jsonArray[i]["label"];
-            option.value = jsonArray[i]["value"];
-            militaryRank.add(option);
-          }
+      //     $("#militaryRank").append('<option value="">Select Rank</option>');
+      //     var jsonArray = JSON.parse(data);
+      //     var option;
+      //     for (var i = 0; i < jsonArray.length; i++) {
+      //       option = document.createElement("option");
+      //       option.text = jsonArray[i]["label"];
+      //       option.value = jsonArray[i]["value"];
+      //       militaryRank.add(option);
+      //     }
 
-          awaitedField(militaryRank, false);
-        },
-      });
+      //     awaitedField(militaryRank, false);
+      //   },
+      // });
     });
   }
 }
@@ -481,31 +482,33 @@ async function saveData(url, data, nextBtn, cForm) {
   // nextBtn.disabled = true;
   // nextBtn.innerText = "Saving...";
 
-  // API Call
-  const req_data = {
-    action: "send",
-    recaptchaToken: "6LfR7R4gAAAAAJhdtt4xLoULHMVubpGhEYCN6SYR",
-    values: data,
-  };
+  // // API Call
+  // const req_data = {
+  //   action: "send",
+  //   recaptchaToken: "6LfR7R4gAAAAAJhdtt4xLoULHMVubpGhEYCN6SYR",
+  //   values: data,
+  // };
 
-  const res = await fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-type": "application/json; charset=UTF-8",
-    },
-    body: JSON.stringify(req_data), // data
-  });
+  // const res = await fetch(url, {
+  //   method: "POST",
+  //   headers: {
+  //     "Content-type": "application/json; charset=UTF-8",
+  //   },
+  //   body: JSON.stringify(req_data), // data
+  // });
 
-  // After Process Done
-  formFields.forEach((field) => (field.disabled = false));
-  nextBtn.disabled = false;
-  nextBtn.innerText = "Next";
+  // // After Process Done
+  // formFields.forEach((field) => (field.disabled = false));
+  // nextBtn.disabled = false;
+  // nextBtn.innerText = "Next";
 
-  const jsonData = await res.json();
-  if (jsonData.QuoteId && jsonData.QuoteKey) {
-    formData.QuoteId = jsonData.QuoteId;
-    formData.QuoteKey = jsonData.QuoteKey;
-  }
+  // const jsonData = await res.json();
+  // if (jsonData.QuoteId && jsonData.QuoteKey) {
+  //   formData.QuoteId = jsonData.QuoteId;
+  //   formData.QuoteKey = jsonData.QuoteKey;
+  // }
 
-  return jsonData;
+  // return jsonData;
+
+  return formData;
 }
