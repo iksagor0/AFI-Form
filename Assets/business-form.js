@@ -77,6 +77,7 @@ businessNextBtn?.addEventListener("click", async () => {
 
       // Go to Thank You Page
       //   window.location.href = businessSuccessRedirection;
+      alert("Thank You");
     }
   }
 
