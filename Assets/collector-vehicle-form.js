@@ -70,7 +70,7 @@ function handleVehicleStepForm(step) {
   }
 
   if (step === formList.indexOf("policyholder_form")) {
-    if (!policyholderValidation(step)) return false;
+    // if (!policyholderValidation(step)) return false;
   }
   if (step === formList.indexOf("spouse_information")) {
     if (!validateForm("spouse_information")) return false;
@@ -415,13 +415,20 @@ const violationWrapper = document.getElementById(
   "violation_info_fields_wrapper"
 );
 
+let vioSerial = 0;
+
 // ******************* Violation Form Functionality *******************
 // ADD MORE VIOLATIONS FIELDS
 addViolationBtn?.addEventListener("click", function () {
+  vioSerial++;
+
   const newFields = violationsFields.cloneNode(true);
-  newFields
-    .querySelectorAll(".field__input")
-    .forEach((field) => (field.value = ""));
+  newFields.querySelectorAll(".field__input").forEach((field) => {
+    field.value = "";
+
+    const newId = field.id.replace("0", vioSerial);
+    field.id = field.name = newId;
+  });
 
   // for new fields : clearFieldErrorMsg
   newFields.querySelectorAll(".error").forEach((errField) => errField.remove());
