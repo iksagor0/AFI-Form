@@ -46,7 +46,7 @@ businessNextBtn?.addEventListener("click", async () => {
 
     // Save Data
     const resData = await saveBusiness("policyholder_form");
-    if (!resData && !resData.QuoteId && resData.QuoteId <= 0) return false;
+    if (resData.QuoteId <= 0) return false;
   }
 
   if (businessStep === formList.indexOf("business_information")) {
@@ -54,7 +54,7 @@ businessNextBtn?.addEventListener("click", async () => {
 
     // Save Data
     const resData = saveBusiness("business_information");
-    if (!resData && !resData.QuoteId && resData.QuoteId <= 0) return false;
+    if (resData.QuoteId <= 0) return false;
   }
 
   if (businessStep === formList.indexOf("policy_coverage_options")) {
@@ -63,7 +63,7 @@ businessNextBtn?.addEventListener("click", async () => {
 
     // Save Data
     const resData = saveBusiness("policy_coverage_options");
-    if (!resData && !resData.QuoteId && resData.QuoteId <= 0) return false;
+    if (resData.QuoteId <= 0) return false;
   }
 
   if (businessStep === formList.indexOf("coverage_history_form")) {
@@ -72,7 +72,7 @@ businessNextBtn?.addEventListener("click", async () => {
     if (isAllFine) {
       // Save Data
       const resData = saveBusiness("coverage_history_form", "submit");
-      if (!resData && !resData.QuoteId && resData.QuoteId <= 0) return false;
+      if (resData.QuoteId <= 0) return false;
 
       // Go to Thank You Page
       window.location.href = businessSuccessRedirection;
