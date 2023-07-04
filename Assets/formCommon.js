@@ -398,7 +398,7 @@ function militaryFormFunc() {
         militaryRank.disabled = true;
       }
 
-      // ******************* GET OPTIONS DYNAMICALLY *******************
+      // // ******************* GET OPTIONS DYNAMICALLY *******************
       // awaitedField(militaryRank, true);
 
       // var selectedtext = $("#branchOfService option:selected").text();
@@ -473,7 +473,7 @@ function coverageHistoryFunc() {
  *                   API CALL
  ********************************************************/
 // SAVE FORM DATA
-async function saveData(url, data, nextBtn, cForm) {
+async function saveData(url, data, nextBtn, cForm, action) {
   const currForm = document.querySelector("." + cForm);
   const formFields = currForm.querySelectorAll(".field__input");
 
@@ -484,7 +484,7 @@ async function saveData(url, data, nextBtn, cForm) {
 
   // // API Call
   // const req_data = {
-  //   action: "send",
+  //   action: action,
   //   recaptchaToken: "6LfR7R4gAAAAAJhdtt4xLoULHMVubpGhEYCN6SYR",
   //   values: data,
   // };
@@ -509,6 +509,5 @@ async function saveData(url, data, nextBtn, cForm) {
   // }
 
   // return jsonData;
-
-  return formData;
+  return true;
 }

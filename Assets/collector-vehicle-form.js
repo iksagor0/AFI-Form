@@ -153,7 +153,6 @@ addVehicle?.addEventListener("click", function () {
     }
 
     vehicleId;
-    debugger;
   }
 
   if (collectorVehicles.length >= maxVehicleItem) this.disabled = true;
@@ -415,13 +414,20 @@ const violationWrapper = document.getElementById(
   "violation_info_fields_wrapper"
 );
 
+let vioSerial = 0;
+
 // ******************* Violation Form Functionality *******************
 // ADD MORE VIOLATIONS FIELDS
 addViolationBtn?.addEventListener("click", function () {
+  vioSerial++;
+
   const newFields = violationsFields.cloneNode(true);
-  newFields
-    .querySelectorAll(".field__input")
-    .forEach((field) => (field.value = ""));
+  newFields.querySelectorAll(".field__input").forEach((field) => {
+    field.value = "";
+
+    const newId = field.id.replace("0", vioSerial);
+    field.id = field.name = newId;
+  });
 
   // for new fields : clearFieldErrorMsg
   newFields.querySelectorAll(".error").forEach((errField) => errField.remove());
@@ -436,7 +442,8 @@ addViolationBtn?.addEventListener("click", function () {
   if (violationWrapper.children.length >= 5) {
     this.disabled = true;
   }
-  debugger;
+
+  removeErrorOnChange();
 });
 
 // IF householdViolationsPreviousClaims value not== Yes, then disable all
@@ -570,12 +577,12 @@ function violationsValidation() {
   } else if (getViolationsValue() === "Yes") {
     const fieldsWrapper = document.querySelectorAll(".violation_info_fields");
 
-    const violations = [];
+    let result = false;
 
     fieldsWrapper.forEach((field, i) => {
-      const driverField = field.querySelector("#householdViolationsDriver");
-      const typeField = field.querySelector("#householdViolationsType");
-      const dateField = field.querySelector("#householdViolationsDate");
+      const driverField = field.querySelector(".householdViolationsDriver");
+      const typeField = field.querySelector(".householdViolationsType");
+      const dateField = field.querySelector(".householdViolationsDate");
 
       const validationFields = [
         alphabeticOnly(driverField),
@@ -588,24 +595,16 @@ function violationsValidation() {
       const isValidate = validationFields.every((result) => result === true);
 
       if (isValidate) {
-        // const vLength = violations.length
-        const violationData = {
-          [`householdViolations${i}Driver`]: driverField.value,
-          [`householdViolations${i}Type`]: typeField.value,
-          [`householdViolations${i}Date`]: dateField.value,
-        };
-        violations.push(violationData);
+        formData[driverField.name] = driverField.value;
+        formData[typeField.name] = typeField.value;
+        formData[dateField.name] = dateField.value;
+        result = true;
+      } else {
+        result = false;
       }
     });
 
-    const checkedYes = document.getElementById(
-      "householdViolationsPreviousClaims--Yes"
-    ).checked;
-
-    // if (checkedYes) {
-    // formData.householdViolations = violations;
-    violations.forEach((info) => (formData = { ...formData, ...info }));
-    return fieldsWrapper.length === violations.length;
+    return result;
   } else {
     const fieldContainer = document.querySelector(
       ".has_violation_inputs_container"
@@ -636,8 +635,6 @@ function physicalDamageValidation() {
         fieldError.style.display = "none";
       });
     });
-
-    debugger;
 
     if (!fieldChecked) {
       fieldError.style.display = "block";
@@ -680,8 +677,6 @@ function physicalDamageValidation() {
       }
     });
   }
-
-  debugger;
 
   summaryFunctionality();
 
