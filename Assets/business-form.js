@@ -72,7 +72,7 @@ businessNextBtn?.addEventListener("click", async () => {
     if (isAllFine) {
       // alert("DONE");
       // Save Data
-      const resData = saveBusiness("coverage_history_form");
+      const resData = saveBusiness("coverage_history_form", "submit");
       if (!resData || !resData.QuoteId || resData.QuoteId <= 0) return false;
 
       // Go to Thank You Page
@@ -95,12 +95,13 @@ businessBackBtn?.addEventListener("click", () => {
   showActiveForm(businessStep, businessBackBtn);
 });
 
-function saveBusiness(form) {
+function saveBusiness(form, action = "send") {
   const resData = saveData(
     "/sc-api/forms/save-business",
     formData,
     businessNextBtn,
-    form
+    form,
+    action
   );
 
   return resData;
