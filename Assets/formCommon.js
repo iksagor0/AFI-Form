@@ -473,7 +473,7 @@ function coverageHistoryFunc() {
  *                   API CALL
  ********************************************************/
 // SAVE FORM DATA
-async function saveData(url, data, nextBtn, cForm, action = "send") {
+async function saveData(url, data, nextBtn, cForm, action) {
   const currForm = document.querySelector("." + cForm);
   const formFields = currForm.querySelectorAll(".field__input");
 
