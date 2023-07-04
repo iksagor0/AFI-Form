@@ -34,6 +34,7 @@ vehicleNextBtn.addEventListener("click", () => {
   if (!handleVehicleStepForm(vehicleStep)) return false;
 
   // Step Increment
+  vehicleMaxStep = formList.length - 1;
   vehicleStep >= vehicleMaxStep ? vehicleStep : vehicleStep++;
 
   // Show Form
@@ -70,7 +71,7 @@ function handleVehicleStepForm(step) {
   }
 
   if (step === formList.indexOf("policyholder_form")) {
-    // if (!policyholderValidation(step)) return false;
+    if (!policyholderValidation(step)) return false;
   }
   if (step === formList.indexOf("spouse_information")) {
     if (!validateForm("spouse_information")) return false;
@@ -558,6 +559,13 @@ function functionalityForEachDamageForm() {
         });
       }
     }
+
+    //
+    const vComDed = clonedItem.querySelector(".vehicleComprehensiveDeductible");
+    const vColDed = clonedItem.querySelector(".vehicleCollisionDeductible");
+
+    vComDed.id = vComDed.name = `vehicle${vId}ComprehensiveDeductible`;
+    vColDed.id = vColDed.name = `vehicle${vId}CollisionDeductible`;
 
     DamageFormWrapper.appendChild(clonedItem);
   });
