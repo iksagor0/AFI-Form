@@ -1228,7 +1228,7 @@
 
     <!-- PROPERTY OVERVIEW FORM -->
     <section
-      class="form_section flood__step property_overview_form active_section"
+      class="form_section flood__step property_information_form active_section"
     >
       <div class="container">
         <!-- ******** STEP ******** -->
@@ -1248,10 +1248,115 @@
           <!-- ******* FORM  *******-->
           <div class="form_container">
             <h2 class="quote_request_heading">Property Overview</h2>
-
-            <!-- Year Built, Occupancy,Total Living Area -->
+            <!-- Occupancy -->
             <div class="fields-row">
-              <div class="field field--small">
+              <div class="field field--xxlarge field--extended-label">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="residenceOccupancy"
+                    >Occupancy</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <select
+                    class="field__input"
+                    id="residenceOccupancy"
+                    name="residenceOccupancy"
+                    type="select"
+                    required=""
+                  >
+                    <option value="">Choose One</option>
+                    <option value="Primary Owner Occupied">
+                      Primary Owner Occupied
+                    </option>
+                    <option value="Seasonal/Secondary Residence">
+                      Seasonal/Secondary Residence
+                    </option>
+                    <option value="Rental or Non Owner Occupied">
+                      Rental or Non-Owner Occupied
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <!-- Length Of Leasing Agreement -->
+            <div class="fields-row">
+              <div class="field field--xxlarge field--extended-label">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="lengthofleasingagreement"
+                    >Length Of Leasing Agreement</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <select
+                    class="field__input"
+                    id="lengthofleasingagreement"
+                    name="lengthofleasingagreement"
+                    type="select"
+                    required=""
+                    disabled=""
+                  >
+                    <option value="">Choose One</option>
+                    <option value="Annual or longer">Annual or Longer</option>
+                    <option value="Monthly">Monthly</option>
+                    <option value="Short term">
+                      Short-Term (Daily, Weekly, Etc.)
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <!-- Are tenants required to carry liability coverage? -->
+            <div class="fields-row">
+              <div class="field field--xxlarge field--extended-label">
+                <div class="field__label-wrapper">
+                  <label
+                    class="field__label"
+                    for="aretenantsrequiredtocarryliabilitycoverage"
+                    >Are tenants required to carry liability coverage?</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <select
+                    class="field__input"
+                    id="aretenantsrequiredtocarryliabilitycoverage"
+                    name="aretenantsrequiredtocarryliabilitycoverage"
+                    type="select"
+                    required=""
+                    disabled=""
+                  >
+                    <option value="">Choose One</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <!-- Dwelling Amount to be Quoted -->
+            <div class="fields-row">
+              <div class="field field--large field--extended-label">
+                <div class="field__label-wrapper">
+                  <label
+                    class="field__label"
+                    for="residenceDwellingAmountToBeQuoted"
+                    >Dwelling Amount to be Quoted</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <input
+                    class="field__input"
+                    id="residenceDwellingAmountToBeQuoted"
+                    name="residenceDwellingAmountToBeQuoted"
+                    type="text"
+                    required=""
+                    placeholder=""
+                    value=""
+                  />
+                </div>
+              </div>
+            </div>
+            <!-- Year Built, Year Built -->
+            <div class="fields-row">
+              <div class="field">
                 <div class="field__label-wrapper">
                   <label class="field__label" for="propertyYearBuilt"
                     >Year Built</label
@@ -1259,41 +1364,71 @@
                 </div>
                 <div class="field__input-wrapper">
                   <select
-                    class="field__input required"
+                    class="field__input"
                     id="propertyYearBuilt"
                     name="propertyYearBuilt"
                     type="select"
+                    required=""
                   >
                     <option value="">--</option>
                     <option value="2023">2023</option>
                     <option value="2022">2022</option>
+                    <option value="2021">2021</option>
+                    <option value="Built before 1900">Built before 1900</option>
                   </select>
                 </div>
               </div>
-              <div class="field field--extended">
+              <div class="field">
                 <div class="field__label-wrapper">
-                  <label class="field__label" for="propertyOccupancy"
-                    >Occupancy</label
+                  <label class="field__label" for="propertyStyleOfHouse"
+                    >Style of House</label
                   >
                 </div>
                 <div class="field__input-wrapper">
                   <select
-                    class="field__input required"
-                    id="propertyOccupancy"
-                    name="propertyOccupancy"
+                    class="field__input"
+                    id="propertyStyleOfHouse"
+                    name="propertyStyleOfHouse"
                     type="select"
+                    required=""
                   >
-                    <option value="">--</option>
-                    <option value="primaryOwnerOccupied">
-                      Primary Owner Occupied
+                    <option value="">Choose One</option>
+                    <option value="Condo/Co-op">Condo/Co-op</option>
+                    <option value="Townhome/Rowhouse">Townhome/Rowhouse</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <!-- Construction Type, Total Living Area (sq ft) -->
+            <div class="fields-row">
+              <div class="field undefined">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="propertyConstructionType"
+                    >Construction Type</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <select
+                    class="field__input"
+                    id="propertyConstructionType"
+                    name="propertyConstructionType"
+                    type="select"
+                    required=""
+                  >
+                    <option value="">Choose One</option>
+                    <option value="Brick over Frame">Brick over Frame</option>
+                    <option value="Stucco over Frame">Stucco over Frame</option>
+                    <option value="Brick over Masonry">
+                      Brick over Masonry
                     </option>
-                    <option value="seasonalSecondaryResidence">
-                      Seasonal/Secondary Residence
+                    <option value="Stucco over Block/Masonry">
+                      Stucco over Block/Masonry
                     </option>
-                    <option value="vacant">Vacant</option>
-                    <option value="rentalOrNonOwnerOccupied">
-                      Rental or Non Owner Occupied
+                    <option value="Concrete">Concrete</option>
+                    <option value="Sold Brick or Cinder Block">
+                      Sold Brick or Cinder Block
                     </option>
+                    <option value="Frame">Frame</option>
                   </select>
                 </div>
               </div>
@@ -1305,136 +1440,11 @@
                 </div>
                 <div class="field__input-wrapper">
                   <input
-                    class="field__input required numberOnly"
+                    class="field__input"
                     id="totalLivingAreaSqFt"
                     name="totalLivingAreaSqFt"
-                    type="text"
-                  />
-                  <p class="field__note">Numerical Values Only</p>
-                </div>
-              </div>
-            </div>
-            <!-- Structural Value, Flood Zone (If Known) -->
-            <div class="fields-row">
-              <div class="field field--large">
-                <div class="field__label-wrapper">
-                  <label class="field__label" for="structuralValue"
-                    >Structural Value</label
-                  >
-                </div>
-                <div class="field__input-wrapper">
-                  <input
-                    class="field__input required dollar"
-                    id="structuralValue"
-                    name="structuralValue"
-                    type="text"
-                  />
-                  <p class="field__note">Numerical Values Only</p>
-                </div>
-              </div>
-              <div class="field field--large">
-                <div class="field__label-wrapper">
-                  <label class="field__label" for="floodZone"
-                    >Flood Zone (If Known)</label
-                  >
-                </div>
-                <div class="field__input-wrapper">
-                  <input
-                    class="field__input required"
-                    id="floodZone"
-                    name="floodZone"
-                    type="text"
-                  />
-                  <p class="field__note">Optional</p>
-                </div>
-              </div>
-            </div>
-            <!-- Are you aware of flood losses on this property? -->
-            <div class="fields-row">
-              <div class="field field--full">
-                <div class="field__label-wrapper" style="margin-right: 2rem">
-                  <label class="field__label" for="awareOfFloodLossesOnProperty"
-                    >Are you aware of flood losses on this property?</label
-                  >
-                </div>
-                <div class="field-group" style="margin-right: 1rem">
-                  <div class="field__input-wrapper">
-                    <input
-                      class="field__input"
-                      id="awareOfFloodLossesOnProperty--Yes"
-                      name="awareOfFloodLossesOnProperty"
-                      type="radio"
-                      value="Yes"
-                    /><label
-                      class="field__label"
-                      for="awareOfFloodLossesOnProperty--Yes"
-                      >Yes</label
-                    >
-                  </div>
-                </div>
-                <div class="field-group">
-                  <div class="field__input-wrapper">
-                    <input
-                      class="field__input"
-                      id="awareOfFloodLossesOnProperty--No"
-                      name="awareOfFloodLossesOnProperty"
-                      type="radio"
-                      required=""
-                      value="No"
-                    /><label
-                      class="field__label"
-                      for="awareOfFloodLossesOnProperty--No"
-                      >No</label
-                    >
-                  </div>
-                </div>
-
-                <div
-                  class="field__error-messages awareOfFloodError"
-                  style="margin-left: 10px"
-                >
-                  <span class="field__error-message"
-                    >This field is required</span
-                  >
-                </div>
-              </div>
-            </div>
-            <!-- How many losses have occurred? -->
-            <div class="fields-row">
-              <div class="field field--extended field--extended-label">
-                <div class="field__label-wrapper">
-                  <label class="field__label" for="howManyLossesHaveOccurred"
-                    >How many losses have occurred?</label
-                  >
-                </div>
-                <div class="field__input-wrapper">
-                  <input
-                    class="field__input numberOnly"
-                    id="howManyLossesHaveOccurred"
-                    name="howManyLossesHaveOccurred"
-                    type="text"
-                    disabled
-                  />
-                </div>
-              </div>
-            </div>
-            <!-- If your mortgage requires this insurance, how much is required? -->
-            <div class="fields-row">
-              <div class="field field--xlarge field--extended-label">
-                <div class="field__label-wrapper">
-                  <label
-                    class="field__label"
-                    for="howMuchMortgageInsuranceRequired"
-                    >If your mortgage requires this insurance, how much is
-                    required?</label
-                  >
-                </div>
-                <div class="field__input-wrapper">
-                  <input
-                    class="field__input dollar"
-                    id="howMuchMortgageInsuranceRequired"
-                    name="howMuchMortgageInsuranceRequired"
-                    type="text"
+                    type="number"
+                    required=""
                     placeholder=""
                     value=""
                   />
@@ -1442,21 +1452,156 @@
                 </div>
               </div>
             </div>
+            <!-- Number of Bedrooms, Number of Bathrooms -->
+            <div class="fields-row">
+              <div class="field undefined">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="propertyBedroomCount"
+                    >Number of Bedrooms</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <select
+                    class="field__input"
+                    id="propertyBedroomCount"
+                    name="propertyBedroomCount"
+                    type="select"
+                    required=""
+                  >
+                    <option value="">Choose One</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8 or more">8 or more</option>
+                  </select>
+                </div>
+              </div>
+              <div class="field undefined">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="propertyBathroomCount"
+                    >Number of Bathrooms</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <select
+                    class="field__input"
+                    id="propertyBathroomCount"
+                    name="propertyBathroomCount"
+                    type="select"
+                    required=""
+                  >
+                    <option value="">Choose One</option>
+                    <option value="1">1</option>
+                    <option value="1.5">1.5</option>
+                    <option value="2">2</option>
+                    <option value="2.5">2.5</option>
+                    <option value="3">3</option>
+                    <option value="3.5">3.5</option>
+                    <option value="4 or more">4 or more</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <!-- Age of Roof (years), Roof Type -->
+            <div class="fields-row">
+              <div class="field undefined">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="propertyRoofAge"
+                    >Age of Roof (years)</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <select
+                    class="field__input"
+                    id="propertyRoofAge"
+                    name="propertyRoofAge"
+                    type="select"
+                    required=""
+                  >
+                    <option value="">Choose One</option>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                    <option value="24">24</option>
+                    <option value="25 or more">25 or more</option>
+                  </select>
+                </div>
+              </div>
+              <div class="field undefined">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="propertyRoofMaterial"
+                    >Roof Type</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <select
+                    class="field__input"
+                    id="propertyRoofMaterial"
+                    name="propertyRoofMaterial"
+                    type="select"
+                    required=""
+                  >
+                    <option value="">Choose One</option>
+                    <option value="Asphalt/Composition">
+                      Asphalt/Composition
+                    </option>
+                    <option value="Metal">Metal</option>
+                    <option value="Clay/Ceramic/Cement Tile">
+                      Clay/Ceramic/Cement Tile
+                    </option>
+                    <option value="Wood">Wood</option>
+                    <option value="Hail Proof">Hail Proof</option>
+                    <option value="Slate">Slate</option>
+                    <option value="Plastic/Rubber/Vinyl">
+                      Plastic/Rubber/Vinyl
+                    </option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+              </div>
+            </div>
           </div>
 
           <!-- ******* ASIDE  *******-->
           <aside class="quote_request_aside">
-            <h2 class="quote_request_sidebar__heading">Did You Know?</h2>
+            <h2 class="quote_request_sidebar__heading">
+              Dwelling Amount for Condo vs. Townhome
+            </h2>
             <div class="quote_request_sidebar__content">
               <div class="quote_request_sidebar__item">
                 <p class="quote_request_sidebar__item_description">
-                  Everyone is considered to be in a flood zone. Approximately
-                  one-third of flood losses occur in low risk zones.
+                  For Condo –Typically this is coverage for the interior of the
+                  condo to include the drywall and permanent fixtures. Exclude
+                  coverage already provided by the master policy.
                 </p>
                 <p class="quote_request_sidebar__item_description">
-                  AFI works with the largest Write Your Own (WYO) flood insurer
-                  in the country to help you find the best coverage solution for
-                  your flood insurance needs.
+                  For Townhouse- The estimated cost to rebuild your
+                  share/portion/unit. This amount includes the exterior.
                 </p>
               </div>
             </div>
