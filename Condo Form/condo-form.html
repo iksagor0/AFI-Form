@@ -1098,7 +1098,9 @@
         <div class="quote_request__section_wrapper">
           <!-- ******* FORM  *******-->
           <div class="form_container">
-            <h2 class="quote_request_heading">Property Info</h2>
+            <h2 class="quote_request_heading">
+              Address of Property to be Quoted
+            </h2>
 
             <!-- checkbox is same as mailing address -->
             <div class="fields-row">
@@ -1227,9 +1229,7 @@
     </section>
 
     <!-- PROPERTY OVERVIEW FORM -->
-    <section
-      class="form_section flood__step property_information_form active_section"
-    >
+    <section class="form_section flood__step property_information_form">
       <div class="container">
         <!-- ******** STEP ******** -->
         <div class="step__container">
@@ -1247,7 +1247,7 @@
         <div class="quote_request__section_wrapper">
           <!-- ******* FORM  *******-->
           <div class="form_container">
-            <h2 class="quote_request_heading">Property Overview</h2>
+            <h2 class="quote_request_heading">Property Information</h2>
             <!-- Occupancy -->
             <div class="fields-row">
               <div class="field field--xxlarge field--extended-label">
@@ -1401,7 +1401,7 @@
             </div>
             <!-- Construction Type, Total Living Area (sq ft) -->
             <div class="fields-row">
-              <div class="field undefined">
+              <div class="field">
                 <div class="field__label-wrapper">
                   <label class="field__label" for="propertyConstructionType"
                     >Construction Type</label
@@ -1454,7 +1454,7 @@
             </div>
             <!-- Number of Bedrooms, Number of Bathrooms -->
             <div class="fields-row">
-              <div class="field undefined">
+              <div class="field">
                 <div class="field__label-wrapper">
                   <label class="field__label" for="propertyBedroomCount"
                     >Number of Bedrooms</label
@@ -1480,7 +1480,7 @@
                   </select>
                 </div>
               </div>
-              <div class="field undefined">
+              <div class="field">
                 <div class="field__label-wrapper">
                   <label class="field__label" for="propertyBathroomCount"
                     >Number of Bathrooms</label
@@ -1508,7 +1508,7 @@
             </div>
             <!-- Age of Roof (years), Roof Type -->
             <div class="fields-row">
-              <div class="field undefined">
+              <div class="field">
                 <div class="field__label-wrapper">
                   <label class="field__label" for="propertyRoofAge"
                     >Age of Roof (years)</label
@@ -1552,7 +1552,7 @@
                   </select>
                 </div>
               </div>
-              <div class="field undefined">
+              <div class="field">
                 <div class="field__label-wrapper">
                   <label class="field__label" for="propertyRoofMaterial"
                     >Roof Type</label
@@ -1610,11 +1610,96 @@
       </div>
     </section>
 
+    <!-- PROPERTY OVERVIEW FORM -->
+    <section class="form_section flood__step property_claims_form">
+      <div class="container">
+        <!-- ******** STEP ******** -->
+        <div class="step__container">
+          <ul class="steps__list">
+            <li class="step active_step" data-text="Policy Holder">1</li>
+            <li class="line"></li>
+
+            <li class="step active_step" data-text="Property Info">2</li>
+            <li class="line"></li>
+
+            <li class="step" data-text="Quote">3</li>
+          </ul>
+        </div>
+
+        <div class="quote_request__section_wrapper">
+          <!-- ******* FORM  *******-->
+          <div class="form_container">
+            <h2 class="quote_request_heading">Property Claims</h2>
+
+            <!-- Number of homeowner/renter claims in the last 5 years -->
+            <div class="fields-row">
+              <div class="field field--xxlarge">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="propertyClaimsCount"
+                    >Number of homeowner/renter claims in the last 5
+                    years</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <select
+                    class="field__input"
+                    id="propertyClaimsCount"
+                    name="propertyClaimsCount"
+                    type="select"
+                    required=""
+                  >
+                    <option value="">Choose One</option>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3 or more">3 or more</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <!-- Please list details for each claim identified above. -->
+            <div class="fields-row">
+              <div class="field field--xxlarge">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="propertyClaimsDetails"
+                    >Please list details for each claim identified above.</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <textarea
+                    class="field__input"
+                    id="propertyClaimsDetails"
+                    name="propertyClaimsDetails"
+                    required=""
+                    placeholder=""
+                    spellcheck="false"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ******* ASIDE  *******-->
+          <aside class="quote_request_aside">
+            <h2 class="quote_request_sidebar__heading">Need Help Now?</h2>
+            <div class="quote_request_sidebar__content">
+              <div class="quote_request_sidebar__item">
+                <p class="quote_request_sidebar__item_description">
+                  Call us at 800-495-8232 from 7:30am-6:30pm CST M-F. Our
+                  dedicated agents are standing by to help.
+                </p>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
     <!-- ************************************************ -->
     <!---------------------- MULTI-STEP 3 ------------------>
     <!-- ************************************************ -->
     <!-- PROPERTY DETAILS FORM -->
-    <section class="form_section flood__step property_details_form">
+    <section class="form_section flood__step discount_form active_section">
       <div class="container">
         <!-- ******** STEP ******** -->
         <div class="step__container">
@@ -1632,177 +1717,134 @@
         <div class="quote_request__section_wrapper">
           <!-- ******* FORM  *******-->
           <div class="form_container">
-            <h2 class="quote_request_heading">Property Details</h2>
-
-            <!-- Is the Structure a Condominium? -->
+            <h2 class="quote_request_heading">Discounts</h2>
+            <!-- Leak Detection system -->
             <div class="fields-row">
               <div class="field field--full">
-                <div class="field__label-wrapper" style="margin-right: 2rem">
-                  <label class="field__label" for="isStructureACondominium"
-                    >Is the Structure a Condominium?</label
-                  >
-                </div>
-                <div class="field-group" style="margin-right: 1rem">
+                <div class="field-group field-group--inline">
                   <div class="field__input-wrapper">
                     <input
                       class="field__input"
-                      id="isStructureACondominium--Yes"
-                      name="isStructureACondominium"
+                      id="leakDetectionSystem--true"
+                      name="leakDetectionSystem"
                       type="radio"
-                      required=""
-                      value="Yes"
+                      value="true"
                     /><label
                       class="field__label"
-                      for="isStructureACondominium--Yes"
-                      >Yes</label
+                      for="leakDetectionSystem--true"
+                      >Leak Detection system</label
                     >
                   </div>
                 </div>
-                <div class="field-group">
+              </div>
+            </div>
+            <!-- New Purchase Discount -->
+            <div class="fields-row">
+              <div class="field field--full">
+                <div class="field-group field-group--inline">
                   <div class="field__input-wrapper">
                     <input
                       class="field__input"
-                      id="isStructureACondominium--No"
-                      name="isStructureACondominium"
+                      id="newPurchaseDiscount--true"
+                      name="newPurchaseDiscount"
                       type="radio"
-                      required=""
-                      value="No"
+                      value="true"
                     /><label
                       class="field__label"
-                      for="isStructureACondominium--No"
-                      >No</label
+                      for="newPurchaseDiscount--true"
+                      >New Purchase Discount</label
                     >
                   </div>
                 </div>
-                <div
-                  class="field__error-messages structureACondomError"
-                  style="margin-left: 10px"
-                >
-                  <span class="field__error-message"
-                    >This field is required</span
-                  >
-                </div>
               </div>
             </div>
-
-            <!-- What Floor Is Your Condominium Unit On? -->
+            <!-- Anticipated Closing Date -->
             <div class="fields-row">
-              <div class="field field--extended-label">
+              <div class="field">
                 <div class="field__label-wrapper">
-                  <label class="field__label" for="whatFloorIsYourCondominiumOn"
-                    >What Floor Is Your Condominium Unit On?</label
-                  >
-                </div>
-                <div class="field__input-wrapper">
-                  <select
-                    class="field__input"
-                    id="whatFloorIsYourCondominiumOn"
-                    name="whatFloorIsYourCondominiumOn"
-                    type="select"
-                    required=""
-                    disabled=""
-                  >
-                    <option value="">--</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="11 or up">11 or up</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-
-            <!-- Floors In Structure (Including Basement) -->
-            <div class="fields-row">
-              <div class="field field--extended-label">
-                <div class="field__label-wrapper">
-                  <label class="field__label" for="floorsInStructure"
-                    >Floors In Structure (Including Basement)</label
-                  >
-                </div>
-                <div class="field__input-wrapper">
-                  <select
-                    class="field__input required"
-                    id="floorsInStructure"
-                    name="floorsInStructure"
-                    type="select"
-                    required=""
-                  >
-                    <option value="">--</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                  </select>
-                  <p class="field__note">
-                    For Condo Enter Number of Floors in Building
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Foundation Type, Garage Type,Garage Value -->
-            <div class="fields-row">
-              <div class="field field--large">
-                <div class="field__label-wrapper">
-                  <label class="field__label" for="floodFoundation"
-                    >Foundation Type</label
-                  >
-                </div>
-                <div class="field__input-wrapper">
-                  <select
-                    class="field__input required"
-                    id="floodFoundation"
-                    name="floodFoundation"
-                    type="select"
-                    required=""
-                  >
-                    <option value="">Choose One</option>
-                    <option value="Slab">Slab</option>
-                    <option value="Crawl Space">Crawl Space</option>
-                    <option value="Completely sub-grade (basement)">
-                      Completely sub-grade (basement)
-                    </option>
-                    <option value="Walk-out Basement">Walk-out Basement</option>
-                    <option value="On stilts or pilings">
-                      On stilts or pilings
-                    </option>
-                  </select>
-                </div>
-              </div>
-              <div class="field field--large">
-                <div class="field__label-wrapper">
-                  <label class="field__label" for="garageType"
-                    >Garage Type</label
-                  >
-                </div>
-                <div class="field__input-wrapper">
-                  <select
-                    class="field__input required"
-                    id="garageType"
-                    name="garageType"
-                    type="select"
-                    required=""
-                  >
-                    <option value="">Choose One</option>
-                    <option value="None">None</option>
-                    <option value="Attached">Attached</option>
-                    <option value="Detached">Detached</option>
-                  </select>
-                </div>
-              </div>
-              <div class="field field--large">
-                <div class="field__label-wrapper">
-                  <label class="field__label" for="garageValue"
-                    >Garage Value</label
+                  <label
+                    class="field__label"
+                    for="newPurchaseDiscountAnticipatedClosingDate"
+                    >Anticipated Closing Date</label
                   >
                 </div>
                 <div class="field__input-wrapper">
                   <input
-                    class="field__input dollar"
-                    id="garageValue"
-                    name="garageValue"
+                    class="field__input"
+                    id="newPurchaseDiscountAnticipatedClosingDate"
+                    name="newPurchaseDiscountAnticipatedClosingDate"
                     type="text"
-                    disabled
+                    pattern="\d{1,2}/\d{1,2}/\d{4}"
+                    placeholder=""
+                    value=""
+                    required=""
                   />
-                  <p class="field__note">For Detached Garages Only</p>
+                </div>
+              </div>
+            </div>
+            <!-- Non-Smoking Household -->
+            <div class="fields-row">
+              <div class="field field--full">
+                <div class="field-group field-group--inline">
+                  <div class="field__input-wrapper">
+                    <input
+                      class="field__input"
+                      id="nonSmokingHousehold--true"
+                      name="nonSmokingHousehold"
+                      type="radio"
+                      value="true"
+                    /><label
+                      class="field__label"
+                      for="nonSmokingHousehold--true"
+                      >Non-Smoking Household</label
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Occupation, Education -->
+            <div class="fields-row">
+              <div class="field">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="occupation"
+                    >Occupation</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <input
+                    class="field__input"
+                    id="occupation"
+                    name="occupation"
+                    type="text"
+                    maxlength="50"
+                    placeholder=""
+                    value=""
+                  />
+                  <p class="field__note">(Optional)</p>
+                </div>
+              </div>
+              <div class="field">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="education">Education</label>
+                </div>
+                <div class="field__input-wrapper">
+                  <select
+                    class="field__input"
+                    id="education"
+                    name="education"
+                    type="select"
+                  >
+                    <option value="">Choose One</option>
+                    <option value="Military Training/Vocational">
+                      Military Training/Vocational
+                    </option>
+                    <option value="High School">High School</option>
+                    <option value="Completed Some College">
+                      Completed Some College
+                    </option>
+                    <option value="College Degree">College Degree</option>
+                  </select>
+                  <p class="field__note">(Optional)</p>
                 </div>
               </div>
             </div>

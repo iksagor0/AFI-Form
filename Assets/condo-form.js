@@ -6,7 +6,7 @@ const floodFormSteps = [
   "policyholder_form",
   "property_quoted_form",
   "property_information_form",
-  "property_details_form",
+  "property_claims_form",
 ];
 
 let floodStep = 0;
