@@ -21,7 +21,7 @@ const floodBackBtn = document.querySelector("#floodBackBtn");
 
 // ***** NEXT FUNCTIONALITY *****
 pressEnterToSubmit(floodNextBtn);
-floodNextBtn?.addEventListener("click", () => {
+floodNextBtn?.addEventListener("click", async () => {
   if (floodStep === 0) {
     const isSelectEligibility = eligibilityValidation(floodFormSteps);
     if (!Boolean(isSelectEligibility)) return false;
@@ -30,7 +30,8 @@ floodNextBtn?.addEventListener("click", () => {
   }
 
   //  HANDLE ALL FORM SUBMISSIONS AND STEP VALIDATION
-  if (!handleFloodForms(floodStep)) return false;
+  const submitResult = await handleFloodForms(vehicleStep);
+  if (!submitResult) return false;
 
   // Step Increment
   condoMaxStep = formList.length - 1;

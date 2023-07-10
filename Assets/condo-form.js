@@ -22,16 +22,17 @@ const condoBackBtn = document.querySelector("#condoBackBtn");
 
 // ***** NEXT FUNCTIONALITY *****
 pressEnterToSubmit(condoNextBtn);
-condoNextBtn?.addEventListener("click", () => {
+condoNextBtn?.addEventListener("click", async () => {
   if (condoStep === 0) {
     const isSelectEligibility = eligibilityValidation(condoFormSteps);
-    if (!Boolean(isSelectEligibility)) return false
+    if (!Boolean(isSelectEligibility)) return false;
 
     militaryFormFunc();
   }
 
   //  HANDLE ALL FORM SUBMISSIONS AND STEP VALIDATION
-  if (!handleCondoForms(condoStep)) return false;
+  const submitResult = await handleCondoForms(vehicleStep);
+  if (!submitResult) return false;
 
   // Step Increment
   condoMaxStep = formList.length - 1;
