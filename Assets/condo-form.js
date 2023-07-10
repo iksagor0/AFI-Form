@@ -80,8 +80,8 @@ function handleCondoForms(step) {
   }
 
   if (step === formList.indexOf("property_information_form")) {
-    if (!condoInformationValidation()) return false;
-    condoDetailsFunc();
+    if (!validateForm("property_information_form")) return false;
+    // condoDetailsFunc();
   }
   if (step === formList.indexOf("property_claims_form")) {
     alert("property_claims_form");
@@ -197,29 +197,29 @@ function condoInformationFunc() {
   });
 }
 
-function condoInformationValidation() {
-  const isValidate = validateForm("property_overview_form");
+// function condoInformationValidation() {
+//   const isValidate = validateForm("property_overview_form");
 
-  //
-  const awareOfCondoLossesOnProperty = document.querySelector(
-    ".field__input[name=awareOfCondoLossesOnProperty]:checked"
-  );
-  if (!awareOfCondoLossesOnProperty) {
-    const awareOfCondoError = document.querySelector(".awareOfCondoError");
-    awareOfCondoError.style.display = "block";
+//   //
+//   const awareOfCondoLossesOnProperty = document.querySelector(
+//     ".field__input[name=awareOfCondoLossesOnProperty]:checked"
+//   );
+//   if (!awareOfCondoLossesOnProperty) {
+//     const awareOfCondoError = document.querySelector(".awareOfCondoError");
+//     awareOfCondoError.style.display = "block";
 
-    document
-      .querySelectorAll(".field__input[name=awareOfCondoLossesOnProperty]")
-      .forEach((el) =>
-        el.addEventListener(
-          "change",
-          () => (awareOfCondoError.style.display = "none")
-        )
-      );
-  }
+//     document
+//       .querySelectorAll(".field__input[name=awareOfCondoLossesOnProperty]")
+//       .forEach((el) =>
+//         el.addEventListener(
+//           "change",
+//           () => (awareOfCondoError.style.display = "none")
+//         )
+//       );
+//   }
 
-  return isValidate && Boolean(awareOfCondoLossesOnProperty);
-}
+//   return isValidate && Boolean(awareOfCondoLossesOnProperty);
+// }
 
 // *********************************************
 // STEP-3 "Property Details" FUNCTIONALITY & VALIDATION

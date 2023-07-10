@@ -1248,6 +1248,7 @@
           <!-- ******* FORM  *******-->
           <div class="form_container">
             <h2 class="quote_request_heading">Property Information</h2>
+
             <!-- Occupancy -->
             <div class="fields-row">
               <div class="field field--xxlarge field--extended-label">
@@ -1258,7 +1259,7 @@
                 </div>
                 <div class="field__input-wrapper">
                   <select
-                    class="field__input residenceOccupancy"
+                    class="field__input residenceOccupancy required"
                     id="residenceOccupancy"
                     name="residenceOccupancy"
                     type="select"
@@ -1342,7 +1343,7 @@
                 </div>
                 <div class="field__input-wrapper">
                   <input
-                    class="field__input"
+                    class="field__input required dollar"
                     id="residenceDwellingAmountToBeQuoted"
                     name="residenceDwellingAmountToBeQuoted"
                     type="text"
@@ -1352,6 +1353,7 @@
                 </div>
               </div>
             </div>
+
             <!-- Year Built, Year Built -->
             <div class="fields-row">
               <div class="field">
@@ -1362,7 +1364,7 @@
                 </div>
                 <div class="field__input-wrapper">
                   <select
-                    class="field__input"
+                    class="field__input required"
                     id="propertyYearBuilt"
                     name="propertyYearBuilt"
                     type="select"
@@ -1383,7 +1385,7 @@
                 </div>
                 <div class="field__input-wrapper">
                   <select
-                    class="field__input"
+                    class="field__input required"
                     id="propertyStyleOfHouse"
                     name="propertyStyleOfHouse"
                     type="select"
@@ -1405,7 +1407,7 @@
                 </div>
                 <div class="field__input-wrapper">
                   <select
-                    class="field__input"
+                    class="field__input required"
                     id="propertyConstructionType"
                     name="propertyConstructionType"
                     type="select"
@@ -1435,10 +1437,10 @@
                 </div>
                 <div class="field__input-wrapper">
                   <input
-                    class="field__input"
+                    class="field__input required numberOnly"
                     id="totalLivingAreaSqFt"
                     name="totalLivingAreaSqFt"
-                    type="number"
+                    type="text"
                     placeholder=""
                     value=""
                   />
@@ -1456,7 +1458,7 @@
                 </div>
                 <div class="field__input-wrapper">
                   <select
-                    class="field__input"
+                    class="field__input required"
                     id="propertyBedroomCount"
                     name="propertyBedroomCount"
                     type="select"
@@ -1481,7 +1483,7 @@
                 </div>
                 <div class="field__input-wrapper">
                   <select
-                    class="field__input"
+                    class="field__input required"
                     id="propertyBathroomCount"
                     name="propertyBathroomCount"
                     type="select"
@@ -1508,7 +1510,7 @@
                 </div>
                 <div class="field__input-wrapper">
                   <select
-                    class="field__input"
+                    class="field__input required"
                     id="propertyRoofAge"
                     name="propertyRoofAge"
                     type="select"
@@ -1517,27 +1519,6 @@
                     <option value="0">0</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                    <option value="13">13</option>
-                    <option value="14">14</option>
-                    <option value="15">15</option>
-                    <option value="16">16</option>
-                    <option value="17">17</option>
-                    <option value="18">18</option>
-                    <option value="19">19</option>
-                    <option value="20">20</option>
-                    <option value="21">21</option>
-                    <option value="22">22</option>
-                    <option value="23">23</option>
                     <option value="24">24</option>
                     <option value="25 or more">25 or more</option>
                   </select>
@@ -1551,25 +1532,16 @@
                 </div>
                 <div class="field__input-wrapper">
                   <select
-                    class="field__input"
+                    class="field__input required"
                     id="propertyRoofMaterial"
                     name="propertyRoofMaterial"
                     type="select"
                   >
                     <option value="">Choose One</option>
-                    <option value="Asphalt/Composition">
-                      Asphalt/Composition
-                    </option>
                     <option value="Metal">Metal</option>
-                    <option value="Clay/Ceramic/Cement Tile">
-                      Clay/Ceramic/Cement Tile
-                    </option>
                     <option value="Wood">Wood</option>
                     <option value="Hail Proof">Hail Proof</option>
                     <option value="Slate">Slate</option>
-                    <option value="Plastic/Rubber/Vinyl">
-                      Plastic/Rubber/Vinyl
-                    </option>
                     <option value="Other">Other</option>
                   </select>
                 </div>
