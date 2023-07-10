@@ -25,8 +25,7 @@ pressEnterToSubmit(condoNextBtn);
 condoNextBtn?.addEventListener("click", () => {
   if (condoStep === 0) {
     const isSelectEligibility = eligibilityValidation(condoFormSteps);
-    if (!Boolean(isSelectEligibility)) return false;
-    condoMaxStep = formList.length - 1;
+    if (!Boolean(isSelectEligibility)) return false
 
     militaryFormFunc();
   }

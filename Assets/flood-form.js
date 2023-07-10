@@ -25,7 +25,6 @@ floodNextBtn?.addEventListener("click", () => {
   if (floodStep === 0) {
     const isSelectEligibility = eligibilityValidation(floodFormSteps);
     if (!Boolean(isSelectEligibility)) return false;
-    floodMaxStep = formList.length - 1;
 
     militaryFormFunc();
   }
@@ -34,6 +33,7 @@ floodNextBtn?.addEventListener("click", () => {
   if (!handleFloodForms(floodStep)) return false;
 
   // Step Increment
+  condoMaxStep = formList.length - 1;
   floodStep >= floodMaxStep ? floodStep : floodStep++;
 
   // Show Form
