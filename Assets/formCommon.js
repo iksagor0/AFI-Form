@@ -296,11 +296,7 @@ function validateForm(formClassName, dataAssign = true) {
 
   if (isValidate && dataAssign) {
     allFields.forEach((field) => {
-      if (field.type == "radio") {
-        formData[field?.name] = field.checked;
-      } else {
-        formData[field?.name] = field.value;
-      }
+      formData[field?.name] = field.value;
     });
   }
 

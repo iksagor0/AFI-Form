@@ -90,7 +90,7 @@ function handleCondoForms(step) {
 
   //
   if (step === formList.indexOf("discount_form")) {
-    if (!validateForm("discount_form")) return false;
+    if (!condoDiscountFormFunc("discount_form")) return false;
 
     alert("Done");
     console.log(formData);
@@ -221,4 +221,16 @@ function condoDiscountFormFunc() {
       newPurchaseDiscountDate.classList.remove("required");
     }
   });
+}
+
+function condoDiscountValidation(formClass) {
+  const isValidate = validateForm(formClass, false);
+  const discFields = document.querySelectorAll(`.${formClass} .field__input`);
+
+  if (isValidate) {
+    discFields.forEach((field) => {
+      if (field.type === "checkbox") formData[field?.name] = field.checked;
+      else formData[field?.name] = field.value;
+    });
+  }
 }
