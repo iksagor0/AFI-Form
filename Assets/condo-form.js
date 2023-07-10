@@ -93,7 +93,6 @@ function handleCondoForms(step) {
     if (!condoDiscountValidation("discount_form")) return false;
 
     alert("Done");
-    console.log(formData);
 
     // Go to Thank You Page
     // window.location.href = condoSuccessRedirection;
@@ -233,8 +232,6 @@ function condoDiscountValidation(formClass) {
       else formData[field?.name] = field.value;
     });
   }
-
-  debugger;
 
   return isValidate;
 }
