@@ -282,7 +282,7 @@ function validateForm(formClassName, dataAssign = true) {
     { class: "required", validator: isValueEmpty },
   ];
 
-  const checkValidation = [];
+  const checkValidation = [true];
 
   allFields.forEach((field) => {
     classAndValidator.forEach((checker) => {
@@ -296,7 +296,11 @@ function validateForm(formClassName, dataAssign = true) {
 
   if (isValidate && dataAssign) {
     allFields.forEach((field) => {
-      formData[field?.name] = field.value;
+      if (field.type == "radio") {
+        formData[field?.name] = field.checked;
+      } else {
+        formData[field?.name] = field.value;
+      }
     });
   }
 

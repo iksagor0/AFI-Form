@@ -35,6 +35,7 @@ condoNextBtn?.addEventListener("click", () => {
   if (!handleCondoForms(condoStep)) return false;
 
   // Step Increment
+  condoMaxStep = formList.length - 1;
   condoStep >= condoMaxStep ? condoStep : condoStep++;
 
   // Show Form
@@ -67,7 +68,7 @@ function handleCondoForms(step) {
   }
 
   if (step === formList.indexOf("policyholder_form")) {
-    // if (!policyholderValidation(step)) return false;
+    if (!policyholderValidation(step)) return false;
     condoPropertyQuotedFormFunc();
   }
   if (step === formList.indexOf("spouse_information")) {
@@ -81,19 +82,18 @@ function handleCondoForms(step) {
 
   if (step === formList.indexOf("property_information_form")) {
     if (!validateForm("property_information_form")) return false;
-    // condoDetailsFunc();
   }
   if (step === formList.indexOf("property_claims_form")) {
-    alert("property_claims_form");
-    // if (!condoInformationValidation()) return false;
-    // condoDetailsFunc();
+    if (!validateForm("property_claims_form")) return false;
+    condoDiscountFormFunc();
   }
 
   //
   if (step === formList.indexOf("discount_form")) {
-    // if (!condoDetailsValidation()) return false;
+    if (!validateForm("discount_form")) return false;
 
     alert("Done");
+    console.log(formData);
 
     // Go to Thank You Page
     // window.location.href = condoSuccessRedirection;
@@ -172,7 +172,7 @@ function condoPropertyQuotedValidation() {
 }
 
 // *********************************************
-// STEP-2 "Property Information" FUNCTIONALITY & VALIDATION
+// STEP-2 "Property Information & CLAIMS" FUNCTIONALITY & VALIDATION
 // *********************************************
 
 function condoInformationFunc() {
@@ -193,97 +193,32 @@ function condoInformationFunc() {
         field.classList.remove("required");
       });
     }
-    debugger;
   });
 }
 
-// function condoInformationValidation() {
-//   const isValidate = validateForm("property_overview_form");
+// PROPERTY INFORMATION VALIDATE in handleCondoForms function
 
-//   //
-//   const awareOfCondoLossesOnProperty = document.querySelector(
-//     ".field__input[name=awareOfCondoLossesOnProperty]:checked"
-//   );
-//   if (!awareOfCondoLossesOnProperty) {
-//     const awareOfCondoError = document.querySelector(".awareOfCondoError");
-//     awareOfCondoError.style.display = "block";
-
-//     document
-//       .querySelectorAll(".field__input[name=awareOfCondoLossesOnProperty]")
-//       .forEach((el) =>
-//         el.addEventListener(
-//           "change",
-//           () => (awareOfCondoError.style.display = "none")
-//         )
-//       );
-//   }
-
-//   return isValidate && Boolean(awareOfCondoLossesOnProperty);
-// }
+// PROPERTY CLAIMS VALIDATE in handleCondoForms function
 
 // *********************************************
-// STEP-3 "Property Details" FUNCTIONALITY & VALIDATION
+// STEP-3 "Discount Form" FUNCTIONALITY & VALIDATION
 // *********************************************
-function condoDetailsFunc() {
-  const isStructureACondominium = document.querySelector(
-    ".field__input[name=isStructureACondominium]:checked"
+function condoDiscountFormFunc() {
+  const newPurchaseDiscount = document.querySelector(".newPurchaseDiscount");
+  const newPurchaseDiscountDate = document.querySelector(
+    ".newPurchaseDiscountDate"
   );
 
-  const whatFloorIsYourCondominiumOn = document.getElementById(
-    "whatFloorIsYourCondominiumOn"
-  );
+  const future2Years = new Date().getFullYear() + 2;
+  dateValidation(newPurchaseDiscountDate, future2Years);
 
-  document
-    .querySelectorAll(".field__input[name=isStructureACondominium]")
-    .forEach((field) => {
-      field.addEventListener("change", () => {
-        if (field.checked && field?.value === "Yes") {
-          whatFloorIsYourCondominiumOn.disabled = false;
-          whatFloorIsYourCondominiumOn?.classList.add("required");
-        } else {
-          whatFloorIsYourCondominiumOn.disabled = true;
-          whatFloorIsYourCondominiumOn?.classList.remove("required");
-        }
-      });
-    });
-
-  //
-  const garageType = document.getElementById("garageType");
-  const garageValue = document.getElementById("garageValue");
-
-  garageType.addEventListener("change", (e) => {
-    if (e.target.value === "Detached") {
-      garageValue.disabled = false;
-      garageValue?.classList.add("required");
+  newPurchaseDiscount.addEventListener("change", (e) => {
+    if (newPurchaseDiscount.checked) {
+      newPurchaseDiscountDate.disabled = false;
+      newPurchaseDiscountDate.classList.add("required");
     } else {
-      garageValue.disabled = true;
-      garageValue?.classList.remove("required");
+      newPurchaseDiscountDate.disabled = true;
+      newPurchaseDiscountDate.classList.remove("required");
     }
   });
-}
-
-function condoDetailsValidation() {
-  const isValidate = validateForm("property_details_form");
-
-  //
-  const isStructureACondominium = document.querySelector(
-    ".field__input[name=isStructureACondominium]:checked"
-  );
-  if (!isStructureACondominium) {
-    const structureACondomError = document.querySelector(
-      ".structureACondomError"
-    );
-    structureACondomError.style.display = "block";
-
-    document
-      .querySelectorAll(".field__input[name=isStructureACondominium]")
-      .forEach((el) =>
-        el.addEventListener(
-          "change",
-          () => (structureACondomError.style.display = "none")
-        )
-      );
-  }
-
-  return isValidate && Boolean(isStructureACondominium);
 }
