@@ -105,6 +105,11 @@
   margin-bottom: 0.3rem;
 }
 
+.fields-row .field.field--extended-label .field__label {
+  position: relative;
+  width: 200%;
+}
+
 .radio__form_section .field-group .field__input:checked+.field__label {
   background-color: #003864;
   background-color: var(--color-blue-40);
@@ -494,7 +499,7 @@ textarea.field__input {
 
 input[type="text"]:disabled,
 button:disabled {
-  opacity: .6;
+  opacity: .6 !important;
 }
 
 /* ********************************
