@@ -27,13 +27,14 @@ vehicleNextBtn.addEventListener("click", () => {
   if (vehicleStep === 0) {
     const isSelectEligibility = eligibilityValidation(vehicleForms);
     if (!Boolean(isSelectEligibility)) return false;
-    vehicleMaxStep = formList.length - 1;
+
     militaryFormFunc();
   }
   //  HANDLE ALL FORM SUBMISSIONS AND STEP VALIDATION
   if (!handleVehicleStepForm(vehicleStep)) return false;
 
   // Step Increment
+  vehicleMaxStep = formList.length - 1;
   vehicleStep >= vehicleMaxStep ? vehicleStep : vehicleStep++;
 
   // Show Form
