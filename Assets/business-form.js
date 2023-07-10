@@ -106,6 +106,7 @@ async function saveBusiness(form, action = "send") {
 
   return resData;
 }
+
 // *********************************************
 //              FORM VALIDATION
 // *********************************************

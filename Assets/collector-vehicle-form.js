@@ -72,9 +72,18 @@ function handleVehicleStepForm(step) {
 
   if (step === formList.indexOf("policyholder_form")) {
     if (!policyholderValidation(step)) return false;
+
+    // Save Data
+    const resData = saveCollectorVehicle("policyholder_form");
+    if (resData.QuoteId <= 0) return false;
   }
+
   if (step === formList.indexOf("spouse_information")) {
     if (!validateForm("spouse_information")) return false;
+
+    // Save Data
+    const resData = saveCollectorVehicle("spouse_information");
+    if (resData.QuoteId <= 0) return false;
   }
 
   //
@@ -91,25 +100,44 @@ function handleVehicleStepForm(step) {
     step === formList.indexOf("summary__form") - 1
   ) {
     summaryFunctionality();
+
+    // Save Data
+    const resData = saveCollectorVehicle("summary__form");
+    if (resData.QuoteId <= 0) return false;
   }
 
   // ****
   if (step === formList.indexOf("violations__form")) {
     if (!violationsValidation()) return false;
+
+    // Save Data
+    const resData = saveCollectorVehicle("violations__form");
+    if (resData.QuoteId <= 0) return false;
   }
 
   if (step === formList.indexOf("coverage_limits_form")) {
     if (!validateForm("coverage_limits_form")) return false;
     functionalityForEachDamageForm();
+
+    // Save Data
+    const resData = saveCollectorVehicle("coverage_limits_form");
+    if (resData.QuoteId <= 0) return false;
   }
   if (step === formList.indexOf("physical_damage_form")) {
     if (!physicalDamageValidation()) return false;
+
+    // Save Data
+    const resData = saveCollectorVehicle("physical_damage_form");
+    if (resData.QuoteId <= 0) return false;
+
     coverageHistoryFunc();
   }
   if (step === formList.indexOf("coverage_history_form")) {
     if (!validateForm("coverage_history_form")) return false;
 
-    alert("Done");
+    // Save Data
+    const resData = saveCollectorVehicle("coverage_history_form", "submit");
+    if (resData.QuoteId <= 0) return false;
 
     // Go to Thank You Page
     // window.location.href = successRedirection;
@@ -118,6 +146,18 @@ function handleVehicleStepForm(step) {
   // Run after every submission
 
   return true;
+}
+
+async function saveCollectorVehicle(form, action = "send") {
+  const resData = await saveData(
+    "/sc-api/forms/save-collector-vehicle",
+    formData,
+    vehicleNextBtn,
+    form,
+    action
+  );
+
+  return resData;
 }
 
 // *********************************************

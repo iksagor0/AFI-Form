@@ -51,7 +51,7 @@ floodBackBtn?.addEventListener("click", () => {
 // =*********************************************
 //       HANDLING MULTI-STEP FORMS
 // =*********************************************
-function handleFloodForms(step) {
+async function handleFloodForms(step) {
   // =*********************************************************
   if (step === formList.indexOf("military_information")) {
     if (!militaryValidation()) return false;
@@ -67,19 +67,38 @@ function handleFloodForms(step) {
 
   if (step === formList.indexOf("policyholder_form")) {
     if (!policyholderValidation(step)) return false;
+
+    // Save Data
+    const resData = await saveFlood("policyholder_form");
+    if (resData.QuoteId <= 0) return false;
+
     floodPropertyQuotedFormFunc();
   }
   if (step === formList.indexOf("spouse_information")) {
     if (!validateForm("spouse_information")) return false;
+
+    // Save Data
+    const resData = await saveFlood("spouse_information");
+    if (resData.QuoteId <= 0) return false;
   }
 
   if (step === formList.indexOf("property_quoted_form")) {
     if (!floodPropertyQuotedValidation()) return false;
+
+    // Save Data
+    const resData = await saveFlood("property_quoted_form");
+    if (resData.QuoteId <= 0) return false;
+
     floodOverviewFunc();
   }
 
   if (step === formList.indexOf("property_overview_form")) {
     if (!floodOverviewValidation()) return false;
+
+    // Save Data
+    const resData = await saveFlood("property_overview_form");
+    if (resData.QuoteId <= 0) return false;
+
     floodDetailsFunc();
   }
 
@@ -87,13 +106,27 @@ function handleFloodForms(step) {
   if (step === formList.indexOf("property_details_form")) {
     if (!floodDetailsValidation()) return false;
 
-    alert("Done");
+    // Save Data
+    const resData = await saveFlood("property_details_form", "submit");
+    if (resData.QuoteId <= 0) return false;
 
     // Go to Thank You Page
     // window.location.href = floodSuccessRedirection;
   }
 
   return true;
+}
+
+async function saveFlood(form, action = "send") {
+  const resData = await saveData(
+    "/sc-api/forms/save-flood",
+    formData,
+    floodNextBtn,
+    form,
+    action
+  );
+
+  return resData;
 }
 
 // *********************************************
