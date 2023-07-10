@@ -57,7 +57,7 @@ vehicleBackBtn.addEventListener("click", () => {
 // =*********************************************
 //       HANDLING MULTI-STEP FORMS
 // =*********************************************
-function handleVehicleStepForm(step) {
+async function handleVehicleStepForm(step) {
   if (step === formList.indexOf("military_information")) {
     if (!militaryValidation()) return false;
   }
@@ -74,16 +74,16 @@ function handleVehicleStepForm(step) {
     if (!policyholderValidation(step)) return false;
 
     // Save Data
-    const resData = saveCollectorVehicle("policyholder_form");
-    if (resData.QuoteId <= 0) return false;
+    const resData = await saveCollectorVehicle("policyholder_form");
+    if (!resData || !resData.QuoteId || resData.QuoteId <= 0) return false;
   }
 
   if (step === formList.indexOf("spouse_information")) {
     if (!validateForm("spouse_information")) return false;
 
     // Save Data
-    const resData = saveCollectorVehicle("spouse_information");
-    if (resData.QuoteId <= 0) return false;
+    const resData = await saveCollectorVehicle("spouse_information");
+    if (!resData || !resData.QuoteId || resData.QuoteId <= 0) return false;
   }
 
   //
@@ -91,8 +91,8 @@ function handleVehicleStepForm(step) {
     if (!addVehicleValidation()) return false;
 
     // Save Data
-    const resData = saveCollectorVehicle("add_vehicle__form");
-    if (resData.QuoteId <= 0) return false;
+    const resData = await saveCollectorVehicle("add_vehicle__form");
+    if (!resData || !resData.QuoteId || resData.QuoteId <= 0) return false;
 
     summaryFunctionality();
   }
@@ -100,8 +100,8 @@ function handleVehicleStepForm(step) {
     if (!addMoreVehicleValidation()) return false;
 
     // Save Data
-    const resData = saveCollectorVehicle("add_more_vehicle_form");
-    if (resData.QuoteId <= 0) return false;
+    const resData = await saveCollectorVehicle("add_more_vehicle_form");
+    if (!resData || !resData.QuoteId || resData.QuoteId <= 0) return false;
 
     summaryFunctionality();
   }
@@ -112,8 +112,8 @@ function handleVehicleStepForm(step) {
     summaryFunctionality();
 
     // Save Data
-    const resData = saveCollectorVehicle("summary__form");
-    if (resData.QuoteId <= 0) return false;
+    const resData = await saveCollectorVehicle("summary__form");
+    if (!resData || !resData.QuoteId || resData.QuoteId <= 0) return false;
   }
 
   // ****
@@ -121,8 +121,8 @@ function handleVehicleStepForm(step) {
     if (!violationsValidation()) return false;
 
     // Save Data
-    const resData = saveCollectorVehicle("violations__form");
-    if (resData.QuoteId <= 0) return false;
+    const resData = await saveCollectorVehicle("violations__form");
+    if (!resData || !resData.QuoteId || resData.QuoteId <= 0) return false;
   }
 
   if (step === formList.indexOf("coverage_limits_form")) {
@@ -130,15 +130,15 @@ function handleVehicleStepForm(step) {
     functionalityForEachDamageForm();
 
     // Save Data
-    const resData = saveCollectorVehicle("coverage_limits_form");
-    if (resData.QuoteId <= 0) return false;
+    const resData = await saveCollectorVehicle("coverage_limits_form");
+    if (!resData || !resData.QuoteId || resData.QuoteId <= 0) return false;
   }
   if (step === formList.indexOf("physical_damage_form")) {
     if (!physicalDamageValidation()) return false;
 
     // Save Data
-    const resData = saveCollectorVehicle("physical_damage_form");
-    if (resData.QuoteId <= 0) return false;
+    const resData = await saveCollectorVehicle("physical_damage_form");
+    if (!resData || !resData.QuoteId || resData.QuoteId <= 0) return false;
 
     coverageHistoryFunc();
   }
@@ -146,8 +146,8 @@ function handleVehicleStepForm(step) {
     if (!validateForm("coverage_history_form")) return false;
 
     // Save Data
-    const resData = saveCollectorVehicle("coverage_history_form", "submit");
-    if (resData.QuoteId <= 0) return false;
+    const resData = await saveCollectorVehicle("coverage_history_form", "submit");
+    if (!resData || !resData.QuoteId || resData.QuoteId <= 0) return false;
 
     // Go to Thank You Page
     // window.location.href = successRedirection;

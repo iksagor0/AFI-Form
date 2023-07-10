@@ -70,7 +70,7 @@ async function handleFloodForms(step) {
 
     // Save Data
     const resData = await saveFlood("policyholder_form");
-    if (resData.QuoteId <= 0) return false;
+    if (!resData || !resData.QuoteId || resData.QuoteId <= 0) return false;
 
     floodPropertyQuotedFormFunc();
   }
@@ -79,7 +79,7 @@ async function handleFloodForms(step) {
 
     // Save Data
     const resData = await saveFlood("spouse_information");
-    if (resData.QuoteId <= 0) return false;
+    if (!resData || !resData.QuoteId || resData.QuoteId <= 0) return false;
   }
 
   if (step === formList.indexOf("property_quoted_form")) {
@@ -87,7 +87,7 @@ async function handleFloodForms(step) {
 
     // Save Data
     const resData = await saveFlood("property_quoted_form");
-    if (resData.QuoteId <= 0) return false;
+    if (!resData || !resData.QuoteId || resData.QuoteId <= 0) return false;
 
     floodOverviewFunc();
   }
@@ -97,7 +97,7 @@ async function handleFloodForms(step) {
 
     // Save Data
     const resData = await saveFlood("property_overview_form");
-    if (resData.QuoteId <= 0) return false;
+    if (!resData || !resData.QuoteId || resData.QuoteId <= 0) return false;
 
     floodDetailsFunc();
   }
@@ -108,7 +108,7 @@ async function handleFloodForms(step) {
 
     // Save Data
     const resData = await saveFlood("property_details_form", "submit");
-    if (resData.QuoteId <= 0) return false;
+    if (!resData || !resData.QuoteId || resData.QuoteId <= 0) return false;
 
     // Go to Thank You Page
     // window.location.href = floodSuccessRedirection;
