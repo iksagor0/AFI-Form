@@ -68,7 +68,7 @@ function handleCondoForms(step) {
   }
 
   if (step === formList.indexOf("policyholder_form")) {
-    if (!policyholderValidation(step)) return false;
+    // if (!policyholderValidation(step)) return false;
     condoPropertyQuotedFormFunc();
   }
   if (step === formList.indexOf("spouse_information")) {
@@ -76,12 +76,12 @@ function handleCondoForms(step) {
   }
 
   if (step === formList.indexOf("property_quoted_form")) {
-    if (!condoPropertyQuotedValidation()) return false;
+    // if (!condoPropertyQuotedValidation()) return false;
     condoInformationFunc();
   }
 
   if (step === formList.indexOf("property_information_form")) {
-    if (!validateForm("property_information_form")) return false;
+    // if (!validateForm("property_information_form")) return false;
   }
   if (step === formList.indexOf("property_claims_form")) {
     if (!validateForm("property_claims_form")) return false;
@@ -90,7 +90,7 @@ function handleCondoForms(step) {
 
   //
   if (step === formList.indexOf("discount_form")) {
-    if (!condoDiscountFormFunc("discount_form")) return false;
+    if (!condoDiscountValidation("discount_form")) return false;
 
     alert("Done");
     console.log(formData);
@@ -215,10 +215,10 @@ function condoDiscountFormFunc() {
   newPurchaseDiscount.addEventListener("change", (e) => {
     if (newPurchaseDiscount.checked) {
       newPurchaseDiscountDate.disabled = false;
-      newPurchaseDiscountDate.classList.add("required");
+      newPurchaseDiscountDate.classList.add("required", "date");
     } else {
       newPurchaseDiscountDate.disabled = true;
-      newPurchaseDiscountDate.classList.remove("required");
+      newPurchaseDiscountDate.classList.remove("required", "date");
     }
   });
 }
@@ -229,8 +229,12 @@ function condoDiscountValidation(formClass) {
 
   if (isValidate) {
     discFields.forEach((field) => {
-      if (field.type === "checkbox") formData[field?.name] = field.checked;
+      if (field.type === "radio") formData[field?.name] = field.checked;
       else formData[field?.name] = field.value;
     });
   }
+
+  debugger;
+
+  return isValidate;
 }
