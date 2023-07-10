@@ -494,7 +494,7 @@ textarea.field__input {
 
 input[type="text"]:disabled,
 button:disabled {
-  opacity: .6;
+  opacity: .6 !important;
 }
 
 /* ********************************

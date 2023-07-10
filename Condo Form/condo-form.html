@@ -61,7 +61,7 @@
     <!-- ************************************************ -->
     <!------------------- Radio Section -------------------->
     <!-- ************************************************ -->
-    <section class="form_section radio_select form_container">
+    <section class="form_section radio_select form_container active_section">
       <div class="container">
         <section class="heading_text_section">
           <h1 class="quote_request_heading">Eligibility For Insurance</h1>
@@ -551,7 +551,7 @@
     <!-- ************************************************ -->
     <!---------------------- MULTI-STEP 1 ------------------>
     <!-- ************************************************ -->
-    <section class="form_section flood__step policyholder_form">
+    <section class="form_section condo__step policyholder_form">
       <div class="container">
         <!-- ******** STEP ******** -->
         <div class="step__container">
@@ -913,7 +913,7 @@
     </section>
 
     <!-- SPOUSE INFORMATION -->
-    <section class="form_section flood__step spouse_information">
+    <section class="form_section condo__step spouse_information">
       <div class="container">
         <!-- ******** STEP ******** -->
         <div class="step__container">
@@ -1080,7 +1080,7 @@
     <!---------------------- MULTI-STEP 2 ------------------>
     <!-- ************************************************ -->
     <!-- PROPERTY QUOTED FORM -->
-    <section class="form_section flood__step property_quoted_form">
+    <section class="form_section condo__step property_quoted_form">
       <div class="container">
         <!-- ******** STEP ******** -->
         <div class="step__container">
@@ -1209,13 +1209,13 @@
             <div class="quote_request_sidebar__content">
               <div class="quote_request_sidebar__item">
                 <p class="quote_request_sidebar__item_description">
-                  Flood insurance covers direct physical loss caused by "flood."
-                  In simple terms, a flood is an excess of water on land that is
+                  Flood insurance covers direct physical loss caused by "condo."
+                  In simple terms, a condo is an excess of water on land that is
                   normally dry.
                 </p>
                 <p class="quote_request_sidebar__item_description">
                   Federal disaster assistance is only available if the President
-                  declares a disaster. Less than 50 percent of all flooding
+                  declares a disaster. Less than 50 percent of all condoing
                   incidents are awarded a Federal Disaster Assistance
                   declaration. If the President declares a Federal Disaster
                   Area, most disaster assistance is provided in the form of a
@@ -1228,8 +1228,8 @@
       </div>
     </section>
 
-    <!-- PROPERTY OVERVIEW FORM -->
-    <section class="form_section flood__step property_information_form">
+    <!-- PROPERTY INFORMATION FORM -->
+    <section class="form_section condo__step property_information_form">
       <div class="container">
         <!-- ******** STEP ******** -->
         <div class="step__container">
@@ -1258,11 +1258,10 @@
                 </div>
                 <div class="field__input-wrapper">
                   <select
-                    class="field__input"
+                    class="field__input residenceOccupancy"
                     id="residenceOccupancy"
                     name="residenceOccupancy"
                     type="select"
-                    required=""
                   >
                     <option value="">Choose One</option>
                     <option value="Primary Owner Occupied">
@@ -1278,6 +1277,7 @@
                 </div>
               </div>
             </div>
+
             <!-- Length Of Leasing Agreement -->
             <div class="fields-row">
               <div class="field field--xxlarge field--extended-label">
@@ -1288,11 +1288,10 @@
                 </div>
                 <div class="field__input-wrapper">
                   <select
-                    class="field__input"
+                    class="field__input occupancyDependent"
                     id="lengthofleasingagreement"
                     name="lengthofleasingagreement"
                     type="select"
-                    required=""
                     disabled=""
                   >
                     <option value="">Choose One</option>
@@ -1305,6 +1304,7 @@
                 </div>
               </div>
             </div>
+
             <!-- Are tenants required to carry liability coverage? -->
             <div class="fields-row">
               <div class="field field--xxlarge field--extended-label">
@@ -1317,11 +1317,10 @@
                 </div>
                 <div class="field__input-wrapper">
                   <select
-                    class="field__input"
+                    class="field__input occupancyDependent"
                     id="aretenantsrequiredtocarryliabilitycoverage"
                     name="aretenantsrequiredtocarryliabilitycoverage"
                     type="select"
-                    required=""
                     disabled=""
                   >
                     <option value="">Choose One</option>
@@ -1347,7 +1346,6 @@
                     id="residenceDwellingAmountToBeQuoted"
                     name="residenceDwellingAmountToBeQuoted"
                     type="text"
-                    required=""
                     placeholder=""
                     value=""
                   />
@@ -1368,7 +1366,6 @@
                     id="propertyYearBuilt"
                     name="propertyYearBuilt"
                     type="select"
-                    required=""
                   >
                     <option value="">--</option>
                     <option value="2023">2023</option>
@@ -1390,7 +1387,6 @@
                     id="propertyStyleOfHouse"
                     name="propertyStyleOfHouse"
                     type="select"
-                    required=""
                   >
                     <option value="">Choose One</option>
                     <option value="Condo/Co-op">Condo/Co-op</option>
@@ -1413,7 +1409,6 @@
                     id="propertyConstructionType"
                     name="propertyConstructionType"
                     type="select"
-                    required=""
                   >
                     <option value="">Choose One</option>
                     <option value="Brick over Frame">Brick over Frame</option>
@@ -1444,7 +1439,6 @@
                     id="totalLivingAreaSqFt"
                     name="totalLivingAreaSqFt"
                     type="number"
-                    required=""
                     placeholder=""
                     value=""
                   />
@@ -1466,7 +1460,6 @@
                     id="propertyBedroomCount"
                     name="propertyBedroomCount"
                     type="select"
-                    required=""
                   >
                     <option value="">Choose One</option>
                     <option value="1">1</option>
@@ -1492,7 +1485,6 @@
                     id="propertyBathroomCount"
                     name="propertyBathroomCount"
                     type="select"
-                    required=""
                   >
                     <option value="">Choose One</option>
                     <option value="1">1</option>
@@ -1520,7 +1512,6 @@
                     id="propertyRoofAge"
                     name="propertyRoofAge"
                     type="select"
-                    required=""
                   >
                     <option value="">Choose One</option>
                     <option value="0">0</option>
@@ -1564,7 +1555,6 @@
                     id="propertyRoofMaterial"
                     name="propertyRoofMaterial"
                     type="select"
-                    required=""
                   >
                     <option value="">Choose One</option>
                     <option value="Asphalt/Composition">
@@ -1610,8 +1600,8 @@
       </div>
     </section>
 
-    <!-- PROPERTY OVERVIEW FORM -->
-    <section class="form_section flood__step property_claims_form">
+    <!-- PROPERTY CLAIMS FORM -->
+    <section class="form_section condo__step property_claims_form">
       <div class="container">
         <!-- ******** STEP ******** -->
         <div class="step__container">
@@ -1646,7 +1636,6 @@
                     id="propertyClaimsCount"
                     name="propertyClaimsCount"
                     type="select"
-                    required=""
                   >
                     <option value="">Choose One</option>
                     <option value="0">0</option>
@@ -1670,7 +1659,6 @@
                     class="field__input"
                     id="propertyClaimsDetails"
                     name="propertyClaimsDetails"
-                    required=""
                     placeholder=""
                     spellcheck="false"
                   ></textarea>
@@ -1698,8 +1686,8 @@
     <!-- ************************************************ -->
     <!---------------------- MULTI-STEP 3 ------------------>
     <!-- ************************************************ -->
-    <!-- PROPERTY DETAILS FORM -->
-    <section class="form_section flood__step discount_form active_section">
+    <!-- DISCOUNT FORM -->
+    <section class="form_section condo__step discount_form">
       <div class="container">
         <!-- ******** STEP ******** -->
         <div class="step__container">
@@ -1777,7 +1765,6 @@
                     pattern="\d{1,2}/\d{1,2}/\d{4}"
                     placeholder=""
                     value=""
-                    required=""
                   />
                 </div>
               </div>
@@ -1872,14 +1859,14 @@
     <section class="quote_request__action_buttons">
       <div class="container d-flex">
         <button
-          id="floodBackBtn"
+          id="condoBackBtn"
           class="button button__back button__left hide"
           type="button"
         >
           Back
         </button>
         <button
-          id="floodNextBtn"
+          id="condoNextBtn"
           class="button button__next button__right"
           type="submit"
         >

@@ -1,57 +1,58 @@
-// const floodSuccessRedirection = "https://afi.org/";
-// const floodSuccessRedirection = "../--Model/thank-you.html";
+// const condoSuccessRedirection = "https://afi.org/";
+// const condoSuccessRedirection = "../--Model/thank-you.html";
 
 // Forms
-const floodFormSteps = [
+const condoFormSteps = [
   "policyholder_form",
   "property_quoted_form",
   "property_information_form",
   "property_claims_form",
+  "discount_form",
 ];
 
-let floodStep = 0;
-let floodMaxStep = formList.length - 1;
+let condoStep = 0;
+let condoMaxStep = formList.length - 1;
 
-const floodNextBtn = document.querySelector("#floodNextBtn");
-const floodBackBtn = document.querySelector("#floodBackBtn");
+const condoNextBtn = document.querySelector("#condoNextBtn");
+const condoBackBtn = document.querySelector("#condoBackBtn");
 
 // *********************************************
 //       FORM SUBMISSION AND STEP HANDLING
 // *********************************************
 
 // ***** NEXT FUNCTIONALITY *****
-pressEnterToSubmit(floodNextBtn);
-floodNextBtn?.addEventListener("click", () => {
-  if (floodStep === 0) {
-    const isSelectEligibility = eligibilityValidation(floodFormSteps);
+pressEnterToSubmit(condoNextBtn);
+condoNextBtn?.addEventListener("click", () => {
+  if (condoStep === 0) {
+    const isSelectEligibility = eligibilityValidation(condoFormSteps);
     if (!Boolean(isSelectEligibility)) return false;
-    floodMaxStep = formList.length - 1;
+    condoMaxStep = formList.length - 1;
 
     militaryFormFunc();
   }
 
   //  HANDLE ALL FORM SUBMISSIONS AND STEP VALIDATION
-  if (!handleFloodForms(floodStep)) return false;
+  if (!handleCondoForms(condoStep)) return false;
 
   // Step Increment
-  floodStep >= floodMaxStep ? floodStep : floodStep++;
+  condoStep >= condoMaxStep ? condoStep : condoStep++;
 
   // Show Form
-  showActiveForm(floodStep, floodBackBtn);
+  showActiveForm(condoStep, condoBackBtn);
 });
 
 // Back
-floodBackBtn?.addEventListener("click", () => {
+condoBackBtn?.addEventListener("click", () => {
   // Step Decrement
-  floodStep <= 0 ? floodStep : floodStep--;
+  condoStep <= 0 ? condoStep : condoStep--;
 
-  showActiveForm(floodStep, floodBackBtn);
+  showActiveForm(condoStep, condoBackBtn);
 });
 
 // =*********************************************
 //       HANDLING MULTI-STEP FORMS
 // =*********************************************
-function handleFloodForms(step) {
+function handleCondoForms(step) {
   // =*********************************************************
   if (step === formList.indexOf("military_information")) {
     if (!militaryValidation()) return false;
@@ -66,31 +67,36 @@ function handleFloodForms(step) {
   }
 
   if (step === formList.indexOf("policyholder_form")) {
-    if (!policyholderValidation(step)) return false;
-    floodPropertyQuotedFormFunc();
+    // if (!policyholderValidation(step)) return false;
+    condoPropertyQuotedFormFunc();
   }
   if (step === formList.indexOf("spouse_information")) {
     if (!validateForm("spouse_information")) return false;
   }
 
   if (step === formList.indexOf("property_quoted_form")) {
-    if (!floodPropertyQuotedValidation()) return false;
-    floodOverviewFunc();
+    if (!condoPropertyQuotedValidation()) return false;
+    condoInformationFunc();
   }
 
-  if (step === formList.indexOf("property_overview_form")) {
-    if (!floodOverviewValidation()) return false;
-    floodDetailsFunc();
+  if (step === formList.indexOf("property_information_form")) {
+    if (!condoInformationValidation()) return false;
+    condoDetailsFunc();
+  }
+  if (step === formList.indexOf("property_claims_form")) {
+    alert("property_claims_form");
+    // if (!condoInformationValidation()) return false;
+    // condoDetailsFunc();
   }
 
   //
-  if (step === formList.indexOf("property_details_form")) {
-    if (!floodDetailsValidation()) return false;
+  if (step === formList.indexOf("discount_form")) {
+    // if (!condoDetailsValidation()) return false;
 
     alert("Done");
 
     // Go to Thank You Page
-    // window.location.href = floodSuccessRedirection;
+    // window.location.href = condoSuccessRedirection;
   }
 
   return true;
@@ -102,35 +108,35 @@ function handleFloodForms(step) {
 
 // Policy Holder validation from formCommon.js (policyholderValidation)
 
-// Spouse validate by default validateForm in handleFloodForms function
+// Spouse validate by default validateForm in handleCondoForms function
 
 // *********************************************
 // STEP-2 "Property to be Quoted" FUNCTIONALITY & VALIDATION
 // *********************************************
-const isFloodSameAddressEl = document.getElementById(
+const isCondoSameAddressEl = document.getElementById(
   "propertyAddressSameAsMailing--true"
 );
 
-function floodPropertyQuotedFormFunc() {
+function condoPropertyQuotedFormFunc() {
   //
-  const floodQuotedMatchEl = document.querySelectorAll(
+  const condoQuotedMatchEl = document.querySelectorAll(
     ".property_quoted_form .field__input"
   );
 
   function setMatchedData(disability) {
-    const floodHolderMatchEl = document.querySelectorAll(
+    const condoHolderMatchEl = document.querySelectorAll(
       ".policyholder_form .field__input"
     );
 
-    floodHolderMatchEl.forEach((element) => {
+    condoHolderMatchEl.forEach((element) => {
       const elementMatch = element.getAttribute("data-match");
 
-      floodQuotedMatchEl.forEach((el) => {
+      condoQuotedMatchEl.forEach((el) => {
         const elMatch = el.getAttribute("data-match");
 
         if (elMatch === elementMatch) el.value = element.value;
         el.disabled = disability;
-        isFloodSameAddressEl.disabled = false;
+        isCondoSameAddressEl.disabled = false;
       });
     });
   }
@@ -139,11 +145,11 @@ function floodPropertyQuotedFormFunc() {
   document.getElementById("propertyAddress").value = "";
 
   // Same Mailing CheckBox Functionality
-  isFloodSameAddressEl?.addEventListener("change", () => {
-    if (isFloodSameAddressEl.checked) {
+  isCondoSameAddressEl?.addEventListener("change", () => {
+    if (isCondoSameAddressEl.checked) {
       setMatchedData(true);
     } else {
-      floodQuotedMatchEl.forEach((el, i) => {
+      condoQuotedMatchEl.forEach((el, i) => {
         el.value = "";
         el.disabled = false;
 
@@ -153,12 +159,12 @@ function floodPropertyQuotedFormFunc() {
   });
 }
 
-function floodPropertyQuotedValidation() {
-  if (isFloodSameAddressEl.checked) {
-    formData[isFloodSameAddressEl.name] = true;
+function condoPropertyQuotedValidation() {
+  if (isCondoSameAddressEl.checked) {
+    formData[isCondoSameAddressEl.name] = true;
     return true;
   } else {
-    formData[isFloodSameAddressEl.name] = false;
+    formData[isCondoSameAddressEl.name] = false;
 
     const isValidate = validateForm("property_quoted_form");
     return isValidate;
@@ -166,61 +172,59 @@ function floodPropertyQuotedValidation() {
 }
 
 // *********************************************
-// STEP-2 "Property Overview" FUNCTIONALITY & VALIDATION
+// STEP-2 "Property Information" FUNCTIONALITY & VALIDATION
 // *********************************************
 
-function floodOverviewFunc() {
-  const awareOfFloodLossesOnProperty = document.querySelector(
-    ".field__input[name=awareOfFloodLossesOnProperty]:checked"
-  );
+function condoInformationFunc() {
+  const residenceOccupancy = document.querySelector(".residenceOccupancy");
+  const occupancyDependent = document.querySelectorAll(".occupancyDependent");
 
-  const howManyLossesHaveOccurred = document.getElementById(
-    "howManyLossesHaveOccurred"
-  );
+  residenceOccupancy.addEventListener("change", (e) => {
+    const occupancyVal = e.target.value;
 
-  document
-    .querySelectorAll(".field__input[name=awareOfFloodLossesOnProperty]")
-    .forEach((field) => {
-      field.addEventListener("change", () => {
-        if (field.checked && field?.value === "Yes") {
-          howManyLossesHaveOccurred.disabled = false;
-          howManyLossesHaveOccurred?.classList.add("required");
-        } else {
-          howManyLossesHaveOccurred.disabled = true;
-          howManyLossesHaveOccurred?.classList.remove("required");
-        }
+    if (occupancyVal === "Rental or Non Owner Occupied") {
+      occupancyDependent.forEach((field) => {
+        field.disabled = false;
+        field.classList.add("required");
       });
-    });
+    } else {
+      occupancyDependent.forEach((field) => {
+        field.disabled = true;
+        field.classList.remove("required");
+      });
+    }
+    debugger;
+  });
 }
 
-function floodOverviewValidation() {
+function condoInformationValidation() {
   const isValidate = validateForm("property_overview_form");
 
   //
-  const awareOfFloodLossesOnProperty = document.querySelector(
-    ".field__input[name=awareOfFloodLossesOnProperty]:checked"
+  const awareOfCondoLossesOnProperty = document.querySelector(
+    ".field__input[name=awareOfCondoLossesOnProperty]:checked"
   );
-  if (!awareOfFloodLossesOnProperty) {
-    const awareOfFloodError = document.querySelector(".awareOfFloodError");
-    awareOfFloodError.style.display = "block";
+  if (!awareOfCondoLossesOnProperty) {
+    const awareOfCondoError = document.querySelector(".awareOfCondoError");
+    awareOfCondoError.style.display = "block";
 
     document
-      .querySelectorAll(".field__input[name=awareOfFloodLossesOnProperty]")
+      .querySelectorAll(".field__input[name=awareOfCondoLossesOnProperty]")
       .forEach((el) =>
         el.addEventListener(
           "change",
-          () => (awareOfFloodError.style.display = "none")
+          () => (awareOfCondoError.style.display = "none")
         )
       );
   }
 
-  return isValidate && Boolean(awareOfFloodLossesOnProperty);
+  return isValidate && Boolean(awareOfCondoLossesOnProperty);
 }
 
 // *********************************************
 // STEP-3 "Property Details" FUNCTIONALITY & VALIDATION
 // *********************************************
-function floodDetailsFunc() {
+function condoDetailsFunc() {
   const isStructureACondominium = document.querySelector(
     ".field__input[name=isStructureACondominium]:checked"
   );
@@ -258,7 +262,7 @@ function floodDetailsFunc() {
   });
 }
 
-function floodDetailsValidation() {
+function condoDetailsValidation() {
   const isValidate = validateForm("property_details_form");
 
   //
