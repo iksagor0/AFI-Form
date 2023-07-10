@@ -23,7 +23,7 @@ let vehicleMaxStep = formList.length - 1;
 
 // ***** NEXT FUNCTIONALITY *****
 pressEnterToSubmit(vehicleNextBtn);
-vehicleNextBtn.addEventListener("click", () => {
+vehicleNextBtn.addEventListener("click", async () => {
   if (vehicleStep === 0) {
     const isSelectEligibility = eligibilityValidation(vehicleForms);
     if (!Boolean(isSelectEligibility)) return false;
@@ -31,7 +31,8 @@ vehicleNextBtn.addEventListener("click", () => {
     militaryFormFunc();
   }
   //  HANDLE ALL FORM SUBMISSIONS AND STEP VALIDATION
-  if (!handleVehicleStepForm(vehicleStep)) return false;
+  const submitResult = await handleVehicleStepForm(vehicleStep);
+  if (!submitResult) return false;
 
   // Step Increment
   vehicleMaxStep = formList.length - 1;
