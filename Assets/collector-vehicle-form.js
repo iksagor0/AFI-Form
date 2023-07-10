@@ -27,7 +27,7 @@ vehicleNextBtn.addEventListener("click", () => {
   if (vehicleStep === 0) {
     const isSelectEligibility = eligibilityValidation(vehicleForms);
     if (!Boolean(isSelectEligibility)) return false;
-    vehicleMaxStep = formList.length - 1;
+
     militaryFormFunc();
   }
   //  HANDLE ALL FORM SUBMISSIONS AND STEP VALIDATION
@@ -77,52 +77,41 @@ async function handleVehicleStepForm(step) {
     const resData = await saveCollectorVehicle("policyholder_form");
     if (!resData || !resData.QuoteId || resData.QuoteId <= 0) return false;
   }
-
   if (step === formList.indexOf("spouse_information")) {
     if (!validateForm("spouse_information")) return false;
 
     // Save Data
-    const resData = await saveCollectorVehicle("spouse_information");
+    const resData = await saveCollectorVehicle("policyholder_form");
     if (!resData || !resData.QuoteId || resData.QuoteId <= 0) return false;
   }
 
   //
   if (step === formList.indexOf("add_vehicle__form")) {
     if (!addVehicleValidation()) return false;
+    summaryFunctionality();
 
     // Save Data
-    const resData = await saveCollectorVehicle("add_vehicle__form");
+    const resData = await saveCollectorVehicle("policyholder_form");
     if (!resData || !resData.QuoteId || resData.QuoteId <= 0) return false;
-
-    summaryFunctionality();
   }
   if (step === formList.indexOf("add_more_vehicle_form")) {
     if (!addMoreVehicleValidation()) return false;
+    summaryFunctionality();
 
     // Save Data
-    const resData = await saveCollectorVehicle("add_more_vehicle_form");
+    const resData = await saveCollectorVehicle("policyholder_form");
     if (!resData || !resData.QuoteId || resData.QuoteId <= 0) return false;
-
-    summaryFunctionality();
   }
   if (
     step === formList.indexOf("summary__form") ||
     step === formList.indexOf("summary__form") - 1
   ) {
     summaryFunctionality();
-
-    // Save Data
-    const resData = await saveCollectorVehicle("summary__form");
-    if (!resData || !resData.QuoteId || resData.QuoteId <= 0) return false;
   }
 
   // ****
   if (step === formList.indexOf("violations__form")) {
     if (!violationsValidation()) return false;
-
-    // Save Data
-    const resData = await saveCollectorVehicle("violations__form");
-    if (!resData || !resData.QuoteId || resData.QuoteId <= 0) return false;
   }
 
   if (step === formList.indexOf("coverage_limits_form")) {
@@ -130,23 +119,22 @@ async function handleVehicleStepForm(step) {
     functionalityForEachDamageForm();
 
     // Save Data
-    const resData = await saveCollectorVehicle("coverage_limits_form");
+    const resData = await saveCollectorVehicle("policyholder_form");
     if (!resData || !resData.QuoteId || resData.QuoteId <= 0) return false;
   }
   if (step === formList.indexOf("physical_damage_form")) {
     if (!physicalDamageValidation()) return false;
+    coverageHistoryFunc();
 
     // Save Data
-    const resData = await saveCollectorVehicle("physical_damage_form");
+    const resData = await saveCollectorVehicle("policyholder_form");
     if (!resData || !resData.QuoteId || resData.QuoteId <= 0) return false;
-
-    coverageHistoryFunc();
   }
   if (step === formList.indexOf("coverage_history_form")) {
     if (!validateForm("coverage_history_form")) return false;
 
     // Save Data
-    const resData = await saveCollectorVehicle("coverage_history_form", "submit");
+    const resData = await saveCollectorVehicle("policyholder_form");
     if (!resData || !resData.QuoteId || resData.QuoteId <= 0) return false;
 
     // Go to Thank You Page
@@ -160,7 +148,7 @@ async function handleVehicleStepForm(step) {
 
 async function saveCollectorVehicle(form, action = "send") {
   const resData = await saveData(
-    "/sc-api/forms/save-collector-vehicle",
+    "/sc-api/forms/save-collectorvehicle",
     formData,
     vehicleNextBtn,
     form,
@@ -609,13 +597,6 @@ function functionalityForEachDamageForm() {
         });
       }
     }
-
-    //
-    const vComDed = clonedItem.querySelector(".vehicleComprehensiveDeductible");
-    const vColDed = clonedItem.querySelector(".vehicleCollisionDeductible");
-
-    vComDed.id = vComDed.name = `vehicle${vId}ComprehensiveDeductible`;
-    vColDed.id = vColDed.name = `vehicle${vId}CollisionDeductible`;
 
     DamageFormWrapper.appendChild(clonedItem);
   });
