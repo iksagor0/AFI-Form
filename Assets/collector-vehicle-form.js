@@ -89,10 +89,20 @@ function handleVehicleStepForm(step) {
   //
   if (step === formList.indexOf("add_vehicle__form")) {
     if (!addVehicleValidation()) return false;
+
+    // Save Data
+    const resData = saveCollectorVehicle("add_vehicle__form");
+    if (resData.QuoteId <= 0) return false;
+
     summaryFunctionality();
   }
   if (step === formList.indexOf("add_more_vehicle_form")) {
     if (!addMoreVehicleValidation()) return false;
+
+    // Save Data
+    const resData = saveCollectorVehicle("add_more_vehicle_form");
+    if (resData.QuoteId <= 0) return false;
+
     summaryFunctionality();
   }
   if (
