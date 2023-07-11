@@ -120,7 +120,7 @@ function condoPropertyQuotedFormFunc() {
   isMobileSameAddressEl.checked = false;
   //
   const condoQuotedMatchEl = document.querySelectorAll(
-    ".property_quoted_form .field__input"
+    ".coverage_history_form .field__input"
   );
 
   function setMatchedData(disability) {
