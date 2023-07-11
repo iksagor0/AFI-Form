@@ -1640,151 +1640,101 @@
     <!-- ************************************************ -->
     <!---------------------- MULTI-STEP 3 ------------------>
     <!-- ************************************************ -->
-    <!-- DISCOUNT FORM -->
-    <section class="form_section mobile__step discount_form">
+    <!-- COVERAGE HISTORY FORM -->
+    <section class="form_section coverage_history_form">
       <div class="container">
+        <!-- <h1 class="quote_request_heading">Military Information</h1> -->
+
         <!-- ******** STEP ******** -->
         <div class="step__container">
           <ul class="steps__list">
-            <li class="step active_step" data-text="Policy Holder">1</li>
+            <li class="step active_step" data-text="Policy Holder Info">1</li>
             <li class="line"></li>
 
-            <li class="step active_step" data-text="Property Info">2</li>
+            <li class="step active_step" data-text="Business Info">2</li>
             <li class="line"></li>
 
-            <li class="step active_step" data-text="Quote">3</li>
+            <li class="step active_step" data-text="Coverages">3</li>
+            <li class="line"></li>
+
+            <li class="step active_step" data-text="Quote">4</li>
           </ul>
         </div>
 
         <div class="quote_request__section_wrapper">
           <!-- ******* FORM  *******-->
           <div class="form_container">
-            <h2 class="quote_request_heading">Discounts</h2>
-            <!-- Leak Detection system -->
+            <h2 class="quote_request_heading">Coverage History</h2>
+
+            <!-- Current Insurance Company -->
             <div class="fields-row">
-              <div class="field field--full">
-                <div class="field-group field-group--inline">
-                  <div class="field__input-wrapper">
-                    <input
-                      class="field__input"
-                      id="leakDetectionSystem--true"
-                      name="leakDetectionSystem"
-                      type="radio"
-                      value="true"
-                    /><label
-                      class="field__label"
-                      for="leakDetectionSystem--true"
-                      >Leak Detection system</label
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- New Purchase Discount -->
-            <div class="fields-row">
-              <div class="field field--full">
-                <div class="field-group field-group--inline">
-                  <div class="field__input-wrapper">
-                    <input
-                      class="field__input newPurchaseDiscount"
-                      id="newPurchaseDiscount--true"
-                      name="newPurchaseDiscount"
-                      type="radio"
-                      value="true"
-                    /><label
-                      class="field__label"
-                      for="newPurchaseDiscount--true"
-                      >New Purchase Discount</label
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Anticipated Closing Date -->
-            <div class="fields-row">
-              <div class="field">
+              <div class="field field--xlarge">
                 <div class="field__label-wrapper">
-                  <label
-                    class="field__label"
-                    for="newPurchaseDiscountAnticipatedClosingDate"
-                    >Anticipated Closing Date</label
+                  <label class="field__label" for="currentInsuranceCompany"
+                    >Current Insurance Company</label
                   >
-                </div>
-                <div class="field__input-wrapper">
-                  <input
-                    class="field__input newPurchaseDiscountDate"
-                    id="newPurchaseDiscountAnticipatedClosingDate"
-                    name="newPurchaseDiscountAnticipatedClosingDate"
-                    type="text"
-                    pattern="\d{1,2}/\d{1,2}/\d{4}"
-                    disabled
-                    value=""
-                  />
-                </div>
-              </div>
-            </div>
-            <!-- Non-Smoking Household -->
-            <div class="fields-row">
-              <div class="field field--full">
-                <div class="field-group field-group--inline">
-                  <div class="field__input-wrapper">
-                    <input
-                      class="field__input"
-                      id="nonSmokingHousehold--true"
-                      name="nonSmokingHousehold"
-                      type="radio"
-                      value="true"
-                    /><label
-                      class="field__label"
-                      for="nonSmokingHousehold--true"
-                      >Non-Smoking Household</label
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Occupation, Education -->
-            <div class="fields-row">
-              <div class="field">
-                <div class="field__label-wrapper">
-                  <label class="field__label" for="occupation"
-                    >Occupation</label
-                  >
-                </div>
-                <div class="field__input-wrapper">
-                  <input
-                    class="field__input"
-                    id="occupation"
-                    name="occupation"
-                    type="text"
-                    maxlength="50"
-                    value=""
-                  />
-                  <p class="field__note">(Optional)</p>
-                </div>
-              </div>
-              <div class="field">
-                <div class="field__label-wrapper">
-                  <label class="field__label" for="education">Education</label>
                 </div>
                 <div class="field__input-wrapper">
                   <select
                     class="field__input"
-                    id="education"
-                    name="education"
+                    id="currentInsuranceCompany"
+                    name="currentInsuranceCompany"
                     type="select"
                   >
                     <option value="">Choose One</option>
-                    <option value="Military Training/Vocational">
-                      Military Training/Vocational
-                    </option>
-                    <option value="High School">High School</option>
-                    <option value="Completed Some College">
-                      Completed Some College
-                    </option>
-                    <option value="College Degree">College Degree</option>
+                    <option value="None">None</option>
+                    <option value="AIG">AIG</option>
+                    <option value="Allied">Allied</option>
+                    <option value="Allstate">Allstate</option>
+                    <option value="American Family">American Family</option>
+                    <option value="Chubb">Chubb</option>
+                    <option value="Other">Other</option>
                   </select>
-                  <p class="field__note">(Optional)</p>
+                  <p class="field__note">Optional</p>
+                </div>
+              </div>
+
+              <!-- Extent by select others -->
+              <div
+                class="field field--extended-label insuranceCompany conditionally_hidden_field"
+              >
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="insuranceCompany"
+                    >Insurance Company</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <input
+                    class="field__input"
+                    id="insuranceCompany"
+                    name="insuranceCompany"
+                    type="text"
+                    placeholder=""
+                    value=""
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- Policy Renewal Date -->
+            <div class="fields-row">
+              <div class="field">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="policyRenewalDate"
+                    >Policy Renewal Date</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <input
+                    class="field__input numberOnly"
+                    id="policyRenewalDate"
+                    name="policyRenewalDate"
+                    type="text"
+                    pattern="\d{1,2}/\d{1,2}/\d{4}"
+                    placeholder="MM/DD/YYYY"
+                    value=""
+                  />
+                  <p class="field__note">Optional</p>
                 </div>
               </div>
             </div>
@@ -1792,12 +1742,16 @@
 
           <!-- ******* ASIDE  *******-->
           <aside class="quote_request_aside">
-            <h2 class="quote_request_sidebar__heading">Need Help Now?</h2>
+            <h2 class="quote_request_sidebar__heading">Helpful Tips</h2>
             <div class="quote_request_sidebar__content">
               <div class="quote_request_sidebar__item">
+                <h3 class="quote_request_sidebar__item_heading">
+                  Where Do I Find My Renewal or Expiration Date?
+                </h3>
                 <p class="quote_request_sidebar__item_description">
-                  Call us at 800-495-8232 from 7:30am-6:30pm CST M-F. Our
-                  dedicated agents are standing by to help.
+                  Refer to your current policy declarations page for the policy
+                  renewal or expiration date. If date is unknown, enter any
+                  future date (e.g. 01/01/2020)
                 </p>
               </div>
             </div>

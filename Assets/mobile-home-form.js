@@ -7,7 +7,7 @@ const mobileFormSteps = [
   "property_quoted_form",
   "home_information_form",
   "property_claims_form",
-  "discount_form",
+  "coverage_history_form",
 ];
 
 let mobileStep = 0;
