@@ -1217,7 +1217,7 @@
     </section>
 
     <!-- PROPERTY INFORMATION FORM -->
-    <section class="form_section mobile__step property_information_form">
+    <section class="form_section mobile__step home_information_form">
       <div class="container">
         <!-- ******** STEP ******** -->
         <div class="step__container">
@@ -1237,6 +1237,81 @@
           <div class="form_container">
             <h2 class="quote_request_heading">Property Information</h2>
 
+            <!-- Is the house within city limits? -->
+            <div class="fields-row">
+              <div class="field field--large field--extended-label">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="residenceWithinCityLimits"
+                    >Is the house within city limits?</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <select
+                    class="field__input"
+                    id="residenceWithinCityLimits"
+                    name="residenceWithinCityLimits"
+                    type="select"
+                    required=""
+                  >
+                    &gt;
+                    <option value="">Choose One</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Is house within 5 miles of a fire station? -->
+            <div class="fields-row">
+              <div class="field field--large field--extended-label">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="residenceNearFireStation"
+                    >Is house within 5 miles of a fire station?</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <select
+                    class="field__input"
+                    id="residenceNearFireStation"
+                    name="residenceNearFireStation"
+                    type="select"
+                    disabled=""
+                  >
+                    &gt;
+                    <option value="">Choose One</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Is fire hydrant within 1000 feet? -->
+            <div class="fields-row">
+              <div class="field field--large field--extended-label">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="residenceNearFireHydrant"
+                    >Is fire hydrant within 1000 feet?</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <select
+                    class="field__input"
+                    id="residenceNearFireHydrant"
+                    name="residenceNearFireHydrant"
+                    type="select"
+                    disabled=""
+                  >
+                    &gt;
+                    <option value="">Choose One</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
             <!-- Occupancy -->
             <div class="fields-row">
               <div class="field field--xxlarge field--extended-label">
@@ -1247,11 +1322,13 @@
                 </div>
                 <div class="field__input-wrapper">
                   <select
-                    class="field__input residenceOccupancy required"
+                    class="field__input"
                     id="residenceOccupancy"
                     name="residenceOccupancy"
                     type="select"
+                    required=""
                   >
+                    &gt;
                     <option value="">Choose One</option>
                     <option value="Primary Owner Occupied">
                       Primary Owner Occupied
@@ -1259,66 +1336,15 @@
                     <option value="Seasonal/Secondary Residence">
                       Seasonal/Secondary Residence
                     </option>
+                    <option value="Vacant">Vacant</option>
                     <option value="Rental or Non Owner Occupied">
-                      Rental or Non-Owner Occupied
+                      Rental or Non Owner Occupied
                     </option>
                   </select>
                 </div>
               </div>
             </div>
 
-            <!-- Length Of Leasing Agreement -->
-            <div class="fields-row">
-              <div class="field field--xxlarge field--extended-label">
-                <div class="field__label-wrapper">
-                  <label class="field__label" for="lengthofleasingagreement"
-                    >Length Of Leasing Agreement</label
-                  >
-                </div>
-                <div class="field__input-wrapper">
-                  <select
-                    class="field__input occupancyDependent"
-                    id="lengthofleasingagreement"
-                    name="lengthofleasingagreement"
-                    type="select"
-                    disabled=""
-                  >
-                    <option value="">Choose One</option>
-                    <option value="Annual or longer">Annual or Longer</option>
-                    <option value="Monthly">Monthly</option>
-                    <option value="Short term">
-                      Short-Term (Daily, Weekly, Etc.)
-                    </option>
-                  </select>
-                </div>
-              </div>
-            </div>
-
-            <!-- Are tenants required to carry liability coverage? -->
-            <div class="fields-row">
-              <div class="field field--xxlarge field--extended-label">
-                <div class="field__label-wrapper">
-                  <label
-                    class="field__label"
-                    for="aretenantsrequiredtocarryliabilitycoverage"
-                    >Are tenants required to carry liability coverage?</label
-                  >
-                </div>
-                <div class="field__input-wrapper">
-                  <select
-                    class="field__input occupancyDependent"
-                    id="aretenantsrequiredtocarryliabilitycoverage"
-                    name="aretenantsrequiredtocarryliabilitycoverage"
-                    type="select"
-                    disabled=""
-                  >
-                    <option value="">Choose One</option>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                  </select>
-                </div>
-              </div>
-            </div>
             <!-- Dwelling Amount to be Quoted -->
             <div class="fields-row">
               <div class="field field--large field--extended-label">
@@ -1331,112 +1357,61 @@
                 </div>
                 <div class="field__input-wrapper">
                   <input
-                    class="field__input required dollar"
+                    class="field__input"
                     id="residenceDwellingAmountToBeQuoted"
                     name="residenceDwellingAmountToBeQuoted"
                     type="text"
+                    required=""
+                    placeholder=""
+                    value="$3,432"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- Model Year, Length x Width -->
+            <div class="fields-row">
+              <div class="field">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="propertyYearBuilt"
+                    >Model Year</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <input
+                    class="field__input"
+                    id="propertyYearBuilt"
+                    name="propertyYearBuilt"
+                    type="text"
+                    required=""
+                    placeholder="Ex. 2020"
+                    value=""
+                  />
+                </div>
+              </div>
+              <div class="field">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="propertyLengthWidth"
+                    >Length x Width</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <input
+                    class="field__input"
+                    id="propertyLengthWidth"
+                    name="propertyLengthWidth"
+                    type="text"
+                    required=""
+                    placeholder="Ex. 14' X 50'"
                     value=""
                   />
                 </div>
               </div>
             </div>
 
-            <!-- Year Built, Year Built -->
-            <div class="fields-row">
-              <div class="field">
-                <div class="field__label-wrapper">
-                  <label class="field__label" for="propertyYearBuilt"
-                    >Year Built</label
-                  >
-                </div>
-                <div class="field__input-wrapper">
-                  <select
-                    class="field__input required"
-                    id="propertyYearBuilt"
-                    name="propertyYearBuilt"
-                    type="select"
-                  >
-                    <option value="">--</option>
-                    <option value="2023">2023</option>
-                    <option value="2022">2022</option>
-                    <option value="2021">2021</option>
-                    <option value="Built before 1900">Built before 1900</option>
-                  </select>
-                </div>
-              </div>
-              <div class="field">
-                <div class="field__label-wrapper">
-                  <label class="field__label" for="propertyStyleOfHouse"
-                    >Style of House</label
-                  >
-                </div>
-                <div class="field__input-wrapper">
-                  <select
-                    class="field__input required"
-                    id="propertyStyleOfHouse"
-                    name="propertyStyleOfHouse"
-                    type="select"
-                  >
-                    <option value="">Choose One</option>
-                    <option value="Condo/Co-op">Condo/Co-op</option>
-                    <option value="Townhome/Rowhouse">Townhome/Rowhouse</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <!-- Construction Type, Total Living Area (sq ft) -->
-            <div class="fields-row">
-              <div class="field">
-                <div class="field__label-wrapper">
-                  <label class="field__label" for="propertyConstructionType"
-                    >Construction Type</label
-                  >
-                </div>
-                <div class="field__input-wrapper">
-                  <select
-                    class="field__input required"
-                    id="propertyConstructionType"
-                    name="propertyConstructionType"
-                    type="select"
-                  >
-                    <option value="">Choose One</option>
-                    <option value="Brick over Frame">Brick over Frame</option>
-                    <option value="Stucco over Frame">Stucco over Frame</option>
-                    <option value="Brick over Masonry">
-                      Brick over Masonry
-                    </option>
-                    <option value="Stucco over Block/Masonry">
-                      Stucco over Block/Masonry
-                    </option>
-                    <option value="Concrete">Concrete</option>
-                    <option value="Sold Brick or Cinder Block">
-                      Sold Brick or Cinder Block
-                    </option>
-                    <option value="Frame">Frame</option>
-                  </select>
-                </div>
-              </div>
-              <div class="field field--extended">
-                <div class="field__label-wrapper">
-                  <label class="field__label" for="totalLivingAreaSqFt"
-                    >Total Living Area (sq ft)</label
-                  >
-                </div>
-                <div class="field__input-wrapper">
-                  <input
-                    class="field__input required numberOnly"
-                    id="totalLivingAreaSqFt"
-                    name="totalLivingAreaSqFt"
-                    type="text"
-                    value=""
-                  />
-                  <p class="field__note">Numerical Values Only</p>
-                </div>
-              </div>
-            </div>
             <!-- Number of Bedrooms, Number of Bathrooms -->
             <div class="fields-row">
-              <div class="field">
+              <div class="field undefined">
                 <div class="field__label-wrapper">
                   <label class="field__label" for="propertyBedroomCount"
                     >Number of Bedrooms</label
@@ -1444,24 +1419,22 @@
                 </div>
                 <div class="field__input-wrapper">
                   <select
-                    class="field__input required"
+                    class="field__input"
                     id="propertyBedroomCount"
                     name="propertyBedroomCount"
                     type="select"
+                    required=""
                   >
+                    &gt;
                     <option value="">Choose One</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
                     <option value="8 or more">8 or more</option>
                   </select>
                 </div>
               </div>
-              <div class="field">
+              <div class="field undefined">
                 <div class="field__label-wrapper">
                   <label class="field__label" for="propertyBathroomCount"
                     >Number of Bathrooms</label
@@ -1469,11 +1442,13 @@
                 </div>
                 <div class="field__input-wrapper">
                   <select
-                    class="field__input required"
+                    class="field__input"
                     id="propertyBathroomCount"
                     name="propertyBathroomCount"
                     type="select"
+                    required=""
                   >
+                    &gt;
                     <option value="">Choose One</option>
                     <option value="1">1</option>
                     <option value="1.5">1.5</option>
@@ -1486,9 +1461,10 @@
                 </div>
               </div>
             </div>
+
             <!-- Age of Roof (years), Roof Type -->
             <div class="fields-row">
-              <div class="field">
+              <div class="field undefined">
                 <div class="field__label-wrapper">
                   <label class="field__label" for="propertyRoofAge"
                     >Age of Roof (years)</label
@@ -1496,21 +1472,25 @@
                 </div>
                 <div class="field__input-wrapper">
                   <select
-                    class="field__input required"
+                    class="field__input"
                     id="propertyRoofAge"
                     name="propertyRoofAge"
                     type="select"
+                    required=""
                   >
+                    &gt;
                     <option value="">Choose One</option>
                     <option value="0">0</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
-                    <option value="24">24</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
                     <option value="25 or more">25 or more</option>
                   </select>
                 </div>
               </div>
-              <div class="field">
+              <div class="field undefined">
                 <div class="field__label-wrapper">
                   <label class="field__label" for="propertyRoofMaterial"
                     >Roof Type</label
@@ -1518,11 +1498,13 @@
                 </div>
                 <div class="field__input-wrapper">
                   <select
-                    class="field__input required"
+                    class="field__input"
                     id="propertyRoofMaterial"
                     name="propertyRoofMaterial"
                     type="select"
+                    required=""
                   >
+                    &gt;
                     <option value="">Choose One</option>
                     <option value="Metal">Metal</option>
                     <option value="Wood">Wood</option>

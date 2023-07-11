@@ -5,7 +5,7 @@
 const mobileFormSteps = [
   "policyholder_form",
   "property_quoted_form",
-  "property_information_form",
+  "home_information_form",
   "property_claims_form",
   "discount_form",
 ];
