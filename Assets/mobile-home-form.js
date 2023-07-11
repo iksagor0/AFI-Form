@@ -68,7 +68,7 @@ function handleMobileForms(step) {
   }
 
   if (step === formList.indexOf("policyholder_form")) {
-    // if (!policyholderValidation(step)) return false;
+    if (!policyholderValidation(step)) return false;
     mobilePropertyQuotedFormFunc();
   }
   if (step === formList.indexOf("spouse_information")) {
@@ -76,19 +76,19 @@ function handleMobileForms(step) {
   }
 
   if (step === formList.indexOf("property_quoted_form")) {
-    // if (!mobilePropertyQuotedValidation()) return false;
-    // mobileInformationFunc();
+    if (!mobilePropertyQuotedValidation()) return false;
+    mobileInformationFunc();
   }
 
-  if (step === formList.indexOf("property_information_form")) {
-    // if (!validateForm("property_information_form")) return false;
+  if (step === formList.indexOf("home_information_form")) {
+    if (!validateForm("home_information_form")) return false;
   }
   if (step === formList.indexOf("property_claims_form")) {
     if (!validateForm("property_claims_form")) return false;
     coverageHistoryFunc();
   }
 
-  if (step === formList.indexOf("discount_form")) {
+  if (step === formList.indexOf("coverage_history_form")) {
     if (!validateForm("coverage_history_form")) return false;
 
     alert("Done");
@@ -117,6 +117,7 @@ const isMobileSameAddressEl = document.getElementById(
 );
 
 function mobilePropertyQuotedFormFunc() {
+  isMobileSameAddressEl.checked = false;
   //
   const mobileQuotedMatchEl = document.querySelectorAll(
     ".property_quoted_form .field__input"
@@ -175,19 +176,21 @@ function mobilePropertyQuotedValidation() {
 // *********************************************
 
 function mobileInformationFunc() {
-  const residenceOccupancy = document.querySelector(".residenceOccupancy");
-  const occupancyDependent = document.querySelectorAll(".occupancyDependent");
+  const residenceCityLimits = document.querySelector(".residenceCityLimits");
+  const residenceCityLimitsDep = document.querySelectorAll(
+    ".residenceCityLimitsDep"
+  );
 
-  residenceOccupancy.addEventListener("change", (e) => {
-    const occupancyVal = e.target.value;
+  residenceCityLimits.addEventListener("change", (e) => {
+    const resLimitVal = e.target.value;
 
-    if (occupancyVal === "Rental or Non Owner Occupied") {
-      occupancyDependent.forEach((field) => {
+    if (resLimitVal === "No") {
+      residenceCityLimitsDep.forEach((field) => {
         field.disabled = false;
         field.classList.add("required");
       });
     } else {
-      occupancyDependent.forEach((field) => {
+      residenceCityLimitsDep.forEach((field) => {
         field.disabled = true;
         field.classList.remove("required");
       });
@@ -195,43 +198,9 @@ function mobileInformationFunc() {
   });
 }
 
-// PROPERTY INFORMATION VALIDATE in handleMobileForms function
+// MOBILE INFORMATION VALIDATE in handleMobileForms function
 
-// PROPERTY CLAIMS VALIDATE in handleMobileForms function
+// MOBILE CLAIMS VALIDATE in handleMobileForms function
 
 // *********************************************
-// STEP-3 "Discount Form" FUNCTIONALITY & VALIDATION
-// *********************************************
-function mobileDiscountFormFunc() {
-  const newPurchaseDiscount = document.querySelector(".newPurchaseDiscount");
-  const newPurchaseDiscountDate = document.querySelector(
-    ".newPurchaseDiscountDate"
-  );
-
-  const future2Years = new Date().getFullYear() + 2;
-  dateValidation(newPurchaseDiscountDate, future2Years);
-
-  newPurchaseDiscount.addEventListener("change", (e) => {
-    if (newPurchaseDiscount.checked) {
-      newPurchaseDiscountDate.disabled = false;
-      newPurchaseDiscountDate.classList.add("required", "date");
-    } else {
-      newPurchaseDiscountDate.disabled = true;
-      newPurchaseDiscountDate.classList.remove("required", "date");
-    }
-  });
-}
-
-function mobileDiscountValidation(formClass) {
-  const isValidate = validateForm(formClass, false);
-  const discFields = document.querySelectorAll(`.${formClass} .field__input`);
-
-  if (isValidate) {
-    discFields.forEach((field) => {
-      if (field.type === "radio") formData[field?.name] = field.checked;
-      else formData[field?.name] = field.value;
-    });
-  }
-
-  return isValidate;
-}
+// STEP-3 "coverage_history_form" FUNCTIONALITY & VALIDATION handle in handleMobileForms function and declare in formCommon.js file

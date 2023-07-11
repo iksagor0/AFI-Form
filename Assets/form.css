@@ -374,6 +374,7 @@ textarea.field__input {
 ********************************** */
 .quote_request_aside {
   max-width: 472px;
+  width: 472px;
   background-color: #003864;
   background-color: var(--color-blue-40);
   color: #fff;
