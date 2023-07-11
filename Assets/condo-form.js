@@ -31,7 +31,7 @@ condoNextBtn?.addEventListener("click", async () => {
   }
 
   //  HANDLE ALL FORM SUBMISSIONS AND STEP VALIDATION
-  const submitResult = await handleCondoForms(vehicleStep);
+  const submitResult = await handleCondoForms(condoStep);
   if (!submitResult) return false;
 
   // Step Increment

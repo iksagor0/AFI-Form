@@ -30,7 +30,7 @@ floodNextBtn?.addEventListener("click", async () => {
   }
 
   //  HANDLE ALL FORM SUBMISSIONS AND STEP VALIDATION
-  const submitResult = await handleFloodForms(vehicleStep);
+  const submitResult = await handleFloodForms(floodStep);
   if (!submitResult) return false;
 
   // Step Increment
