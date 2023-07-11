@@ -120,7 +120,7 @@ function condoPropertyQuotedFormFunc() {
   isCondoSameAddressEl.checked = false;
   //
   const condoQuotedMatchEl = document.querySelectorAll(
-    ".coverage_history_form .field__input"
+    ".property_quoted_form .field__input"
   );
 
   function setMatchedData(disability) {
