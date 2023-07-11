@@ -118,6 +118,7 @@ const isCondoSameAddressEl = document.getElementById(
 );
 
 function condoPropertyQuotedFormFunc() {
+  isCondoSameAddressEl.checked = false;
   //
   const condoQuotedMatchEl = document.querySelectorAll(
     ".property_quoted_form .field__input"
