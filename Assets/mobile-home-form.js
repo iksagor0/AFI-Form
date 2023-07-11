@@ -85,12 +85,11 @@ function handleMobileForms(step) {
   }
   if (step === formList.indexOf("property_claims_form")) {
     if (!validateForm("property_claims_form")) return false;
-    mobileDiscountFormFunc();
+    coverageHistoryFunc();
   }
 
-  //
   if (step === formList.indexOf("discount_form")) {
-    if (!mobileDiscountValidation("discount_form")) return false;
+    if (!validateForm("coverage_history_form")) return false;
 
     alert("Done");
     console.log(formData);

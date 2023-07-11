@@ -452,7 +452,7 @@ function coverageHistoryFunc() {
   currentInsuranceCompany?.addEventListener("change", () => {
     const insuranceCompany = document.getElementById("insuranceCompany");
     const insComWrapper = document.querySelector(
-      ".multi__step_4 .insuranceCompany"
+      ".coverage_history_form .insuranceCompany"
     );
 
     if (currentInsuranceCompany?.value === "Other") {
