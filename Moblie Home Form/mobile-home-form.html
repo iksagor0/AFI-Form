@@ -1,0 +1,1778 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mobile Home Form</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;300;400;500;600;700&family=Roboto:wght@100;300;400;500;700;900&family=Zilla+Slab:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      as="font"
+      rel="stylesheet preload prefetch"
+      href="https://fonts.gstatic.com/s/zillaslab/v11/dFa6ZfeM_74wlPZtksIFajo6_Q.woff2"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      as="font"
+      rel="stylesheet preload prefetch"
+      href="https://fonts.gstatic.com/s/roboto/v30/KFOmCnqEu92Fr1Mu4mxK.woff2"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    />
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+      crossorigin="anonymous"
+    />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../Assets/common.css" />
+    <link rel="stylesheet" href="../Assets/form.css" />
+    <link rel="stylesheet" href="../Assets/form-page.css" />
+  </head>
+
+  <body class="body">
+    <!-- ************************************************ -->
+    <!--------------------- Title Hero --------------------->
+    <!-- ************************************************ -->
+    <section class="title_hero">
+      <div class="container">
+        <h1>Request a Mobile Insurance Quote</h1>
+      </div>
+    </section>
+
+    <!-- ************************************************ -->
+    <!------------------- Radio Section -------------------->
+    <!-- ************************************************ -->
+    <section class="form_section radio_select form_container active_section">
+      <div class="container">
+        <section class="heading_text_section">
+          <h1 class="quote_request_heading">Eligibility For Insurance</h1>
+          <p>
+            Armed Forces Insurance (AFI) specializes in providing insurance to
+            our nation’s active duty, retired and veteran military members and
+            their families. Also eligible are parents and children of AFI
+            members as well as Department of Defense and Department of Veterans
+            Affairs civilian employees, both current and retired.
+          </p>
+
+          <p>
+            None of the above? No problem! We can be your agent and help you
+            secure coverage through our access to a large network of national
+            carriers.
+          </p>
+        </section>
+
+        <!--------------------- Radio Area --------------------->
+        <section class="field radio__form_section">
+          <div class="field_label_wrapper">
+            <label class="radio_field_label" for="eligibilityStatus"
+              >Let's Start With the Basics by Selecting Your Military
+              Affiliation:</label
+            >
+          </div>
+          <div class="field-group">
+            <div class="field__input-wrapper">
+              <input
+                class="field__input"
+                id="eligibilityStatus--military"
+                name="eligibilityStatus"
+                data-name="eligibilityStatus"
+                type="radio"
+                value="military"
+              /><label class="field__label" for="eligibilityStatus--military"
+                >Military (Active Duty, Former/ Separated, Retired, Disabled,
+                Current or Surviving Spouse)</label
+              >
+            </div>
+          </div>
+          <div class="field-group">
+            <div class="field__input-wrapper">
+              <input
+                class="field__input"
+                id="eligibilityStatus--dod"
+                name="eligibilityStatus"
+                data-name="eligibilityStatus"
+                type="radio"
+                value="dod"
+              /><label class="field__label" for="eligibilityStatus--dod"
+                >DoD Employee (Current or Retired)</label
+              >
+            </div>
+          </div>
+          <div class="field-group">
+            <div class="field__input-wrapper">
+              <input
+                class="field__input"
+                id="eligibilityStatus--va"
+                data-name="eligibilityStatus"
+                name="eligibilityStatus"
+                type="radio"
+                value="veteransAffairs"
+              /><label class="field__label" for="eligibilityStatus--va"
+                >Department of Veterans Affairs Employee (Current or
+                Retired)</label
+              >
+            </div>
+          </div>
+          <div class="field-group">
+            <div class="field__input-wrapper">
+              <input
+                class="field__input"
+                id="eligibilityStatus--child"
+                name="eligibilityStatus"
+                data-name="eligibilityStatus"
+                type="radio"
+                value="child"
+              /><label class="field__label" for="eligibilityStatus--child"
+                >Child of AFI Member</label
+              >
+            </div>
+          </div>
+          <div class="field-group">
+            <div class="field__input-wrapper">
+              <input
+                class="field__input"
+                id="eligibilityStatus--parent"
+                name="eligibilityStatus"
+                data-name="eligibilityStatus"
+                type="radio"
+                value="parent"
+              /><label class="field__label" for="eligibilityStatus--parent"
+                >Parent of AFI Member</label
+              >
+            </div>
+          </div>
+          <div class="field-group">
+            <div class="field__input-wrapper">
+              <input
+                class="field__input"
+                id="eligibilityStatus--nonMilitary"
+                name="eligibilityStatus"
+                data-name="eligibilityStatus"
+                type="radio"
+                value="nonMilitary"
+              /><label class="field__label" for="eligibilityStatus--nonMilitary"
+                >Non-Military</label
+              >
+            </div>
+          </div>
+          <div class="field-group">
+            <div class="field__input-wrapper">
+              <input
+                class="field__input"
+                id="eligibilityStatus--currentMember"
+                name="eligibilityStatus"
+                data-name="eligibilityStatus"
+                type="radio"
+                value="currentMember"
+              /><label
+                class="field__label"
+                for="eligibilityStatus--currentMember"
+                >Current AFI Member</label
+              >
+            </div>
+          </div>
+          <div class="field-group">
+            <div class="field__input-wrapper">
+              <input
+                class="field__input"
+                id="eligibilityStatus--auxiliary"
+                name="eligibilityStatus"
+                data-name="eligibilityStatus"
+                type="radio"
+                value="auxiliary"
+              /><label class="field__label" for="eligibilityStatus--auxiliary"
+                >Members of the Civilian Auxiliaries (Current or Retired)</label
+              >
+            </div>
+          </div>
+
+          <!-- error message -->
+          <div class="field_message">This field is required</div>
+        </section>
+      </div>
+    </section>
+
+    <!-- ************************************************ -->
+    <!---------------- Military Information ---------------->
+    <!-- ************************************************ -->
+    <section class="form_section military_information">
+      <div class="container">
+        <h1 class="quote_request_heading">Military Information</h1>
+        <div class="quote_request__section_wrapper">
+          <!-- ******* FORM  *******-->
+          <div class="form_container">
+            <h2 class="quote_request_heading">Military Information</h2>
+
+            <div class="fields-row">
+              <!-- First Name -->
+              <div class="field">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="eligibilityFirstName"
+                    >First Name</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <input
+                    class="field__input required alphabeticOnly"
+                    id="eligibilityFirstName"
+                    name="eligibilityFirstName"
+                    data-name="eligibilityFirstName"
+                    type="text"
+                    pattern="^[a-zA-Z]+$"
+                    maxlength="50"
+                    value=""
+                  />
+                </div>
+              </div>
+
+              <!-- Last Name -->
+              <div class="field">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="eligibilityLastName"
+                    >Last Name</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <input
+                    class="field__input required alphabeticOnly"
+                    id="eligibilityLastName"
+                    name="eligibilityLastName"
+                    data-name="eligibilityLastName"
+                    type="text"
+                    pattern="^[a-zA-Z]+$"
+                    maxlength="50"
+                    value=""
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- Branch of Service -->
+            <div class="fields-row">
+              <div class="field">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="branchOfService"
+                    >Branch of Service</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <select
+                    class="field__input required"
+                    id="branchOfService"
+                    name="branchOfService"
+                    data-name="branchOfService"
+                    type="select"
+                  >
+                    <option value="">Choose One</option>
+                    <option value="Army">Army</option>
+                    <option value="Coast Guard">Coast Guard</option>
+                    <option value="Marine Corps">Marine Corps</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Military Status -->
+            <div class="fields-row">
+              <div class="field">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="militaryStatus"
+                    >Military Status</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <select
+                    class="field__input required"
+                    id="militaryStatus"
+                    name="militaryStatus"
+                    data-name="militaryStatus"
+                    type="select"
+                  >
+                    <option value="">Choose One</option>
+                    <option value="Active Duty">Active Duty</option>
+                    <option value="Reserves">Reserves</option>
+                    <option value="Separated ">Separated (Veteran)</option>
+                    <option value="Retired">Retired</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Rank -->
+            <div class="fields-row">
+              <div class="field field--xlarge">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="militaryRank">Rank</label>
+                </div>
+                <div class="field__input-wrapper">
+                  <select
+                    class="field__input required"
+                    id="militaryRank"
+                    name="militaryRank"
+                    data-name="militaryRank"
+                    type="select"
+                    disabled
+                  >
+                    <option value="">Choose One</option>
+                    <option value="wait" hidden>Please wait a second...</option>
+                    <option value="E-1 Private">E-1 Private</option>
+                    <option value="E-2 Private">E-2 Private</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ******* ASIDE  *******-->
+          <aside class="quote_request_aside">
+            <h2 class="quote_request_sidebar__heading">Our Mission is You®</h2>
+            <div class="quote_request_sidebar__content">
+              <div class="quote_request_sidebar__item">
+                <h3 class="quote_request_sidebar__item_heading">
+                  Exclusive Savings
+                </h3>
+                <p class="quote_request_sidebar__item_description">
+                  Armed Forces Insurance offers special rates for military
+                  members.
+                </p>
+              </div>
+              <div class="quote_request_sidebar__item">
+                <h3 class="quote_request_sidebar__item_heading">
+                  We Shop for You
+                </h3>
+                <p class="quote_request_sidebar__item_description">
+                  AFI agents will shop across our network of providers to save
+                  you time and help you get the best value.
+                </p>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ************************************************ -->
+    <!------------ Parent's Information ----------->
+    <!-- ************************************************ -->
+    <section class="form_section parent_information">
+      <div class="container">
+        <h1 class="quote_request_heading">Military Information</h1>
+        <div class="quote_request__section_wrapper">
+          <!-- ******* FORM  *******-->
+          <div class="form_container min_height">
+            <h2 class="quote_request_heading">
+              Child of Current or Former Armed Forces Insurance Member
+            </h2>
+
+            <div class="fields-row">
+              <!-- Parent's First Name -->
+              <div class="field">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="eligibilityFirstName"
+                    >Parent's First Name</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <input
+                    class="field__input required alphabeticOnly"
+                    id="eligibilityFirstName"
+                    name="eligibilityFirstName"
+                    data-name="eligibilityFirstName"
+                    type="text"
+                    pattern="^[a-zA-Z]+$"
+                    maxlength="50"
+                    value=""
+                  />
+                </div>
+              </div>
+
+              <!-- Parent's Last Name -->
+              <div class="field">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="eligibilityLastName"
+                    >Parent's Last Name</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <input
+                    class="field__input required alphabeticOnly"
+                    id="eligibilityLastName"
+                    name="eligibilityLastName"
+                    data-name="eligibilityLastName"
+                    type="text"
+                    pattern="^[a-zA-Z]+$"
+                    maxlength="50"
+                    value=""
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ******* ASIDE  *******-->
+          <aside class="quote_request_aside">
+            <h2 class="quote_request_sidebar__heading">Our Mission is You®</h2>
+            <div class="quote_request_sidebar__content">
+              <div class="quote_request_sidebar__item">
+                <h3 class="quote_request_sidebar__item_heading">
+                  Exclusive Savings
+                </h3>
+                <p class="quote_request_sidebar__item_description">
+                  Armed Forces Insurance offers special rates for military
+                  members.
+                </p>
+              </div>
+              <div class="quote_request_sidebar__item">
+                <h3 class="quote_request_sidebar__item_heading">
+                  We Shop for You
+                </h3>
+                <p class="quote_request_sidebar__item_description">
+                  AFI agents will shop across our network of providers to save
+                  you time and help you get the best value.
+                </p>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ************************************************ -->
+    <!------------- Child's Information ----------->
+    <!-- ************************************************ -->
+    <section class="form_section child_information">
+      <div class="container">
+        <h1 class="quote_request_heading">Military Information</h1>
+        <div class="quote_request__section_wrapper">
+          <!-- ******* FORM  *******-->
+          <div class="form_container min_height">
+            <h2 class="quote_request_heading">
+              Child of Current or Former Armed Forces Insurance Member
+            </h2>
+
+            <div class="fields-row">
+              <!-- Child's First Name -->
+              <div class="field">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="eligibilityFirstName"
+                    >Child's First Name</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <input
+                    class="field__input required alphabeticOnly"
+                    id="eligibilityFirstName"
+                    name="eligibilityFirstName"
+                    data-name="eligibilityFirstName"
+                    type="text"
+                    pattern="^[a-zA-Z]+$"
+                    maxlength="50"
+                    value=""
+                  />
+                </div>
+              </div>
+
+              <!-- Child's Last Name -->
+              <div class="field">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="eligibilityLastName"
+                    >Child's Last Name</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <input
+                    class="field__input required alphabeticOnly"
+                    id="eligibilityLastName"
+                    name="eligibilityLastName"
+                    data-name="eligibilityLastName"
+                    type="text"
+                    pattern="^[a-zA-Z]+$"
+                    maxlength="50"
+                    value=""
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ******* ASIDE  *******-->
+          <aside class="quote_request_aside">
+            <h2 class="quote_request_sidebar__heading">Our Mission is You®</h2>
+            <div class="quote_request_sidebar__content">
+              <div class="quote_request_sidebar__item">
+                <h3 class="quote_request_sidebar__item_heading">
+                  Exclusive Savings
+                </h3>
+                <p class="quote_request_sidebar__item_description">
+                  Armed Forces Insurance offers special rates for military
+                  members.
+                </p>
+              </div>
+              <div class="quote_request_sidebar__item">
+                <h3 class="quote_request_sidebar__item_heading">
+                  We Shop for You
+                </h3>
+                <p class="quote_request_sidebar__item_description">
+                  AFI agents will shop across our network of providers to save
+                  you time and help you get the best value.
+                </p>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ************************************************ -->
+    <!---------------------- MULTI-STEP 1 ------------------>
+    <!-- ************************************************ -->
+    <section class="form_section mobile__step policyholder_form">
+      <div class="container">
+        <!-- ******** STEP ******** -->
+        <div class="step__container">
+          <ul class="steps__list">
+            <li class="step active_step" data-text="Policy Holder ">1</li>
+            <li class="line"></li>
+            <li class="step" data-text="Property Info">2</li>
+            <li class="line"></li>
+            <li class="step" data-text="Quote">3</li>
+          </ul>
+        </div>
+
+        <div class="quote_request__section_wrapper">
+          <!-- ******* FORM  *******-->
+          <div class="form_container">
+            <h2 class="quote_request_heading">Policyholder Information</h2>
+
+            <!-- First Name, Last Name, Suffix -->
+            <div class="fields-row">
+              <div class="field">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="policyHolderFirstName"
+                    >First Name</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <input
+                    class="field__input required alphabeticOnly"
+                    id="policyHolderFirstName"
+                    name="policyHolderFirstName"
+                    type="text"
+                    pattern="^[a-zA-Z]+$"
+                    maxlength="50"
+                    value=""
+                  />
+                </div>
+              </div>
+              <div class="field">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="policyHolderLastName"
+                    >Last Name</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <input
+                    class="field__input required alphabeticOnly"
+                    id="policyHolderLastName"
+                    name="policyHolderLastName"
+                    type="text"
+                    pattern="^[a-zA-Z]+$"
+                    maxlength="50"
+                    value=""
+                  />
+                </div>
+              </div>
+              <div class="field field--small">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="policyHolderSuffix"
+                    >Suffix</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <select
+                    class="field__input"
+                    id="policyHolderSuffix"
+                    name="policyHolderSuffix"
+                    type="select"
+                  >
+                    <option value="">--</option>
+                    <option value="Jr.">Jr.</option>
+                    <option value="Sr.">Sr.</option>
+                    <option value="III">III</option>
+                    <option value="IV">IV</option>
+                  </select>
+                  <p class="field__note">Optional</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mailing Address, City -->
+            <div class="fields-row">
+              <div class="field field--xlarge extra_message_margin">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="policyHolderMailingAddress"
+                    >Mailing Address
+                  </label>
+                </div>
+                <div class="field__input-wrapper">
+                  <input
+                    class="field__input required"
+                    id="policyHolderMailingAddress"
+                    name="policyHolderMailingAddress"
+                    type="text"
+                    maxlength="100"
+                    autocomplete="none"
+                    data-match="address"
+                  />
+                  <p class="field__note">Location where vehicle is stored</p>
+                </div>
+              </div>
+              <div class="field">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="policyHolderCity"
+                    >City</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <input
+                    class="field__input required"
+                    id="policyHolderCity"
+                    name="policyHolderCity"
+                    type="text"
+                    maxlength="50"
+                    autocomplete="none"
+                    data-match="city"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- State, Zip Code -->
+            <div class="fields-row">
+              <div class="field field--xlarge">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="policyHolderState"
+                    >State</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <select
+                    class="field__input required"
+                    id="policyHolderState"
+                    name="policyHolderState"
+                    type="select"
+                    data-match="state"
+                  >
+                    <option value="">--</option>
+                    <option value="UT">Utah</option>
+                    <option value="AL">Alabama</option>
+                    <option value="AK">Alaska</option>
+                    <option value="CA">California</option>
+                  </select>
+                </div>
+              </div>
+              <div class="field field--medium">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="policyHolderZip"
+                    >Zip Code</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <input
+                    class="field__input required zip numberOnly"
+                    id="policyHolderZip"
+                    name="policyHolderZip"
+                    type="text"
+                    pattern="[0-9]{5}"
+                    maxlength="5"
+                    autocomplete="none"
+                    data-match="zip"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- Social Security Number,  Date of Birth-->
+            <div class="fields-row">
+              <div class="field">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="policyHolderSsn"
+                    >Social Security Number</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <input
+                    class="field__input SSN"
+                    id="policyHolderSsn"
+                    name="policyHolderSsn"
+                    type="text"
+                    maxlength="11"
+                    placeholder="xxx-xx-xxxx"
+                    value=""
+                  />
+                  <p class="field__note">Optional</p>
+                </div>
+              </div>
+              <div class="field">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="policyHolderDob"
+                    >Date of Birth</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <input
+                    class="field__input required date DOB"
+                    id="policyHolderDob"
+                    name="policyHolderDob"
+                    type="text"
+                    pattern="\d{1,2}/\d{1,2}/\d{4}"
+                    placeholder="MM/DD/YYYY"
+                    value=""
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- Gender,  Marital Status-->
+            <div class="fields-row">
+              <div class="field field--large">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="policyHolderGender"
+                    >Gender</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <select
+                    class="field__input required"
+                    id="policyHolderGender"
+                    name="policyHolderGender"
+                    type="select"
+                  >
+                    <option value="">--</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                  </select>
+                </div>
+              </div>
+              <div class="field field--large">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="policyHolderMaritalStatus"
+                    >Marital Status</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <select
+                    class="field__input required"
+                    id="policyHolderMaritalStatus"
+                    name="policyHolderMaritalStatus"
+                    type="select"
+                  >
+                    <option value="">--</option>
+                    <option value="Married">Married</option>
+                    <option value="Single">Single</option>
+                    <option value="Divorced">Divorced</option>
+                    <option value="Widowed">Widowed</option>
+                    <option value="Cohabitant">Cohabitant</option>
+                    <option value="Civil Union Or Domestic Partner">
+                      Civil Union Or Domestic Partner
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Email Address, Phone Type, Phone Number-->
+            <div class="fields-row">
+              <div class="field field--xlarge">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="policyHolderEmail"
+                    >Email Address</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <input
+                    class="field__input required email"
+                    id="policyHolderEmail"
+                    name="policyHolderEmail"
+                    type="email"
+                    value=""
+                  />
+                </div>
+              </div>
+              <div class="field field--medium">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="policyHolderPhoneType"
+                    >Phone Type</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <select
+                    class="field__input required"
+                    id="policyHolderPhoneType"
+                    name="policyHolderPhoneType"
+                    type="select"
+                  >
+                    <option value="">--</option>
+                    <option value="Home">Home</option>
+                    <option value="Business">Business</option>
+                    <option value="Cell">Cell</option>
+                  </select>
+                </div>
+              </div>
+              <div class="field">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="policyHolderPhoneNumber"
+                    >Phone Number</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <input
+                    class="field__input required numberOnly phone"
+                    id="policyHolderPhoneNumber"
+                    name="policyHolderPhoneNumber"
+                    type="text"
+                    pattern="\(\d\d\d\) \d\d\d-?\d\d\d\d"
+                    value=""
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- Note -->
+            <p class="note">
+              To offer you an accurate quote and/or policy, we (AFI and AFI
+              affiliates) may collect information from consumer reporting
+              agencies, such as credit history. Future reports may be used to
+              update or renew your insurance. By continuing with this quote
+              request, you agree to receive marketing materials and SMS
+              notifications from Armed Forces Insurance. You can request removal
+              or opt-out at any time. Please review our
+              <a href="#" target="_blank" alt="AFI Privacy Policy"
+                >Privacy Policy - Information Gathering.</a
+              >
+            </p>
+          </div>
+
+          <!-- ******* ASIDE  *******-->
+          <aside class="quote_request_aside" style="max-width: 200px">
+            <!-- <h2 class="quote_request_sidebar__heading">
+              Protecting Your Largest Investment
+            </h2> -->
+            <div class="quote_request_sidebar__content">
+              <div class="quote_request_sidebar__item">
+                <h3 class="quote_request_sidebar__item_heading">
+                  Quick and Easy
+                </h3>
+                <p class="quote_request_sidebar__item_description">
+                  Request your quote in under 5 minutes by completing three easy
+                  steps.
+                </p>
+              </div>
+              <div class="quote_request_sidebar__item">
+                <h3 class="quote_request_sidebar__item_heading">
+                  Need Help Now?
+                </h3>
+                <p class="quote_request_sidebar__item_description">
+                  Call us at 800-295-9649 from 7:30am-6:30pm CST M-F. Our
+                  dedicated agents are standing by to help.
+                </p>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- SPOUSE INFORMATION -->
+    <section class="form_section mobile__step spouse_information">
+      <div class="container">
+        <!-- ******** STEP ******** -->
+        <div class="step__container">
+          <ul class="steps__list">
+            <li class="step active_step" data-text="Policy Holder ">1</li>
+            <li class="line"></li>
+            <li class="step" data-text="Property Info">2</li>
+            <li class="line"></li>
+            <li class="step" data-text="Quote">3</li>
+          </ul>
+        </div>
+
+        <div class="quote_request__section_wrapper">
+          <!-- ******* FORM  *******-->
+          <div class="form_container min_height">
+            <h2 class="quote_request_heading">Spouse Information</h2>
+
+            <!-- First Name, Last Name, Suffix -->
+            <div class="fields-row">
+              <div class="field">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="cohabitantFirstName"
+                    >First Name</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <input
+                    class="field__input required alphabeticOnly"
+                    id="cohabitantFirstName"
+                    name="cohabitantFirstName"
+                    type="text"
+                    pattern="^[a-zA-Z]+$"
+                    maxlength="50"
+                    value=""
+                  />
+                </div>
+              </div>
+              <div class="field">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="cohabitantLastName"
+                    >Last Name</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <input
+                    class="field__input required alphabeticOnly"
+                    id="cohabitantLastName"
+                    name="cohabitantLastName"
+                    type="text"
+                    pattern="^[a-zA-Z]+$"
+                    maxlength="50"
+                    value=""
+                  />
+                </div>
+              </div>
+              <div class="field field--medium">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="cohabitantSuffix"
+                    >Suffix</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <select
+                    class="field__input"
+                    id="cohabitantSuffix"
+                    name="cohabitantSuffix"
+                    type="select"
+                  >
+                    <option value="">--</option>
+                    <option value="Jr.">Jr.</option>
+                    <option value="Sr.">Sr.</option>
+                    <option value="III">III</option>
+                    <option value="IV">IV</option>
+                  </select>
+                  <p class="field__note">Optional</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Social Security Number, Date of Birth, Gender -->
+            <div class="fields-row">
+              <div class="field">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="cohabitantSsn"
+                    >Social Security Number</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <input
+                    class="field__input SSN"
+                    id="cohabitantSsn"
+                    name="cohabitantSsn"
+                    type="text"
+                    maxlength="11"
+                    placeholder="xxx-xx-xxxx"
+                    value=""
+                  />
+                  <p class="field__note">Optional</p>
+                </div>
+              </div>
+              <div class="field">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="cohabitantDob"
+                    >Date of Birth</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <input
+                    class="field__input required DOB date"
+                    id="cohabitantDob"
+                    name="cohabitantDob"
+                    type="text"
+                    pattern="\d{1,2}/\d{1,2}/\d{4}"
+                    placeholder="MM/DD/YYYY"
+                    value=""
+                  />
+                </div>
+              </div>
+
+              <div class="field field--medium">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="cohabitantGender"
+                    >Gender</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <select
+                    class="field__input required"
+                    id="cohabitantGender"
+                    name="cohabitantGender"
+                    type="select"
+                  >
+                    <option value="">--</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ******* ASIDE  *******-->
+          <aside class="quote_request_aside">
+            <h2 class="quote_request_sidebar__heading">Did You Know?</h2>
+            <div class="quote_request_sidebar__content">
+              <div class="quote_request_sidebar__item">
+                <h3 class="quote_request_sidebar__item_heading">
+                  Why Listing Your Spouse is Important?
+                </h3>
+                <p class="quote_request_sidebar__item_description">
+                  For most insurance policies, a spouse is considered a second
+                  named insured; this grants the same rights and
+                  responsibilities as the primary policyholder.
+                </p>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+    <!-- ************************************************ -->
+    <!---------------------- MULTI-STEP 2 ------------------>
+    <!-- ************************************************ -->
+    <!-- PROPERTY QUOTED FORM -->
+    <section class="form_section mobile__step property_quoted_form">
+      <div class="container">
+        <!-- ******** STEP ******** -->
+        <div class="step__container">
+          <ul class="steps__list">
+            <li class="step active_step" data-text="Policy Holder ">1</li>
+            <li class="line"></li>
+
+            <li class="step active_step" data-text="Property Info">2</li>
+            <li class="line"></li>
+
+            <li class="step" data-text="Quote">3</li>
+          </ul>
+        </div>
+
+        <div class="quote_request__section_wrapper">
+          <!-- ******* FORM  *******-->
+          <div class="form_container">
+            <h2 class="quote_request_heading">
+              Address of Property to be Quoted
+            </h2>
+
+            <!-- checkbox is same as mailing address -->
+            <div class="fields-row">
+              <div class="field field--full">
+                <div class="field-group field-group--inline">
+                  <div class="field__input-wrapper">
+                    <input
+                      class="field__input"
+                      id="propertyAddressSameAsMailing--true"
+                      name="propertyAddressSameAsMailing"
+                      type="checkbox"
+                    /><label
+                      class="field__label"
+                      for="propertyAddressSameAsMailing--true"
+                      >My Property Info is the same as mailing address</label
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Address -->
+            <div class="fields-row">
+              <div class="field field--xxlarge">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="propertyAddress"
+                    >Address</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <input
+                    class="field__input required"
+                    id="propertyAddress"
+                    name="propertyAddress"
+                    type="text"
+                    maxlength="100"
+                    data-match="address"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- City -->
+            <div class="fields-row">
+              <div class="field field--xlarge">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="propertyCity">City</label>
+                </div>
+                <div class="field__input-wrapper">
+                  <input
+                    class="field__input required"
+                    id="propertyCity"
+                    name="propertyCity"
+                    type="text"
+                    maxlength="50"
+                    data-match="city"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- State, Zip-->
+            <div class="fields-row">
+              <div class="field field--xlarge">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="propertyState">State</label>
+                </div>
+                <div class="field__input-wrapper">
+                  <select
+                    class="field__input required"
+                    id="propertyState"
+                    name="propertyState"
+                    type="select"
+                    data-match="state"
+                  >
+                    <option value="">--</option>
+                    <option value="UT">Utah</option>
+                    <option value="AL">Alabama</option>
+                    <option value="AK">Alaska</option>
+                    <option value="CA">California</option>
+                  </select>
+                </div>
+              </div>
+              <div class="field field--small">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="propertyZip">Zip</label>
+                </div>
+                <div class="field__input-wrapper">
+                  <input
+                    class="field__input required zip"
+                    id="propertyZip"
+                    name="propertyZip"
+                    type="text"
+                    pattern="[0-9]{5}"
+                    maxlength="5"
+                    data-match="zip"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ******* ASIDE  *******-->
+          <aside class="quote_request_aside">
+            <h2 class="quote_request_sidebar__heading">Did You Know?</h2>
+            <div class="quote_request_sidebar__content">
+              <div class="quote_request_sidebar__item">
+                <p class="quote_request_sidebar__item_description">
+                  Flood insurance covers direct physical loss caused by
+                  "mobile." In simple terms, a mobile is an excess of water on
+                  land that is normally dry.
+                </p>
+                <p class="quote_request_sidebar__item_description">
+                  Federal disaster assistance is only available if the President
+                  declares a disaster. Less than 50 percent of all mobileing
+                  incidents are awarded a Federal Disaster Assistance
+                  declaration. If the President declares a Federal Disaster
+                  Area, most disaster assistance is provided in the form of a
+                  loan that must be repaid - principal plus interest.
+                </p>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROPERTY INFORMATION FORM -->
+    <section class="form_section mobile__step home_information_form">
+      <div class="container">
+        <!-- ******** STEP ******** -->
+        <div class="step__container">
+          <ul class="steps__list">
+            <li class="step active_step" data-text="Policy Holder ">1</li>
+            <li class="line"></li>
+
+            <li class="step active_step" data-text="Property Info">2</li>
+            <li class="line"></li>
+
+            <li class="step" data-text="Quote">3</li>
+          </ul>
+        </div>
+
+        <div class="quote_request__section_wrapper">
+          <!-- ******* FORM  *******-->
+          <div class="form_container">
+            <h2 class="quote_request_heading">Property Information</h2>
+
+            <!-- Is the house within city limits? -->
+            <div class="fields-row">
+              <div class="field field--large field--extended-label">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="residenceWithinCityLimits"
+                    >Is the house within city limits?</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <select
+                    class="field__input residenceCityLimits required"
+                    id="residenceWithinCityLimits"
+                    name="residenceWithinCityLimits"
+                    type="select"
+                    required=""
+                  >
+                    <option value="">Choose One</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Is house within 5 miles of a fire station? -->
+            <div class="fields-row">
+              <div class="field field--large field--extended-label">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="residenceNearFireStation"
+                    >Is house within 5 miles of a fire station?</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <select
+                    class="field__input residenceCityLimitsDep"
+                    id="residenceNearFireStation"
+                    name="residenceNearFireStation"
+                    type="select"
+                    disabled=""
+                  >
+                    <option value="">Choose One</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Is fire hydrant within 1000 feet? -->
+            <div class="fields-row">
+              <div class="field field--large field--extended-label">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="residenceNearFireHydrant"
+                    >Is fire hydrant within 1000 feet?</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <select
+                    class="field__input residenceCityLimitsDep"
+                    id="residenceNearFireHydrant"
+                    name="residenceNearFireHydrant"
+                    type="select"
+                    disabled=""
+                  >
+                    <option value="">Choose One</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Occupancy -->
+            <div class="fields-row">
+              <div class="field field--xxlarge field--extended-label">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="residenceOccupancy"
+                    >Occupancy</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <select
+                    class="field__input required"
+                    id="residenceOccupancy"
+                    name="residenceOccupancy"
+                    type="select"
+                    required=""
+                  >
+                    <option value="">Choose One</option>
+                    <option value="Primary Owner Occupied">
+                      Primary Owner Occupied
+                    </option>
+                    <option value="Seasonal/Secondary Residence">
+                      Seasonal/Secondary Residence
+                    </option>
+                    <option value="Vacant">Vacant</option>
+                    <option value="Rental or Non Owner Occupied">
+                      Rental or Non Owner Occupied
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Dwelling Amount to be Quoted -->
+            <div class="fields-row">
+              <div class="field field--large field--extended-label">
+                <div class="field__label-wrapper">
+                  <label
+                    class="field__label"
+                    for="residenceDwellingAmountToBeQuoted"
+                    >Dwelling Amount to be Quoted</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <input
+                    class="field__input required dollar"
+                    id="residenceDwellingAmountToBeQuoted"
+                    name="residenceDwellingAmountToBeQuoted"
+                    type="text"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- Model Year, Length x Width -->
+            <div class="fields-row">
+              <div class="field">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="propertyYearBuilt"
+                    >Model Year</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <input
+                    class="field__input required"
+                    id="propertyYearBuilt"
+                    name="propertyYearBuilt"
+                    type="text"
+                    required=""
+                    placeholder="Ex. 2020"
+                    value=""
+                  />
+                </div>
+              </div>
+              <div class="field">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="propertyLengthWidth"
+                    >Length x Width</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <input
+                    class="field__input"
+                    id="propertyLengthWidth"
+                    name="propertyLengthWidth"
+                    type="text"
+                    required=""
+                    placeholder="Ex. 14' X 50'"
+                    value=""
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- Number of Bedrooms, Number of Bathrooms -->
+            <div class="fields-row">
+              <div class="field undefined">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="propertyBedroomCount"
+                    >Number of Bedrooms</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <select
+                    class="field__input required"
+                    id="propertyBedroomCount"
+                    name="propertyBedroomCount"
+                    type="select"
+                    required=""
+                  >
+                    <option value="">Choose One</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="8 or more">8 or more</option>
+                  </select>
+                </div>
+              </div>
+              <div class="field undefined">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="propertyBathroomCount"
+                    >Number of Bathrooms</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <select
+                    class="field__input required"
+                    id="propertyBathroomCount"
+                    name="propertyBathroomCount"
+                    type="select"
+                    required=""
+                  >
+                    <option value="">Choose One</option>
+                    <option value="1">1</option>
+                    <option value="1.5">1.5</option>
+                    <option value="2">2</option>
+                    <option value="2.5">2.5</option>
+                    <option value="3">3</option>
+                    <option value="3.5">3.5</option>
+                    <option value="4 or more">4 or more</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Age of Roof (years), Roof Type -->
+            <div class="fields-row">
+              <div class="field undefined">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="propertyRoofAge"
+                    >Age of Roof (years)</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <select
+                    class="field__input required"
+                    id="propertyRoofAge"
+                    name="propertyRoofAge"
+                    type="select"
+                    required=""
+                  >
+                    <option value="">Choose One</option>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="25 or more">25 or more</option>
+                  </select>
+                </div>
+              </div>
+              <div class="field undefined">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="propertyRoofMaterial"
+                    >Roof Type</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <select
+                    class="field__input required"
+                    id="propertyRoofMaterial"
+                    name="propertyRoofMaterial"
+                    type="select"
+                    required=""
+                  >
+                    <option value="">Choose One</option>
+                    <option value="Metal">Metal</option>
+                    <option value="Wood">Wood</option>
+                    <option value="Hail Proof">Hail Proof</option>
+                    <option value="Slate">Slate</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ******* ASIDE  *******-->
+          <aside class="quote_request_aside">
+            <!-- <h2 class="quote_request_sidebar__heading">
+              Dwelling Amount for Condo vs. Townhome
+            </h2>
+            <div class="quote_request_sidebar__content">
+              <div class="quote_request_sidebar__item">
+                <p class="quote_request_sidebar__item_description">
+                  For Condo –Typically this is coverage for the interior of the
+                  mobile to include the drywall and permanent fixtures. Exclude
+                  coverage already provided by the master policy.
+                </p>
+                <p class="quote_request_sidebar__item_description">
+                  For Townhouse- The estimated cost to rebuild your
+                  share/portion/unit. This amount includes the exterior.
+                </p>
+              </div>
+            </div> -->
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROPERTY CLAIMS FORM -->
+    <section class="form_section mobile__step property_claims_form">
+      <div class="container">
+        <!-- ******** STEP ******** -->
+        <div class="step__container">
+          <ul class="steps__list">
+            <li class="step active_step" data-text="Policy Holder">1</li>
+            <li class="line"></li>
+
+            <li class="step active_step" data-text="Property Info">2</li>
+            <li class="line"></li>
+
+            <li class="step" data-text="Quote">3</li>
+          </ul>
+        </div>
+
+        <div class="quote_request__section_wrapper">
+          <!-- ******* FORM  *******-->
+          <div class="form_container">
+            <h2 class="quote_request_heading">Property Claims</h2>
+
+            <!-- Number of homeowner/renter claims in the last 5 years -->
+            <div class="fields-row">
+              <div class="field field--xxlarge">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="propertyClaimsCount"
+                    >Number of homeowner/renter claims in the last 5
+                    years</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <select
+                    class="field__input required"
+                    id="propertyClaimsCount"
+                    name="propertyClaimsCount"
+                    type="select"
+                  >
+                    <option value="">Choose One</option>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3 or more">3 or more</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <!-- Please list details for each claim identified above. -->
+            <div class="fields-row">
+              <div class="field field--xxlarge">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="propertyClaimsDetails"
+                    >Please list details for each claim identified above.</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <textarea
+                    class="field__input required"
+                    id="propertyClaimsDetails"
+                    name="propertyClaimsDetails"
+                    spellcheck="false"
+                    placeholder="Hail Damage to roof siding July 2012 $5000."
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ******* ASIDE  *******-->
+          <aside class="quote_request_aside">
+            <h2 class="quote_request_sidebar__heading">Helpful Tips</h2>
+            <div class="quote_request_sidebar__content">
+              <div class="quote_request_sidebar__item">
+                <h3 class="quote_request_sidebar__item_heading">
+                  Which Claims Should I Include?
+                </h3>
+                <p class="quote_request_sidebar__item_description">
+                  To ensure quote accuracy, it is important to include all
+                  property insurance claims (homeowner and renter) for a 5 year
+                  period.
+                </p>
+              </div>
+
+              <div class="quote_request_sidebar__item">
+                <h3 class="quote_request_sidebar__item_heading">
+                  What If I Don't Remember the Date?
+                </h3>
+                <p class="quote_request_sidebar__item_description">
+                  If you are unsure of the exact claim date, simply enter an
+                  estimated month and year that the claim occurred.
+                </p>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ************************************************ -->
+    <!---------------------- MULTI-STEP 3 ------------------>
+    <!-- ************************************************ -->
+    <!-- COVERAGE HISTORY FORM -->
+    <section class="form_section coverage_history_form">
+      <div class="container">
+        <!-- <h1 class="quote_request_heading">Military Information</h1> -->
+
+        <!-- ******** STEP ******** -->
+        <div class="step__container">
+          <ul class="steps__list">
+            <li class="step active_step" data-text="Policy Holder Info">1</li>
+            <li class="line"></li>
+
+            <li class="step active_step" data-text="Business Info">2</li>
+            <li class="line"></li>
+
+            <li class="step active_step" data-text="Coverages">3</li>
+            <li class="line"></li>
+
+            <li class="step active_step" data-text="Quote">4</li>
+          </ul>
+        </div>
+
+        <div class="quote_request__section_wrapper">
+          <!-- ******* FORM  *******-->
+          <div class="form_container">
+            <h2 class="quote_request_heading">Coverage History</h2>
+
+            <!-- Current Insurance Company -->
+            <div class="fields-row">
+              <div class="field field--xlarge">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="currentInsuranceCompany"
+                    >Current Insurance Company</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <select
+                    class="field__input"
+                    id="currentInsuranceCompany"
+                    name="currentInsuranceCompany"
+                    type="select"
+                  >
+                    <option value="">Choose One</option>
+                    <option value="None">None</option>
+                    <option value="AIG">AIG</option>
+                    <option value="Allied">Allied</option>
+                    <option value="Allstate">Allstate</option>
+                    <option value="American Family">American Family</option>
+                    <option value="Chubb">Chubb</option>
+                    <option value="Other">Other</option>
+                  </select>
+                  <p class="field__note">Optional</p>
+                </div>
+              </div>
+
+              <!-- Extent by select "others" -->
+              <div
+                class="field field--extended-label insuranceCompany conditionally_hidden_field"
+              >
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="insuranceCompany"
+                    >Insurance Company</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <input
+                    class="field__input"
+                    id="insuranceCompany"
+                    name="insuranceCompany"
+                    type="text"
+                    placeholder=""
+                    value=""
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- Policy Renewal Date -->
+            <div class="fields-row">
+              <div class="field">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="policyRenewalDate"
+                    >Policy Renewal Date</label
+                  >
+                </div>
+                <div class="field__input-wrapper">
+                  <input
+                    class="field__input numberOnly"
+                    id="policyRenewalDate"
+                    name="policyRenewalDate"
+                    type="text"
+                    pattern="\d{1,2}/\d{1,2}/\d{4}"
+                    placeholder="MM/DD/YYYY"
+                    value=""
+                  />
+                  <p class="field__note">Optional</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ******* ASIDE  *******-->
+          <aside class="quote_request_aside">
+            <h2 class="quote_request_sidebar__heading">Helpful Tips</h2>
+            <div class="quote_request_sidebar__content">
+              <div class="quote_request_sidebar__item">
+                <h3 class="quote_request_sidebar__item_heading">
+                  Where Do I Find My Renewal or Expiration Date?
+                </h3>
+                <p class="quote_request_sidebar__item_description">
+                  Refer to your current policy declarations page for the policy
+                  renewal or expiration date. If date is unknown, enter any
+                  future date (e.g. 01/01/2020)
+                </p>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ************************************************ -->
+    <!-------------------- Action Button ------------------->
+    <!-- ************************************************ -->
+    <section class="quote_request__action_buttons">
+      <div class="container d-flex">
+        <button
+          id="mobileBackBtn"
+          class="button button__back button__left hide"
+          type="button"
+        >
+          Back
+        </button>
+        <button
+          id="mobileNextBtn"
+          class="button button__next button__right"
+          type="submit"
+        >
+          Next
+        </button>
+      </div>
+    </section>
+
+    <!-- *********** JAVASCRIPT *********** -->
+    <script src="../Assets/formCommon.js"></script>
+    <script src="../Assets/mobile-home-form.js"></script>
+  </body>
+</html>
