@@ -77,7 +77,7 @@ function handleMobileForms(step) {
 
   if (step === formList.indexOf("property_quoted_form")) {
     // if (!mobilePropertyQuotedValidation()) return false;
-    mobileInformationFunc();
+    // mobileInformationFunc();
   }
 
   if (step === formList.indexOf("property_information_form")) {
