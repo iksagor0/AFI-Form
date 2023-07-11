@@ -171,7 +171,7 @@ function floodPropertyQuotedFormFunc() {
   }
 
   setMatchedData(false);
-  document.getElementById("propertyAddress").value = "";
+  document.getElementById("addressToBeQuotedAddress").value = "";
 
   // Same Mailing CheckBox Functionality
   isFloodSameAddressEl?.addEventListener("change", () => {

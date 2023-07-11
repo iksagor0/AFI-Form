@@ -142,7 +142,7 @@ function mobilePropertyQuotedFormFunc() {
   }
 
   setMatchedData(false);
-  document.getElementById("propertyAddress").value = "";
+  document.getElementById("addressToBeQuotedAddress").value = "";
 
   // Same Mailing CheckBox Functionality
   isMobileSameAddressEl?.addEventListener("change", () => {
