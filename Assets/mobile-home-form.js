@@ -1,8 +1,8 @@
-// const condoSuccessRedirection = "https://afi.org/";
-// const condoSuccessRedirection = "../--Model/thank-you.html";
+// const mobileSuccessRedirection = "https://afi.org/";
+// const mobileSuccessRedirection = "../--Model/thank-you.html";
 
 // Forms
-const condoFormSteps = [
+const mobileFormSteps = [
   "policyholder_form",
   "property_quoted_form",
   "property_information_form",
@@ -10,50 +10,50 @@ const condoFormSteps = [
   "discount_form",
 ];
 
-let condoStep = 0;
-let condoMaxStep = formList.length - 1;
+let mobileStep = 0;
+let mobileMaxStep = formList.length - 1;
 
-const condoNextBtn = document.querySelector("#condoNextBtn");
-const condoBackBtn = document.querySelector("#condoBackBtn");
+const mobileNextBtn = document.querySelector("#mobileNextBtn");
+const mobileBackBtn = document.querySelector("#mobileBackBtn");
 
 // *********************************************
 //       FORM SUBMISSION AND STEP HANDLING
 // *********************************************
 
 // ***** NEXT FUNCTIONALITY *****
-pressEnterToSubmit(condoNextBtn);
-condoNextBtn?.addEventListener("click", async () => {
-  if (condoStep === 0) {
-    const isSelectEligibility = eligibilityValidation(condoFormSteps);
+pressEnterToSubmit(mobileNextBtn);
+mobileNextBtn?.addEventListener("click", async () => {
+  if (mobileStep === 0) {
+    const isSelectEligibility = eligibilityValidation(mobileFormSteps);
     if (!Boolean(isSelectEligibility)) return false;
 
     militaryFormFunc();
   }
 
   //  HANDLE ALL FORM SUBMISSIONS AND STEP VALIDATION
-  const submitResult = await handleCondoForms(condoStep);
+  const submitResult = await handleMobileForms(mobileStep);
   if (!submitResult) return false;
 
   // Step Increment
-  condoMaxStep = formList.length - 1;
-  condoStep >= condoMaxStep ? condoStep : condoStep++;
+  mobileMaxStep = formList.length - 1;
+  mobileStep >= mobileMaxStep ? mobileStep : mobileStep++;
 
   // Show Form
-  showActiveForm(condoStep, condoBackBtn);
+  showActiveForm(mobileStep, mobileBackBtn);
 });
 
 // Back
-condoBackBtn?.addEventListener("click", () => {
+mobileBackBtn?.addEventListener("click", () => {
   // Step Decrement
-  condoStep <= 0 ? condoStep : condoStep--;
+  mobileStep <= 0 ? mobileStep : mobileStep--;
 
-  showActiveForm(condoStep, condoBackBtn);
+  showActiveForm(mobileStep, mobileBackBtn);
 });
 
 // =*********************************************
 //       HANDLING MULTI-STEP FORMS
 // =*********************************************
-function handleCondoForms(step) {
+function handleMobileForms(step) {
   // =*********************************************************
   if (step === formList.indexOf("military_information")) {
     if (!militaryValidation()) return false;
@@ -69,15 +69,15 @@ function handleCondoForms(step) {
 
   if (step === formList.indexOf("policyholder_form")) {
     // if (!policyholderValidation(step)) return false;
-    condoPropertyQuotedFormFunc();
+    mobilePropertyQuotedFormFunc();
   }
   if (step === formList.indexOf("spouse_information")) {
     if (!validateForm("spouse_information")) return false;
   }
 
   if (step === formList.indexOf("property_quoted_form")) {
-    // if (!condoPropertyQuotedValidation()) return false;
-    condoInformationFunc();
+    // if (!mobilePropertyQuotedValidation()) return false;
+    mobileInformationFunc();
   }
 
   if (step === formList.indexOf("property_information_form")) {
@@ -85,18 +85,18 @@ function handleCondoForms(step) {
   }
   if (step === formList.indexOf("property_claims_form")) {
     if (!validateForm("property_claims_form")) return false;
-    condoDiscountFormFunc();
+    mobileDiscountFormFunc();
   }
 
   //
   if (step === formList.indexOf("discount_form")) {
-    if (!condoDiscountValidation("discount_form")) return false;
+    if (!mobileDiscountValidation("discount_form")) return false;
 
     alert("Done");
     console.log(formData);
 
     // Go to Thank You Page
-    // window.location.href = condoSuccessRedirection;
+    // window.location.href = mobileSuccessRedirection;
   }
 
   return true;
@@ -108,35 +108,35 @@ function handleCondoForms(step) {
 
 // Policy Holder validation from formCommon.js (policyholderValidation)
 
-// Spouse validate by default validateForm in handleCondoForms function
+// Spouse validate by default validateForm in handleMobileForms function
 
 // *********************************************
 // STEP-2 "Property to be Quoted" FUNCTIONALITY & VALIDATION
 // *********************************************
-const isCondoSameAddressEl = document.getElementById(
+const isMobileSameAddressEl = document.getElementById(
   "propertyAddressSameAsMailing--true"
 );
 
-function condoPropertyQuotedFormFunc() {
+function mobilePropertyQuotedFormFunc() {
   //
-  const condoQuotedMatchEl = document.querySelectorAll(
+  const mobileQuotedMatchEl = document.querySelectorAll(
     ".property_quoted_form .field__input"
   );
 
   function setMatchedData(disability) {
-    const condoHolderMatchEl = document.querySelectorAll(
+    const mobileHolderMatchEl = document.querySelectorAll(
       ".policyholder_form .field__input"
     );
 
-    condoHolderMatchEl.forEach((element) => {
+    mobileHolderMatchEl.forEach((element) => {
       const elementMatch = element.getAttribute("data-match");
 
-      condoQuotedMatchEl.forEach((el) => {
+      mobileQuotedMatchEl.forEach((el) => {
         const elMatch = el.getAttribute("data-match");
 
         if (elMatch === elementMatch) el.value = element.value;
         el.disabled = disability;
-        isCondoSameAddressEl.disabled = false;
+        isMobileSameAddressEl.disabled = false;
       });
     });
   }
@@ -145,11 +145,11 @@ function condoPropertyQuotedFormFunc() {
   document.getElementById("propertyAddress").value = "";
 
   // Same Mailing CheckBox Functionality
-  isCondoSameAddressEl?.addEventListener("change", () => {
-    if (isCondoSameAddressEl.checked) {
+  isMobileSameAddressEl?.addEventListener("change", () => {
+    if (isMobileSameAddressEl.checked) {
       setMatchedData(true);
     } else {
-      condoQuotedMatchEl.forEach((el, i) => {
+      mobileQuotedMatchEl.forEach((el, i) => {
         el.value = "";
         el.disabled = false;
 
@@ -159,12 +159,12 @@ function condoPropertyQuotedFormFunc() {
   });
 }
 
-function condoPropertyQuotedValidation() {
-  if (isCondoSameAddressEl.checked) {
-    formData[isCondoSameAddressEl.name] = true;
+function mobilePropertyQuotedValidation() {
+  if (isMobileSameAddressEl.checked) {
+    formData[isMobileSameAddressEl.name] = true;
     return true;
   } else {
-    formData[isCondoSameAddressEl.name] = false;
+    formData[isMobileSameAddressEl.name] = false;
 
     const isValidate = validateForm("property_quoted_form");
     return isValidate;
@@ -175,7 +175,7 @@ function condoPropertyQuotedValidation() {
 // STEP-2 "Property Information & CLAIMS" FUNCTIONALITY & VALIDATION
 // *********************************************
 
-function condoInformationFunc() {
+function mobileInformationFunc() {
   const residenceOccupancy = document.querySelector(".residenceOccupancy");
   const occupancyDependent = document.querySelectorAll(".occupancyDependent");
 
@@ -196,14 +196,14 @@ function condoInformationFunc() {
   });
 }
 
-// PROPERTY INFORMATION VALIDATE in handleCondoForms function
+// PROPERTY INFORMATION VALIDATE in handleMobileForms function
 
-// PROPERTY CLAIMS VALIDATE in handleCondoForms function
+// PROPERTY CLAIMS VALIDATE in handleMobileForms function
 
 // *********************************************
 // STEP-3 "Discount Form" FUNCTIONALITY & VALIDATION
 // *********************************************
-function condoDiscountFormFunc() {
+function mobileDiscountFormFunc() {
   const newPurchaseDiscount = document.querySelector(".newPurchaseDiscount");
   const newPurchaseDiscountDate = document.querySelector(
     ".newPurchaseDiscountDate"
@@ -223,7 +223,7 @@ function condoDiscountFormFunc() {
   });
 }
 
-function condoDiscountValidation(formClass) {
+function mobileDiscountValidation(formClass) {
   const isValidate = validateForm(formClass, false);
   const discFields = document.querySelectorAll(`.${formClass} .field__input`);
 
