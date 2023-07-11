@@ -68,7 +68,7 @@ function handleCondoForms(step) {
   }
 
   if (step === formList.indexOf("policyholder_form")) {
-    // if (!policyholderValidation(step)) return false;
+    if (!policyholderValidation(step)) return false;
     condoPropertyQuotedFormFunc();
   }
   if (step === formList.indexOf("spouse_information")) {
@@ -76,12 +76,12 @@ function handleCondoForms(step) {
   }
 
   if (step === formList.indexOf("property_quoted_form")) {
-    // if (!condoPropertyQuotedValidation()) return false;
+    if (!condoPropertyQuotedValidation()) return false;
     condoInformationFunc();
   }
 
   if (step === formList.indexOf("property_information_form")) {
-    // if (!validateForm("property_information_form")) return false;
+    if (!validateForm("property_information_form")) return false;
   }
   if (step === formList.indexOf("property_claims_form")) {
     if (!validateForm("property_claims_form")) return false;
