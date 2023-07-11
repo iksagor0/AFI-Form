@@ -117,7 +117,7 @@ const isCondoSameAddressEl = document.getElementById(
 );
 
 function condoPropertyQuotedFormFunc() {
-  isMobileSameAddressEl.checked = false;
+  isCondoSameAddressEl.checked = false;
   //
   const condoQuotedMatchEl = document.querySelectorAll(
     ".coverage_history_form .field__input"

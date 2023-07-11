@@ -146,7 +146,7 @@ const isFloodSameAddressEl = document.getElementById(
 );
 
 function floodPropertyQuotedFormFunc() {
-  isMobileSameAddressEl.checked = false;
+  isFloodSameAddressEl.checked = false;
   //
   const floodQuotedMatchEl = document.querySelectorAll(
     ".property_quoted_form .field__input"
