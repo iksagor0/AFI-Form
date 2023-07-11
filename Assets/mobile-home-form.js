@@ -234,7 +234,5 @@ function mobileDiscountValidation(formClass) {
     });
   }
 
-  debugger;
-
   return isValidate;
 }

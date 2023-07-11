@@ -234,7 +234,5 @@ function condoDiscountValidation(formClass) {
     });
   }
 
-  debugger;
-
   return isValidate;
 }
