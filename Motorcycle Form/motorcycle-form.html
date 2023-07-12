@@ -1268,10 +1268,8 @@
       </div>
     </section>
 
-    <!-- SPOUSE INFORMATION -->
-    <section
-      class="form_section multi__step_1 additional_driver active_section"
-    >
+    <!--  ADDITIONAL DRIVER -->
+    <section class="form_section multi__step_1 additional_driver">
       <div class="container">
         <!-- ******** STEP ******** -->
         <div class="step__container">
@@ -1561,7 +1559,9 @@
     </section>
 
     <!-- MAIN VEHICLE FORM -->
-    <section class="form_section multi__step_2 add_vehicle__form">
+    <section
+      class="form_section multi__step_2 add_vehicle_form active_section"
+    >
       <div class="container">
         <!-- ******** STEP ******** -->
         <div class="step__container">
@@ -1586,7 +1586,7 @@
 
             <!-- Year, Make, Model -->
             <div class="fields-row">
-              <div class="field field--small">
+              <div class="field">
                 <div class="field__label-wrapper">
                   <label class="field__label" for="vehicle0Year">Year</label>
                 </div>
@@ -1636,11 +1636,13 @@
               </div>
             </div>
 
-            <!-- Type, Estimate Value of Vehicle -->
+            <!-- Type, Estimate Value of Vehicle,CC Size -->
             <div class="fields-row">
               <div class="field">
                 <div class="field__label-wrapper">
-                  <label class="field__label" for="vehicle0Type">Type</label>
+                  <label class="field__label" for="vehicle0Type"
+                    >Type of Vehicle</label
+                  >
                 </div>
                 <div class="field__input-wrapper">
                   <select
@@ -1657,68 +1659,39 @@
               </div>
               <div class="field extra_message_margin">
                 <div class="field__label-wrapper">
-                  <label class="field__label" for="vehicle0EstimatedValue"
+                  <label class="field__label" for="vehicle0Value"
                     >Estimate Value of Vehicle</label
                   >
                 </div>
                 <div class="field__input-wrapper">
                   <input
                     class="field__input required numberOnly dollar"
-                    id="vehicle0EstimatedValue"
-                    name="vehicle0EstimatedValue"
+                    id="vehicle0Value"
+                    name="vehicle0Value"
                     type="text"
                     maxlength="20"
-                    placeholder=""
                     value=""
                   />
-                  <p class="field__note">Numerical Values Only</p>
+                  <!-- <p class="field__note">Numerical Values Only</p> -->
                 </div>
               </div>
-            </div>
 
-            <!-- Vehicle Storage -->
-            <div class="fields-row">
-              <div class="field field--xlarge">
+              <div class="field">
                 <div class="field__label-wrapper">
-                  <label class="field__label" for="vehicle0Storage"
-                    >Vehicle Storage</label
+                  <label class="field__label" for="vehicle0CcSize"
+                    >CC Size</label
                   >
                 </div>
-                <div class="field__input-wrapper">
-                  <select
-                    class="field__input required"
-                    id="vehicle0Storage"
-                    name="vehicle0Storage"
-                    type="select"
-                  >
-                    <option value="">Choose One</option>
-                    <option value="Private Garage">Private Garage</option>
-                    <option value="Carport">Carport</option>
-                    <option value="Driveway">Driveway</option>
-                    <option value="Other Enclosed Structure">
-                      Other Enclosed Structure
-                    </option>
-                  </select>
-                </div>
-              </div>
-            </div>
 
-            <!-- Textarea = Describe how vehicle is driven -->
-            <div class="fields-row">
-              <div class="field field--xxlarge field--extended-label">
-                <div class="field__label-wrapper">
-                  <label class="field__label" for="vehicle0DriveDescription"
-                    >Describe how vehicle is driven, i.e. where to, how often,
-                    etc.</label
-                  >
-                </div>
                 <div class="field__input-wrapper">
-                  <textarea
-                    class="field__input required"
-                    id="vehicle0DriveDescription"
-                    name="vehicle0DriveDescription"
+                  <input
+                    class="field__input required numberOnly"
+                    id="vehicle0CcSize"
+                    name="vehicle0CcSize"
+                    type="text"
+                    maxlength="50"
                     placeholder=""
-                  ></textarea>
+                  />
                 </div>
               </div>
             </div>
@@ -1742,39 +1715,106 @@
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
                     <option value="6 or more">6 or more</option>
                   </select>
                 </div>
               </div>
             </div>
 
-            <!-- Number Of Daily Use -->
+            <!-- Same Address -->
             <div class="fields-row">
-              <div class="field field--xlarge field--extended-label">
+              <div class="field field--full">
+                <div class="field-group field-group--inline">
+                  <div class="field__input-wrapper">
+                    <input
+                      class="field__input"
+                      id="vehicle0AddressSameAsMailing--true"
+                      name="vehicle0AddressSameAsMailing"
+                      type="checkbox"
+                      value="true"
+                    /><label
+                      class="field__label"
+                      for="vehicle0AddressSameAsMailing--true"
+                      >My garaging address is the same as mailing address</label
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Garaging Address -->
+            <div class="fields-row">
+              <div class="field field--xxlarge">
                 <div class="field__label-wrapper">
-                  <label
-                    class="field__label"
-                    for="vehicle0NumberOfDailyUseVehiclesInHousehold"
-                    >Number Of Daily Use Vehicles In Household</label
+                  <label class="field__label" for="vehicle0Address"
+                    >Garaging Address</label
                   >
+                </div>
+                <div class="field__input-wrapper">
+                  <input
+                    class="field__input required"
+                    id="vehicle0Address"
+                    name="vehicle0Address"
+                    type="text"
+                    maxlength="100"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- City, State, Zip -->
+            <div class="fields-row">
+              <div class="field field--large">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="vehicle0City">City</label>
+                </div>
+                <div class="field__input-wrapper">
+                  <input
+                    class="field__input required"
+                    id="vehicle0City"
+                    name="vehicle0City"
+                    type="text"
+                    readonly=""
+                    maxlength="50"
+                  />
+                </div>
+              </div>
+              <div class="field field--medium">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="vehicle0State">State</label>
                 </div>
                 <div class="field__input-wrapper">
                   <select
                     class="field__input required"
-                    id="vehicle0NumberOfDailyUseVehiclesInHousehold"
-                    name="vehicle0NumberOfDailyUseVehiclesInHousehold"
+                    id="vehicle0State"
+                    name="vehicle0State"
                     type="select"
                   >
                     <option value="">Choose One</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6 or more">6 or more</option>
+                    <option value="AL">Alabama</option>
+                    <option value="AK">Alaska</option>
+                    <option value="UT">Utah</option>
+                    <option value="WA">Washington</option>
                   </select>
+                </div>
+              </div>
+              <div class="field field--small">
+                <div class="field__label-wrapper">
+                  <label class="field__label" for="vehicle0Zip">Zip</label>
+                </div>
+                <div class="field__input-wrapper">
+                  <input
+                    class="field__input"
+                    id="vehicle0Zip"
+                    name="vehicle0Zip"
+                    type="text"
+                    required=""
+                    pattern="[0-9]{5}"
+                    readonly=""
+                    maxlength="5"
+                    placeholder=""
+                    value="35015"
+                  />
                 </div>
               </div>
             </div>
