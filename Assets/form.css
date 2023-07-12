@@ -357,7 +357,8 @@ input.field__input:focus {
   }
 
   .fields-row {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
+    /* margin-bottom: 30px; */
   }
 
   .fields-row .field {

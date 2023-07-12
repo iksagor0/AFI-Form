@@ -204,3 +204,14 @@
 .email_confirmation #small_submit_btn {
   width: 15rem !important;
 }
+
+/********************************************************
+*                  MOTORCYCLE
+********************************************************/
+.fields-row .field.field--small.field--extended-label {
+  max-width: none;
+}
+
+.fields-row .field.field--small.field--extended-label .field__input-wrapper {
+  max-width: 5rem;
+}
