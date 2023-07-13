@@ -123,6 +123,28 @@ function handleMotorStepForm(step) {
 }
 
 // *********************************************
+//              STEP-1 FUNCTIONALITY
+// *********************************************
+const addDriver = document.getElementById("addDriver");
+
+addDriver?.addEventListener("click", function () {
+  const fields = document.querySelectorAll(".additional_driver .field__input");
+  fields.forEach((field) => (field.value = ""));
+
+  if (!formList.includes("additional_driver")) {
+    const summaryIndex = formList.indexOf("driver_summary_form");
+    formList.splice(summaryIndex, 0, "additional_driver");
+  }
+  showActiveForm(motorStep, motorBackBtn);
+
+  // Dynamic id & name
+  // fields.forEach((field) => {
+  //     const property = field.name.replace("0", id);
+  //     field.id = field.name = property;
+  //   });
+});
+
+// *********************************************
 //              STEP-2 FUNCTIONALITY
 // *********************************************
 let collectorVehicles = [];
@@ -259,6 +281,11 @@ function runVehicleItemsFunctionality() {
 // *********************************************
 
 function summaryFunctionality() {
+  const summaryHeading = document.querySelector(
+    ".summary__form .quote_request_heading"
+  );
+
+  summaryHeading.innerHTML = `Your Policy Has ${collectorVehicles.length} Vehicles`;
   //
   // Check Main Vehicle data OKK or Not
   const mainVehicleFields = document.querySelectorAll(
