@@ -53,6 +53,12 @@ motorBackBtn.addEventListener("click", () => {
     formList = formList.filter((item) => item != "add_more_vehicle_form");
     motorStep = formList.indexOf("summary__form");
   }
+
+  // 2 side back for additional_driver form
+  if (motorStep + 1 === formList.indexOf("additional_driver")) {
+    formList = formList.filter((item) => item != "additional_driver");
+    motorStep = formList.indexOf("driver_summary_form");
+  }
   showActiveForm(motorStep, motorBackBtn);
 });
 
@@ -143,6 +149,96 @@ addDriver?.addEventListener("click", function () {
   //     field.id = field.name = property;
   //   });
 });
+
+function driverSummaryFunc() {
+  // const summaryHeading = document.querySelector(
+  //   ".summary__form .quote_request_heading"
+  // );
+
+  // summaryHeading.innerHTML = `Your Policy Has ${collectorVehicles.length} Vehicles`;
+  //
+  // Check Main Vehicle data OKK or Not
+  const mainVehicleFields = document.querySelectorAll(
+    ".add_vehicle_form .field__input"
+  );
+
+  const mainVehicleValues = [];
+  mainVehicleFields.forEach((field) => mainVehicleValues.push(field.value));
+
+  const haveAllMainVehicleValues = mainVehicleValues.every(
+    (v) => Boolean(v) === true
+  );
+
+  // If Main Vehicle Data OKK then direct show SUMMARY neither show add_vehicle_form
+  if (!haveAllMainVehicleValues) {
+    if (!formList.includes("add_vehicle_form")) {
+      const summaryIndex = formList.indexOf("summary__form");
+
+      formList.splice(summaryIndex, 0, "add_vehicle_form");
+    }
+
+    showActiveForm(motorStep, motorBackBtn);
+  } else {
+    formList = formList.filter((form) => form != "add_vehicle_form");
+    // show data in Summary
+    if (collectorVehicles.length > 0) {
+      const { vehicle0Year, vehicle0Make, vehicle0Model } = formData;
+      document.querySelector(
+        ".quote_request__summary_main_item_info"
+      ).innerText = `${vehicle0Year} ${vehicle0Make} ${vehicle0Model}`;
+    }
+  }
+
+  // Add all data to moreVehicles sections
+  collectorVehicles = collectorVehicles.filter((item) => item !== "deleted");
+
+  const moreVehicles = collectorVehicles.filter((item, index) => index > 0);
+
+  const addedSummary = document.querySelector("#moreVehicles");
+  // const totalAdded = addedSummary.children?.length;
+
+  // if all data not appended then Append Data to #moreVehicles
+  if (moreVehicles.length > 0) {
+    addedSummary.innerHTML = "";
+    const demoItem = document.querySelector(
+      ".quote_request__summary_item.demoItem"
+    );
+    // Clone the demo, create and append
+    moreVehicles.forEach((info, i) => {
+      const clonedItem = demoItem.cloneNode(true);
+      clonedItem.classList.remove("__hide", "demoItem");
+      clonedItem.setAttribute("data-id", info.vehicleId);
+
+      let vYear = "";
+      let vMake = "";
+      let vModel = "";
+
+      for (const k in info) {
+        if (String(k).includes("Year")) vYear = info[k];
+        if (String(k).includes("Make")) vMake = info[k];
+        if (String(k).includes("Model")) vModel = info[k];
+      }
+
+      clonedItem.querySelector(
+        ".quote_request__summary_item_info"
+      ).innerHTML = `${vYear} ${vMake} ${vModel}`;
+
+      // append clone element in Summary
+      addedSummary.appendChild(clonedItem);
+    });
+  }
+
+  // ****************************************************
+  // const filterCVehicles = collectorVehicles.map((data) => {
+  //   delete data.vehicleId;
+  //   return data;
+  // });
+
+  collectorVehicles.forEach((info) => (formData = { ...formData, ...info }));
+  delete formData.vehicleId;
+
+  runVehicleItemsFunctionality();
+}
 
 // *********************************************
 //              STEP-2 FUNCTIONALITY
