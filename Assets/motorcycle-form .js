@@ -79,7 +79,7 @@ function handleMotorStepForm(step) {
   }
 
   if (step === formList.indexOf("policyholder_form")) {
-    if (!policyholderValidation(step)) return false;
+    // if (!policyholderValidation(step)) return false;
     spouseOperatorFunc();
   }
   if (step === formList.indexOf("spouse_information")) {
@@ -92,6 +92,7 @@ function handleMotorStepForm(step) {
 
   if (step === formList.indexOf("additional_driver")) {
     if (!addDriverValidation("additional_driver")) return false;
+    driverSummaryFunc();
   }
 
   //
@@ -156,7 +157,7 @@ function spouseOperatorFunc() {
 let driverArr = [];
 let driverId = 0;
 let editDriverIndex = -9999;
-const maxDriverItem = 3;
+const maxDriverItem = 2;
 
 // Add driver functionality
 const addDriver = document.getElementById("addDriver");
@@ -166,12 +167,6 @@ addDriver?.addEventListener("click", function () {
     formList.splice(summaryIndex, 0, "additional_driver");
   }
   showActiveForm(motorStep, motorBackBtn);
-
-  // Dynamic id & name
-  // fields.forEach((field) => {
-  //     const property = field.name.replace("0", id);
-  //     field.id = field.name = property;
-  //   });
 
   // Set VehicleId dynamically
   driverId = driverArr.length;
@@ -229,7 +224,7 @@ function driverSummaryFunc() {
 
   // Add all data to moreVehicles sections
   driverArr = driverArr.filter((item) => item !== "deleted");
-  const additionDrivers = driverArr.filter((item, index) => index > 0);
+  // const additionDrivers = driverArr.filter((item, index) => index > 0);
 
   // if all data not appended then Append Data to #addDriversList
   if (driverArr.length > 0) {
@@ -239,10 +234,10 @@ function driverSummaryFunc() {
     const driverDemoItem = document.querySelector(".quote_request__summary_item.driverDemoItem");
 
     // Clone the demo, create and append
-    additionDrivers.forEach((info) => {
+    driverArr.forEach((info) => {
       const clonedItem = driverDemoItem.cloneNode(true);
       clonedItem.classList.remove("__hide", "driverDemoItem");
-      clonedItem.setAttribute("data-id", info.vehicleId);
+      clonedItem.setAttribute("data-id", info.driverId);
 
       let dFirstName = "";
       let dLastName = "";
@@ -258,8 +253,12 @@ function driverSummaryFunc() {
 
       // append clone element in Summary
       addDriversList.appendChild(clonedItem);
+
+      debugger;
     });
   }
+
+  debugger;
 
   driverArr.forEach((info) => (formData = { ...formData, ...info }));
   delete formData?.driverId;
@@ -296,17 +295,14 @@ function addDriverValidation() {
       driverData.driverId = driverId;
 
       driverArr.push(driverData);
-      debugger;
     }
 
-    debugger;
     // REDUCE motorStep and REMOVE add_more_vehicle_form from the formList
     const summaryIndex = formList.indexOf("driver_summary_form");
     motorStep = summaryIndex - 2;
     formList = formList.filter((item) => item != "additional_driver");
   }
 
-  driverSummaryFunc();
   return isValidate;
 }
 
