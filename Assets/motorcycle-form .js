@@ -79,7 +79,7 @@ function handleMotorStepForm(step) {
   }
 
   if (step === formList.indexOf("policyholder_form")) {
-    // if (!policyholderValidation(step)) return false;
+    if (!policyholderValidation(step)) return false;
     spouseOperatorFunc();
   }
   if (step === formList.indexOf("spouse_information")) {
@@ -259,17 +259,32 @@ function driverSummaryFunc() {
   // Print Driver Summary Heading
   driverCount = driverCount + driverArr.length;
   summaryHeading.innerHTML = `Your Policy Has ${driverCount} Vehicles`;
-  debugger;
-  // runVehicleItemsFunctionality();
+
+  runDriverItemsFunctionality();
 }
 
 // ********** FUNCTIONALITY OF MORE VEHICLE FORMS : Edit, Delete ***********
-function runVehicleItemsFunctionality() {
-  const moreVehicles = document.getElementById("moreVehicles");
-  const moreVehicleItems = moreVehicles.querySelectorAll(".quote_request__summary_item");
+function runDriverItemsFunctionality() {
+  // policyholderEditBtn Functionality
+  const policyholderEditBtn = document.getElementById("policyholderEditBtn");
+  policyholderEditBtn.addEventListener("click", () => {
+    motorStep = formList.indexOf("policyholder_form");
+    showActiveForm(motorStep, motorBackBtn);
+  });
 
-  moreVehicleItems.forEach((item, itemIndex) => {
-    const vehicleId = item.getAttribute("data-id");
+  // spouseEditBtn Functionality
+  const spouseEditBtn = document.getElementById("spouseEditBtn");
+  spouseEditBtn.addEventListener("click", () => {
+    motorStep = formList.indexOf("spouse_information");
+    showActiveForm(motorStep, motorBackBtn);
+  });
+
+  // Others Driver Functionality
+  const addDriversList = document.getElementById("addDriversList");
+  const driverItemEl = addDriversList.querySelectorAll(".quote_request__summary_item.driverItem");
+
+  driverItemEl.forEach((item, itemIndex) => {
+    const driverId = item.getAttribute("data-id");
 
     const editBtn = item.querySelector(".editBtn");
     const deleteBtn = item.querySelector(".deleteBtn");
@@ -277,26 +292,20 @@ function runVehicleItemsFunctionality() {
     const deleteNo = item.querySelector(".deleteNo");
 
     editBtn?.addEventListener("click", () => {
-      editVehicleIndex = vehicleId;
+      editDriverIndex = driverId;
 
-      if (!formList.includes("add_more_vehicle_form")) {
-        const summaryIndex = formList.indexOf("summary__form");
-        formList.splice(summaryIndex, 0, "add_more_vehicle_form");
+      if (!formList.includes("additional_driver")) {
+        const summaryIndex = formList.indexOf("driver_summary_form");
+        formList.splice(summaryIndex, 0, "additional_driver");
 
         showActiveForm(motorStep, motorBackBtn);
 
         // Assign the values
-        function editFormWithValue(id, type) {
-          document.getElementById(id).value = formData[`vehicle${vehicleId}${type}`];
-        }
-
-        editFormWithValue("vehicle-Year", "Year");
-        editFormWithValue("vehicle-Make", "Make");
-        editFormWithValue("vehicle-Model", "Model");
-        editFormWithValue("vehicle-Type", "Type");
-        editFormWithValue("vehicle-EstimatedValue", "EstimatedValue");
-        editFormWithValue("vehicle-Storage", "Storage");
-        editFormWithValue("vehicle-DriveDescription", "DriveDescription");
+        const aDrFields = document.querySelectorAll(".additional_driver .field__input");
+        aDrFields.forEach((f) => {
+          const property = "additionalDriver" + driverId + f.getAttribute("data-field");
+          f.id = f.value = formData[property];
+        });
       }
     });
 
@@ -311,17 +320,17 @@ function runVehicleItemsFunctionality() {
     });
 
     deleteYes.addEventListener("click", () => {
-      for (const k in collectorVehicles[itemIndex + 1]) {
+      for (const k in driverArr[itemIndex]) {
         delete formData[k];
       }
 
-      // collectorVehicles[itemIndex + 1] = "deleted";
-      collectorVehicles = collectorVehicles.filter((item, i) => i !== itemIndex + 1);
+      // driverArr[itemIndex + 1] = "deleted";
+      driverArr = driverArr.filter((item, i) => i !== itemIndex);
 
       item.classList.add("__hide");
       item.remove(); // delete elements
 
-      addVehicle.disabled = false;
+      addDriver.disabled = false;
     });
   });
 }
