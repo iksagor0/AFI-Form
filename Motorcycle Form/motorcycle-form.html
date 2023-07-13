@@ -1351,7 +1351,14 @@
                   <label class="field__label" for="vehicle0Year">Year</label>
                 </div>
                 <div class="field__input-wrapper">
-                  <input class="field__input required year" id="vehicle0Year" name="vehicle0Year" type="text" maxlength="4" />
+                  <input
+                    class="field__input required year"
+                    id="vehicle0Year"
+                    name="vehicle0Year"
+                    type="text"
+                    maxlength="4"
+                    data-field="Year"
+                  />
                 </div>
               </div>
               <div class="field">
@@ -1359,7 +1366,14 @@
                   <label class="field__label" for="vehicle0Make">Make</label>
                 </div>
                 <div class="field__input-wrapper">
-                  <input class="field__input required" id="vehicle0Make" name="vehicle0Make" type="text" maxlength="50" />
+                  <input
+                    class="field__input required"
+                    id="vehicle0Make"
+                    name="vehicle0Make"
+                    type="text"
+                    maxlength="50"
+                    data-field="Make"
+                  />
                 </div>
               </div>
               <div class="field">
@@ -1367,7 +1381,14 @@
                   <label class="field__label" for="vehicle0Model">Model</label>
                 </div>
                 <div class="field__input-wrapper">
-                  <input class="field__input required" id="vehicle0Model" name="vehicle0Model" type="text" maxlength="50" />
+                  <input
+                    class="field__input required"
+                    id="vehicle0Model"
+                    name="vehicle0Model"
+                    type="text"
+                    maxlength="50"
+                    data-field="Model"
+                  />
                 </div>
               </div>
             </div>
@@ -1379,7 +1400,7 @@
                   <label class="field__label" for="vehicle0Type">Type of Vehicle</label>
                 </div>
                 <div class="field__input-wrapper">
-                  <select class="field__input required" id="vehicle0Type" name="vehicle0Type" type="select">
+                  <select class="field__input required" id="vehicle0Type" name="vehicle0Type" type="select" data-field="Type">
                     <option value="">Choose One</option>
                     <option value="Stock">Stock</option>
                     <option value="Modified">Modified</option>
@@ -1397,7 +1418,7 @@
                     name="vehicle0Value"
                     type="text"
                     maxlength="20"
-                    value=""
+                    data-field="Value"
                   />
                   <!-- <p class="field__note">Numerical Values Only</p> -->
                 </div>
@@ -1415,7 +1436,7 @@
                     name="vehicle0CcSize"
                     type="text"
                     maxlength="50"
-                    placeholder=""
+                    data-field="CcSize"
                   />
                 </div>
               </div>
@@ -1433,6 +1454,7 @@
                         name="vehicle0AddressSameAsMailing"
                         type="checkbox"
                         value="true"
+                        data-field="AddressSameAsMailing"
                       /><label class="field__label" for="vehicle0AddressSameAsMailing--true"
                         >My garaging address is the same as mailing address</label
                       >
@@ -1455,6 +1477,7 @@
                       type="text"
                       maxlength="100"
                       data-match="policyHolderMailingAddress"
+                      data-field="Address"
                     />
                   </div>
                 </div>
@@ -1474,6 +1497,7 @@
                       maxlength="50"
                       type="text"
                       data-match="policyHolderCity"
+                      data-field="City"
                     />
                   </div>
                 </div>
@@ -1488,6 +1512,7 @@
                       name="vehicle0State"
                       type="select"
                       data-match="policyHolderState"
+                      data-field="State"
                     >
                       <option value="">Choose One</option>
                       <option value="AL">Alabama</option>
@@ -1511,6 +1536,7 @@
                       pattern="[0-9]{5}"
                       maxlength="5"
                       data-match="policyHolderZip"
+                      data-field="Zip"
                     />
                   </div>
                 </div>
@@ -1563,7 +1589,7 @@
 
             <!-- Has Any Violation -->
             <div class="fields-row has_violation_row">
-              <div class="field field--full has_violation_inputs_container">
+              <div class="field field--full has_violation_inputs_container d-flex flex-column">
                 <div class="field__label-wrapper">
                   <label class="field__label" for="householdViolationsPreviousClaims"
                     >Has any driver had any moving violations, accidents, or auto insurance claims in the last 5 years?</label

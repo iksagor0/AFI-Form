@@ -221,3 +221,7 @@
   font-weight: 400 !important;
   margin: 0 !important;
 }
+
+.add_violation_btn {
+  width: auto !important;
+}
