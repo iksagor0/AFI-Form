@@ -1,13 +1,7 @@
-// const floodSuccessRedirection = "https://afi.org/";
 // const floodSuccessRedirection = "../--Model/thank-you.html";
 
 // Forms
-const floodFormSteps = [
-  "policyholder_form",
-  "property_quoted_form",
-  "property_overview_form",
-  "property_details_form",
-];
+const floodFormSteps = ["policyholder_form", "property_quoted_form", "property_overview_form", "property_details_form"];
 
 let floodStep = 0;
 let floodMaxStep = formList.length - 1;
@@ -34,7 +28,7 @@ floodNextBtn?.addEventListener("click", async () => {
   if (!submitResult) return false;
 
   // Step Increment
-    floodMaxStep = formList.length - 1;
+  floodMaxStep = formList.length - 1;
   floodStep >= floodMaxStep ? floodStep : floodStep++;
 
   // Show Form
@@ -119,13 +113,7 @@ async function handleFloodForms(step) {
 }
 
 async function saveFlood(form, action = "send") {
-  const resData = await saveData(
-    "/sc-api/forms/save-flood",
-    formData,
-    floodNextBtn,
-    form,
-    action
-  );
+  const resData = await saveData("/sc-api/forms/save-flood", formData, floodNextBtn, form, action);
 
   return resData;
 }
@@ -141,21 +129,15 @@ async function saveFlood(form, action = "send") {
 // *********************************************
 // STEP-2 "Property to be Quoted" FUNCTIONALITY & VALIDATION
 // *********************************************
-const isFloodSameAddressEl = document.getElementById(
-  "propertyAddressSameAsMailing--true"
-);
+const isFloodSameAddressEl = document.getElementById("propertyAddressSameAsMailing--true");
 
 function floodPropertyQuotedFormFunc() {
   isFloodSameAddressEl.checked = false;
   //
-  const floodQuotedMatchEl = document.querySelectorAll(
-    ".property_quoted_form .field__input"
-  );
+  const floodQuotedMatchEl = document.querySelectorAll(".property_quoted_form .field__input");
 
   function setMatchedData(disability) {
-    const floodHolderMatchEl = document.querySelectorAll(
-      ".policyholder_form .field__input"
-    );
+    const floodHolderMatchEl = document.querySelectorAll(".policyholder_form .field__input");
 
     floodHolderMatchEl.forEach((element) => {
       const elementMatch = element.getAttribute("data-match");
@@ -171,7 +153,7 @@ function floodPropertyQuotedFormFunc() {
   }
 
   setMatchedData(false);
-    document.getElementById("propertyAddress").value = "";
+  document.getElementById("propertyAddress").value = "";
 
   // Same Mailing CheckBox Functionality
   isFloodSameAddressEl?.addEventListener("change", () => {
@@ -205,48 +187,35 @@ function floodPropertyQuotedValidation() {
 // *********************************************
 
 function floodOverviewFunc() {
-  const awareOfFloodLossesOnProperty = document.querySelector(
-    ".field__input[name=awareOfFloodLossesOnProperty]:checked"
-  );
+  const awareOfFloodLossesOnProperty = document.querySelector(".field__input[name=awareOfFloodLossesOnProperty]:checked");
 
-  const howManyLossesHaveOccurred = document.getElementById(
-    "howManyLossesHaveOccurred"
-  );
+  const howManyLossesHaveOccurred = document.getElementById("howManyLossesHaveOccurred");
 
-  document
-    .querySelectorAll(".field__input[name=awareOfFloodLossesOnProperty]")
-    .forEach((field) => {
-      field.addEventListener("change", () => {
-        if (field.checked && field?.value === "Yes") {
-          howManyLossesHaveOccurred.disabled = false;
-          howManyLossesHaveOccurred?.classList.add("required");
-        } else {
-          howManyLossesHaveOccurred.disabled = true;
-          howManyLossesHaveOccurred?.classList.remove("required");
-        }
-      });
+  document.querySelectorAll(".field__input[name=awareOfFloodLossesOnProperty]").forEach((field) => {
+    field.addEventListener("change", () => {
+      if (field.checked && field?.value === "Yes") {
+        howManyLossesHaveOccurred.disabled = false;
+        howManyLossesHaveOccurred?.classList.add("required");
+      } else {
+        howManyLossesHaveOccurred.disabled = true;
+        howManyLossesHaveOccurred?.classList.remove("required");
+      }
     });
+  });
 }
 
 function floodOverviewValidation() {
   const isValidate = validateForm("property_overview_form");
 
   //
-  const awareOfFloodLossesOnProperty = document.querySelector(
-    ".field__input[name=awareOfFloodLossesOnProperty]:checked"
-  );
+  const awareOfFloodLossesOnProperty = document.querySelector(".field__input[name=awareOfFloodLossesOnProperty]:checked");
   if (!awareOfFloodLossesOnProperty) {
     const awareOfFloodError = document.querySelector(".awareOfFloodError");
     awareOfFloodError.style.display = "block";
 
     document
       .querySelectorAll(".field__input[name=awareOfFloodLossesOnProperty]")
-      .forEach((el) =>
-        el.addEventListener(
-          "change",
-          () => (awareOfFloodError.style.display = "none")
-        )
-      );
+      .forEach((el) => el.addEventListener("change", () => (awareOfFloodError.style.display = "none")));
   }
 
   return isValidate && Boolean(awareOfFloodLossesOnProperty);
@@ -256,27 +225,21 @@ function floodOverviewValidation() {
 // STEP-3 "Property Details" FUNCTIONALITY & VALIDATION
 // *********************************************
 function floodDetailsFunc() {
-  const isStructureACondominium = document.querySelector(
-    ".field__input[name=isStructureACondominium]:checked"
-  );
+  const isStructureACondominium = document.querySelector(".field__input[name=isStructureACondominium]:checked");
 
-  const whatFloorIsYourCondominiumOn = document.getElementById(
-    "whatFloorIsYourCondominiumOn"
-  );
+  const whatFloorIsYourCondominiumOn = document.getElementById("whatFloorIsYourCondominiumOn");
 
-  document
-    .querySelectorAll(".field__input[name=isStructureACondominium]")
-    .forEach((field) => {
-      field.addEventListener("change", () => {
-        if (field.checked && field?.value === "Yes") {
-          whatFloorIsYourCondominiumOn.disabled = false;
-          whatFloorIsYourCondominiumOn?.classList.add("required");
-        } else {
-          whatFloorIsYourCondominiumOn.disabled = true;
-          whatFloorIsYourCondominiumOn?.classList.remove("required");
-        }
-      });
+  document.querySelectorAll(".field__input[name=isStructureACondominium]").forEach((field) => {
+    field.addEventListener("change", () => {
+      if (field.checked && field?.value === "Yes") {
+        whatFloorIsYourCondominiumOn.disabled = false;
+        whatFloorIsYourCondominiumOn?.classList.add("required");
+      } else {
+        whatFloorIsYourCondominiumOn.disabled = true;
+        whatFloorIsYourCondominiumOn?.classList.remove("required");
+      }
     });
+  });
 
   //
   const garageType = document.getElementById("garageType");
@@ -297,23 +260,14 @@ function floodDetailsValidation() {
   const isValidate = validateForm("property_details_form");
 
   //
-  const isStructureACondominium = document.querySelector(
-    ".field__input[name=isStructureACondominium]:checked"
-  );
+  const isStructureACondominium = document.querySelector(".field__input[name=isStructureACondominium]:checked");
   if (!isStructureACondominium) {
-    const structureACondomError = document.querySelector(
-      ".structureACondomError"
-    );
+    const structureACondomError = document.querySelector(".structureACondomError");
     structureACondomError.style.display = "block";
 
     document
       .querySelectorAll(".field__input[name=isStructureACondominium]")
-      .forEach((el) =>
-        el.addEventListener(
-          "change",
-          () => (structureACondomError.style.display = "none")
-        )
-      );
+      .forEach((el) => el.addEventListener("change", () => (structureACondomError.style.display = "none")));
   }
 
   return isValidate && Boolean(isStructureACondominium);
