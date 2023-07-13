@@ -489,8 +489,6 @@ hasViolationsFields.forEach((fields) => {
 // **** coverageLimitsValidation 'qrf-accordion' Functionality ****
 const accordionButtons = document.querySelectorAll(".qrf-accordion__trigger");
 
-const accordionButtons = document.querySelectorAll(".qrf-accordion__trigger");
-
 accordionButtons?.forEach((button) => {
   button.addEventListener("click", () => {
     const accordion = button.closest(".qrf-accordion");
