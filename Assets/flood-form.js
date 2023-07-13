@@ -120,7 +120,8 @@ function floodPropertyQuotedFormFunc() {
       floodQuotedMatchEl.forEach((el) => {
         const elMatch = el.getAttribute("data-match");
 
-        if (elMatch === elementMatch) el.value = element.value;
+        if (elementMatch && elMatch === elementMatch) el.value = element.value;
+
         el.disabled = disability;
         isFloodSameAddressEl.disabled = false;
       });
@@ -146,13 +147,14 @@ function floodPropertyQuotedFormFunc() {
 }
 
 function floodPropertyQuotedValidation() {
+  const isValidate = validateForm("property_quoted_form");
+
   if (isFloodSameAddressEl.checked) {
     formData[isFloodSameAddressEl.name] = true;
     return true;
   } else {
     formData[isFloodSameAddressEl.name] = false;
 
-    const isValidate = validateForm("property_quoted_form");
     return isValidate;
   }
 }

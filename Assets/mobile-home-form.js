@@ -112,21 +112,15 @@ function handleMobileForms(step) {
 // *********************************************
 // STEP-2 "Property to be Quoted" FUNCTIONALITY & VALIDATION
 // *********************************************
-const isMobileSameAddressEl = document.getElementById(
-  "propertyAddressSameAsMailing--true"
-);
+const isMobileSameAddressEl = document.getElementById("propertyAddressSameAsMailing--true");
 
 function mobilePropertyQuotedFormFunc() {
   isMobileSameAddressEl.checked = false;
   //
-  const mobileQuotedMatchEl = document.querySelectorAll(
-    ".property_quoted_form .field__input"
-  );
+  const mobileQuotedMatchEl = document.querySelectorAll(".property_quoted_form .field__input");
 
   function setMatchedData(disability) {
-    const mobileHolderMatchEl = document.querySelectorAll(
-      ".policyholder_form .field__input"
-    );
+    const mobileHolderMatchEl = document.querySelectorAll(".policyholder_form .field__input");
 
     mobileHolderMatchEl.forEach((element) => {
       const elementMatch = element.getAttribute("data-match");
@@ -134,7 +128,7 @@ function mobilePropertyQuotedFormFunc() {
       mobileQuotedMatchEl.forEach((el) => {
         const elMatch = el.getAttribute("data-match");
 
-        if (elMatch === elementMatch) el.value = element.value;
+        if (elementMatch && elMatch === elementMatch) el.value = element.value;
         el.disabled = disability;
         isMobileSameAddressEl.disabled = false;
       });
@@ -177,9 +171,7 @@ function mobilePropertyQuotedValidation() {
 
 function mobileInformationFunc() {
   const residenceCityLimits = document.querySelector(".residenceCityLimits");
-  const residenceCityLimitsDep = document.querySelectorAll(
-    ".residenceCityLimitsDep"
-  );
+  const residenceCityLimitsDep = document.querySelectorAll(".residenceCityLimitsDep");
 
   residenceCityLimits.addEventListener("change", (e) => {
     const resLimitVal = e.target.value;

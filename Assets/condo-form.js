@@ -113,21 +113,15 @@ function handleCondoForms(step) {
 // *********************************************
 // STEP-2 "Property to be Quoted" FUNCTIONALITY & VALIDATION
 // *********************************************
-const isCondoSameAddressEl = document.getElementById(
-  "propertyAddressSameAsMailing--true"
-);
+const isCondoSameAddressEl = document.getElementById("propertyAddressSameAsMailing--true");
 
 function condoPropertyQuotedFormFunc() {
   isCondoSameAddressEl.checked = false;
   //
-  const condoQuotedMatchEl = document.querySelectorAll(
-    ".property_quoted_form .field__input"
-  );
+  const condoQuotedMatchEl = document.querySelectorAll(".property_quoted_form .field__input");
 
   function setMatchedData(disability) {
-    const condoHolderMatchEl = document.querySelectorAll(
-      ".policyholder_form .field__input"
-    );
+    const condoHolderMatchEl = document.querySelectorAll(".policyholder_form .field__input");
 
     condoHolderMatchEl.forEach((element) => {
       const elementMatch = element.getAttribute("data-match");
@@ -135,7 +129,7 @@ function condoPropertyQuotedFormFunc() {
       condoQuotedMatchEl.forEach((el) => {
         const elMatch = el.getAttribute("data-match");
 
-        if (elMatch === elementMatch) el.value = element.value;
+        if (elementMatch && elMatch === elementMatch) el.value = element.value;
         el.disabled = disability;
         isCondoSameAddressEl.disabled = false;
       });
@@ -206,9 +200,7 @@ function condoInformationFunc() {
 // *********************************************
 function condoDiscountFormFunc() {
   const newPurchaseDiscount = document.querySelector(".newPurchaseDiscount");
-  const newPurchaseDiscountDate = document.querySelector(
-    ".newPurchaseDiscountDate"
-  );
+  const newPurchaseDiscountDate = document.querySelector(".newPurchaseDiscountDate");
 
   const future2Years = new Date().getFullYear() + 2;
   dateValidation(newPurchaseDiscountDate, future2Years);
