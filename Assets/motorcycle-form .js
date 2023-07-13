@@ -88,6 +88,7 @@ function handleMotorStepForm(step) {
 
   if (step === formList.indexOf("driver_summary_form") || step === formList.indexOf("driver_summary_form") - 1) {
     driverSummaryFunc();
+    addVehicleFunc();
   }
 
   if (step === formList.indexOf("additional_driver")) {
@@ -203,7 +204,7 @@ function driverSummaryFunc() {
   // Policyholder info in driver summary
   const { policyHolderFirstName, policyHolderLastName, policyHolderDob } = formData;
   document.querySelector(
-    ".quote_request__summary_policyholer_item_info"
+    ".quote_request__summary_policyholder_item_info"
   ).innerHTML = `${policyHolderFirstName} ${policyHolderLastName}, ${policyHolderDob} <br> <p>policyholder</p>`;
 
   // Spouse info in driver summary
@@ -304,7 +305,10 @@ function runDriverItemsFunctionality() {
         const aDrFields = document.querySelectorAll(".additional_driver .field__input");
         aDrFields.forEach((f) => {
           const property = "additionalDriver" + driverId + f.getAttribute("data-field");
-          f.id = f.value = formData[property];
+          f.id = f.name = property;
+          f.value = formData[property];
+
+          debugger;
         });
       }
     });
@@ -356,8 +360,9 @@ function addDriverValidation() {
       const matchId = driverArr.filter((v) => v.driverId == editDriverIndex);
       const updatedData = { ...matchId[0], ...driverData };
 
-      driverArr = driverArr.map((vData) => (vData.driverId == editDriverIndex ? updatedData : vData));
+      driverArr = driverArr.map((vData) => (vData.driverId == Number(editDriverIndex) ? updatedData : vData));
 
+      debugger;
       // driverArr[Number(driverId)] = driverData;
       editDriverIndex = -1;
     } else {
@@ -387,12 +392,12 @@ const maxVehicleItem = 4;
 const addVehicle = document.getElementById("addVehicle");
 
 addVehicle?.addEventListener("click", function () {
-  const fields = document.querySelectorAll(".add_more_vehicle_form .field__input");
+  const fields = document.querySelectorAll(".add_vehicle_form .field__input");
   fields.forEach((field) => (field.value = ""));
 
-  if (!formList.includes("add_more_vehicle_form")) {
+  if (!formList.includes("add_vehicle_form")) {
     const summaryIndex = formList.indexOf("summary__form");
-    formList.splice(summaryIndex, 0, "add_more_vehicle_form");
+    formList.splice(summaryIndex, 0, "add_vehicle_form");
   }
   showActiveForm(motorStep, motorBackBtn);
 
@@ -604,12 +609,12 @@ function addVehicleValidation() {
 }
 
 function addMoreVehicleValidation() {
-  const isValidate = validateForm("add_more_vehicle_form", false);
+  const isValidate = validateForm("add_vehicle_form", false);
 
   if (isValidate) {
     const vehicleData = {};
 
-    const allFields = document.querySelectorAll(`.add_more_vehicle_form .field__input`);
+    const allFields = document.querySelectorAll(`.add_vehicle_form .field__input`);
 
     allFields.forEach((field) => {
       vehicleData[field.name] = field.value;
@@ -638,6 +643,54 @@ function addMoreVehicleValidation() {
 
   return isValidate;
 }
+
+// Same Mailing Address Functionality
+
+function addVehicleFunc() {
+  const isSameAddressEl = document.querySelector(".AddressSameAsMailing--true");
+  isSameAddressEl.checked = false;
+  //
+  const addVehicleFields = document.querySelectorAll(".add_vehicle_form .field__input");
+
+  function setMatchedData(disability) {
+    addVehicleFields.forEach((el) => {
+      el.disabled = disability;
+      isSameAddressEl.disabled = false;
+
+      const dataMatch = el.getAttribute("data-match");
+      if (dataMatch) el.value = formData[dataMatch];
+    });
+  }
+
+  setMatchedData(false);
+  document.querySelector(".vehicleAddress").value = "";
+
+  // Same Mailing CheckBox Functionality
+  isSameAddressEl?.addEventListener("change", () => {
+    if (isSameAddressEl.checked) {
+      setMatchedData(true);
+    } else {
+      addVehicleFields.forEach((el, i) => {
+        el.value = "";
+        el.disabled = false;
+
+        if (i === 1) el.focus();
+      });
+    }
+  });
+}
+
+// function condoPropertyQuotedValidation() {
+//   if (SameAddressEl.checked) {
+//     formData[SameAddressEl.name] = true;
+//     return true;
+//   } else {
+//     formData[SameAddressEl.name] = false;
+
+//     const isValidate = validateForm("property_quoted_form");
+//     return isValidate;
+//   }
+// }
 
 // *********************************************
 //              STEP-3 FUNCTIONALITY

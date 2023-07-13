@@ -216,8 +216,8 @@
   max-width: 5rem;
 }
 
-.quote_request__summary_policyholer_item_info p {
-  /* line-height: 10px !important; */
+.quote_request__summary_policyholder_item_info p {
+  line-height: 10px !important;
   font-weight: 400 !important;
   margin: 0 !important;
 }

@@ -1046,7 +1046,7 @@
             <div class="quote_request__summary">
               <!-- PolicyHoler -->
               <div class="quote_request__summary_item quote_request__summary_policyholer_item">
-                <p class="quote_request__summary_item_info quote_request__summary_policyholer_item_info"></p>
+                <p class="quote_request__summary_item_info quote_request__summary_policyholder_item_info"></p>
                 <div class="quote_request__summary_item_actions delete_edit">
                   <button id="policyholderEditBtn" class="button-bare" type="button">Edit</button>
                 </div>
@@ -1320,7 +1320,7 @@
       </div>
     </section>
 
-    <!-- MAIN VEHICLE FORM -->
+    <!-- VEHICLE FORM -->
     <section class="form_section multi__step_2 add_vehicle_form">
       <div class="container">
         <!-- ******** STEP ******** -->
@@ -1351,15 +1351,7 @@
                   <label class="field__label" for="vehicle0Year">Year</label>
                 </div>
                 <div class="field__input-wrapper">
-                  <input
-                    class="field__input required year"
-                    id="vehicle0Year"
-                    name="vehicle0Year"
-                    type="text"
-                    maxlength="4"
-                    placeholder=""
-                    value=""
-                  />
+                  <input class="field__input required year" id="vehicle0Year" name="vehicle0Year" type="text" maxlength="4" />
                 </div>
               </div>
               <div class="field">
@@ -1367,15 +1359,7 @@
                   <label class="field__label" for="vehicle0Make">Make</label>
                 </div>
                 <div class="field__input-wrapper">
-                  <input
-                    class="field__input required"
-                    id="vehicle0Make"
-                    name="vehicle0Make"
-                    type="text"
-                    maxlength="50"
-                    placeholder=""
-                    value=""
-                  />
+                  <input class="field__input required" id="vehicle0Make" name="vehicle0Make" type="text" maxlength="50" />
                 </div>
               </div>
               <div class="field">
@@ -1383,15 +1367,7 @@
                   <label class="field__label" for="vehicle0Model">Model</label>
                 </div>
                 <div class="field__input-wrapper">
-                  <input
-                    class="field__input required"
-                    id="vehicle0Model"
-                    name="vehicle0Model"
-                    type="text"
-                    maxlength="50"
-                    placeholder=""
-                    value=""
-                  />
+                  <input class="field__input required" id="vehicle0Model" name="vehicle0Model" type="text" maxlength="50" />
                 </div>
               </div>
             </div>
@@ -1445,38 +1421,13 @@
               </div>
             </div>
 
-            <!-- Number of Licensed-->
-            <div class="fields-row">
-              <div class="field field--xlarge field--extended-label">
-                <div class="field__label-wrapper">
-                  <label class="field__label" for="vehicle0LicensedDriverCount"
-                    >Number of Licensed Drivers Living in Household</label
-                  >
-                </div>
-                <div class="field__input-wrapper">
-                  <select
-                    class="field__input required"
-                    id="vehicle0LicensedDriverCount"
-                    name="vehicle0LicensedDriverCount"
-                    type="select"
-                  >
-                    <option value="">Choose One</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="6 or more">6 or more</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-
             <!-- Same Address -->
             <div class="fields-row">
               <div class="field field--full">
                 <div class="field-group field-group--inline">
                   <div class="field__input-wrapper">
                     <input
-                      class="field__input"
+                      class="field__input AddressSameAsMailing--true"
                       id="vehicle0AddressSameAsMailing--true"
                       name="vehicle0AddressSameAsMailing"
                       type="checkbox"
@@ -1496,7 +1447,14 @@
                   <label class="field__label" for="vehicle0Address">Garaging Address</label>
                 </div>
                 <div class="field__input-wrapper">
-                  <input class="field__input required" id="vehicle0Address" name="vehicle0Address" type="text" maxlength="100" />
+                  <input
+                    class="field__input vehicleAddress required"
+                    id="vehicle0Address"
+                    name="vehicle0Address"
+                    type="text"
+                    maxlength="100"
+                    data-match="policyHolderMailingAddress"
+                  />
                 </div>
               </div>
             </div>
@@ -1509,12 +1467,12 @@
                 </div>
                 <div class="field__input-wrapper">
                   <input
-                    class="field__input required"
+                    class="field__input required vehicleCity"
                     id="vehicle0City"
                     name="vehicle0City"
-                    type="text"
-                    readonly=""
                     maxlength="50"
+                    type="text"
+                    data-match="policyHolderCity"
                   />
                 </div>
               </div>
@@ -1523,7 +1481,13 @@
                   <label class="field__label" for="vehicle0State">State</label>
                 </div>
                 <div class="field__input-wrapper">
-                  <select class="field__input required" id="vehicle0State" name="vehicle0State" type="select">
+                  <select
+                    class="field__input vehicleState required"
+                    id="vehicle0State"
+                    name="vehicle0State"
+                    type="select"
+                    data-match="policyHolderState"
+                  >
                     <option value="">Choose One</option>
                     <option value="AL">Alabama</option>
                     <option value="AK">Alaska</option>
@@ -1538,16 +1502,14 @@
                 </div>
                 <div class="field__input-wrapper">
                   <input
-                    class="field__input"
+                    class="field__input required zip"
                     id="vehicle0Zip"
                     name="vehicle0Zip"
                     type="text"
                     required=""
                     pattern="[0-9]{5}"
-                    readonly=""
                     maxlength="5"
-                    placeholder=""
-                    value="35015"
+                    data-match="policyHolderZip"
                   />
                 </div>
               </div>
