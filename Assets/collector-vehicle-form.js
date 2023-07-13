@@ -530,6 +530,11 @@ accordionButtons?.forEach((button) => {
   button.addEventListener("click", () => {
     const accordion = button.closest(".qrf-accordion");
     accordion.classList.toggle("qrf-accordion--active");
+
+    const symbol = button.querySelector(".qrf_accordion");
+    if (accordion.classList.contains("qrf-accordion--active"))
+      symbol.innerHTML = "-";
+    else symbol.innerHTML = "+";
   });
 });
 
