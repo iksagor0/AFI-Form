@@ -194,12 +194,11 @@ addDriver?.addEventListener("click", function () {
   });
 });
 
+// Driver Functionality
 function driverSummaryFunc() {
-  const summaryHeading = document.querySelector(".summary__form .quote_request_heading");
-
+  // Driver Summary Heading
+  const summaryHeading = document.querySelector(".driver_summary_form .quote_request_heading");
   let driverCount = 1;
-
-  summaryHeading.innerHTML = `Your Policy Has ${driverCount} Vehicles`;
 
   // Policyholder info in driver summary
   const { policyHolderFirstName, policyHolderLastName, policyHolderDob } = formData;
@@ -216,15 +215,13 @@ function driverSummaryFunc() {
 
     spouseItemInfo.parentElement.classList.remove("__hide");
     spouseItemInfo.innerHTML = `${policyHolderFirstName} ${policyHolderLastName}, ${policyHolderDob}`;
+    driverCount = 2;
   } else {
     spouseItemInfo.parentElement.classList.add("__hide");
   }
 
-  // debugger;
-
   // Add all data to moreVehicles sections
   driverArr = driverArr.filter((item) => item !== "deleted");
-  // const additionDrivers = driverArr.filter((item, index) => index > 0);
 
   // if all data not appended then Append Data to #addDriversList
   if (driverArr.length > 0) {
@@ -253,17 +250,80 @@ function driverSummaryFunc() {
 
       // append clone element in Summary
       addDriversList.appendChild(clonedItem);
-
-      debugger;
     });
   }
-
-  debugger;
 
   driverArr.forEach((info) => (formData = { ...formData, ...info }));
   delete formData?.driverId;
 
+  // Print Driver Summary Heading
+  driverCount = driverCount + driverArr.length;
+  summaryHeading.innerHTML = `Your Policy Has ${driverCount} Vehicles`;
+  debugger;
   // runVehicleItemsFunctionality();
+}
+
+// ********** FUNCTIONALITY OF MORE VEHICLE FORMS : Edit, Delete ***********
+function runVehicleItemsFunctionality() {
+  const moreVehicles = document.getElementById("moreVehicles");
+  const moreVehicleItems = moreVehicles.querySelectorAll(".quote_request__summary_item");
+
+  moreVehicleItems.forEach((item, itemIndex) => {
+    const vehicleId = item.getAttribute("data-id");
+
+    const editBtn = item.querySelector(".editBtn");
+    const deleteBtn = item.querySelector(".deleteBtn");
+    const deleteYes = item.querySelector(".deleteYes");
+    const deleteNo = item.querySelector(".deleteNo");
+
+    editBtn?.addEventListener("click", () => {
+      editVehicleIndex = vehicleId;
+
+      if (!formList.includes("add_more_vehicle_form")) {
+        const summaryIndex = formList.indexOf("summary__form");
+        formList.splice(summaryIndex, 0, "add_more_vehicle_form");
+
+        showActiveForm(motorStep, motorBackBtn);
+
+        // Assign the values
+        function editFormWithValue(id, type) {
+          document.getElementById(id).value = formData[`vehicle${vehicleId}${type}`];
+        }
+
+        editFormWithValue("vehicle-Year", "Year");
+        editFormWithValue("vehicle-Make", "Make");
+        editFormWithValue("vehicle-Model", "Model");
+        editFormWithValue("vehicle-Type", "Type");
+        editFormWithValue("vehicle-EstimatedValue", "EstimatedValue");
+        editFormWithValue("vehicle-Storage", "Storage");
+        editFormWithValue("vehicle-DriveDescription", "DriveDescription");
+      }
+    });
+
+    deleteBtn?.addEventListener("click", () => {
+      item.querySelector(".yes_no")?.classList.remove("__hide");
+      item.querySelector(".delete_edit")?.classList.add("__hide");
+    });
+
+    deleteNo.addEventListener("click", () => {
+      item.querySelector(".yes_no")?.classList.add("__hide");
+      item.querySelector(".delete_edit")?.classList.remove("__hide");
+    });
+
+    deleteYes.addEventListener("click", () => {
+      for (const k in collectorVehicles[itemIndex + 1]) {
+        delete formData[k];
+      }
+
+      // collectorVehicles[itemIndex + 1] = "deleted";
+      collectorVehicles = collectorVehicles.filter((item, i) => i !== itemIndex + 1);
+
+      item.classList.add("__hide");
+      item.remove(); // delete elements
+
+      addVehicle.disabled = false;
+    });
+  });
 }
 
 // *********************************************
