@@ -518,19 +518,10 @@ function runVehicleItemsFunctionality() {
 
 function summaryFunctionality() {
   const summaryHeading = document.querySelector(".summary__form .quote_request_heading");
-
   summaryHeading.innerHTML = `Your Policy Has ${collectorVehicles.length} Vehicles`;
-  //
-  // Check Main Vehicle data OKK or Not
-  const mainVehicleFields = document.querySelectorAll(".add_vehicle_form .field__input");
-
-  const mainVehicleValues = [];
-  mainVehicleFields.forEach((field) => mainVehicleValues.push(field.value));
-
-  const haveAllMainVehicleValues = mainVehicleValues.every((v) => Boolean(v) === true);
 
   // If Main Vehicle Data OKK then direct show SUMMARY neither show add_vehicle_form
-  if (!haveAllMainVehicleValues) {
+  if (collectorVehicles.length > 0) {
     if (!formList.includes("add_vehicle_form")) {
       const summaryIndex = formList.indexOf("summary__form");
 
@@ -540,19 +531,10 @@ function summaryFunctionality() {
     showActiveForm(motorStep, motorBackBtn);
   } else {
     formList = formList.filter((form) => form != "add_vehicle_form");
-    // show data in Summary
-    if (collectorVehicles.length > 0) {
-      const { vehicle0Year, vehicle0Make, vehicle0Model } = formData;
-      document.querySelector(
-        ".quote_request__summary_main_item_info"
-      ).innerText = `${vehicle0Year} ${vehicle0Make} ${vehicle0Model}`;
-    }
   }
 
   // Add all data to moreVehicles sections
   collectorVehicles = collectorVehicles.filter((item) => item !== "deleted");
-
-  const moreVehicles = collectorVehicles.filter((item, index) => index > 0);
 
   const addedSummary = document.querySelector("#moreVehicles");
   // const totalAdded = addedSummary.children?.length;
@@ -562,7 +544,7 @@ function summaryFunctionality() {
     addedSummary.innerHTML = "";
     const demoItem = document.querySelector(".quote_request__summary_item.demoItem");
     // Clone the demo, create and append
-    moreVehicles.forEach((info, i) => {
+    collectorVehicles.forEach((info, i) => {
       const clonedItem = demoItem.cloneNode(true);
       clonedItem.classList.remove("__hide", "demoItem");
       clonedItem.setAttribute("data-id", info.vehicleId);
@@ -581,6 +563,8 @@ function summaryFunctionality() {
 
       // append clone element in Summary
       addedSummary.appendChild(clonedItem);
+
+      debugger;
     });
   }
 
