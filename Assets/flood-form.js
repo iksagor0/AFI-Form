@@ -1,3 +1,4 @@
+2; // const floodSuccessRedirection = "https://afi.org/";
 // const floodSuccessRedirection = "../--Model/thank-you.html";
 
 // Forms
@@ -145,7 +146,7 @@ function floodPropertyQuotedFormFunc() {
       floodQuotedMatchEl.forEach((el) => {
         const elMatch = el.getAttribute("data-match");
 
-        if (elMatch === elementMatch) el.value = element.value;
+        if (elementMatch && elMatch === elementMatch) el.value = element.value;
         el.disabled = disability;
         isFloodSameAddressEl.disabled = false;
       });
