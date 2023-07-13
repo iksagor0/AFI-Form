@@ -79,10 +79,17 @@ function handleMotorStepForm(step) {
   }
 
   if (step === formList.indexOf("policyholder_form")) {
-    // if (!policyholderValidation(step)) return false;
+    if (!policyholderValidation(step)) return false;
   }
   if (step === formList.indexOf("spouse_information")) {
     if (!validateForm("spouse_information")) return false;
+  }
+
+  if (
+    step === formList.indexOf("driver_summary_form") ||
+    step === formList.indexOf("driver_summary_form") - 1
+  ) {
+    driverSummaryFunc();
   }
 
   //
@@ -150,61 +157,41 @@ addDriver?.addEventListener("click", function () {
   //   });
 });
 
+const aDrivers = [];
+
 function driverSummaryFunc() {
-  // const summaryHeading = document.querySelector(
-  //   ".summary__form .quote_request_heading"
-  // );
-
-  // summaryHeading.innerHTML = `Your Policy Has ${collectorVehicles.length} Vehicles`;
-  //
-  // Check Main Vehicle data OKK or Not
-  const mainVehicleFields = document.querySelectorAll(
-    ".add_vehicle_form .field__input"
+  const summaryHeading = document.querySelector(
+    ".summary__form .quote_request_heading"
   );
 
-  const mainVehicleValues = [];
-  mainVehicleFields.forEach((field) => mainVehicleValues.push(field.value));
+  let driverCount = 1;
 
-  const haveAllMainVehicleValues = mainVehicleValues.every(
-    (v) => Boolean(v) === true
-  );
+  summaryHeading.innerHTML = `Your Policy Has ${driverCount} Vehicles`;
 
-  // If Main Vehicle Data OKK then direct show SUMMARY neither show add_vehicle_form
-  if (!haveAllMainVehicleValues) {
-    if (!formList.includes("add_vehicle_form")) {
-      const summaryIndex = formList.indexOf("summary__form");
+  // Policyholder info in driver summary
+  const { policyHolderFirstName, policyHolderLastName, policyHolderDob } =
+    formData;
+  document.querySelector(
+    ".quote_request__summary_policyholer_item"
+  ).innerHTML = `${policyHolderFirstName} ${policyHolderLastName} ${policyHolderDob} <br> <p>policyholder</p>`;
 
-      formList.splice(summaryIndex, 0, "add_vehicle_form");
-    }
-
-    showActiveForm(motorStep, motorBackBtn);
-  } else {
-    formList = formList.filter((form) => form != "add_vehicle_form");
-    // show data in Summary
-    if (collectorVehicles.length > 0) {
-      const { vehicle0Year, vehicle0Make, vehicle0Model } = formData;
-      document.querySelector(
-        ".quote_request__summary_main_item_info"
-      ).innerText = `${vehicle0Year} ${vehicle0Make} ${vehicle0Model}`;
-    }
-  }
+  debugger;
 
   // Add all data to moreVehicles sections
-  collectorVehicles = collectorVehicles.filter((item) => item !== "deleted");
+  aDrivers = aDrivers.filter((item) => item !== "deleted");
 
-  const moreVehicles = collectorVehicles.filter((item, index) => index > 0);
+  const additionDrivers = aDrivers.filter((item, index) => index > 0);
 
-  const addedSummary = document.querySelector("#moreVehicles");
-  // const totalAdded = addedSummary.children?.length;
+  const addDriversList = document.querySelector("#addDriversList");
 
-  // if all data not appended then Append Data to #moreVehicles
-  if (moreVehicles.length > 0) {
-    addedSummary.innerHTML = "";
+  // if all data not appended then Append Data to #addDriversList
+  if (aDrivers.length > 0) {
+    addDriversList.innerHTML = "";
     const demoItem = document.querySelector(
       ".quote_request__summary_item.demoItem"
     );
     // Clone the demo, create and append
-    moreVehicles.forEach((info, i) => {
+    additionDrivers.forEach((info, i) => {
       const clonedItem = demoItem.cloneNode(true);
       clonedItem.classList.remove("__hide", "demoItem");
       clonedItem.setAttribute("data-id", info.vehicleId);
@@ -224,18 +211,12 @@ function driverSummaryFunc() {
       ).innerHTML = `${vYear} ${vMake} ${vModel}`;
 
       // append clone element in Summary
-      addedSummary.appendChild(clonedItem);
+      addDriversList.appendChild(clonedItem);
     });
   }
 
-  // ****************************************************
-  // const filterCVehicles = collectorVehicles.map((data) => {
-  //   delete data.vehicleId;
-  //   return data;
-  // });
-
-  collectorVehicles.forEach((info) => (formData = { ...formData, ...info }));
-  delete formData.vehicleId;
+  aDrivers.forEach((info) => (formData = { ...formData, ...info }));
+  delete formData?.driverId;
 
   runVehicleItemsFunctionality();
 }

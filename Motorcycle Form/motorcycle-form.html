@@ -1202,12 +1202,30 @@
             <h2 class="quote_request_heading">Your Policy Has 1 Drivers</h2>
             <!-- Summary -->
             <div class="quote_request__summary">
-              <!-- Main Vehicle -->
+              <!-- PolicyHoler -->
               <div
-                class="quote_request__summary_item quote_request__summary_main_item"
+                class="quote_request__summary_item quote_request__summary_policyholer_item"
               >
                 <p
-                  class="quote_request__summary_item_info quote_request__summary_main_item_info"
+                  class="quote_request__summary_item_info quote_request__summary_policyholer_item_info"
+                ></p>
+                <div class="quote_request__summary_item_actions delete_edit">
+                  <button
+                    id="mainVehicleEditBtn"
+                    class="button-bare"
+                    type="button"
+                  >
+                    Edit
+                  </button>
+                </div>
+              </div>
+
+              <!-- Spouse -->
+              <div
+                class="quote_request__summary_item quote_request__summary_spouse_item __hide"
+              >
+                <p
+                  class="quote_request__summary_item_info quote_request__summary_spouse_item_info"
                 ></p>
                 <div class="quote_request__summary_item_actions delete_edit">
                   <button
@@ -1258,7 +1276,7 @@
                 </div>
               </div>
               <!-- More Vehicles Items -->
-              <div id="moreVehicles"></div>
+              <div id="addDriversList"></div>
             </div>
 
             <!-- Add Button -->
