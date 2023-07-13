@@ -80,15 +80,13 @@ function handleMotorStepForm(step) {
 
   if (step === formList.indexOf("policyholder_form")) {
     if (!policyholderValidation(step)) return false;
+    spouseOperatorFunc();
   }
   if (step === formList.indexOf("spouse_information")) {
     if (!validateForm("spouse_information")) return false;
   }
 
-  if (
-    step === formList.indexOf("driver_summary_form") ||
-    step === formList.indexOf("driver_summary_form") - 1
-  ) {
+  if (step === formList.indexOf("driver_summary_form") || step === formList.indexOf("driver_summary_form") - 1) {
     driverSummaryFunc();
   }
 
@@ -101,10 +99,7 @@ function handleMotorStepForm(step) {
     if (!addMoreVehicleValidation()) return false;
     summaryFunctionality();
   }
-  if (
-    step === formList.indexOf("summary__form") ||
-    step === formList.indexOf("summary__form") - 1
-  ) {
+  if (step === formList.indexOf("summary__form") || step === formList.indexOf("summary__form") - 1) {
     summaryFunctionality();
   }
 
@@ -138,6 +133,21 @@ function handleMotorStepForm(step) {
 // *********************************************
 //              STEP-1 FUNCTIONALITY
 // *********************************************
+function spouseOperatorFunc() {
+  const cohabOperator = document.getElementById("cohabitantIsOperator");
+  const cohaExp = document.getElementById("cohabitantYearsExperience");
+
+  cohabOperator.addEventListener("change", () => {
+    if (cohabOperator.value === "Yes") {
+      cohaExp.disabled = false;
+      cohaExp.classList.add("required");
+    } else {
+      cohaExp.disabled = true;
+      cohaExp.classList.remove("required");
+    }
+  });
+}
+
 const addDriver = document.getElementById("addDriver");
 
 addDriver?.addEventListener("click", function () {
@@ -157,23 +167,33 @@ addDriver?.addEventListener("click", function () {
   //   });
 });
 
-const aDrivers = [];
+let aDrivers = [];
 
 function driverSummaryFunc() {
-  const summaryHeading = document.querySelector(
-    ".summary__form .quote_request_heading"
-  );
+  const summaryHeading = document.querySelector(".summary__form .quote_request_heading");
 
   let driverCount = 1;
 
   summaryHeading.innerHTML = `Your Policy Has ${driverCount} Vehicles`;
 
   // Policyholder info in driver summary
-  const { policyHolderFirstName, policyHolderLastName, policyHolderDob } =
-    formData;
+  const { policyHolderFirstName, policyHolderLastName, policyHolderDob } = formData;
   document.querySelector(
-    ".quote_request__summary_policyholer_item"
+    ".quote_request__summary_policyholer_item_info"
   ).innerHTML = `${policyHolderFirstName} ${policyHolderLastName} ${policyHolderDob} <br> <p>policyholder</p>`;
+
+  // Spouse info in driver summary
+  const cohabOperatorVal = document.getElementById("cohabitantIsOperator")?.value;
+  const spouseItemInfo = document.querySelector(".quote_request__summary_spouse_item_info");
+
+  if (cohabOperatorVal === "Yes") {
+    const { cohabitantFirstName, cohabitantLastName, cohabitantDob } = formData;
+
+    spouseItemInfo.parentElement.classList.remove("__hide");
+    spouseItemInfo.innerHTML = `${policyHolderFirstName} ${policyHolderLastName} ${policyHolderDob}`;
+  } else {
+    spouseItemInfo.parentElement.classList.add("__hide");
+  }
 
   debugger;
 
@@ -187,9 +207,7 @@ function driverSummaryFunc() {
   // if all data not appended then Append Data to #addDriversList
   if (aDrivers.length > 0) {
     addDriversList.innerHTML = "";
-    const demoItem = document.querySelector(
-      ".quote_request__summary_item.demoItem"
-    );
+    const demoItem = document.querySelector(".quote_request__summary_item.demoItem");
     // Clone the demo, create and append
     additionDrivers.forEach((info, i) => {
       const clonedItem = demoItem.cloneNode(true);
@@ -206,9 +224,7 @@ function driverSummaryFunc() {
         if (String(k).includes("Model")) vModel = info[k];
       }
 
-      clonedItem.querySelector(
-        ".quote_request__summary_item_info"
-      ).innerHTML = `${vYear} ${vMake} ${vModel}`;
+      clonedItem.querySelector(".quote_request__summary_item_info").innerHTML = `${vYear} ${vMake} ${vModel}`;
 
       // append clone element in Summary
       addDriversList.appendChild(clonedItem);
@@ -233,9 +249,7 @@ const maxVehicleItem = 4;
 const addVehicle = document.getElementById("addVehicle");
 
 addVehicle?.addEventListener("click", function () {
-  const fields = document.querySelectorAll(
-    ".add_more_vehicle_form .field__input"
-  );
+  const fields = document.querySelectorAll(".add_more_vehicle_form .field__input");
   fields.forEach((field) => (field.value = ""));
 
   if (!formList.includes("add_more_vehicle_form")) {
@@ -260,9 +274,7 @@ addVehicle?.addEventListener("click", function () {
   if (collectorVehicles.length >= maxVehicleItem) this.disabled = true;
 
   //set field name and id
-  const allFields = document.querySelectorAll(
-    `.add_more_vehicle_form .field__input`
-  );
+  const allFields = document.querySelectorAll(`.add_more_vehicle_form .field__input`);
 
   allFields.forEach((field) => {
     const fieldName = field.getAttribute("data-field");
@@ -288,9 +300,7 @@ mainVehicleEditBtn?.addEventListener("click", () => {
 // ********** FUNCTIONALITY OF MORE VEHICLE FORMS : Edit, Delete ***********
 function runVehicleItemsFunctionality() {
   const moreVehicles = document.getElementById("moreVehicles");
-  const moreVehicleItems = moreVehicles.querySelectorAll(
-    ".quote_request__summary_item"
-  );
+  const moreVehicleItems = moreVehicles.querySelectorAll(".quote_request__summary_item");
 
   moreVehicleItems.forEach((item, itemIndex) => {
     const vehicleId = item.getAttribute("data-id");
@@ -311,8 +321,7 @@ function runVehicleItemsFunctionality() {
 
         // Assign the values
         function editFormWithValue(id, type) {
-          document.getElementById(id).value =
-            formData[`vehicle${vehicleId}${type}`];
+          document.getElementById(id).value = formData[`vehicle${vehicleId}${type}`];
         }
 
         editFormWithValue("vehicle-Year", "Year");
@@ -341,9 +350,7 @@ function runVehicleItemsFunctionality() {
       }
 
       // collectorVehicles[itemIndex + 1] = "deleted";
-      collectorVehicles = collectorVehicles.filter(
-        (item, i) => i !== itemIndex + 1
-      );
+      collectorVehicles = collectorVehicles.filter((item, i) => i !== itemIndex + 1);
 
       item.classList.add("__hide");
       item.remove(); // delete elements
@@ -358,23 +365,17 @@ function runVehicleItemsFunctionality() {
 // *********************************************
 
 function summaryFunctionality() {
-  const summaryHeading = document.querySelector(
-    ".summary__form .quote_request_heading"
-  );
+  const summaryHeading = document.querySelector(".summary__form .quote_request_heading");
 
   summaryHeading.innerHTML = `Your Policy Has ${collectorVehicles.length} Vehicles`;
   //
   // Check Main Vehicle data OKK or Not
-  const mainVehicleFields = document.querySelectorAll(
-    ".add_vehicle_form .field__input"
-  );
+  const mainVehicleFields = document.querySelectorAll(".add_vehicle_form .field__input");
 
   const mainVehicleValues = [];
   mainVehicleFields.forEach((field) => mainVehicleValues.push(field.value));
 
-  const haveAllMainVehicleValues = mainVehicleValues.every(
-    (v) => Boolean(v) === true
-  );
+  const haveAllMainVehicleValues = mainVehicleValues.every((v) => Boolean(v) === true);
 
   // If Main Vehicle Data OKK then direct show SUMMARY neither show add_vehicle_form
   if (!haveAllMainVehicleValues) {
@@ -407,9 +408,7 @@ function summaryFunctionality() {
   // if all data not appended then Append Data to #moreVehicles
   if (moreVehicles.length > 0) {
     addedSummary.innerHTML = "";
-    const demoItem = document.querySelector(
-      ".quote_request__summary_item.demoItem"
-    );
+    const demoItem = document.querySelector(".quote_request__summary_item.demoItem");
     // Clone the demo, create and append
     moreVehicles.forEach((info, i) => {
       const clonedItem = demoItem.cloneNode(true);
@@ -426,9 +425,7 @@ function summaryFunctionality() {
         if (String(k).includes("Model")) vModel = info[k];
       }
 
-      clonedItem.querySelector(
-        ".quote_request__summary_item_info"
-      ).innerHTML = `${vYear} ${vMake} ${vModel}`;
+      clonedItem.querySelector(".quote_request__summary_item_info").innerHTML = `${vYear} ${vMake} ${vModel}`;
 
       // append clone element in Summary
       addedSummary.appendChild(clonedItem);
@@ -453,9 +450,7 @@ function addVehicleValidation() {
   if (isValidate) {
     collectorVehicles[0] = {};
 
-    const allFields = document.querySelectorAll(
-      `.add_vehicle_form .field__input`
-    );
+    const allFields = document.querySelectorAll(`.add_vehicle_form .field__input`);
 
     allFields.forEach((field) => {
       collectorVehicles[0][field.name] = field.value;
@@ -476,9 +471,7 @@ function addMoreVehicleValidation() {
   if (isValidate) {
     const vehicleData = {};
 
-    const allFields = document.querySelectorAll(
-      `.add_more_vehicle_form .field__input`
-    );
+    const allFields = document.querySelectorAll(`.add_more_vehicle_form .field__input`);
 
     allFields.forEach((field) => {
       vehicleData[field.name] = field.value;
@@ -486,14 +479,10 @@ function addMoreVehicleValidation() {
 
     // UPDATE or CREATE Vehicle Data
     if (editVehicleIndex > 0) {
-      const matchId = collectorVehicles.filter(
-        (v) => v.vehicleId == editVehicleIndex
-      );
+      const matchId = collectorVehicles.filter((v) => v.vehicleId == editVehicleIndex);
       const updatedData = { ...matchId[0], ...vehicleData };
 
-      collectorVehicles = collectorVehicles.map((vData) =>
-        vData.vehicleId == editVehicleIndex ? updatedData : vData
-      );
+      collectorVehicles = collectorVehicles.map((vData) => (vData.vehicleId == editVehicleIndex ? updatedData : vData));
 
       // collectorVehicles[Number(vehicleId)] = vehicleData;
       editVehicleIndex = -1;
@@ -517,9 +506,7 @@ function addMoreVehicleValidation() {
 // *********************************************
 const addViolationBtn = document.getElementById("add_violation_btn");
 const violationsFields = document.querySelector(".violation_info_fields");
-const violationWrapper = document.getElementById(
-  "violation_info_fields_wrapper"
-);
+const violationWrapper = document.getElementById("violation_info_fields_wrapper");
 
 let vioSerial = 0;
 
@@ -542,9 +529,7 @@ addViolationBtn?.addEventListener("click", function () {
   violationWrapper.appendChild(newFields);
 
   // Data Validator added
-  document
-    .querySelectorAll(".householdViolationsDate")
-    .forEach((vDate) => dateValidation(vDate, thisYear));
+  document.querySelectorAll(".householdViolationsDate").forEach((vDate) => dateValidation(vDate, thisYear));
 
   if (violationWrapper.children.length >= 5) {
     this.disabled = true;
@@ -561,9 +546,7 @@ function disableViolationInputs(disable = true) {
 }
 disableViolationInputs(true);
 
-const hasViolationsFields = document.getElementsByName(
-  "householdViolationsPreviousClaims"
-);
+const hasViolationsFields = document.getElementsByName("householdViolationsPreviousClaims");
 const getViolationsValue = () => {
   let value = "";
   hasViolationsFields?.forEach((field) => {
@@ -599,8 +582,7 @@ accordionButtons?.forEach((button) => {
     accordion.classList.toggle("qrf-accordion--active");
 
     const symbol = button.querySelector(".qrf_accordion");
-    if (accordion.classList.contains("qrf-accordion--active"))
-      symbol.innerHTML = "-";
+    if (accordion.classList.contains("qrf-accordion--active")) symbol.innerHTML = "-";
     else symbol.innerHTML = "+";
   });
 });
@@ -608,9 +590,7 @@ accordionButtons?.forEach((button) => {
 // ********* FUNCTIONALITY physical_damage_form *********
 function functionalityForEachDamageForm() {
   const damageForm = document.querySelector(".damage__form.__hide");
-  const DamageFormWrapper = document.getElementById(
-    "physical_damage_form_wrapper"
-  );
+  const DamageFormWrapper = document.getElementById("physical_damage_form_wrapper");
 
   // Clear DamageFormWrapper Children
   DamageFormWrapper.innerHTML = "";
@@ -626,9 +606,7 @@ function functionalityForEachDamageForm() {
     const clonedItem = damageForm.cloneNode(true);
 
     clonedItem.classList.remove("__hide");
-    clonedItem.querySelector(
-      ".vehicle_name"
-    ).innerHTML = `${year} ${make} ${model}`;
+    clonedItem.querySelector(".vehicle_name").innerHTML = `${year} ${make} ${model}`;
 
     // liability radio fields functionality
     const liabilityYes = clonedItem.querySelector("#liability--Yes");
@@ -653,9 +631,7 @@ function functionalityForEachDamageForm() {
     liabilityYes?.addEventListener("change", toggleDisability);
 
     function toggleDisability() {
-      const disabledFields = clonedItem.querySelectorAll(
-        ".field__input.damage"
-      );
+      const disabledFields = clonedItem.querySelectorAll(".field__input.damage");
 
       if (liabilityNo.checked) {
         disabledFields.forEach((field) => {
@@ -683,8 +659,7 @@ function functionalityForEachDamageForm() {
 // *********************************************
 function violationsValidation() {
   if (getViolationsValue() === "No") {
-    formData.householdViolationsPreviousClaims =
-      "No violations in last 5 years";
+    formData.householdViolationsPreviousClaims = "No violations in last 5 years";
     return true;
   } else if (getViolationsValue() === "Yes") {
     const fieldsWrapper = document.querySelectorAll(".violation_info_fields");
@@ -718,9 +693,7 @@ function violationsValidation() {
 
     return result;
   } else {
-    const fieldContainer = document.querySelector(
-      ".has_violation_inputs_container"
-    );
+    const fieldContainer = document.querySelector(".has_violation_inputs_container");
     isValueEmpty(fieldContainer);
 
     return false;
@@ -731,13 +704,9 @@ function physicalDamageValidation() {
   const fieldError = collectorVehicles.map((vData) => {
     const vId = vData.vehicleId;
 
-    const radioFields = document.querySelectorAll(
-      `input[name=vehicle${vId}LiabilityOnlyCoverage]`
-    );
+    const radioFields = document.querySelectorAll(`input[name=vehicle${vId}LiabilityOnlyCoverage]`);
 
-    const fieldChecked = document.querySelector(
-      `input[name=vehicle${vId}LiabilityOnlyCoverage]:checked`
-    );
+    const fieldChecked = document.querySelector(`input[name=vehicle${vId}LiabilityOnlyCoverage]:checked`);
 
     const fieldParent = radioFields[0].closest(".fields-row");
     const fieldError = fieldParent.querySelector(".field__error-message");
@@ -763,26 +732,18 @@ function physicalDamageValidation() {
   const isValidate = validateForm("physical_damage_form", false);
 
   if (isValidate) {
-    const damageForms = document.querySelectorAll(
-      "#physical_damage_form_wrapper .damage__form"
-    );
+    const damageForms = document.querySelectorAll("#physical_damage_form_wrapper .damage__form");
 
     damageForms.forEach((damageForm, i) => {
       const vId = collectorVehicles[i].vehicleId;
 
-      const liaCoVal = damageForm.querySelector(
-        `input[name=vehicle${vId}LiabilityOnlyCoverage]:checked`
-      )?.value;
+      const liaCoVal = damageForm.querySelector(`input[name=vehicle${vId}LiabilityOnlyCoverage]:checked`)?.value;
 
       collectorVehicles[i][`vehicle${vId}LiabilityOnlyCoverage`] = liaCoVal;
 
       if (liaCoVal === "No") {
-        const comVal = damageForm.querySelector(
-          ".field__input.vehicleComprehensiveDeductible"
-        )?.value;
-        const colVal = damageForm.querySelector(
-          ".field__input.vehicleCollisionDeductible"
-        )?.value;
+        const comVal = damageForm.querySelector(".field__input.vehicleComprehensiveDeductible")?.value;
+        const colVal = damageForm.querySelector(".field__input.vehicleCollisionDeductible")?.value;
 
         collectorVehicles[i][`vehicle${vId}ComprehensiveDeductible`] = comVal;
         collectorVehicles[i][`vehicle${vId}CollisionDeductible`] = colVal;
