@@ -258,6 +258,11 @@ function runVehicleItemsFunctionality() {
 // *********************************************
 
 function summaryFunctionality() {
+  const summaryHeading = document.querySelector(
+    ".summary__form .quote_request_heading"
+  );
+
+  summaryHeading.innerHTML = `Your Policy Has ${collectorVehicles.length} Vehicles`;
   //
   // Check Main Vehicle data OKK or Not
   const mainVehicleFields = document.querySelectorAll(
