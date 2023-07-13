@@ -393,7 +393,16 @@ const addVehicle = document.getElementById("addVehicle");
 
 addVehicle?.addEventListener("click", function () {
   const fields = document.querySelectorAll(".add_vehicle_form .field__input");
-  fields.forEach((field) => (field.value = ""));
+  fields.forEach((field) => {
+    field.value = "";
+
+    setMatchedData(false);
+    document.querySelector(".vehicleAddress").value = "";
+
+    const isSameAddressEl = document.querySelector(".AddressSameAsMailing--true");
+    isSameAddressEl.value = "true";
+    isSameAddressEl.checked = false;
+  });
 
   if (!formList.includes("add_vehicle_form")) {
     const summaryIndex = formList.indexOf("summary__form");
@@ -645,22 +654,24 @@ function addMoreVehicleValidation() {
 }
 
 // Same Mailing Address Functionality
+function setMatchedData(disability) {
+  const isSameAddressEl = document.querySelector(".AddressSameAsMailing--true");
+
+  const addVehicleFields = document.querySelectorAll(".vehicleFullAddress .field__input");
+
+  addVehicleFields.forEach((el) => {
+    el.disabled = disability;
+    isSameAddressEl.disabled = false;
+
+    const dataMatch = el.getAttribute("data-match");
+    if (dataMatch) el.value = formData[dataMatch];
+  });
+}
 
 function addVehicleFunc() {
   const isSameAddressEl = document.querySelector(".AddressSameAsMailing--true");
   isSameAddressEl.checked = false;
   //
-  const addVehicleFields = document.querySelectorAll(".add_vehicle_form .field__input");
-
-  function setMatchedData(disability) {
-    addVehicleFields.forEach((el) => {
-      el.disabled = disability;
-      isSameAddressEl.disabled = false;
-
-      const dataMatch = el.getAttribute("data-match");
-      if (dataMatch) el.value = formData[dataMatch];
-    });
-  }
 
   setMatchedData(false);
   document.querySelector(".vehicleAddress").value = "";
@@ -670,9 +681,13 @@ function addVehicleFunc() {
     if (isSameAddressEl.checked) {
       setMatchedData(true);
     } else {
+      const addVehicleFields = document.querySelectorAll(".vehicleFullAddress .field__input");
+
       addVehicleFields.forEach((el, i) => {
         el.value = "";
         el.disabled = false;
+
+        isSameAddressEl.value = "true";
 
         if (i === 1) el.focus();
       });

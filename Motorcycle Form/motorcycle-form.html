@@ -1421,96 +1421,98 @@
               </div>
             </div>
 
-            <!-- Same Address -->
-            <div class="fields-row">
-              <div class="field field--full">
-                <div class="field-group field-group--inline">
-                  <div class="field__input-wrapper">
-                    <input
-                      class="field__input AddressSameAsMailing--true"
-                      id="vehicle0AddressSameAsMailing--true"
-                      name="vehicle0AddressSameAsMailing"
-                      type="checkbox"
-                      value="true"
-                    /><label class="field__label" for="vehicle0AddressSameAsMailing--true"
-                      >My garaging address is the same as mailing address</label
-                    >
+            <div class="vehicleFullAddress">
+              <!-- Same Address -->
+              <div class="fields-row">
+                <div class="field field--full">
+                  <div class="field-group field-group--inline">
+                    <div class="field__input-wrapper">
+                      <input
+                        class="field__input AddressSameAsMailing--true"
+                        id="vehicle0AddressSameAsMailing--true"
+                        name="vehicle0AddressSameAsMailing"
+                        type="checkbox"
+                        value="true"
+                      /><label class="field__label" for="vehicle0AddressSameAsMailing--true"
+                        >My garaging address is the same as mailing address</label
+                      >
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <!-- Garaging Address -->
-            <div class="fields-row">
-              <div class="field field--xxlarge">
-                <div class="field__label-wrapper">
-                  <label class="field__label" for="vehicle0Address">Garaging Address</label>
-                </div>
-                <div class="field__input-wrapper">
-                  <input
-                    class="field__input vehicleAddress required"
-                    id="vehicle0Address"
-                    name="vehicle0Address"
-                    type="text"
-                    maxlength="100"
-                    data-match="policyHolderMailingAddress"
-                  />
+              <!-- Garaging Address -->
+              <div class="fields-row">
+                <div class="field field--xxlarge">
+                  <div class="field__label-wrapper">
+                    <label class="field__label" for="vehicle0Address">Garaging Address</label>
+                  </div>
+                  <div class="field__input-wrapper">
+                    <input
+                      class="field__input vehicleAddress required"
+                      id="vehicle0Address"
+                      name="vehicle0Address"
+                      type="text"
+                      maxlength="100"
+                      data-match="policyHolderMailingAddress"
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <!-- City, State, Zip -->
-            <div class="fields-row">
-              <div class="field field--large">
-                <div class="field__label-wrapper">
-                  <label class="field__label" for="vehicle0City">City</label>
+              <!-- City, State, Zip -->
+              <div class="fields-row">
+                <div class="field field--large">
+                  <div class="field__label-wrapper">
+                    <label class="field__label" for="vehicle0City">City</label>
+                  </div>
+                  <div class="field__input-wrapper">
+                    <input
+                      class="field__input required vehicleCity"
+                      id="vehicle0City"
+                      name="vehicle0City"
+                      maxlength="50"
+                      type="text"
+                      data-match="policyHolderCity"
+                    />
+                  </div>
                 </div>
-                <div class="field__input-wrapper">
-                  <input
-                    class="field__input required vehicleCity"
-                    id="vehicle0City"
-                    name="vehicle0City"
-                    maxlength="50"
-                    type="text"
-                    data-match="policyHolderCity"
-                  />
+                <div class="field field--medium">
+                  <div class="field__label-wrapper">
+                    <label class="field__label" for="vehicle0State">State</label>
+                  </div>
+                  <div class="field__input-wrapper">
+                    <select
+                      class="field__input vehicleState required"
+                      id="vehicle0State"
+                      name="vehicle0State"
+                      type="select"
+                      data-match="policyHolderState"
+                    >
+                      <option value="">Choose One</option>
+                      <option value="AL">Alabama</option>
+                      <option value="AK">Alaska</option>
+                      <option value="UT">Utah</option>
+                      <option value="WA">Washington</option>
+                    </select>
+                  </div>
                 </div>
-              </div>
-              <div class="field field--medium">
-                <div class="field__label-wrapper">
-                  <label class="field__label" for="vehicle0State">State</label>
-                </div>
-                <div class="field__input-wrapper">
-                  <select
-                    class="field__input vehicleState required"
-                    id="vehicle0State"
-                    name="vehicle0State"
-                    type="select"
-                    data-match="policyHolderState"
-                  >
-                    <option value="">Choose One</option>
-                    <option value="AL">Alabama</option>
-                    <option value="AK">Alaska</option>
-                    <option value="UT">Utah</option>
-                    <option value="WA">Washington</option>
-                  </select>
-                </div>
-              </div>
-              <div class="field field--small">
-                <div class="field__label-wrapper">
-                  <label class="field__label" for="vehicle0Zip">Zip</label>
-                </div>
-                <div class="field__input-wrapper">
-                  <input
-                    class="field__input required zip"
-                    id="vehicle0Zip"
-                    name="vehicle0Zip"
-                    type="text"
-                    required=""
-                    pattern="[0-9]{5}"
-                    maxlength="5"
-                    data-match="policyHolderZip"
-                  />
+                <div class="field field--small">
+                  <div class="field__label-wrapper">
+                    <label class="field__label" for="vehicle0Zip">Zip</label>
+                  </div>
+                  <div class="field__input-wrapper">
+                    <input
+                      class="field__input required zip"
+                      id="vehicle0Zip"
+                      name="vehicle0Zip"
+                      type="text"
+                      required=""
+                      pattern="[0-9]{5}"
+                      maxlength="5"
+                      data-match="policyHolderZip"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
