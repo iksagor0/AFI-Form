@@ -79,7 +79,7 @@ function handleMotorStepForm(step) {
   }
 
   if (step === formList.indexOf("policyholder_form")) {
-    // if (!policyholderValidation(step)) return false;
+    if (!policyholderValidation(step)) return false;
     spouseOperatorFunc();
   }
   if (step === formList.indexOf("spouse_information")) {
@@ -88,6 +88,10 @@ function handleMotorStepForm(step) {
 
   if (step === formList.indexOf("driver_summary_form") || step === formList.indexOf("driver_summary_form") - 1) {
     driverSummaryFunc();
+  }
+
+  if (step === formList.indexOf("additional_driver")) {
+    if (!addDriverValidation("additional_driver")) return false;
   }
 
   //
@@ -193,8 +197,6 @@ addDriver?.addEventListener("click", function () {
 
     field.id = field.name = property;
   });
-
-  debugger;
 });
 
 function driverSummaryFunc() {
@@ -208,7 +210,7 @@ function driverSummaryFunc() {
   const { policyHolderFirstName, policyHolderLastName, policyHolderDob } = formData;
   document.querySelector(
     ".quote_request__summary_policyholer_item_info"
-  ).innerHTML = `${policyHolderFirstName} ${policyHolderLastName} ${policyHolderDob} <br> <p>policyholder</p>`;
+  ).innerHTML = `${policyHolderFirstName} ${policyHolderLastName}, ${policyHolderDob} <br> <p>policyholder</p>`;
 
   // Spouse info in driver summary
   const cohabOperatorVal = document.getElementById("cohabitantIsOperator")?.value;
@@ -218,12 +220,12 @@ function driverSummaryFunc() {
     const { cohabitantFirstName, cohabitantLastName, cohabitantDob } = formData;
 
     spouseItemInfo.parentElement.classList.remove("__hide");
-    spouseItemInfo.innerHTML = `${policyHolderFirstName} ${policyHolderLastName} ${policyHolderDob}`;
+    spouseItemInfo.innerHTML = `${policyHolderFirstName} ${policyHolderLastName}, ${policyHolderDob}`;
   } else {
     spouseItemInfo.parentElement.classList.add("__hide");
   }
 
-  debugger;
+  // debugger;
 
   // Add all data to moreVehicles sections
   driverArr = driverArr.filter((item) => item !== "deleted");
@@ -252,7 +254,7 @@ function driverSummaryFunc() {
         if (String(k).includes("Dob")) dDob = info[k];
       }
 
-      clonedItem.querySelector(".quote_request__summary_item_info").innerHTML = `${vYear} ${vMake} ${vModel}`;
+      clonedItem.querySelector(".quote_request__summary_item_info").innerHTML = `${dFirstName} ${dLastName}, ${dDob}`;
 
       // append clone element in Summary
       addDriversList.appendChild(clonedItem);
@@ -263,6 +265,49 @@ function driverSummaryFunc() {
   delete formData?.driverId;
 
   // runVehicleItemsFunctionality();
+}
+
+// *********************************************
+//              STEP-1 Validation
+// *********************************************
+
+function addDriverValidation() {
+  const isValidate = validateForm("additional_driver", false);
+
+  if (isValidate) {
+    const driverData = {};
+
+    const allFields = document.querySelectorAll(`.additional_driver .field__input`);
+
+    allFields.forEach((field) => {
+      driverData[field.name] = field.value;
+    });
+
+    // UPDATE or CREATE Vehicle Data
+    if (editDriverIndex > 0) {
+      const matchId = driverArr.filter((v) => v.driverId == editDriverIndex);
+      const updatedData = { ...matchId[0], ...driverData };
+
+      driverArr = driverArr.map((vData) => (vData.driverId == editDriverIndex ? updatedData : vData));
+
+      // driverArr[Number(driverId)] = driverData;
+      editDriverIndex = -1;
+    } else {
+      driverData.driverId = driverId;
+
+      driverArr.push(driverData);
+      debugger;
+    }
+
+    debugger;
+    // REDUCE motorStep and REMOVE add_more_vehicle_form from the formList
+    const summaryIndex = formList.indexOf("driver_summary_form");
+    motorStep = summaryIndex - 2;
+    formList = formList.filter((item) => item != "additional_driver");
+  }
+
+  driverSummaryFunc();
+  return isValidate;
 }
 
 // *********************************************
