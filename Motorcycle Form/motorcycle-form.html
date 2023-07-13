@@ -61,7 +61,7 @@
     <!-- ************************************************ -->
     <!------------------- Radio Section -------------------->
     <!-- ************************************************ -->
-    <section class="form_section radio_select form_container">
+    <section class="form_section radio_select form_container active_section">
       <div class="container">
         <section class="heading_text_section">
           <h1 class="quote_request_heading">Eligibility For Insurance</h1>
@@ -112,6 +112,7 @@
                 data-name="eligibilityStatus"
                 type="radio"
                 value="dod"
+                checked
               /><label class="field__label" for="eligibilityStatus--dod"
                 >DoD Employee (Current or Retired)</label
               >
@@ -1560,7 +1561,7 @@
     </section>
 
     <!-- MAIN VEHICLE FORM -->
-    <section class="form_section multi__step_2 add_vehicle_form active_section">
+    <section class="form_section multi__step_2 add_vehicle_form">
       <div class="container">
         <!-- ******** STEP ******** -->
         <div class="step__container">
@@ -2528,14 +2529,14 @@
     <section class="quote_request__action_buttons">
       <div class="container d-flex">
         <button
-          id="vehicleBackBtn"
+          id="motorBackBtn"
           class="button button__back button__left hide"
           type="button"
         >
           Back
         </button>
         <button
-          id="vehicleNextBtn"
+          id="motorNextBtn"
           class="button button__next button__right"
           type="submit"
         >
@@ -2546,6 +2547,6 @@
 
     <!-- *********** JAVASCRIPT *********** -->
     <script src="../Assets/formCommon.js"></script>
-    <script src="../Assets/collector-vehicle-form.js"></script>
+    <script src="../Assets/motorcycle-form .js"></script>
   </body>
 </html>
