@@ -34,7 +34,7 @@ floodNextBtn?.addEventListener("click", async () => {
   if (!submitResult) return false;
 
   // Step Increment
-  condoMaxStep = formList.length - 1;
+    floodMaxStep = formList.length - 1;
   floodStep >= floodMaxStep ? floodStep : floodStep++;
 
   // Show Form
@@ -171,7 +171,7 @@ function floodPropertyQuotedFormFunc() {
   }
 
   setMatchedData(false);
-  document.getElementById("addressToBeQuotedAddress").value = "";
+    document.getElementById("propertyAddress").value = "";
 
   // Same Mailing CheckBox Functionality
   isFloodSameAddressEl?.addEventListener("change", () => {
