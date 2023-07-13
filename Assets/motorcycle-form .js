@@ -79,7 +79,7 @@ function handleMotorStepForm(step) {
   }
 
   if (step === formList.indexOf("policyholder_form")) {
-    if (!policyholderValidation(step)) return false;
+    // if (!policyholderValidation(step)) return false;
     spouseOperatorFunc();
   }
   if (step === formList.indexOf("spouse_information")) {
@@ -148,12 +148,15 @@ function spouseOperatorFunc() {
   });
 }
 
+// ===================
+let driverArr = [];
+let driverId = 0;
+let editDriverIndex = -9999;
+const maxDriverItem = 3;
+
+// Add driver functionality
 const addDriver = document.getElementById("addDriver");
-
 addDriver?.addEventListener("click", function () {
-  const fields = document.querySelectorAll(".additional_driver .field__input");
-  fields.forEach((field) => (field.value = ""));
-
   if (!formList.includes("additional_driver")) {
     const summaryIndex = formList.indexOf("driver_summary_form");
     formList.splice(summaryIndex, 0, "additional_driver");
@@ -165,9 +168,34 @@ addDriver?.addEventListener("click", function () {
   //     const property = field.name.replace("0", id);
   //     field.id = field.name = property;
   //   });
-});
 
-let aDrivers = [];
+  // Set VehicleId dynamically
+  driverId = driverArr.length;
+  for (let i = 0; i < maxDriverItem; i++) {
+    const vId = driverArr[i]?.driverId;
+
+    if (i != vId) {
+      driverId = i;
+      break;
+    }
+
+    driverId;
+  }
+
+  if (driverArr.length >= maxDriverItem) this.disabled = true;
+
+  const fields = document.querySelectorAll(".additional_driver .field__input");
+  fields.forEach((field) => {
+    field.value = "";
+
+    const fieldName = field.getAttribute("data-field");
+    const property = `additionalDriver${driverId}${fieldName}`;
+
+    field.id = field.name = property;
+  });
+
+  debugger;
+});
 
 function driverSummaryFunc() {
   const summaryHeading = document.querySelector(".summary__form .quote_request_heading");
@@ -198,30 +226,30 @@ function driverSummaryFunc() {
   debugger;
 
   // Add all data to moreVehicles sections
-  aDrivers = aDrivers.filter((item) => item !== "deleted");
-
-  const additionDrivers = aDrivers.filter((item, index) => index > 0);
-
-  const addDriversList = document.querySelector("#addDriversList");
+  driverArr = driverArr.filter((item) => item !== "deleted");
+  const additionDrivers = driverArr.filter((item, index) => index > 0);
 
   // if all data not appended then Append Data to #addDriversList
-  if (aDrivers.length > 0) {
+  if (driverArr.length > 0) {
+    const addDriversList = document.querySelector("#addDriversList");
+
     addDriversList.innerHTML = "";
-    const demoItem = document.querySelector(".quote_request__summary_item.demoItem");
+    const driverDemoItem = document.querySelector(".quote_request__summary_item.driverDemoItem");
+
     // Clone the demo, create and append
-    additionDrivers.forEach((info, i) => {
-      const clonedItem = demoItem.cloneNode(true);
-      clonedItem.classList.remove("__hide", "demoItem");
+    additionDrivers.forEach((info) => {
+      const clonedItem = driverDemoItem.cloneNode(true);
+      clonedItem.classList.remove("__hide", "driverDemoItem");
       clonedItem.setAttribute("data-id", info.vehicleId);
 
-      let vYear = "";
-      let vMake = "";
-      let vModel = "";
+      let dFirstName = "";
+      let dLastName = "";
+      let dDob = "";
 
       for (const k in info) {
-        if (String(k).includes("Year")) vYear = info[k];
-        if (String(k).includes("Make")) vMake = info[k];
-        if (String(k).includes("Model")) vModel = info[k];
+        if (String(k).includes("FirstName")) dFirstName = info[k];
+        if (String(k).includes("LastName")) dLastName = info[k];
+        if (String(k).includes("Dob")) dDob = info[k];
       }
 
       clonedItem.querySelector(".quote_request__summary_item_info").innerHTML = `${vYear} ${vMake} ${vModel}`;
@@ -231,10 +259,10 @@ function driverSummaryFunc() {
     });
   }
 
-  aDrivers.forEach((info) => (formData = { ...formData, ...info }));
+  driverArr.forEach((info) => (formData = { ...formData, ...info }));
   delete formData?.driverId;
 
-  runVehicleItemsFunctionality();
+  // runVehicleItemsFunctionality();
 }
 
 // *********************************************
@@ -268,7 +296,7 @@ addVehicle?.addEventListener("click", function () {
       break;
     }
 
-    vehicleId;
+    // vehicleId;
   }
 
   if (collectorVehicles.length >= maxVehicleItem) this.disabled = true;

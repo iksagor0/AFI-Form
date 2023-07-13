@@ -63,14 +63,14 @@
         <section class="heading_text_section">
           <h1 class="quote_request_heading">Eligibility For Insurance</h1>
           <p>
-            Armed Forces Insurance (AFI) specializes in providing insurance to our nation’s active duty, retired and
-            veteran military members and their families. Also eligible are parents and children of AFI members as well
-            as Department of Defense and Department of Veterans Affairs civilian employees, both current and retired.
+            Armed Forces Insurance (AFI) specializes in providing insurance to our nation’s active duty, retired and veteran
+            military members and their families. Also eligible are parents and children of AFI members as well as Department of
+            Defense and Department of Veterans Affairs civilian employees, both current and retired.
           </p>
 
           <p>
-            None of the above? No problem! We can be your agent and help you secure coverage through our access to a
-            large network of national carriers.
+            None of the above? No problem! We can be your agent and help you secure coverage through our access to a large network
+            of national carriers.
           </p>
         </section>
 
@@ -756,12 +756,7 @@
                   <label class="field__label" for="policyHolderPhoneType">Phone Type</label>
                 </div>
                 <div class="field__input-wrapper">
-                  <select
-                    class="field__input required"
-                    id="policyHolderPhoneType"
-                    name="policyHolderPhoneType"
-                    type="select"
-                  >
+                  <select class="field__input required" id="policyHolderPhoneType" name="policyHolderPhoneType" type="select">
                     <option value="">--</option>
                     <option value="Home">Home</option>
                     <option value="Business">Business</option>
@@ -813,11 +808,10 @@
 
             <!-- Note -->
             <p class="note">
-              To offer you an accurate quote and/or policy, we (AFI and AFI affiliates) may collect information from
-              consumer reporting agencies, such as credit history. Future reports may be used to update or renew your
-              insurance. By continuing with this quote request, you agree to receive marketing materials and SMS
-              notifications from Armed Forces Insurance. You can request removal or opt-out at any time. Please review
-              our
+              To offer you an accurate quote and/or policy, we (AFI and AFI affiliates) may collect information from consumer
+              reporting agencies, such as credit history. Future reports may be used to update or renew your insurance. By
+              continuing with this quote request, you agree to receive marketing materials and SMS notifications from Armed Forces
+              Insurance. You can request removal or opt-out at any time. Please review our
               <a href="#" target="_blank" alt="AFI Privacy Policy">Privacy Policy - Information Gathering.</a>
             </p>
           </div>
@@ -1067,7 +1061,7 @@
               </div>
 
               <!-- Demo Vehicles Items -->
-              <div class="quote_request__summary_item demoItem __hide">
+              <div class="quote_request__summary_item driverDemoItem __hide">
                 <p class="quote_request__summary_item_info"></p>
                 <div class="quote_request__summary_item_actions delete_edit">
                   <button id="deleteBtn" class="button-bare deleteBtn" type="button">Delete</button>
@@ -1125,8 +1119,7 @@
                     type="text"
                     pattern="^[a-zA-Z]+$"
                     maxlength="50"
-                    placeholder=""
-                    value=""
+                    data-field="FirstName"
                   />
                 </div>
               </div>
@@ -1142,8 +1135,7 @@
                     type="text"
                     pattern="^[a-zA-Z]+$"
                     maxlength="50"
-                    placeholder=""
-                    value=""
+                    data-field="LastName"
                   />
                 </div>
               </div>
@@ -1158,6 +1150,7 @@
                     id="additionalDriver0Suffix"
                     name="additionalDriver0Suffix"
                     type="select"
+                    data-field="Suffix"
                   >
                     <option value="">--</option>
                     <option value="Jr.">Jr.</option>
@@ -1184,7 +1177,7 @@
                     type="text"
                     maxlength="11"
                     placeholder="xxx-xx-xxxx"
-                    value=""
+                    data-field="Ssn"
                   />
                   <p class="field__note">Optional</p>
                 </div>
@@ -1201,7 +1194,7 @@
                     type="text"
                     pattern="\d{1,2}/\d{1,2}/\d{4}"
                     placeholder="MM/DD/YYYY"
-                    value=""
+                    data-field="Dob"
                   />
                 </div>
               </div>
@@ -1216,6 +1209,7 @@
                     id="additionalDriver0Gender"
                     name="additionalDriver0Gender"
                     type="select"
+                    data-field="Gender"
                   >
                     <option value="">--</option>
                     <option value="Male">Male</option>
@@ -1229,9 +1223,7 @@
             <div class="fields-row">
               <div class="field field--extended-label">
                 <div class="field__label-wrapper">
-                  <label class="field__label" for="additionalDriver0YearsExperience"
-                    >Operating Experience in Years</label
-                  >
+                  <label class="field__label" for="additionalDriver0YearsExperience">Operating Experience in Years</label>
                 </div>
                 <div class="field__input-wrapper">
                   <input
@@ -1240,6 +1232,7 @@
                     name="additionalDriver0YearsExperience"
                     maxlength="2"
                     type="text"
+                    data-field="YearsExperience"
                   />
                 </div>
               </div>
@@ -1503,13 +1496,7 @@
                   <label class="field__label" for="vehicle0Address">Garaging Address</label>
                 </div>
                 <div class="field__input-wrapper">
-                  <input
-                    class="field__input required"
-                    id="vehicle0Address"
-                    name="vehicle0Address"
-                    type="text"
-                    maxlength="100"
-                  />
+                  <input class="field__input required" id="vehicle0Address" name="vehicle0Address" type="text" maxlength="100" />
                 </div>
               </div>
             </div>
@@ -1574,8 +1561,8 @@
               <div class="quote_request_sidebar__item">
                 <h3 class="quote_request_sidebar__item_heading">Saving You Time and Money</h3>
                 <p class="quote_request_sidebar__item_description">
-                  We have access to quote your insurance through a network of national carriers to find the best policy
-                  solution for your unique needs.
+                  We have access to quote your insurance through a network of national carriers to find the best policy solution
+                  for your unique needs.
                 </p>
               </div>
             </div>
@@ -1615,8 +1602,7 @@
               <div class="field field--full has_violation_inputs_container">
                 <div class="field__label-wrapper">
                   <label class="field__label" for="householdViolationsPreviousClaims"
-                    >Has any driver had any moving violations, accidents, or auto insurance claims in the last 5
-                    years?</label
+                    >Has any driver had any moving violations, accidents, or auto insurance claims in the last 5 years?</label
                   >
                 </div>
                 <div class="field-group has_violation_inputs">
@@ -1713,16 +1699,16 @@
               <div class="quote_request_sidebar__item">
                 <h3 class="quote_request_sidebar__item_heading">Which Accidents or Violations Do I Include?</h3>
                 <p class="quote_request_sidebar__item_description">
-                  To ensure quote accuracy, it is important to include all accidents (at-fault and not at-fault) as well
-                  as any moving violations for all drivers for a 5 year period.
+                  To ensure quote accuracy, it is important to include all accidents (at-fault and not at-fault) as well as any
+                  moving violations for all drivers for a 5 year period.
                 </p>
               </div>
 
               <div class="quote_request_sidebar__item">
                 <h3 class="quote_request_sidebar__item_heading">What If I Don't Remember the Date?</h3>
                 <p class="quote_request_sidebar__item_description">
-                  What If I Don't Remember the Date? If you are unsure of the exact accident or violation date, simply
-                  enter the year that the incident occurred (e.g. 01/01/2020).
+                  What If I Don't Remember the Date? If you are unsure of the exact accident or violation date, simply enter the
+                  year that the incident occurred (e.g. 01/01/2020).
                 </p>
               </div>
             </div>
@@ -1760,8 +1746,7 @@
                     <div class="field__label-wrapper">
                       <label class="field__label" for="bodilyInjuryLiability"
                         >Bodily Injury Liability<span class="field__sublabel"
-                          >If you are legally liable for injuries to others in an accident, your policy will pay up to
-                          this amount
+                          >If you are legally liable for injuries to others in an accident, your policy will pay up to this amount
                         </span></label
                       >
                       <div class="qrf-accordion">
@@ -1770,18 +1755,13 @@
                         </button>
 
                         <h5 class="qrf-accordion__heading">
-                          Coverage on your Collector Vehicle policy should match the coverage on your policy for your
-                          regular use vehicles.
+                          Coverage on your Collector Vehicle policy should match the coverage on your policy for your regular use
+                          vehicles.
                         </h5>
                       </div>
                     </div>
                     <div class="field__input-wrapper">
-                      <select
-                        class="field__input required"
-                        id="bodilyInjuryLiability"
-                        name="bodilyInjuryLiability"
-                        type="select"
-                      >
+                      <select class="field__input required" id="bodilyInjuryLiability" name="bodilyInjuryLiability" type="select">
                         <option value="">Choose One</option>
                         <option value="State Minimum">State Minimum</option>
                         <option value="25/50">$25,000/$50,000</option>
@@ -1798,16 +1778,16 @@
                     <div class="field__label-wrapper">
                       <label class="field__label" for="propertyDamageLiability"
                         >Property Damage Liability<span class="field__sublabel"
-                          >If you damage someone else's vehicle or property in an auto accident, your policy will pay up
-                          to this amount</span
+                          >If you damage someone else's vehicle or property in an auto accident, your policy will pay up to this
+                          amount</span
                         ></label
                       >
                       <div class="qrf-accordion">
                         <button class="button-bare qrf-accordion__trigger" type="button">+ Learn More</button>
 
                         <h5 class="qrf-accordion__heading">
-                          Coverage on your Collector Vehicle policy should match the coverage on your policy for your
-                          regular use vehicles.
+                          Coverage on your Collector Vehicle policy should match the coverage on your policy for your regular use
+                          vehicles.
                         </h5>
                       </div>
                     </div>
@@ -1833,16 +1813,15 @@
                     <div class="field__label-wrapper">
                       <label class="field__label" for="medicalPayment"
                         >Medical Payments<span class="field__sublabel"
-                          >If you or your passengers are injured in an auto accident, your policy will pay up to this
-                          amount
+                          >If you or your passengers are injured in an auto accident, your policy will pay up to this amount
                         </span></label
                       >
                       <div class="qrf-accordion">
                         <button class="button-bare qrf-accordion__trigger" type="button">+ Learn More</button>
 
                         <h5 class="qrf-accordion__heading">
-                          Coverage on your Collector Vehicle policy should match the coverage on your policy for your
-                          regular use vehicles.
+                          Coverage on your Collector Vehicle policy should match the coverage on your policy for your regular use
+                          vehicles.
                         </h5>
                       </div>
                     </div>
@@ -1864,16 +1843,15 @@
                     <div class="field__label-wrapper">
                       <label class="field__label" for="uninsuredMotoristBodilyInjury"
                         >Uninsured Motorist Bodily Injury<span class="field__sublabel"
-                          >If an uninsured driver injures you or a family member, your policy will pay up to this
-                          amount</span
+                          >If an uninsured driver injures you or a family member, your policy will pay up to this amount</span
                         ></label
                       >
                       <div class="qrf-accordion">
                         <button class="button-bare qrf-accordion__trigger" type="button">+ Learn More</button>
 
                         <h5 class="qrf-accordion__heading">
-                          Coverage on your Collector Vehicle policy should match the coverage on your policy for your
-                          regular use vehicles.
+                          Coverage on your Collector Vehicle policy should match the coverage on your policy for your regular use
+                          vehicles.
                         </h5>
                       </div>
                     </div>
@@ -2012,16 +1990,16 @@
               <div class="quote_request_sidebar__item">
                 <h3 class="quote_request_sidebar__item_heading">What Is Comprehensive Coverage?</h3>
                 <p class="quote_request_sidebar__item_description">
-                  Comprehensive Coverage, also known as "Other Than Collision" Coverage, provides coverage for your
-                  vehicle due to damage caused from theft, vandalism, fire, weather, or colliding with an animal.
+                  Comprehensive Coverage, also known as "Other Than Collision" Coverage, provides coverage for your vehicle due to
+                  damage caused from theft, vandalism, fire, weather, or colliding with an animal.
                 </p>
               </div>
 
               <div class="quote_request_sidebar__item">
                 <h3 class="quote_request_sidebar__item_heading">What Is Collision Coverage?</h3>
                 <p class="quote_request_sidebar__item_description">
-                  Collision Coverage pays for damage to your vehicle due to colliding with another vehicle or object
-                  other than an animal.
+                  Collision Coverage pays for damage to your vehicle due to colliding with another vehicle or object other than an
+                  animal.
                 </p>
               </div>
             </div>
@@ -2065,12 +2043,7 @@
                   <label class="field__label" for="currentInsuranceCompany">Current Insurance Company</label>
                 </div>
                 <div class="field__input-wrapper">
-                  <select
-                    class="field__input"
-                    id="currentInsuranceCompany"
-                    name="currentInsuranceCompany"
-                    type="select"
-                  >
+                  <select class="field__input" id="currentInsuranceCompany" name="currentInsuranceCompany" type="select">
                     <option value="">Choose One</option>
                     <option value="None">None</option>
                     <option value="AIG">AIG</option>
@@ -2100,14 +2073,7 @@
                   <label class="field__label" for="insuranceCompany">Insurance Company</label>
                 </div>
                 <div class="field__input-wrapper">
-                  <input
-                    class="field__input"
-                    id="insuranceCompany"
-                    name="insuranceCompany"
-                    type="text"
-                    placeholder=""
-                    value=""
-                  />
+                  <input class="field__input" id="insuranceCompany" name="insuranceCompany" type="text" placeholder="" value="" />
                 </div>
               </div>
             </div>
@@ -2141,8 +2107,8 @@
               <div class="quote_request_sidebar__item">
                 <h3 class="quote_request_sidebar__item_heading">Where Do I Find My Renewal or Expiration Date?</h3>
                 <p class="quote_request_sidebar__item_description">
-                  Refer to your current policy declarations page for the policy renewal or expiration date. If date is
-                  unknown, enter any future date (e.g. 01/01/2020)
+                  Refer to your current policy declarations page for the policy renewal or expiration date. If date is unknown,
+                  enter any future date (e.g. 01/01/2020)
                 </p>
               </div>
 
