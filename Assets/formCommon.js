@@ -449,40 +449,48 @@ function coverageHistoryFunc() {
  ********************************************************/
 // SAVE FORM DATA
 async function saveData(url, data, nextBtn, cForm, action) {
-  const currForm = document.querySelector("." + cForm);
-  const formFields = currForm.querySelectorAll(".field__input");
+  const formFields = document.querySelectorAll(`.${cForm} .field__input`);
 
-  // // Process Start
-  // formFields.forEach((field) => (field.disabled = true));
-  // nextBtn.disabled = true;
-  // nextBtn.innerText = "Saving...";
+  const fieldStates = [];
 
-  // // API Call
-  // const req_data = {
-  //   action: action,
-  //   recaptchaToken: "6LfR7R4gAAAAAJhdtt4xLoULHMVubpGhEYCN6SYR",
-  //   values: data,
-  // };
+  // Process Start
+  formFields.forEach((field) => {
+    const fieldState = { id: field.id, disabled: field.disabled };
+    fieldStates.push(fieldState);
 
-  // const res = await fetch(url, {
-  //   method: "POST",
-  //   headers: {
-  //     "Content-type": "application/json; charset=UTF-8",
-  //   },
-  //   body: JSON.stringify(req_data), // data
-  // });
+    field.disabled = true;
+  });
+  nextBtn.disabled = true;
+  nextBtn.innerText = "Saving...";
 
-  // // After Process Done
+  // API Call
+  const req_data = {
+    action: action,
+    recaptchaToken: "6LfR7R4gAAAAAJhdtt4xLoULHMVubpGhEYCN6SYR",
+    values: data,
+  };
+
+  const res = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-type": "application/json; charset=UTF-8",
+    },
+    body: JSON.stringify(req_data), // data
+  });
+
+  // After Process Done
   // formFields.forEach((field) => (field.disabled = false));
-  // nextBtn.disabled = false;
-  // nextBtn.innerText = "Next";
+  fieldStates.forEach((f) => (document.querySelector(`.${cForm} #${f.id}`).disabled = f.disabled));
 
-  // const jsonData = await res.json();
-  // if (jsonData.QuoteId && jsonData.QuoteKey) {
-  //   formData.QuoteId = jsonData.QuoteId;
-  //   formData.QuoteKey = jsonData.QuoteKey;
-  // }
+  nextBtn.disabled = false;
+  nextBtn.innerText = "Next";
 
-  // return jsonData;
+  const jsonData = await res.json();
+  if (jsonData.QuoteId && jsonData.QuoteKey) {
+    formData.QuoteId = jsonData.QuoteId;
+    formData.QuoteKey = jsonData.QuoteKey;
+  }
+
+  return jsonData;
   return true;
 }
