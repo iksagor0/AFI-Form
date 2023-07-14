@@ -96,6 +96,7 @@
   align-items: center;
   display: flex;
   justify-content: space-between;
+  margin-bottom: 10px;
 }
 
 .quote_request__summary_item_info {

@@ -117,6 +117,7 @@ function handleMotorStepForm(step) {
     if (!validateForm("coverage_limits_form")) return false;
     functionalityForEachDamageForm();
   }
+  
   if (step === formList.indexOf("physical_damage_form")) {
     if (!physicalDamageValidation()) return false;
     coverageHistoryFunc();
@@ -214,7 +215,7 @@ function driverSummaryFunc() {
     const { cohabitantFirstName, cohabitantLastName, cohabitantDob } = formData;
 
     spouseItemInfo.parentElement.classList.remove("__hide");
-    spouseItemInfo.innerHTML = `${policyHolderFirstName} ${policyHolderLastName}, ${policyHolderDob}`;
+    spouseItemInfo.innerHTML = `${cohabitantFirstName} ${cohabitantLastName}, ${cohabitantDob}`;
     driverCount = 2;
   } else {
     spouseItemInfo.parentElement.classList.add("__hide");
