@@ -117,7 +117,7 @@ function handleMotorStepForm(step) {
     if (!validateForm("coverage_limits_form")) return false;
     functionalityForEachDamageForm();
   }
-  
+
   if (step === formList.indexOf("physical_damage_form")) {
     if (!physicalDamageValidation()) return false;
     coverageHistoryFunc();
@@ -203,9 +203,11 @@ function driverSummaryFunc() {
 
   // Policyholder info in driver summary
   const { policyHolderFirstName, policyHolderLastName, policyHolderDob } = formData;
+  const phAge = `${calculateAge(policyHolderDob)} years old`;
+
   document.querySelector(
     ".quote_request__summary_policyholder_item_info"
-  ).innerHTML = `${policyHolderFirstName} ${policyHolderLastName}, ${policyHolderDob} <br> <p>policyholder</p>`;
+  ).innerHTML = `${policyHolderFirstName} ${policyHolderLastName}, ${phAge} <br> <p>policyholder</p>`;
 
   // Spouse info in driver summary
   const cohabOperatorVal = document.getElementById("cohabitantIsOperator")?.value;
@@ -213,9 +215,10 @@ function driverSummaryFunc() {
 
   if (cohabOperatorVal === "Yes") {
     const { cohabitantFirstName, cohabitantLastName, cohabitantDob } = formData;
+    const cohAge = `${calculateAge(cohabitantDob)} years old`;
 
     spouseItemInfo.parentElement.classList.remove("__hide");
-    spouseItemInfo.innerHTML = `${cohabitantFirstName} ${cohabitantLastName}, ${cohabitantDob}`;
+    spouseItemInfo.innerHTML = `${cohabitantFirstName} ${cohabitantLastName}, ${cohAge}`;
     driverCount = 2;
   } else {
     spouseItemInfo.parentElement.classList.add("__hide");
@@ -247,7 +250,9 @@ function driverSummaryFunc() {
         if (String(k).includes("Dob")) dDob = info[k];
       }
 
-      clonedItem.querySelector(".quote_request__summary_item_info").innerHTML = `${dFirstName} ${dLastName}, ${dDob}`;
+      const dAge = `${calculateAge(dDob)} years old`;
+
+      clonedItem.querySelector(".quote_request__summary_item_info").innerHTML = `${dFirstName} ${dLastName}, ${dAge}`;
 
       // append clone element in Summary
       addDriversList.appendChild(clonedItem);
