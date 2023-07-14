@@ -1,12 +1,7 @@
-// const successRedirection = "https://afi.org/";
-// const successRedirection = "../--Model/thank-you.html";
-
 // Forms
 const MCForms = [
   "policyholder_form",
   "driver_summary_form",
-  // "additional_driver",
-  // "add_vehicle_form",
   "summary__form",
   "violations_form",
   "coverage_limits_form",
@@ -749,7 +744,6 @@ function MCfuncDamageForm() {
   // Clear DamageFormWrapper Children
   DamageFormWrapper.innerHTML = "";
 
-  // const vehicleList = MCvehicles;
   // Add Vehicle data to DamageFormWrapper with other fields
   MCvehicles.forEach((vData, index) => {
     const vId = vData.MCvehicleId;
