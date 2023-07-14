@@ -582,27 +582,6 @@ function summaryFunctionality() {
   runVehicleItemsFunctionality();
 }
 
-// function addVehicleValidation() {
-//   const isValidate = validateForm("add_vehicle_form", false);
-
-//   if (isValidate) {
-//     collectorVehicles[0] = {};
-
-//     const allFields = document.querySelectorAll(`.add_vehicle_form .field__input`);
-
-//     allFields.forEach((field) => {
-//       collectorVehicles[0][field.name] = field.value;
-//       collectorVehicles[0].vehicleId = 0;
-//     });
-
-//     // REDUCE motorStep cz add_vehicle_form will remove from the formList
-//     const summaryIndex = formList.indexOf("summary__form");
-//     motorStep = summaryIndex - 2;
-//   }
-
-//   return isValidate;
-// }
-
 function addVehicleValidation() {
   const isValidate = validateForm("add_vehicle_form", false);
 
@@ -612,7 +591,8 @@ function addVehicleValidation() {
     const allFields = document.querySelectorAll(`.add_vehicle_form .field__input`);
 
     allFields.forEach((field) => {
-      vehicleData[field.name] = field.value;
+      if (field.type === "checkbox") vehicleData[field.name] = field.checked;
+      else vehicleData[field.name] = field.value;
     });
 
     // UPDATE or CREATE Vehicle Data
