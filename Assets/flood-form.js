@@ -1,4 +1,4 @@
-2; // const floodSuccessRedirection = "https://afi.org/";
+// const floodSuccessRedirection = "https://afi.org/";
 // const floodSuccessRedirection = "../--Model/thank-you.html";
 
 // Forms
@@ -107,7 +107,7 @@ async function handleFloodForms(step) {
     if (!resData || !resData.QuoteId || resData.QuoteId <= 0) return false;
 
     // Go to Thank You Page
-    // window.location.href = floodSuccessRedirection;
+    window.location.href = floodSuccessRedirection;
   }
 
   return true;
@@ -146,7 +146,7 @@ function floodPropertyQuotedFormFunc() {
       floodQuotedMatchEl.forEach((el) => {
         const elMatch = el.getAttribute("data-match");
 
-        if (elementMatch && elMatch === elementMatch) el.value = element.value;
+        if (elMatch === elementMatch && elMatch && elementMatch) el.value = element.value;
         el.disabled = disability;
         isFloodSameAddressEl.disabled = false;
       });
