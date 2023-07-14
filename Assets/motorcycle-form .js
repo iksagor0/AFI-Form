@@ -2,7 +2,7 @@
 // const successRedirection = "../--Model/thank-you.html";
 
 // Forms
-const motorForms = [
+const MCForms = [
   "policyholder_form",
   "driver_summary_form",
   // "additional_driver",
@@ -17,51 +17,51 @@ const motorForms = [
 // *********************************************
 //       FORM SUBMISSION AND STEP HANDLING
 // *********************************************
-const motorNextBtn = document.querySelector("#motorNextBtn");
-const motorBackBtn = document.querySelector("#motorBackBtn");
+const MCNextBtn = document.querySelector("#MCNextBtn");
+const MCBackBtn = document.querySelector("#MCBackBtn");
 
-let motorStep = 0;
-let motorMaxStep = formList.length - 1;
+let MCStep = 0;
+let MCMaxStep = formList.length - 1;
 
 // ***** NEXT FUNCTIONALITY *****
-pressEnterToSubmit(motorNextBtn);
-motorNextBtn.addEventListener("click", async () => {
-  if (motorStep === 0) {
-    const isSelectEligibility = eligibilityValidation(motorForms);
+pressEnterToSubmit(MCNextBtn);
+MCNextBtn.addEventListener("click", async () => {
+  if (MCStep === 0) {
+    const isSelectEligibility = eligibilityValidation(MCForms);
     if (!Boolean(isSelectEligibility)) return false;
 
     militaryFormFunc();
   }
   //  HANDLE ALL FORM SUBMISSIONS AND STEP VALIDATION
-  const submitResult = await handleMotorStepForm(motorStep);
+  const submitResult = await handleMotorStepForm(MCStep);
   if (!submitResult) return false;
 
   // Step Increment
-  motorMaxStep = formList.length - 1;
-  motorStep >= motorMaxStep ? motorStep : motorStep++;
+  MCMaxStep = formList.length - 1;
+  MCStep >= MCMaxStep ? MCStep : MCStep++;
 
   // Show Form
-  showActiveForm(motorStep, motorBackBtn);
+  showActiveForm(MCStep, MCBackBtn);
 });
 
 // Back
-motorBackBtn.addEventListener("click", () => {
+MCBackBtn.addEventListener("click", () => {
   // Step Decrement
-  motorStep <= 0 ? motorStep : motorStep--;
+  MCStep <= 0 ? MCStep : MCStep--;
 
   // 2 side back for add_vehicle_form
-  const notFirst = collectorVehicles.length > 0;
-  if (notFirst && motorStep + 1 === formList.indexOf("add_vehicle_form")) {
+  const notFirst = MCvehicles.length > 0;
+  if (notFirst && MCStep + 1 === formList.indexOf("add_vehicle_form")) {
     formList = formList.filter((item) => item != "add_vehicle_form");
-    motorStep = formList.indexOf("summary__form");
+    MCStep = formList.indexOf("summary__form");
   }
 
   // 2 side back for additional_driver form
-  if (motorStep + 1 === formList.indexOf("additional_driver")) {
+  if (MCStep + 1 === formList.indexOf("additional_driver")) {
     formList = formList.filter((item) => item != "additional_driver");
-    motorStep = formList.indexOf("driver_summary_form");
+    MCStep = formList.indexOf("driver_summary_form");
   }
-  showActiveForm(motorStep, motorBackBtn);
+  showActiveForm(MCStep, MCBackBtn);
 });
 
 // =*********************************************
@@ -82,44 +82,44 @@ function handleMotorStepForm(step) {
 
   if (step === formList.indexOf("policyholder_form")) {
     if (!policyholderValidation(step)) return false;
-    spouseOperatorFunc();
+    MCspouseOperatorFunc();
   }
   if (step === formList.indexOf("spouse_information")) {
     if (!validateForm("spouse_information")) return false;
   }
 
   if (step === formList.indexOf("driver_summary_form") || step === formList.indexOf("driver_summary_form") - 1) {
-    driverSummaryFunc();
-    addVehicleFunc();
+    MCdriverSummaryFunc();
+    MCaddVehicleFunc();
   }
 
   if (step === formList.indexOf("additional_driver")) {
-    if (!addDriverValidation("additional_driver")) return false;
-    driverSummaryFunc();
+    if (!MCaddDriverValidation("additional_driver")) return false;
+    MCdriverSummaryFunc();
   }
 
   //
   if (step === formList.indexOf("add_vehicle_form")) {
-    if (!addVehicleValidation()) return false;
-    driverSummaryFunc();
+    if (!MCaddVehicleValidation()) return false;
+    MCdriverSummaryFunc();
   }
 
   if (step === formList.indexOf("summary__form") || step === formList.indexOf("summary__form") - 1) {
-    summaryFunctionality();
+    MCsummaryFunctionality();
   }
 
   // ****
   if (step === formList.indexOf("violations_form")) {
-    if (!violationsValidation()) return false;
+    if (!MCviolationsValidation()) return false;
   }
 
   if (step === formList.indexOf("coverage_limits_form")) {
     if (!validateForm("coverage_limits_form")) return false;
-    functionalityForEachDamageForm();
+    MCfuncDamageForm();
   }
 
   if (step === formList.indexOf("physical_damage_form")) {
-    if (!physicalDamageValidation()) return false;
+    if (!MCphysicalDamageValidation()) return false;
     coverageHistoryFunc();
   }
   if (step === formList.indexOf("coverage_history_form")) {
@@ -139,7 +139,7 @@ function handleMotorStepForm(step) {
 // *********************************************
 //              STEP-1 FUNCTIONALITY
 // *********************************************
-function spouseOperatorFunc() {
+function MCspouseOperatorFunc() {
   const cohabOperator = document.getElementById("cohabitantIsOperator");
   const cohaExp = document.getElementById("cohabitantYearsExperience");
 
@@ -155,48 +155,48 @@ function spouseOperatorFunc() {
 }
 
 // ===================
-let driverArr = [];
-let driverId = 0;
-let editDriverIndex = -9999;
-const maxDriverItem = 2;
+let MCdriverArr = [];
+let MCdriverId = 0;
+let MCeditDriverIndex = -9999;
+const MCmaxDriverItem = 2;
 
 // Add driver functionality
-const addDriver = document.getElementById("addDriver");
-addDriver?.addEventListener("click", function () {
+const MCaddDriver = document.getElementById("addDriver");
+MCaddDriver?.addEventListener("click", function () {
   if (!formList.includes("additional_driver")) {
     const summaryIndex = formList.indexOf("driver_summary_form");
     formList.splice(summaryIndex, 0, "additional_driver");
   }
-  showActiveForm(motorStep, motorBackBtn);
+  showActiveForm(MCStep, MCBackBtn);
 
   // Set VehicleId dynamically
-  driverId = driverArr.length;
-  for (let i = 0; i < maxDriverItem; i++) {
-    const vId = driverArr[i]?.driverId;
+  MCdriverId = MCdriverArr.length;
+  for (let i = 0; i < MCmaxDriverItem; i++) {
+    const vId = MCdriverArr[i]?.MCdriverId;
 
     if (i != vId) {
-      driverId = i;
+      MCdriverId = i;
       break;
     }
 
-    driverId;
+    MCdriverId;
   }
 
-  if (driverArr.length >= maxDriverItem) this.disabled = true;
+  if (MCdriverArr.length >= MCmaxDriverItem) this.disabled = true;
 
   const fields = document.querySelectorAll(".additional_driver .field__input");
   fields.forEach((field) => {
     field.value = "";
 
     const fieldName = field.getAttribute("data-field");
-    const property = `additionalDriver${driverId}${fieldName}`;
+    const property = `additionalDriver${MCdriverId}${fieldName}`;
 
     field.id = field.name = property;
   });
 });
 
 // Driver Functionality
-function driverSummaryFunc() {
+function MCdriverSummaryFunc() {
   // Driver Summary Heading
   const summaryHeading = document.querySelector(".driver_summary_form .quote_request_heading");
   let driverCount = 1;
@@ -225,20 +225,20 @@ function driverSummaryFunc() {
   }
 
   // Add all data to moreVehicles sections
-  driverArr = driverArr.filter((item) => item !== "deleted");
+  MCdriverArr = MCdriverArr.filter((item) => item !== "deleted");
 
-  // if all data not appended then Append Data to #addDriversList
-  if (driverArr.length > 0) {
-    const addDriversList = document.querySelector("#addDriversList");
+  // if all data not appended then Append Data to #MCaddDriversList
+  if (MCdriverArr.length > 0) {
+    const MCaddDriversList = document.querySelector("#addDriversList");
 
-    addDriversList.innerHTML = "";
+    MCaddDriversList.innerHTML = "";
     const driverDemoItem = document.querySelector(".quote_request__summary_item.driverDemoItem");
 
     // Clone the demo, create and append
-    driverArr.forEach((info) => {
+    MCdriverArr.forEach((info) => {
       const clonedItem = driverDemoItem.cloneNode(true);
       clonedItem.classList.remove("__hide", "driverDemoItem");
-      clonedItem.setAttribute("data-id", info.driverId);
+      clonedItem.setAttribute("data-id", info.MCdriverId);
 
       let dFirstName = "";
       let dLastName = "";
@@ -255,42 +255,42 @@ function driverSummaryFunc() {
       clonedItem.querySelector(".quote_request__summary_item_info").innerHTML = `${dFirstName} ${dLastName}, ${dAge}`;
 
       // append clone element in Summary
-      addDriversList.appendChild(clonedItem);
+      MCaddDriversList.appendChild(clonedItem);
     });
   }
 
-  driverArr.forEach((info) => (formData = { ...formData, ...info }));
-  delete formData?.driverId;
+  MCdriverArr.forEach((info) => (formData = { ...formData, ...info }));
+  delete formData?.MCdriverId;
 
   // Print Driver Summary Heading
-  driverCount = driverCount + driverArr.length;
+  driverCount = driverCount + MCdriverArr.length;
   summaryHeading.innerHTML = `Your Policy Has ${driverCount} Drivers`;
 
-  runDriverItemsFunctionality();
+  MCrunDriverItemsFunctionality();
 }
 
 // ********** FUNCTIONALITY OF MORE VEHICLE FORMS : Edit, Delete ***********
-function runDriverItemsFunctionality() {
+function MCrunDriverItemsFunctionality() {
   // policyholderEditBtn Functionality
   const policyholderEditBtn = document.getElementById("policyholderEditBtn");
   policyholderEditBtn.addEventListener("click", () => {
-    motorStep = formList.indexOf("policyholder_form");
-    showActiveForm(motorStep, motorBackBtn);
+    MCStep = formList.indexOf("policyholder_form");
+    showActiveForm(MCStep, MCBackBtn);
   });
 
   // spouseEditBtn Functionality
   const spouseEditBtn = document.getElementById("spouseEditBtn");
   spouseEditBtn.addEventListener("click", () => {
-    motorStep = formList.indexOf("spouse_information");
-    showActiveForm(motorStep, motorBackBtn);
+    MCStep = formList.indexOf("spouse_information");
+    showActiveForm(MCStep, MCBackBtn);
   });
 
   // Others Driver Functionality
-  const addDriversList = document.getElementById("addDriversList");
-  const driverItemEl = addDriversList.querySelectorAll(".quote_request__summary_item.driverItem");
+  const MCaddDriversList = document.getElementById("addDriversList");
+  const driverItemEl = MCaddDriversList.querySelectorAll(".quote_request__summary_item.driverItem");
 
   driverItemEl.forEach((item, itemIndex) => {
-    const driverId = item.getAttribute("data-id");
+    const MCdriverId = item.getAttribute("data-id");
 
     const editBtn = item.querySelector(".editBtn");
     const deleteBtn = item.querySelector(".deleteBtn");
@@ -298,18 +298,18 @@ function runDriverItemsFunctionality() {
     const deleteNo = item.querySelector(".deleteNo");
 
     editBtn?.addEventListener("click", () => {
-      editDriverIndex = driverId;
+      MCeditDriverIndex = MCdriverId;
 
       if (!formList.includes("additional_driver")) {
         const summaryIndex = formList.indexOf("driver_summary_form");
         formList.splice(summaryIndex, 0, "additional_driver");
 
-        showActiveForm(motorStep, motorBackBtn);
+        showActiveForm(MCStep, MCBackBtn);
 
         // Assign the values
         const aDrFields = document.querySelectorAll(".additional_driver .field__input");
         aDrFields.forEach((f) => {
-          const property = "additionalDriver" + driverId + f.getAttribute("data-field");
+          const property = "additionalDriver" + MCdriverId + f.getAttribute("data-field");
           f.id = f.name = property;
           f.value = formData[property];
         });
@@ -327,17 +327,17 @@ function runDriverItemsFunctionality() {
     });
 
     deleteYes.addEventListener("click", () => {
-      for (const k in driverArr[itemIndex]) {
+      for (const k in MCdriverArr[itemIndex]) {
         delete formData[k];
       }
 
-      // driverArr[itemIndex + 1] = "deleted";
-      driverArr = driverArr.filter((item, i) => i !== itemIndex);
+      // MCdriverArr[itemIndex + 1] = "deleted";
+      MCdriverArr = MCdriverArr.filter((item, i) => i !== itemIndex);
 
       item.classList.add("__hide");
       item.remove(); // delete elements
 
-      addDriver.disabled = false;
+      MCaddDriver.disabled = false;
     });
   });
 }
@@ -346,7 +346,7 @@ function runDriverItemsFunctionality() {
 //              STEP-1 Validation
 // *********************************************
 
-function addDriverValidation() {
+function MCaddDriverValidation() {
   const isValidate = validateForm("additional_driver", false);
 
   if (isValidate) {
@@ -359,26 +359,24 @@ function addDriverValidation() {
     });
 
     // UPDATE or CREATE Vehicle Data
-    if (Number(editDriverIndex) >= 0) {
-      const matchId = driverArr.filter((v) => v.driverId == editDriverIndex);
+    if (Number(MCeditDriverIndex) >= 0) {
+      const matchId = MCdriverArr.filter((v) => v.MCdriverId == MCeditDriverIndex);
       const updatedData = { ...matchId[0], ...driverData };
 
-      driverArr = driverArr.map((vData) => (vData.driverId == Number(editDriverIndex) ? updatedData : vData));
+      MCdriverArr = MCdriverArr.map((vData) => (vData.MCdriverId == Number(MCeditDriverIndex) ? updatedData : vData));
 
-      // driverArr[Number(driverId)] = driverData;
-      editDriverIndex = -1;
+      // MCdriverArr[Number(MCdriverId)] = driverData;
+      MCeditDriverIndex = -1;
     } else {
-      driverData.driverId = driverId;
+      driverData.MCdriverId = MCdriverId;
 
-      driverArr.push(driverData);
+      MCdriverArr.push(driverData);
     }
 
-    // REDUCE motorStep and REMOVE driver_summary_form from the formList
+    // REDUCE MCStep and REMOVE driver_summary_form from the formList
     const summaryIndex = formList.indexOf("driver_summary_form");
-    motorStep = summaryIndex - 2;
+    MCStep = summaryIndex - 2;
     formList = formList.filter((item) => item != "additional_driver");
-
-    debugger;
   }
 
   return isValidate;
@@ -387,16 +385,19 @@ function addDriverValidation() {
 // *********************************************
 //              STEP-2 FUNCTIONALITY
 // *********************************************
-let collectorVehicles = [];
-let vehicleId = 0;
-let editVehicleIndex = -9999;
-const maxVehicleItem = 4;
+let MCvehicles = [];
+let MCvehicleId = 0;
+let MCeditVehicleIndex = -9999;
+const MCmaxVehicleItem = 4;
 
 // ********** "+ Add Vehicle" BUTTON FUNCTIONALITY  ***********
-const addVehicle = document.getElementById("addVehicle");
+const MCaddVehicle = document.getElementById("addVehicle");
 
-addVehicle?.addEventListener("click", function () {
+MCaddVehicle?.addEventListener("click", function () {
   const fields = document.querySelectorAll(".add_vehicle_form .field__input");
+  const errMsgs = document.querySelectorAll(".add_vehicle_form .error");
+
+  // Fill Bank the Form
   fields.forEach((field) => {
     field.value = "";
 
@@ -408,33 +409,36 @@ addVehicle?.addEventListener("click", function () {
     isSameAddressEl.checked = false;
   });
 
+  // Remove all Error messages
+  errMsgs.forEach((err) => err.remove());
+
   if (!formList.includes("add_vehicle_form")) {
     const summaryIndex = formList.indexOf("summary__form");
     formList.splice(summaryIndex, 0, "add_vehicle_form");
   }
-  showActiveForm(motorStep, motorBackBtn);
+  showActiveForm(MCStep, MCBackBtn);
 
   // Set VehicleId dynamically
-  vehicleId = collectorVehicles.length;
-  for (let i = 0; i < maxVehicleItem; i++) {
-    const vId = collectorVehicles[i]?.vehicleId;
+  MCvehicleId = MCvehicles.length;
+  for (let i = 0; i < MCmaxVehicleItem; i++) {
+    const vId = MCvehicles[i]?.MCvehicleId;
 
     if (i != vId) {
-      vehicleId = i;
+      MCvehicleId = i;
       break;
     }
 
-    vehicleId;
+    MCvehicleId;
   }
 
-  if (collectorVehicles.length >= maxVehicleItem) this.disabled = true;
+  if (MCvehicles.length >= MCmaxVehicleItem) this.disabled = true;
 
   //set field name and id
   const allFields = document.querySelectorAll(`.add_vehicle_form .field__input`);
 
   allFields.forEach((field) => {
     const fieldName = field.getAttribute("data-field");
-    const property = `vehicle${vehicleId}${fieldName}`;
+    const property = `vehicle${MCvehicleId}${fieldName}`;
 
     field.id = property;
     field.name = property;
@@ -446,25 +450,13 @@ addVehicle?.addEventListener("click", function () {
   vehicleSameAsMailingLabel.setAttribute("for", vehicleSameAsMailing.id);
 });
 
-// ********** FUNCTIONALITY OF VEHICLE FORM : Edit ***********
-// const mainVehicleEditBtn = document.getElementById("mainVehicleEditBtn");
-// mainVehicleEditBtn?.addEventListener("click", () => {
-//   const summaryIndex = formList.indexOf("summary__form");
-
-//   if (!formList.includes("add_vehicle_form")) {
-//     formList.splice(summaryIndex, 0, "add_vehicle_form");
-//   }
-
-//   showActiveForm(motorStep, motorBackBtn);
-// });
-
 // ********** FUNCTIONALITY OF MORE VEHICLE FORMS : Edit, Delete ***********
-function runVehicleItemsFunctionality() {
+function MCrunVehicleItemsFunctionality() {
   const moreVehicles = document.getElementById("moreVehicles");
   const moreVehicleItems = moreVehicles.querySelectorAll(".quote_request__summary_item");
 
   moreVehicleItems.forEach((item, itemIndex) => {
-    const vehicleId = item.getAttribute("data-id");
+    const MCvehicleId = item.getAttribute("data-id");
 
     const editBtn = item.querySelector(".editBtn");
     const deleteBtn = item.querySelector(".deleteBtn");
@@ -472,18 +464,18 @@ function runVehicleItemsFunctionality() {
     const deleteNo = item.querySelector(".deleteNo");
 
     editBtn?.addEventListener("click", () => {
-      editVehicleIndex = Number(vehicleId);
+      MCeditVehicleIndex = Number(MCvehicleId);
 
       if (!formList.includes("add_vehicle_form")) {
         const summaryIndex = formList.indexOf("summary__form");
         formList.splice(summaryIndex, 0, "add_vehicle_form");
 
-        showActiveForm(motorStep, motorBackBtn);
+        showActiveForm(MCStep, MCBackBtn);
 
         // Assign the values
         const vclFields = document.querySelectorAll(".add_vehicle_form .field__input");
         vclFields.forEach((f) => {
-          const property = "vehicle" + vehicleId + f.getAttribute("data-field");
+          const property = "vehicle" + MCvehicleId + f.getAttribute("data-field");
           f.id = f.name = property;
           f.value = formData[property];
         });
@@ -501,17 +493,17 @@ function runVehicleItemsFunctionality() {
     });
 
     deleteYes.addEventListener("click", () => {
-      for (const k in collectorVehicles[itemIndex]) {
+      for (const k in MCvehicles[itemIndex]) {
         delete formData[k];
       }
 
-      // collectorVehicles[itemIndex] = "deleted";
-      collectorVehicles = collectorVehicles.filter((item, i) => i !== itemIndex);
+      // MCvehicles[itemIndex] = "deleted";
+      MCvehicles = MCvehicles.filter((item, i) => i !== itemIndex);
 
       item.classList.add("__hide");
       item.remove(); // delete elements
 
-      addVehicle.disabled = false;
+      MCaddVehicle.disabled = false;
     });
   });
 }
@@ -520,40 +512,40 @@ function runVehicleItemsFunctionality() {
 //              STEP-2 VALIDATION
 // *********************************************
 
-function summaryFunctionality() {
+function MCsummaryFunctionality() {
   const summaryHeading = document.querySelector(".summary__form .quote_request_heading");
-  summaryHeading.innerHTML = `Your Policy Has ${collectorVehicles.length} Vehicles`;
+  summaryHeading.innerHTML = `Your Policy Has ${MCvehicles.length} Vehicles`;
 
   // If Main Vehicle Data OKK then direct show SUMMARY neither show add_vehicle_form
-  if (!collectorVehicles.length > 0) {
+  if (!MCvehicles.length > 0) {
     if (!formList.includes("add_vehicle_form")) {
       const summaryIndex = formList.indexOf("summary__form");
 
       formList.splice(summaryIndex, 0, "add_vehicle_form");
     }
 
-    showActiveForm(motorStep, motorBackBtn);
+    showActiveForm(MCStep, MCBackBtn);
   } else {
     formList = formList.filter((form) => form != "add_vehicle_form");
   }
 
   // Add all data to moreVehicles sections
-  collectorVehicles = collectorVehicles.filter((item) => item !== "deleted");
+  MCvehicles = MCvehicles.filter((item) => item !== "deleted");
 
   const addedSummary = document.querySelector("#moreVehicles");
   // const totalAdded = addedSummary.children?.length;
 
   // if all data not appended then Append Data to #moreVehicles
-  if (collectorVehicles.length > 0) {
+  if (MCvehicles.length > 0) {
     addedSummary.innerHTML = "";
     const demoItem = document.querySelector(".quote_request__summary_item.demoItem");
     // Clone the demo, create and append
-    collectorVehicles.forEach((info, i) => {
+    MCvehicles.forEach((info, i) => {
       const clonedItem = demoItem.cloneNode(true);
       clonedItem.classList.remove("__hide", "demoItem");
-      clonedItem.setAttribute("data-id", info.vehicleId);
+      clonedItem.setAttribute("data-id", info.MCvehicleId);
 
-      if (info.vehicleId == 0) clonedItem.querySelector("#deleteBtn").remove();
+      if (info.MCvehicleId == 0) clonedItem.querySelector("#deleteBtn").remove();
 
       let vYear = "";
       let vMake = "";
@@ -573,18 +565,18 @@ function summaryFunctionality() {
   }
 
   // ****************************************************
-  // const filterCVehicles = collectorVehicles.map((data) => {
-  //   delete data.vehicleId;
+  // const filterCVehicles = MCvehicles.map((data) => {
+  //   delete data.MCvehicleId;
   //   return data;
   // });
 
-  collectorVehicles.forEach((info) => (formData = { ...formData, ...info }));
-  delete formData.vehicleId;
+  MCvehicles.forEach((info) => (formData = { ...formData, ...info }));
+  delete formData.MCvehicleId;
 
-  runVehicleItemsFunctionality();
+  MCrunVehicleItemsFunctionality();
 }
 
-function addVehicleValidation() {
+function MCaddVehicleValidation() {
   const isValidate = validateForm("add_vehicle_form", false);
 
   if (isValidate) {
@@ -598,23 +590,23 @@ function addVehicleValidation() {
     });
 
     // UPDATE or CREATE Vehicle Data
-    if (Number(editVehicleIndex) >= 0) {
-      const matchId = collectorVehicles.filter((v) => v.vehicleId == Number(editVehicleIndex));
+    if (Number(MCeditVehicleIndex) >= 0) {
+      const matchId = MCvehicles.filter((v) => v.MCvehicleId == Number(MCeditVehicleIndex));
       const updatedData = { ...matchId[0], ...vehicleData };
 
-      collectorVehicles = collectorVehicles.map((vData) => (vData.vehicleId == editVehicleIndex ? updatedData : vData));
+      MCvehicles = MCvehicles.map((vData) => (vData.MCvehicleId == MCeditVehicleIndex ? updatedData : vData));
 
-      // collectorVehicles[Number(vehicleId)] = vehicleData;
-      editVehicleIndex = -1;
+      // MCvehicles[Number(MCvehicleId)] = vehicleData;
+      MCeditVehicleIndex = -1;
     } else {
-      vehicleData.vehicleId = vehicleId;
+      vehicleData.MCvehicleId = MCvehicleId;
 
-      collectorVehicles.push(vehicleData);
+      MCvehicles.push(vehicleData);
     }
 
-    // REDUCE motorStep and REMOVE add_vehicle_form from the formList
+    // REDUCE MCStep and REMOVE add_vehicle_form from the formList
     const summaryIndex = formList.indexOf("summary__form");
-    motorStep = summaryIndex - 2;
+    MCStep = summaryIndex - 2;
     formList = formList.filter((item) => item != "add_vehicle_form");
   }
 
@@ -625,9 +617,9 @@ function addVehicleValidation() {
 function setMatchedData(disability) {
   const isSameAddressEl = document.querySelector(".AddressSameAsMailing--true");
 
-  const addVehicleFields = document.querySelectorAll(".vehicleFullAddress .field__input");
+  const MCaddVehicleFields = document.querySelectorAll(".vehicleFullAddress .field__input");
 
-  addVehicleFields.forEach((el) => {
+  MCaddVehicleFields.forEach((el) => {
     el.disabled = disability;
     isSameAddressEl.disabled = false;
 
@@ -636,7 +628,7 @@ function setMatchedData(disability) {
   });
 }
 
-function addVehicleFunc() {
+function MCaddVehicleFunc() {
   const isSameAddressEl = document.querySelector(".AddressSameAsMailing--true");
   isSameAddressEl.checked = false;
   //
@@ -649,9 +641,9 @@ function addVehicleFunc() {
     if (isSameAddressEl.checked) {
       setMatchedData(true);
     } else {
-      const addVehicleFields = document.querySelectorAll(".vehicleFullAddress .field__input");
+      const MCaddVehicleFields = document.querySelectorAll(".vehicleFullAddress .field__input");
 
-      addVehicleFields.forEach((el, i) => {
+      MCaddVehicleFields.forEach((el, i) => {
         el.value = "";
         el.disabled = false;
 
@@ -663,49 +655,37 @@ function addVehicleFunc() {
   });
 }
 
-// function condoPropertyQuotedValidation() {
-//   if (SameAddressEl.checked) {
-//     formData[SameAddressEl.name] = true;
-//     return true;
-//   } else {
-//     formData[SameAddressEl.name] = false;
-
-//     const isValidate = validateForm("property_quoted_form");
-//     return isValidate;
-//   }
-// }
-
 // *********************************************
 //              STEP-3 FUNCTIONALITY
 // *********************************************
-const addViolationBtn = document.getElementById("add_violation_btn");
-const violationsFields = document.querySelector(".violation_info_fields");
-const violationWrapper = document.getElementById("violation_info_fields_wrapper");
+const MCaddViolationBtn = document.getElementById("add_violation_btn");
+const MCviolationsFields = document.querySelector(".violation_info_fields");
+const MCviolationWrapper = document.getElementById("violation_info_fields_wrapper");
 
-let vioSerial = 0;
+let MCvioSerial = 0;
 
 // ******************* Violation Form Functionality *******************
 // ADD MORE VIOLATIONS FIELDS
-addViolationBtn?.addEventListener("click", function () {
-  vioSerial++;
+MCaddViolationBtn?.addEventListener("click", function () {
+  MCvioSerial++;
 
-  const newFields = violationsFields.cloneNode(true);
+  const newFields = MCviolationsFields.cloneNode(true);
   newFields.querySelectorAll(".field__input").forEach((field) => {
     field.value = "";
 
-    const newId = field.id.replace("0", vioSerial);
+    const newId = field.id.replace("0", MCvioSerial);
     field.id = field.name = newId;
   });
 
   // for new fields : clearFieldErrorMsg
   newFields.querySelectorAll(".error").forEach((errField) => errField.remove());
 
-  violationWrapper.appendChild(newFields);
+  MCviolationWrapper.appendChild(newFields);
 
   // Data Validator added
   document.querySelectorAll(".householdViolationsDate").forEach((vDate) => dateValidation(vDate, thisYear));
 
-  if (violationWrapper.children.length >= 5) {
+  if (MCviolationWrapper.children.length >= 5) {
     this.disabled = true;
   }
 
@@ -713,17 +693,17 @@ addViolationBtn?.addEventListener("click", function () {
 });
 
 // IF householdViolationsPreviousClaims value not== Yes, then disable all
-function disableViolationInputs(disable = true) {
-  const violationInputs = violationWrapper.querySelectorAll(".field__input");
+function MCdisableViolationInputs(disable = true) {
+  const violationInputs = MCviolationWrapper.querySelectorAll(".field__input");
   violationInputs.forEach((input) => (input.disabled = disable));
-  addViolationBtn.disabled = disable;
+  MCaddViolationBtn.disabled = disable;
 }
-disableViolationInputs(true);
+MCdisableViolationInputs(true);
 
-const hasViolationsFields = document.getElementsByName("householdViolationsPreviousClaims");
+const MChasViolationsFields = document.getElementsByName("householdViolationsPreviousClaims");
 const getViolationsValue = () => {
   let value = "";
-  hasViolationsFields?.forEach((field) => {
+  MChasViolationsFields?.forEach((field) => {
     if (field?.checked) value = field.value;
   });
 
@@ -731,14 +711,14 @@ const getViolationsValue = () => {
 };
 
 // Get every violation Radio field's value
-hasViolationsFields.forEach((fields) => {
+MChasViolationsFields.forEach((fields) => {
   fields?.addEventListener("change", () => {
     let getValue = getViolationsValue();
 
     if (getValue === "Yes") {
-      disableViolationInputs(false);
+      MCdisableViolationInputs(false);
     } else {
-      disableViolationInputs(true);
+      MCdisableViolationInputs(true);
     }
 
     const fieldContainer = document.querySelector(".violations_form");
@@ -748,9 +728,9 @@ hasViolationsFields.forEach((fields) => {
 });
 
 // **** coverageLimitsValidation 'qrf-accordion' Functionality ****
-const accordionButtons = document.querySelectorAll(".qrf-accordion__trigger");
+const MCaccordionButtons = document.querySelectorAll(".qrf-accordion__trigger");
 
-accordionButtons?.forEach((button) => {
+MCaccordionButtons?.forEach((button) => {
   button.addEventListener("click", () => {
     const accordion = button.closest(".qrf-accordion");
     accordion.classList.toggle("qrf-accordion--active");
@@ -762,17 +742,17 @@ accordionButtons?.forEach((button) => {
 });
 
 // ********* FUNCTIONALITY physical_damage_form *********
-function functionalityForEachDamageForm() {
+function MCfuncDamageForm() {
   const damageForm = document.querySelector(".damage__form.__hide");
   const DamageFormWrapper = document.getElementById("physical_damage_form_wrapper");
 
   // Clear DamageFormWrapper Children
   DamageFormWrapper.innerHTML = "";
 
-  // const vehicleList = collectorVehicles;
+  // const vehicleList = MCvehicles;
   // Add Vehicle data to DamageFormWrapper with other fields
-  collectorVehicles.forEach((vData, index) => {
-    const vId = vData.vehicleId;
+  MCvehicles.forEach((vData, index) => {
+    const vId = vData.MCvehicleId;
     const year = vData[`vehicle${vId}Year`];
     const make = vData[`vehicle${vId}Make`];
     const model = vData[`vehicle${vId}Model`];
@@ -831,7 +811,7 @@ function functionalityForEachDamageForm() {
 // *********************************************
 //              STEP-3 VALIDATION
 // *********************************************
-function violationsValidation() {
+function MCviolationsValidation() {
   if (getViolationsValue() === "No") {
     formData.householdViolationsPreviousClaims = "No violations in last 5 years";
     return true;
@@ -874,9 +854,9 @@ function violationsValidation() {
   }
 }
 
-function physicalDamageValidation() {
-  const fieldError = collectorVehicles.map((vData) => {
-    const vId = vData.vehicleId;
+function MCphysicalDamageValidation() {
+  const fieldError = MCvehicles.map((vData) => {
+    const vId = vData.MCvehicleId;
 
     const radioFields = document.querySelectorAll(`input[name=vehicle${vId}LiabilityOnlyCoverage]`);
 
@@ -909,23 +889,23 @@ function physicalDamageValidation() {
     const damageForms = document.querySelectorAll("#physical_damage_form_wrapper .damage__form");
 
     damageForms.forEach((damageForm, i) => {
-      const vId = collectorVehicles[i].vehicleId;
+      const vId = MCvehicles[i].MCvehicleId;
 
       const liaCoVal = damageForm.querySelector(`input[name=vehicle${vId}LiabilityOnlyCoverage]:checked`)?.value;
 
-      collectorVehicles[i][`vehicle${vId}LiabilityOnlyCoverage`] = liaCoVal;
+      MCvehicles[i][`vehicle${vId}LiabilityOnlyCoverage`] = liaCoVal;
 
       if (liaCoVal === "No") {
         const comVal = damageForm.querySelector(".field__input.vehicleComprehensiveDeductible")?.value;
         const colVal = damageForm.querySelector(".field__input.vehicleCollisionDeductible")?.value;
 
-        collectorVehicles[i][`vehicle${vId}ComprehensiveDeductible`] = comVal;
-        collectorVehicles[i][`vehicle${vId}CollisionDeductible`] = colVal;
+        MCvehicles[i][`vehicle${vId}ComprehensiveDeductible`] = comVal;
+        MCvehicles[i][`vehicle${vId}CollisionDeductible`] = colVal;
       }
     });
   }
 
-  summaryFunctionality();
+  MCsummaryFunctionality();
 
   return isValidate;
 }
