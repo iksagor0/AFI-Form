@@ -437,6 +437,11 @@ addVehicle?.addEventListener("click", function () {
     field.id = property;
     field.name = property;
   });
+
+  // make Dynamic vehicleSameAsMailingLabel for
+  const vehicleSameAsMailing = document.querySelector(".add_vehicle_form .AddressSameAsMailing--true");
+  const vehicleSameAsMailingLabel = document.querySelector(".add_vehicle_form .AddressSameAsMailing--label");
+  vehicleSameAsMailingLabel.setAttribute("for", vehicleSameAsMailing.id);
 });
 
 // ********** FUNCTIONALITY OF VEHICLE FORM : Edit ***********
