@@ -359,7 +359,7 @@ function addDriverValidation() {
     });
 
     // UPDATE or CREATE Vehicle Data
-    if (editDriverIndex > 0) {
+    if (Number(editDriverIndex) >= 0) {
       const matchId = driverArr.filter((v) => v.driverId == editDriverIndex);
       const updatedData = { ...matchId[0], ...driverData };
 
@@ -377,6 +377,8 @@ function addDriverValidation() {
     const summaryIndex = formList.indexOf("driver_summary_form");
     motorStep = summaryIndex - 2;
     formList = formList.filter((item) => item != "additional_driver");
+
+    debugger;
   }
 
   return isValidate;
@@ -596,7 +598,7 @@ function addVehicleValidation() {
     });
 
     // UPDATE or CREATE Vehicle Data
-    if (editVehicleIndex > 0) {
+    if (Number(editVehicleIndex) >= 0) {
       const matchId = collectorVehicles.filter((v) => v.vehicleId == Number(editVehicleIndex));
       const updatedData = { ...matchId[0], ...vehicleData };
 
