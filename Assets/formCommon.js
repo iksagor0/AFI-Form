@@ -45,8 +45,7 @@ function eligibilityErrorMessage(data, selector) {
 
 // Show error Message if value user makes any mistake
 function inputErrorMessage(selector, msg) {
-  const hasErrorField =
-    selector?.parentElement?.querySelector(".field_message");
+  const hasErrorField = selector?.parentElement?.querySelector(".field_message");
 
   if (!hasErrorField) {
     // create error message field
@@ -135,12 +134,8 @@ function phoneNumberPattern(selector) {
   }
 
   selector?.addEventListener("input", (e) => {
-    var x = e.target.value
-      .replace(/\D/g, "")
-      .match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
-    e.target.value = !x[2]
-      ? x[1]
-      : "(" + x[1] + ") " + x[2] + (x[3] ? "-" + x[3] : "");
+    var x = e.target.value.replace(/\D/g, "").match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
+    e.target.value = !x[2] ? x[1] : "(" + x[1] + ") " + x[2] + (x[3] ? "-" + x[3] : "");
   });
 }
 phoneNumberPattern();
@@ -148,12 +143,8 @@ phoneNumberPattern();
 // Social Security Number Pattern
 document.querySelectorAll(".SSN").forEach((field) => {
   field.addEventListener("input", (e) => {
-    var x = e.target.value
-      .replace(/\D/g, "")
-      .match(/(\d{0,3})(\d{0,2})(\d{0,4})/);
-    e.target.value = !x[2]
-      ? x[1]
-      : x[1] + "-" + x[2] + (x[3] ? "-" + x[3] : "");
+    var x = e.target.value.replace(/\D/g, "").match(/(\d{0,3})(\d{0,2})(\d{0,4})/);
+    e.target.value = !x[2] ? x[1] : x[1] + "-" + x[2] + (x[3] ? "-" + x[3] : "");
   });
 });
 
@@ -180,9 +171,7 @@ currencyFieldFunc();
 const thisYear = new Date().getFullYear();
 function dateValidation(field, getMaxYear = thisYear) {
   field?.addEventListener("input", (e) => {
-    let value = e.target.value
-      .replace(/\D/g, "")
-      .match(/(\d{0,2})(\d{0,2})(\d{0,4})/);
+    let value = e.target.value.replace(/\D/g, "").match(/(\d{0,2})(\d{0,2})(\d{0,4})/);
 
     let [fullData, MM, DD, YYYY] = value;
 
@@ -195,10 +184,8 @@ function dateValidation(field, getMaxYear = thisYear) {
     if (DD.length === 1 && Number(DD) > 3) value[2] = 0 + DD[0];
     else if (DD.length === 2 && Number(DD) <= 0) value[2] = DD[0];
     else if (DD.length === 2 && Number(DD) > 31) value[2] = DD[0];
-    else if (DD.length === 2 && Number(MM) == 2 && Number(DD) > 29)
-      value[2] = DD[0];
-    else if ([4, 6, 9, 11].includes(Number(MM)) && Number(DD) > 30)
-      value[2] = DD[0];
+    else if (DD.length === 2 && Number(MM) == 2 && Number(DD) > 29) value[2] = DD[0];
+    else if ([4, 6, 9, 11].includes(Number(MM)) && Number(DD) > 30) value[2] = DD[0];
 
     // Year validation
     const maxYear = String(getMaxYear);
@@ -208,15 +195,11 @@ function dateValidation(field, getMaxYear = thisYear) {
     else if (YYYY.length === 1 && Number(YYYY) > 2) value[3] = "";
     else if (YYYY.length === 2 && Number(YYYY) > 20) value[3] = YYYY[0];
     else if (YYYY.length === 2 && Number(YYYY) < 19) value[3] = YYYY[0];
-    else if (YYYY.length === 3 && Number(YYYY) > Number(maxYear.slice(0, 3)))
-      value[3] = YYYY.slice(0, 2);
-    else if (YYYY.length === 4 && Number(YYYY) > Number(maxYear))
-      value[3] = YYYY.slice(0, 3);
+    else if (YYYY.length === 3 && Number(YYYY) > Number(maxYear.slice(0, 3))) value[3] = YYYY.slice(0, 2);
+    else if (YYYY.length === 4 && Number(YYYY) > Number(maxYear)) value[3] = YYYY.slice(0, 3);
 
     // Result
-    e.target.value = !value[2]
-      ? value[1]
-      : value[1] + "/" + value[2] + (value[3] ? "/" + value[3] : "");
+    e.target.value = !value[2] ? value[1] : value[1] + "/" + value[2] + (value[3] ? "/" + value[3] : "");
   });
 }
 document.querySelectorAll(".DOB").forEach((el) => dateValidation(el));
@@ -226,9 +209,7 @@ document.querySelectorAll(".date").forEach((el) => dateValidation(el));
 //             Eligibility Validation
 // *********************************************
 function eligibilityValidation(forms = []) {
-  const eligibilityStatus = document.querySelector(
-    'input[name="eligibilityStatus"]:checked'
-  )?.value;
+  const eligibilityStatus = document.querySelector('input[name="eligibilityStatus"]:checked')?.value;
 
   // Select Formlist as user eligibilityStatus
   if (Boolean(eligibilityStatus)) {
@@ -248,10 +229,7 @@ function eligibilityValidation(forms = []) {
   }
 
   // Error Message if value = null
-  eligibilityErrorMessage(
-    formData.eligibilityStatus,
-    ".radio__form_section .field_message"
-  );
+  eligibilityErrorMessage(formData.eligibilityStatus, ".radio__form_section .field_message");
   return eligibilityStatus;
 }
 
@@ -259,18 +237,13 @@ function eligibilityValidation(forms = []) {
 //              FORM VALIDATION
 // *********************************************
 function validateForm(formClassName, dataAssign = true) {
-  const allFields = document.querySelectorAll(
-    `.${formClassName} .field__input`
-  );
+  const allFields = document.querySelectorAll(`.${formClassName} .field__input`);
 
-  const yearValidator = (field) =>
-    minValue(field, 4, "Please enter a valid year");
+  const yearValidator = (field) => minValue(field, 4, "Please enter a valid year");
 
-  const dateValidator = (field) =>
-    minValue(field, 10, "Please enter a valid date");
+  const dateValidator = (field) => minValue(field, 10, "Please enter a valid date");
 
-  const zipValidator = (field) =>
-    minValue(field, 5, "Please enter a valid Zip code");
+  const zipValidator = (field) => minValue(field, 5, "Please enter a valid Zip code");
 
   const classAndValidator = [
     { class: "year", validator: yearValidator },
@@ -322,11 +295,7 @@ function policyholderValidation(step) {
 
   if (isValidate) {
     // SHOW SPOUSE INFORMATION FORM, IF HAVE
-    const spouseValues = [
-      "Married",
-      "Cohabitant",
-      "Civil Union Or Domestic Partner",
-    ];
+    const spouseValues = ["Married", "Cohabitant", "Civil Union Or Domestic Partner"];
 
     if (spouseValues.includes(formData.policyHolderMaritalStatus)) {
       if (!formList.includes("spouse_information")) {
@@ -336,9 +305,7 @@ function policyholderValidation(step) {
     if (!spouseValues.includes(formData.policyHolderMaritalStatus)) {
       formList = formList.filter((form) => form != "spouse_information");
 
-      const spouseField = document.querySelectorAll(
-        ".spouse_information .field__input"
-      );
+      const spouseField = document.querySelectorAll(".spouse_information .field__input");
 
       spouseField.forEach((field) => {
         delete formData[field.name];
@@ -353,20 +320,16 @@ function policyholderValidation(step) {
 // *********************************************
 // KeyPress only remove field Error Message
 function removeErrorOnChange() {
-  document
-    .querySelectorAll(".form_container .field")
-    ?.forEach((fieldWrapper) => {
-      const removeFieldError = () => {
-        const errorField = fieldWrapper?.querySelector(".field_message");
-        errorField?.classList.remove("error");
-      };
+  document.querySelectorAll(".form_container .field")?.forEach((fieldWrapper) => {
+    const removeFieldError = () => {
+      const errorField = fieldWrapper?.querySelector(".field_message");
+      errorField?.classList.remove("error");
+    };
 
-      fieldWrapper
-        ?.querySelectorAll(".field__input")
-        .forEach((inputField) =>
-          inputField?.addEventListener("input", removeFieldError)
-        );
-    });
+    fieldWrapper
+      ?.querySelectorAll(".field__input")
+      .forEach((inputField) => inputField?.addEventListener("input", removeFieldError));
+  });
 }
 removeErrorOnChange();
 
@@ -445,15 +408,11 @@ function awaitedField(el, disability) {
 // *********************************************
 function coverageHistoryFunc() {
   // if currentInsuranceCompany = "Other" then Insurance Company field will show
-  const currentInsuranceCompany = document.querySelector(
-    "#currentInsuranceCompany"
-  );
+  const currentInsuranceCompany = document.querySelector("#currentInsuranceCompany");
 
   currentInsuranceCompany?.addEventListener("change", () => {
     const insuranceCompany = document.getElementById("insuranceCompany");
-    const insComWrapper = document.querySelector(
-      ".multi__step_4 .insuranceCompany"
-    );
+    const insComWrapper = document.querySelector(".multi__step_4 .insuranceCompany");
 
     if (currentInsuranceCompany?.value === "Other") {
       insComWrapper?.classList.remove("conditionally_hidden_field");
@@ -474,11 +433,17 @@ function coverageHistoryFunc() {
  ********************************************************/
 // SAVE FORM DATA
 async function saveData(url, data, nextBtn, cForm, action) {
-  const currForm = document.querySelector("." + cForm);
-  const formFields = currForm.querySelectorAll(".field__input");
+  const formFields = document.querySelectorAll(`.${cForm} .field__input`);
+
+  const fieldStates = [];
 
   // Process Start
-  formFields.forEach((field) => (field.disabled = true));
+  formFields.forEach((field) => {
+    const fieldState = { id: field.id, disabled: field.disabled };
+    fieldStates.push(fieldState);
+
+    field.disabled = true;
+  });
   nextBtn.disabled = true;
   nextBtn.innerText = "Saving...";
 
@@ -498,7 +463,9 @@ async function saveData(url, data, nextBtn, cForm, action) {
   });
 
   // After Process Done
-  formFields.forEach((field) => (field.disabled = false));
+  // formFields.forEach((field) => (field.disabled = false));
+  fieldStates.forEach((f) => (document.querySelector(`.${cForm} #${f.id}`).disabled = f.disabled));
+
   nextBtn.disabled = false;
   nextBtn.innerText = "Next";
 
@@ -509,4 +476,5 @@ async function saveData(url, data, nextBtn, cForm, action) {
   }
 
   return jsonData;
+  return true;
 }
